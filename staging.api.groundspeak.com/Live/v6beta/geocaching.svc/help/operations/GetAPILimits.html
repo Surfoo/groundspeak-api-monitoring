@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Reference for  https://staging.api.groundspeak.com/Live/V6Beta/geocaching.svc/GetAPILimits?accessToken={ACCESSTOKEN}</title>
+    <style>BODY { color: #000000; background-color: white; font-family: Verdana; margin-left: 0px; margin-top: 0px; } #content { margin-left: 30px; font-size: .70em; padding-bottom: 2em; } A:link { color: #336699; font-weight: bold; text-decoration: underline; } A:visited { color: #6699cc; font-weight: bold; text-decoration: underline; } A:active { color: #336699; font-weight: bold; text-decoration: underline; } .heading1 { background-color: #003366; border-bottom: #336699 6px solid; color: #ffffff; font-family: Tahoma; font-size: 26px; font-weight: normal;margin: 0em 0em 10px -20px; padding-bottom: 8px; padding-left: 30px;padding-top: 16px;} pre { font-size:small; background-color: #e5e5cc; padding: 5px; font-family: Courier New; margin-top: 0px; border: 1px #f0f0e0 solid; white-space: pre-wrap; white-space: -pre-wrap; word-wrap: break-word; } table { border-collapse: collapse; border-spacing: 0px; font-family: Verdana;} table th { border-right: 2px white solid; border-bottom: 2px white solid; font-weight: bold; background-color: #cecf9c;} table td { border-right: 2px white solid; border-bottom: 2px white solid; background-color: #e5e5cc;}</style>
+  </head>
+  <body>
+    <div id="content">
+      <p class="heading1">Reference for  https://staging.api.groundspeak.com/Live/V6Beta/geocaching.svc/GetAPILimits?accessToken={ACCESSTOKEN}</p>
+      <p></p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>Url: </b>
+        <span class="uri-template">https://staging.api.groundspeak.com/Live/V6Beta/geocaching.svc/GetAPILimits?accessToken={ACCESSTOKEN}</span>
+      </p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>HTTP Method: </b>
+        <span class="method">GET</span>
+      </p>
+      <table>
+        <tr>
+          <th>Message direction</th>
+          <th>Format</th>
+          <th>Body</th>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>N/A</td>
+          <td>The Request body is empty.</td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Xml</td>
+          <td>
+            <a href="GetAPILimits.html#response-xml">Example</a>,<a href="GetAPILimits.html#response-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Json</td>
+          <td>
+            <a href="GetAPILimits.html#response-json">Example</a>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <a name="#response-xml">The following is an example response Xml body:</a>
+        <pre class="response-xml">&lt;GetAPILimitsResponse xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;
+  &lt;Status&gt;
+    &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+    &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+    &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+    &lt;Warnings&gt;
+      &lt;StatusResponse&gt;
+        &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+        &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+        &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+        &lt;Warnings&gt;
+          &lt;StatusResponse&gt;
+            &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+            &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+            &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+            &lt;Warnings i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" /&gt;
+          &lt;/StatusResponse&gt;
+          &lt;StatusResponse&gt;
+            &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+            &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+            &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+            &lt;Warnings i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" /&gt;
+          &lt;/StatusResponse&gt;
+        &lt;/Warnings&gt;
+      &lt;/StatusResponse&gt;
+      &lt;StatusResponse&gt;
+        &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+        &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+        &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+        &lt;Warnings&gt;
+          &lt;StatusResponse&gt;
+            &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+            &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+            &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+            &lt;Warnings i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" /&gt;
+          &lt;/StatusResponse&gt;
+          &lt;StatusResponse&gt;
+            &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+            &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+            &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+            &lt;Warnings i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" /&gt;
+          &lt;/StatusResponse&gt;
+        &lt;/Warnings&gt;
+      &lt;/StatusResponse&gt;
+    &lt;/Warnings&gt;
+  &lt;/Status&gt;
+  &lt;Limits&gt;
+    &lt;CacheLimits xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;
+      &lt;CacheLimitPerMinute&gt;
+        &lt;CacheLimit&gt;18446744073709551615&lt;/CacheLimit&gt;
+        &lt;InMinutes&gt;2147483647&lt;/InMinutes&gt;
+      &lt;/CacheLimitPerMinute&gt;
+      &lt;CacheLimitPerMinute&gt;
+        &lt;CacheLimit&gt;18446744073709551615&lt;/CacheLimit&gt;
+        &lt;InMinutes&gt;2147483647&lt;/InMinutes&gt;
+      &lt;/CacheLimitPerMinute&gt;
+    &lt;/CacheLimits&gt;
+    &lt;EnforceCacheLimits xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;true&lt;/EnforceCacheLimits&gt;
+    &lt;EnforceLiteCacheLimits xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;true&lt;/EnforceLiteCacheLimits&gt;
+    &lt;EnforceMethodLimits xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;true&lt;/EnforceMethodLimits&gt;
+    &lt;ForMembershipType xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;Undefined&lt;/ForMembershipType&gt;
+    &lt;LicenseKey xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;String content&lt;/LicenseKey&gt;
+    &lt;LiteCacheLimits xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;
+      &lt;LiteCacheLimitPerMinute&gt;
+        &lt;CacheLimit&gt;18446744073709551615&lt;/CacheLimit&gt;
+        &lt;InMinutes&gt;2147483647&lt;/InMinutes&gt;
+      &lt;/LiteCacheLimitPerMinute&gt;
+      &lt;LiteCacheLimitPerMinute&gt;
+        &lt;CacheLimit&gt;18446744073709551615&lt;/CacheLimit&gt;
+        &lt;InMinutes&gt;2147483647&lt;/InMinutes&gt;
+      &lt;/LiteCacheLimitPerMinute&gt;
+    &lt;/LiteCacheLimits&gt;
+    &lt;MaxCallsbyIPIn1Minute xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;18446744073709551615&lt;/MaxCallsbyIPIn1Minute&gt;
+    &lt;MethodLimits xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;
+      &lt;MethodRestriction&gt;
+        &lt;InMinutes&gt;2147483647&lt;/InMinutes&gt;
+        &lt;MaxCalls&gt;18446744073709551615&lt;/MaxCalls&gt;
+        &lt;MethodName&gt;String content&lt;/MethodName&gt;
+        &lt;PartnerMethod&gt;true&lt;/PartnerMethod&gt;
+      &lt;/MethodRestriction&gt;
+      &lt;MethodRestriction&gt;
+        &lt;InMinutes&gt;2147483647&lt;/InMinutes&gt;
+        &lt;MaxCalls&gt;18446744073709551615&lt;/MaxCalls&gt;
+        &lt;MethodName&gt;String content&lt;/MethodName&gt;
+        &lt;PartnerMethod&gt;true&lt;/PartnerMethod&gt;
+      &lt;/MethodRestriction&gt;
+    &lt;/MethodLimits&gt;
+    &lt;RestrictbyIP xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;true&lt;/RestrictbyIP&gt;
+    &lt;ValidateIPCounts xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;true&lt;/ValidateIPCounts&gt;
+  &lt;/Limits&gt;
+&lt;/GetAPILimitsResponse&gt;</pre>
+      </p>
+      <p>
+        <a name="#response-json">The following is an example response Json body:</a>
+        <pre class="response-json">{
+	"Status":{
+		"StatusCode":2147483647,
+		"StatusMessage":"String content",
+		"ExceptionDetails":"String content",
+		"Warnings":[{
+			"StatusCode":2147483647,
+			"StatusMessage":"String content",
+			"ExceptionDetails":"String content",
+			"Warnings":[{
+				"StatusCode":2147483647,
+				"StatusMessage":"String content",
+				"ExceptionDetails":"String content",
+				"Warnings":null
+			}]
+		}]
+	},
+	"Limits":{
+		"CacheLimits":[{
+			"CacheLimit":18446744073709551615,
+			"InMinutes":2147483647
+		}],
+		"EnforceCacheLimits":true,
+		"EnforceLiteCacheLimits":true,
+		"EnforceMethodLimits":true,
+		"ForMembershipType":0,
+		"LicenseKey":"String content",
+		"LiteCacheLimits":[{
+			"CacheLimit":18446744073709551615,
+			"InMinutes":2147483647
+		}],
+		"MaxCallsbyIPIn1Minute":18446744073709551615,
+		"MethodLimits":[{
+			"InMinutes":2147483647,
+			"MaxCalls":18446744073709551615,
+			"MethodName":"String content",
+			"PartnerMethod":true
+		}],
+		"RestrictbyIP":true,
+		"ValidateIPCounts":true
+	}
+}</pre>
+      </p>
+      <p>
+        <a name="#response-schema">The following is the response Xml Schema:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://www.geocaching.com/Geocaching.Live/data" elementFormDefault="qualified" targetNamespace="http://www.geocaching.com/Geocaching.Live/data" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" /&gt;
+  &lt;xs:complexType name="GetAPILimitsResponse"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Status" nillable="true" type="tns:StatusResponse" /&gt;
+      &lt;xs:element minOccurs="0" name="Limits" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" type="q1:RestrictionMatrix" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GetAPILimitsResponse" nillable="true" type="tns:GetAPILimitsResponse" /&gt;
+  &lt;xs:complexType name="StatusResponse"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="StatusCode" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ExceptionDetails" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Warnings" nillable="true" type="tns:ArrayOfStatusResponse" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="StatusResponse" nillable="true" type="tns:StatusResponse" /&gt;
+  &lt;xs:complexType name="ArrayOfStatusResponse"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="StatusResponse" nillable="true" type="tns:StatusResponse" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfStatusResponse" nillable="true" type="tns:ArrayOfStatusResponse" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="#response-schema">Additional response Xml Schemas:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:complexType name="RestrictionMatrix"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CacheLimits" nillable="true" type="tns:ArrayOfCacheLimitPerMinute" /&gt;
+      &lt;xs:element minOccurs="0" name="EnforceCacheLimits" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="EnforceLiteCacheLimits" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="EnforceMethodLimits" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ForMembershipType" type="tns:MembershipLevel" /&gt;
+      &lt;xs:element minOccurs="0" name="LicenseKey" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LiteCacheLimits" nillable="true" type="tns:ArrayOfLiteCacheLimitPerMinute" /&gt;
+      &lt;xs:element minOccurs="0" name="MaxCallsbyIPIn1Minute" type="xs:unsignedLong" /&gt;
+      &lt;xs:element minOccurs="0" name="MethodLimits" nillable="true" type="tns:ArrayOfMethodRestriction" /&gt;
+      &lt;xs:element minOccurs="0" name="RestrictbyIP" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidateIPCounts" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="RestrictionMatrix" nillable="true" type="tns:RestrictionMatrix" /&gt;
+  &lt;xs:complexType name="ArrayOfCacheLimitPerMinute"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="CacheLimitPerMinute" nillable="true" type="tns:CacheLimitPerMinute" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfCacheLimitPerMinute" nillable="true" type="tns:ArrayOfCacheLimitPerMinute" /&gt;
+  &lt;xs:complexType name="CacheLimitPerMinute"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CacheLimit" type="xs:unsignedLong" /&gt;
+      &lt;xs:element minOccurs="0" name="InMinutes" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CacheLimitPerMinute" nillable="true" type="tns:CacheLimitPerMinute" /&gt;
+  &lt;xs:simpleType name="MembershipLevel"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Undefined" /&gt;
+      &lt;xs:enumeration value="Basic"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;10&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Premium"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;30&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Charter"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;20&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="MembershipLevel" nillable="true" type="tns:MembershipLevel" /&gt;
+  &lt;xs:complexType name="ArrayOfLiteCacheLimitPerMinute"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="LiteCacheLimitPerMinute" nillable="true" type="tns:LiteCacheLimitPerMinute" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfLiteCacheLimitPerMinute" nillable="true" type="tns:ArrayOfLiteCacheLimitPerMinute" /&gt;
+  &lt;xs:complexType name="LiteCacheLimitPerMinute"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CacheLimit" type="xs:unsignedLong" /&gt;
+      &lt;xs:element minOccurs="0" name="InMinutes" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="LiteCacheLimitPerMinute" nillable="true" type="tns:LiteCacheLimitPerMinute" /&gt;
+  &lt;xs:complexType name="ArrayOfMethodRestriction"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="MethodRestriction" nillable="true" type="tns:MethodRestriction" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfMethodRestriction" nillable="true" type="tns:ArrayOfMethodRestriction" /&gt;
+  &lt;xs:complexType name="MethodRestriction"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="InMinutes" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="MaxCalls" type="xs:unsignedLong" /&gt;
+      &lt;xs:element minOccurs="0" name="MethodName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PartnerMethod" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="MethodRestriction" nillable="true" type="tns:MethodRestriction" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="schema"&gt;
+    &lt;xs:complexType /&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+    </div>
+  </body>
+</html>
