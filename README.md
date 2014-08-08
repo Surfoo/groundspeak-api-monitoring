@@ -6,4 +6,4 @@ Backup all changes about the Groundspeak API.
 
 Backup with the command:
 
-`wget -m -p -E -k -np https://staging.api.groundspeak.com/Live/v6beta/geocaching.svc/help`
+`wget -m -p -E -k -q -np https://staging.api.groundspeak.com/Live/v6beta/geocaching.svc/help`
