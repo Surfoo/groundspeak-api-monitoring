@@ -1610,6 +1610,7 @@
     &lt;CurrentCacheCount xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;2147483647&lt;/CurrentCacheCount&gt;
     &lt;MaxCacheCount xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;2147483647&lt;/MaxCacheCount&gt;
   &lt;/CacheLimits&gt;
+  &lt;TotalMatchingCaches&gt;2147483647&lt;/TotalMatchingCaches&gt;
 &lt;/GetGeocacheDataResponse&gt;</pre>
       </p>
       <p>
@@ -1908,7 +1909,8 @@
 		"CachesLeft":2147483647,
 		"CurrentCacheCount":2147483647,
 		"MaxCacheCount":2147483647
-	}
+	},
+	"TotalMatchingCaches":2147483647
 }</pre>
       </p>
       <p>
@@ -2237,6 +2239,7 @@
       &lt;xs:element minOccurs="0" name="PQCount" type="xs:long" /&gt;
       &lt;xs:element minOccurs="0" name="CacheCodes" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfstring" /&gt;
       &lt;xs:element minOccurs="0" name="CacheLimits" nillable="true" xmlns:q3="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" type="q3:CacheLimitCounts" /&gt;
+      &lt;xs:element minOccurs="0" name="TotalMatchingCaches" type="xs:int" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="GetGeocacheDataResponse" nillable="true" type="tns:GetGeocacheDataResponse" /&gt;
