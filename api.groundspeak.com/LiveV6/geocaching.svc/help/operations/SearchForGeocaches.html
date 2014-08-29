@@ -1,0 +1,2657 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Reference for  https://api.groundspeak.com/LiveV6/geocaching.svc/SearchForGeocaches</title>
+    <style>BODY { color: #000000; background-color: white; font-family: Verdana; margin-left: 0px; margin-top: 0px; } #content { margin-left: 30px; font-size: .70em; padding-bottom: 2em; } A:link { color: #336699; font-weight: bold; text-decoration: underline; } A:visited { color: #6699cc; font-weight: bold; text-decoration: underline; } A:active { color: #336699; font-weight: bold; text-decoration: underline; } .heading1 { background-color: #003366; border-bottom: #336699 6px solid; color: #ffffff; font-family: Tahoma; font-size: 26px; font-weight: normal;margin: 0em 0em 10px -20px; padding-bottom: 8px; padding-left: 30px;padding-top: 16px;} pre { font-size:small; background-color: #e5e5cc; padding: 5px; font-family: Courier New; margin-top: 0px; border: 1px #f0f0e0 solid; white-space: pre-wrap; white-space: -pre-wrap; word-wrap: break-word; } table { border-collapse: collapse; border-spacing: 0px; font-family: Verdana;} table th { border-right: 2px white solid; border-bottom: 2px white solid; font-weight: bold; background-color: #cecf9c;} table td { border-right: 2px white solid; border-bottom: 2px white solid; background-color: #e5e5cc;}</style>
+  </head>
+  <body>
+    <div id="content">
+      <p class="heading1">Reference for  https://api.groundspeak.com/LiveV6/geocaching.svc/SearchForGeocaches</p>
+      <p></p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>Url: </b>
+        <span class="uri-template">https://api.groundspeak.com/LiveV6/geocaching.svc/SearchForGeocaches</span>
+      </p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>HTTP Method: </b>
+        <span class="method">POST</span>
+      </p>
+      <table>
+        <tr>
+          <th>Message direction</th>
+          <th>Format</th>
+          <th>Body</th>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Xml</td>
+          <td>
+            <a href="SearchForGeocaches.html#request-xml">Example</a>,<a href="SearchForGeocaches.html#request-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Json</td>
+          <td>
+            <a href="SearchForGeocaches.html#request-json">Example</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Xml</td>
+          <td>
+            <a href="SearchForGeocaches.html#response-xml">Example</a>,<a href="SearchForGeocaches.html#response-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Json</td>
+          <td>
+            <a href="SearchForGeocaches.html#response-json">Example</a>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <a name="#request-xml">The following is an example request Xml body:</a>
+        <pre class="request-xml">&lt;SearchForGeocachesRequest xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;
+  &lt;AccessToken&gt;String content&lt;/AccessToken&gt;
+  &lt;IsLite&gt;true&lt;/IsLite&gt;
+  &lt;MaxPerPage&gt;2147483647&lt;/MaxPerPage&gt;
+  &lt;GeocacheLogCount&gt;2147483647&lt;/GeocacheLogCount&gt;
+  &lt;TrackableLogCount&gt;2147483647&lt;/TrackableLogCount&gt;
+  &lt;PointRadius&gt;
+    &lt;DistanceInMeters xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;9223372036854775807&lt;/DistanceInMeters&gt;
+    &lt;Point xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+      &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+    &lt;/Point&gt;
+  &lt;/PointRadius&gt;
+  &lt;NotFoundByUsers&gt;
+    &lt;UserNames xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+    &lt;/UserNames&gt;
+  &lt;/NotFoundByUsers&gt;
+  &lt;Terrain&gt;
+    &lt;MinTerrain xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1.26743233E+15&lt;/MinTerrain&gt;
+    &lt;MaxTerrain xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1.26743233E+15&lt;/MaxTerrain&gt;
+  &lt;/Terrain&gt;
+  &lt;GeocacheName&gt;
+    &lt;GeocacheName xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/GeocacheName&gt;
+  &lt;/GeocacheName&gt;
+  &lt;Difficulty&gt;
+    &lt;MinDifficulty xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1.26743233E+15&lt;/MinDifficulty&gt;
+    &lt;MaxDifficulty xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1.26743233E+15&lt;/MaxDifficulty&gt;
+  &lt;/Difficulty&gt;
+  &lt;CacheCode&gt;
+    &lt;CacheCodes xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+    &lt;/CacheCodes&gt;
+  &lt;/CacheCode&gt;
+  &lt;GeocacheType&gt;
+    &lt;GeocacheTypeIds xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;long xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;9223372036854775807&lt;/long&gt;
+      &lt;long xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;9223372036854775807&lt;/long&gt;
+    &lt;/GeocacheTypeIds&gt;
+  &lt;/GeocacheType&gt;
+  &lt;GeocacheContainerSize&gt;
+    &lt;GeocacheContainerSizeIds xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;long xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;9223372036854775807&lt;/long&gt;
+      &lt;long xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;9223372036854775807&lt;/long&gt;
+    &lt;/GeocacheContainerSizeIds&gt;
+  &lt;/GeocacheContainerSize&gt;
+  &lt;GeocacheExclusions&gt;
+    &lt;Archived xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/Archived&gt;
+    &lt;Available xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/Available&gt;
+    &lt;Premium xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/Premium&gt;
+  &lt;/GeocacheExclusions&gt;
+  &lt;FavoritePoints&gt;
+    &lt;MinFavoritePoints xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;2147483647&lt;/MinFavoritePoints&gt;
+    &lt;MaxFavoritePoints xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;2147483647&lt;/MaxFavoritePoints&gt;
+  &lt;/FavoritePoints&gt;
+  &lt;HiddenByUsers&gt;
+    &lt;UserNames xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+    &lt;/UserNames&gt;
+  &lt;/HiddenByUsers&gt;
+  &lt;NotHiddenByUsers&gt;
+    &lt;UserNames xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+    &lt;/UserNames&gt;
+  &lt;/NotHiddenByUsers&gt;
+  &lt;Viewport&gt;
+    &lt;BottomRight xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+      &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+    &lt;/BottomRight&gt;
+    &lt;TopLeft xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+      &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+    &lt;/TopLeft&gt;
+  &lt;/Viewport&gt;
+  &lt;BookmarksExclude&gt;
+    &lt;BookmarkListIDs xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+      &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+    &lt;/BookmarkListIDs&gt;
+    &lt;ExcludeIgnoreList xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/ExcludeIgnoreList&gt;
+  &lt;/BookmarksExclude&gt;
+  &lt;TrackableCount&gt;
+    &lt;MinTrackables xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;2147483647&lt;/MinTrackables&gt;
+    &lt;MaxTrackables xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;2147483647&lt;/MaxTrackables&gt;
+  &lt;/TrackableCount&gt;
+  &lt;FieldNoteFinds&gt;
+    &lt;UserName xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/UserName&gt;
+  &lt;/FieldNoteFinds&gt;
+  &lt;CachePublishedDate&gt;
+    &lt;Range xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;StartDate xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;1999-05-31T11:20:00&lt;/StartDate&gt;
+      &lt;EndDate xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;1999-05-31T11:20:00&lt;/EndDate&gt;
+    &lt;/Range&gt;
+  &lt;/CachePublishedDate&gt;
+  &lt;States&gt;
+    &lt;StateIds xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+      &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+    &lt;/StateIds&gt;
+  &lt;/States&gt;
+&lt;/SearchForGeocachesRequest&gt;</pre>
+      </p>
+      <p>
+        <a name="#request-json">The following is an example request Json body:</a>
+        <pre class="request-json">{
+	"AccessToken":"String content",
+	"IsLite":true,
+	"MaxPerPage":2147483647,
+	"GeocacheLogCount":2147483647,
+	"TrackableLogCount":2147483647,
+	"PointRadius":{
+		"DistanceInMeters":9223372036854775807,
+		"Point":{
+			"Latitude":1.26743233E+15,
+			"Longitude":1.26743233E+15
+		}
+	},
+	"NotFoundByUsers":{
+		"UserNames":["String content"]
+	},
+	"Terrain":{
+		"MinTerrain":1.26743233E+15,
+		"MaxTerrain":1.26743233E+15
+	},
+	"GeocacheName":{
+		"GeocacheName":"String content"
+	},
+	"Difficulty":{
+		"MinDifficulty":1.26743233E+15,
+		"MaxDifficulty":1.26743233E+15
+	},
+	"CacheCode":{
+		"CacheCodes":["String content"]
+	},
+	"GeocacheType":{
+		"GeocacheTypeIds":[9223372036854775807]
+	},
+	"GeocacheContainerSize":{
+		"GeocacheContainerSizeIds":[9223372036854775807]
+	},
+	"GeocacheExclusions":{
+		"Archived":true,
+		"Available":true,
+		"Premium":true
+	},
+	"FavoritePoints":{
+		"MinFavoritePoints":2147483647,
+		"MaxFavoritePoints":2147483647
+	},
+	"HiddenByUsers":{
+		"UserNames":["String content"]
+	},
+	"NotHiddenByUsers":{
+		"UserNames":["String content"]
+	},
+	"Viewport":{
+		"BottomRight":{
+			"Latitude":1.26743233E+15,
+			"Longitude":1.26743233E+15
+		},
+		"TopLeft":{
+			"Latitude":1.26743233E+15,
+			"Longitude":1.26743233E+15
+		}
+	},
+	"BookmarksExclude":{
+		"BookmarkListIDs":[2147483647],
+		"ExcludeIgnoreList":true
+	},
+	"TrackableCount":{
+		"MinTrackables":2147483647,
+		"MaxTrackables":2147483647
+	},
+	"FieldNoteFinds":{
+		"UserName":"String content"
+	},
+	"CachePublishedDate":{
+		"Range":{
+			"StartDate":"\/Date(928174800000-0700)\/",
+			"EndDate":"\/Date(928174800000-0700)\/"
+		}
+	},
+	"States":{
+		"StateIds":[2147483647]
+	}
+}</pre>
+      </p>
+      <p>
+        <a name="#response-xml">The following is an example response Xml body:</a>
+        <pre class="response-xml">&lt;GetGeocacheDataResponse xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;
+  &lt;Status&gt;
+    &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+    &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+    &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+    &lt;Warnings&gt;
+      &lt;StatusResponse&gt;
+        &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+        &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+        &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+        &lt;Warnings&gt;
+          &lt;StatusResponse&gt;
+            &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+            &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+            &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+            &lt;Warnings i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" /&gt;
+          &lt;/StatusResponse&gt;
+          &lt;StatusResponse&gt;
+            &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+            &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+            &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+            &lt;Warnings i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" /&gt;
+          &lt;/StatusResponse&gt;
+        &lt;/Warnings&gt;
+      &lt;/StatusResponse&gt;
+      &lt;StatusResponse&gt;
+        &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+        &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+        &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+        &lt;Warnings&gt;
+          &lt;StatusResponse&gt;
+            &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+            &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+            &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+            &lt;Warnings i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" /&gt;
+          &lt;/StatusResponse&gt;
+          &lt;StatusResponse&gt;
+            &lt;StatusCode&gt;2147483647&lt;/StatusCode&gt;
+            &lt;StatusMessage&gt;String content&lt;/StatusMessage&gt;
+            &lt;ExceptionDetails&gt;String content&lt;/ExceptionDetails&gt;
+            &lt;Warnings i:nil="true" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" /&gt;
+          &lt;/StatusResponse&gt;
+        &lt;/Warnings&gt;
+      &lt;/StatusResponse&gt;
+    &lt;/Warnings&gt;
+  &lt;/Status&gt;
+  &lt;Geocaches&gt;
+    &lt;Geocache xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;AccountID&gt;2147483647&lt;/AccountID&gt;
+      &lt;AdditionalWaypoints&gt;
+        &lt;AdditionalWaypoint xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;Comment&gt;String content&lt;/Comment&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;GUID&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/GUID&gt;
+          &lt;GeocacheCode&gt;String content&lt;/GeocacheCode&gt;
+          &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;Type&gt;String content&lt;/Type&gt;
+          &lt;UTCEnteredDate&gt;1999-05-31T11:20:00&lt;/UTCEnteredDate&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;UrlName&gt;String content&lt;/UrlName&gt;
+          &lt;WptTypeID&gt;2147483647&lt;/WptTypeID&gt;
+        &lt;/AdditionalWaypoint&gt;
+        &lt;AdditionalWaypoint xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;Comment&gt;String content&lt;/Comment&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;GUID&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/GUID&gt;
+          &lt;GeocacheCode&gt;String content&lt;/GeocacheCode&gt;
+          &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;Type&gt;String content&lt;/Type&gt;
+          &lt;UTCEnteredDate&gt;1999-05-31T11:20:00&lt;/UTCEnteredDate&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;UrlName&gt;String content&lt;/UrlName&gt;
+          &lt;WptTypeID&gt;2147483647&lt;/WptTypeID&gt;
+        &lt;/AdditionalWaypoint&gt;
+      &lt;/AdditionalWaypoints&gt;
+      &lt;Archived&gt;true&lt;/Archived&gt;
+      &lt;Attributes&gt;
+        &lt;Attribute&gt;
+          &lt;AttributeTypeID&gt;2147483647&lt;/AttributeTypeID&gt;
+          &lt;IsOn&gt;true&lt;/IsOn&gt;
+        &lt;/Attribute&gt;
+        &lt;Attribute&gt;
+          &lt;AttributeTypeID&gt;2147483647&lt;/AttributeTypeID&gt;
+          &lt;IsOn&gt;true&lt;/IsOn&gt;
+        &lt;/Attribute&gt;
+      &lt;/Attributes&gt;
+      &lt;Available&gt;true&lt;/Available&gt;
+      &lt;CacheType&gt;
+        &lt;Description&gt;String content&lt;/Description&gt;
+        &lt;GeocacheTypeId&gt;9223372036854775807&lt;/GeocacheTypeId&gt;
+        &lt;GeocacheTypeName&gt;String content&lt;/GeocacheTypeName&gt;
+        &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+        &lt;IsContainer&gt;true&lt;/IsContainer&gt;
+        &lt;UserCount&gt;9223372036854775807&lt;/UserCount&gt;
+      &lt;/CacheType&gt;
+      &lt;CanCacheBeFavorited&gt;true&lt;/CanCacheBeFavorited&gt;
+      &lt;Code&gt;String content&lt;/Code&gt;
+      &lt;ContainerType&gt;
+        &lt;ContainerTypeId&gt;9223372036854775807&lt;/ContainerTypeId&gt;
+        &lt;ContainerTypeName&gt;String content&lt;/ContainerTypeName&gt;
+        &lt;Order&gt;2147483647&lt;/Order&gt;
+      &lt;/ContainerType&gt;
+      &lt;Country&gt;String content&lt;/Country&gt;
+      &lt;CountryID&gt;2147483647&lt;/CountryID&gt;
+      &lt;CurrentDetailsCount&gt;2147483647&lt;/CurrentDetailsCount&gt;
+      &lt;DateCreated&gt;1999-05-31T11:20:00&lt;/DateCreated&gt;
+      &lt;DateLastUpdate&gt;1999-05-31T11:20:00&lt;/DateLastUpdate&gt;
+      &lt;DateLastVisited&gt;1999-05-31T11:20:00&lt;/DateLastVisited&gt;
+      &lt;Difficulty&gt;1.26743233E+15&lt;/Difficulty&gt;
+      &lt;EncodedHints&gt;String content&lt;/EncodedHints&gt;
+      &lt;FavoritePoints&gt;2147483647&lt;/FavoritePoints&gt;
+      &lt;GUID&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/GUID&gt;
+      &lt;GeocacheLogs&gt;
+        &lt;GeocacheLog&gt;
+          &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+          &lt;CannotDelete&gt;true&lt;/CannotDelete&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;Finder&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/Finder&gt;
+          &lt;Guid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/Guid&gt;
+          &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+          &lt;Images&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+          &lt;/Images&gt;
+          &lt;IsApproved&gt;true&lt;/IsApproved&gt;
+          &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+          &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+          &lt;LogText&gt;String content&lt;/LogText&gt;
+          &lt;LogType&gt;
+            &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+            &lt;ImageName&gt;String content&lt;/ImageName&gt;
+            &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+            &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+            &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+            &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+          &lt;/LogType&gt;
+          &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+          &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+          &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+        &lt;/GeocacheLog&gt;
+        &lt;GeocacheLog&gt;
+          &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+          &lt;CannotDelete&gt;true&lt;/CannotDelete&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;Finder&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/Finder&gt;
+          &lt;Guid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/Guid&gt;
+          &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+          &lt;Images&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+          &lt;/Images&gt;
+          &lt;IsApproved&gt;true&lt;/IsApproved&gt;
+          &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+          &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+          &lt;LogText&gt;String content&lt;/LogText&gt;
+          &lt;LogType&gt;
+            &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+            &lt;ImageName&gt;String content&lt;/ImageName&gt;
+            &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+            &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+            &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+            &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+          &lt;/LogType&gt;
+          &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+          &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+          &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+        &lt;/GeocacheLog&gt;
+      &lt;/GeocacheLogs&gt;
+      &lt;GeocacheNote&gt;String content&lt;/GeocacheNote&gt;
+      &lt;HasbeenFavoritedbyUser&gt;true&lt;/HasbeenFavoritedbyUser&gt;
+      &lt;HasbeenFoundbyUser&gt;true&lt;/HasbeenFoundbyUser&gt;
+      &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+      &lt;ImageCount&gt;2147483647&lt;/ImageCount&gt;
+      &lt;Images&gt;
+        &lt;ImageData&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+          &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+        &lt;/ImageData&gt;
+        &lt;ImageData&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+          &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+        &lt;/ImageData&gt;
+      &lt;/Images&gt;
+      &lt;IsLocked&gt;true&lt;/IsLocked&gt;
+      &lt;IsPremium&gt;true&lt;/IsPremium&gt;
+      &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+      &lt;LongDescription&gt;String content&lt;/LongDescription&gt;
+      &lt;LongDescriptionIsHtml&gt;true&lt;/LongDescriptionIsHtml&gt;
+      &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+      &lt;MaxDetailCount&gt;2147483647&lt;/MaxDetailCount&gt;
+      &lt;Name&gt;String content&lt;/Name&gt;
+      &lt;Owner&gt;
+        &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+        &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+        &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+        &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+        &lt;HomeCoordinates&gt;
+          &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+        &lt;/HomeCoordinates&gt;
+        &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+        &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+        &lt;MemberType&gt;
+          &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+          &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+        &lt;/MemberType&gt;
+        &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+        &lt;UserName&gt;String content&lt;/UserName&gt;
+      &lt;/Owner&gt;
+      &lt;PlacedBy&gt;String content&lt;/PlacedBy&gt;
+      &lt;PublishDateUtc&gt;1999-05-31T11:20:00&lt;/PublishDateUtc&gt;
+      &lt;ShortDescription&gt;String content&lt;/ShortDescription&gt;
+      &lt;ShortDescriptionIsHtml&gt;true&lt;/ShortDescriptionIsHtml&gt;
+      &lt;State&gt;String content&lt;/State&gt;
+      &lt;StateID&gt;2147483647&lt;/StateID&gt;
+      &lt;Terrain&gt;1.26743233E+15&lt;/Terrain&gt;
+      &lt;TrackableCount&gt;2147483647&lt;/TrackableCount&gt;
+      &lt;Trackables&gt;
+        &lt;Trackable&gt;
+          &lt;AllowedToBeCollected&gt;true&lt;/AllowedToBeCollected&gt;
+          &lt;Archived&gt;true&lt;/Archived&gt;
+          &lt;BugTypeID&gt;9223372036854775807&lt;/BugTypeID&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;CurrentGeocacheCode&gt;String content&lt;/CurrentGeocacheCode&gt;
+          &lt;CurrentGoal&gt;String content&lt;/CurrentGoal&gt;
+          &lt;CurrentOwner&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/CurrentOwner&gt;
+          &lt;DateCreated&gt;1999-05-31T11:20:00&lt;/DateCreated&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;IconUrl&gt;String content&lt;/IconUrl&gt;
+          &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+          &lt;Images&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+          &lt;/Images&gt;
+          &lt;InCollection&gt;true&lt;/InCollection&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;OriginalOwner&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/OriginalOwner&gt;
+          &lt;TBTypeName&gt;String content&lt;/TBTypeName&gt;
+          &lt;TBTypeNameSingular&gt;String content&lt;/TBTypeNameSingular&gt;
+          &lt;TrackableLogs&gt;
+            &lt;TrackableLog&gt;
+              &lt;CacheID&gt;2147483647&lt;/CacheID&gt;
+              &lt;Code&gt;String content&lt;/Code&gt;
+              &lt;ID&gt;2147483647&lt;/ID&gt;
+              &lt;Images&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+              &lt;/Images&gt;
+              &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+              &lt;LogGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/LogGuid&gt;
+              &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+              &lt;LogText&gt;String content&lt;/LogText&gt;
+              &lt;LogType&gt;
+                &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+                &lt;ImageName&gt;String content&lt;/ImageName&gt;
+                &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+                &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+                &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+                &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+              &lt;/LogType&gt;
+              &lt;LoggedBy&gt;
+                &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+                &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+                &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+                &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+                &lt;HomeCoordinates&gt;
+                  &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+                  &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+                &lt;/HomeCoordinates&gt;
+                &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+                &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+                &lt;MemberType&gt;
+                  &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+                  &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+                &lt;/MemberType&gt;
+                &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+                &lt;UserName&gt;String content&lt;/UserName&gt;
+              &lt;/LoggedBy&gt;
+              &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+              &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+              &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+              &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+            &lt;/TrackableLog&gt;
+            &lt;TrackableLog&gt;
+              &lt;CacheID&gt;2147483647&lt;/CacheID&gt;
+              &lt;Code&gt;String content&lt;/Code&gt;
+              &lt;ID&gt;2147483647&lt;/ID&gt;
+              &lt;Images&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+              &lt;/Images&gt;
+              &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+              &lt;LogGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/LogGuid&gt;
+              &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+              &lt;LogText&gt;String content&lt;/LogText&gt;
+              &lt;LogType&gt;
+                &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+                &lt;ImageName&gt;String content&lt;/ImageName&gt;
+                &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+                &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+                &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+                &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+              &lt;/LogType&gt;
+              &lt;LoggedBy&gt;
+                &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+                &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+                &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+                &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+                &lt;HomeCoordinates&gt;
+                  &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+                  &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+                &lt;/HomeCoordinates&gt;
+                &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+                &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+                &lt;MemberType&gt;
+                  &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+                  &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+                &lt;/MemberType&gt;
+                &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+                &lt;UserName&gt;String content&lt;/UserName&gt;
+              &lt;/LoggedBy&gt;
+              &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+              &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+              &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+              &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+            &lt;/TrackableLog&gt;
+          &lt;/TrackableLogs&gt;
+          &lt;TrackingCode&gt;String content&lt;/TrackingCode&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;UserCount&gt;9223372036854775807&lt;/UserCount&gt;
+          &lt;WptTypeID&gt;9223372036854775807&lt;/WptTypeID&gt;
+        &lt;/Trackable&gt;
+        &lt;Trackable&gt;
+          &lt;AllowedToBeCollected&gt;true&lt;/AllowedToBeCollected&gt;
+          &lt;Archived&gt;true&lt;/Archived&gt;
+          &lt;BugTypeID&gt;9223372036854775807&lt;/BugTypeID&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;CurrentGeocacheCode&gt;String content&lt;/CurrentGeocacheCode&gt;
+          &lt;CurrentGoal&gt;String content&lt;/CurrentGoal&gt;
+          &lt;CurrentOwner&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/CurrentOwner&gt;
+          &lt;DateCreated&gt;1999-05-31T11:20:00&lt;/DateCreated&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;IconUrl&gt;String content&lt;/IconUrl&gt;
+          &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+          &lt;Images&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+          &lt;/Images&gt;
+          &lt;InCollection&gt;true&lt;/InCollection&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;OriginalOwner&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/OriginalOwner&gt;
+          &lt;TBTypeName&gt;String content&lt;/TBTypeName&gt;
+          &lt;TBTypeNameSingular&gt;String content&lt;/TBTypeNameSingular&gt;
+          &lt;TrackableLogs&gt;
+            &lt;TrackableLog&gt;
+              &lt;CacheID&gt;2147483647&lt;/CacheID&gt;
+              &lt;Code&gt;String content&lt;/Code&gt;
+              &lt;ID&gt;2147483647&lt;/ID&gt;
+              &lt;Images&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+              &lt;/Images&gt;
+              &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+              &lt;LogGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/LogGuid&gt;
+              &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+              &lt;LogText&gt;String content&lt;/LogText&gt;
+              &lt;LogType&gt;
+                &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+                &lt;ImageName&gt;String content&lt;/ImageName&gt;
+                &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+                &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+                &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+                &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+              &lt;/LogType&gt;
+              &lt;LoggedBy&gt;
+                &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+                &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+                &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+                &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+                &lt;HomeCoordinates&gt;
+                  &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+                  &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+                &lt;/HomeCoordinates&gt;
+                &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+                &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+                &lt;MemberType&gt;
+                  &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+                  &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+                &lt;/MemberType&gt;
+                &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+                &lt;UserName&gt;String content&lt;/UserName&gt;
+              &lt;/LoggedBy&gt;
+              &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+              &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+              &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+              &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+            &lt;/TrackableLog&gt;
+            &lt;TrackableLog&gt;
+              &lt;CacheID&gt;2147483647&lt;/CacheID&gt;
+              &lt;Code&gt;String content&lt;/Code&gt;
+              &lt;ID&gt;2147483647&lt;/ID&gt;
+              &lt;Images&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+              &lt;/Images&gt;
+              &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+              &lt;LogGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/LogGuid&gt;
+              &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+              &lt;LogText&gt;String content&lt;/LogText&gt;
+              &lt;LogType&gt;
+                &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+                &lt;ImageName&gt;String content&lt;/ImageName&gt;
+                &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+                &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+                &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+                &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+              &lt;/LogType&gt;
+              &lt;LoggedBy&gt;
+                &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+                &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+                &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+                &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+                &lt;HomeCoordinates&gt;
+                  &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+                  &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+                &lt;/HomeCoordinates&gt;
+                &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+                &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+                &lt;MemberType&gt;
+                  &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+                  &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+                &lt;/MemberType&gt;
+                &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+                &lt;UserName&gt;String content&lt;/UserName&gt;
+              &lt;/LoggedBy&gt;
+              &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+              &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+              &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+              &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+            &lt;/TrackableLog&gt;
+          &lt;/TrackableLogs&gt;
+          &lt;TrackingCode&gt;String content&lt;/TrackingCode&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;UserCount&gt;9223372036854775807&lt;/UserCount&gt;
+          &lt;WptTypeID&gt;9223372036854775807&lt;/WptTypeID&gt;
+        &lt;/Trackable&gt;
+      &lt;/Trackables&gt;
+      &lt;UTCPlaceDate&gt;1999-05-31T11:20:00&lt;/UTCPlaceDate&gt;
+      &lt;UpgradeMessage&gt;String content&lt;/UpgradeMessage&gt;
+      &lt;Url&gt;String content&lt;/Url&gt;
+      &lt;UserWaypoints&gt;
+        &lt;UserWaypoint&gt;
+          &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+          &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
+          &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+          &lt;UTCDate&gt;1999-05-31T11:20:00&lt;/UTCDate&gt;
+          &lt;UserID&gt;2147483647&lt;/UserID&gt;
+        &lt;/UserWaypoint&gt;
+        &lt;UserWaypoint&gt;
+          &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+          &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
+          &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+          &lt;UTCDate&gt;1999-05-31T11:20:00&lt;/UTCDate&gt;
+          &lt;UserID&gt;2147483647&lt;/UserID&gt;
+        &lt;/UserWaypoint&gt;
+      &lt;/UserWaypoints&gt;
+    &lt;/Geocache&gt;
+    &lt;Geocache xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;AccountID&gt;2147483647&lt;/AccountID&gt;
+      &lt;AdditionalWaypoints&gt;
+        &lt;AdditionalWaypoint xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;Comment&gt;String content&lt;/Comment&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;GUID&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/GUID&gt;
+          &lt;GeocacheCode&gt;String content&lt;/GeocacheCode&gt;
+          &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;Type&gt;String content&lt;/Type&gt;
+          &lt;UTCEnteredDate&gt;1999-05-31T11:20:00&lt;/UTCEnteredDate&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;UrlName&gt;String content&lt;/UrlName&gt;
+          &lt;WptTypeID&gt;2147483647&lt;/WptTypeID&gt;
+        &lt;/AdditionalWaypoint&gt;
+        &lt;AdditionalWaypoint xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;Comment&gt;String content&lt;/Comment&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;GUID&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/GUID&gt;
+          &lt;GeocacheCode&gt;String content&lt;/GeocacheCode&gt;
+          &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;Type&gt;String content&lt;/Type&gt;
+          &lt;UTCEnteredDate&gt;1999-05-31T11:20:00&lt;/UTCEnteredDate&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;UrlName&gt;String content&lt;/UrlName&gt;
+          &lt;WptTypeID&gt;2147483647&lt;/WptTypeID&gt;
+        &lt;/AdditionalWaypoint&gt;
+      &lt;/AdditionalWaypoints&gt;
+      &lt;Archived&gt;true&lt;/Archived&gt;
+      &lt;Attributes&gt;
+        &lt;Attribute&gt;
+          &lt;AttributeTypeID&gt;2147483647&lt;/AttributeTypeID&gt;
+          &lt;IsOn&gt;true&lt;/IsOn&gt;
+        &lt;/Attribute&gt;
+        &lt;Attribute&gt;
+          &lt;AttributeTypeID&gt;2147483647&lt;/AttributeTypeID&gt;
+          &lt;IsOn&gt;true&lt;/IsOn&gt;
+        &lt;/Attribute&gt;
+      &lt;/Attributes&gt;
+      &lt;Available&gt;true&lt;/Available&gt;
+      &lt;CacheType&gt;
+        &lt;Description&gt;String content&lt;/Description&gt;
+        &lt;GeocacheTypeId&gt;9223372036854775807&lt;/GeocacheTypeId&gt;
+        &lt;GeocacheTypeName&gt;String content&lt;/GeocacheTypeName&gt;
+        &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+        &lt;IsContainer&gt;true&lt;/IsContainer&gt;
+        &lt;UserCount&gt;9223372036854775807&lt;/UserCount&gt;
+      &lt;/CacheType&gt;
+      &lt;CanCacheBeFavorited&gt;true&lt;/CanCacheBeFavorited&gt;
+      &lt;Code&gt;String content&lt;/Code&gt;
+      &lt;ContainerType&gt;
+        &lt;ContainerTypeId&gt;9223372036854775807&lt;/ContainerTypeId&gt;
+        &lt;ContainerTypeName&gt;String content&lt;/ContainerTypeName&gt;
+        &lt;Order&gt;2147483647&lt;/Order&gt;
+      &lt;/ContainerType&gt;
+      &lt;Country&gt;String content&lt;/Country&gt;
+      &lt;CountryID&gt;2147483647&lt;/CountryID&gt;
+      &lt;CurrentDetailsCount&gt;2147483647&lt;/CurrentDetailsCount&gt;
+      &lt;DateCreated&gt;1999-05-31T11:20:00&lt;/DateCreated&gt;
+      &lt;DateLastUpdate&gt;1999-05-31T11:20:00&lt;/DateLastUpdate&gt;
+      &lt;DateLastVisited&gt;1999-05-31T11:20:00&lt;/DateLastVisited&gt;
+      &lt;Difficulty&gt;1.26743233E+15&lt;/Difficulty&gt;
+      &lt;EncodedHints&gt;String content&lt;/EncodedHints&gt;
+      &lt;FavoritePoints&gt;2147483647&lt;/FavoritePoints&gt;
+      &lt;GUID&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/GUID&gt;
+      &lt;GeocacheLogs&gt;
+        &lt;GeocacheLog&gt;
+          &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+          &lt;CannotDelete&gt;true&lt;/CannotDelete&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;Finder&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/Finder&gt;
+          &lt;Guid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/Guid&gt;
+          &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+          &lt;Images&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+          &lt;/Images&gt;
+          &lt;IsApproved&gt;true&lt;/IsApproved&gt;
+          &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+          &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+          &lt;LogText&gt;String content&lt;/LogText&gt;
+          &lt;LogType&gt;
+            &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+            &lt;ImageName&gt;String content&lt;/ImageName&gt;
+            &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+            &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+            &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+            &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+          &lt;/LogType&gt;
+          &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+          &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+          &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+        &lt;/GeocacheLog&gt;
+        &lt;GeocacheLog&gt;
+          &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+          &lt;CannotDelete&gt;true&lt;/CannotDelete&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;Finder&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/Finder&gt;
+          &lt;Guid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/Guid&gt;
+          &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+          &lt;Images&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+          &lt;/Images&gt;
+          &lt;IsApproved&gt;true&lt;/IsApproved&gt;
+          &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+          &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+          &lt;LogText&gt;String content&lt;/LogText&gt;
+          &lt;LogType&gt;
+            &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+            &lt;ImageName&gt;String content&lt;/ImageName&gt;
+            &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+            &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+            &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+            &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+          &lt;/LogType&gt;
+          &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+          &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+          &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+        &lt;/GeocacheLog&gt;
+      &lt;/GeocacheLogs&gt;
+      &lt;GeocacheNote&gt;String content&lt;/GeocacheNote&gt;
+      &lt;HasbeenFavoritedbyUser&gt;true&lt;/HasbeenFavoritedbyUser&gt;
+      &lt;HasbeenFoundbyUser&gt;true&lt;/HasbeenFoundbyUser&gt;
+      &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+      &lt;ImageCount&gt;2147483647&lt;/ImageCount&gt;
+      &lt;Images&gt;
+        &lt;ImageData&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+          &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+        &lt;/ImageData&gt;
+        &lt;ImageData&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+          &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+        &lt;/ImageData&gt;
+      &lt;/Images&gt;
+      &lt;IsLocked&gt;true&lt;/IsLocked&gt;
+      &lt;IsPremium&gt;true&lt;/IsPremium&gt;
+      &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+      &lt;LongDescription&gt;String content&lt;/LongDescription&gt;
+      &lt;LongDescriptionIsHtml&gt;true&lt;/LongDescriptionIsHtml&gt;
+      &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+      &lt;MaxDetailCount&gt;2147483647&lt;/MaxDetailCount&gt;
+      &lt;Name&gt;String content&lt;/Name&gt;
+      &lt;Owner&gt;
+        &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+        &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+        &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+        &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+        &lt;HomeCoordinates&gt;
+          &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+        &lt;/HomeCoordinates&gt;
+        &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+        &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+        &lt;MemberType&gt;
+          &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+          &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+        &lt;/MemberType&gt;
+        &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+        &lt;UserName&gt;String content&lt;/UserName&gt;
+      &lt;/Owner&gt;
+      &lt;PlacedBy&gt;String content&lt;/PlacedBy&gt;
+      &lt;PublishDateUtc&gt;1999-05-31T11:20:00&lt;/PublishDateUtc&gt;
+      &lt;ShortDescription&gt;String content&lt;/ShortDescription&gt;
+      &lt;ShortDescriptionIsHtml&gt;true&lt;/ShortDescriptionIsHtml&gt;
+      &lt;State&gt;String content&lt;/State&gt;
+      &lt;StateID&gt;2147483647&lt;/StateID&gt;
+      &lt;Terrain&gt;1.26743233E+15&lt;/Terrain&gt;
+      &lt;TrackableCount&gt;2147483647&lt;/TrackableCount&gt;
+      &lt;Trackables&gt;
+        &lt;Trackable&gt;
+          &lt;AllowedToBeCollected&gt;true&lt;/AllowedToBeCollected&gt;
+          &lt;Archived&gt;true&lt;/Archived&gt;
+          &lt;BugTypeID&gt;9223372036854775807&lt;/BugTypeID&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;CurrentGeocacheCode&gt;String content&lt;/CurrentGeocacheCode&gt;
+          &lt;CurrentGoal&gt;String content&lt;/CurrentGoal&gt;
+          &lt;CurrentOwner&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/CurrentOwner&gt;
+          &lt;DateCreated&gt;1999-05-31T11:20:00&lt;/DateCreated&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;IconUrl&gt;String content&lt;/IconUrl&gt;
+          &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+          &lt;Images&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+          &lt;/Images&gt;
+          &lt;InCollection&gt;true&lt;/InCollection&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;OriginalOwner&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/OriginalOwner&gt;
+          &lt;TBTypeName&gt;String content&lt;/TBTypeName&gt;
+          &lt;TBTypeNameSingular&gt;String content&lt;/TBTypeNameSingular&gt;
+          &lt;TrackableLogs&gt;
+            &lt;TrackableLog&gt;
+              &lt;CacheID&gt;2147483647&lt;/CacheID&gt;
+              &lt;Code&gt;String content&lt;/Code&gt;
+              &lt;ID&gt;2147483647&lt;/ID&gt;
+              &lt;Images&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+              &lt;/Images&gt;
+              &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+              &lt;LogGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/LogGuid&gt;
+              &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+              &lt;LogText&gt;String content&lt;/LogText&gt;
+              &lt;LogType&gt;
+                &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+                &lt;ImageName&gt;String content&lt;/ImageName&gt;
+                &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+                &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+                &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+                &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+              &lt;/LogType&gt;
+              &lt;LoggedBy&gt;
+                &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+                &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+                &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+                &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+                &lt;HomeCoordinates&gt;
+                  &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+                  &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+                &lt;/HomeCoordinates&gt;
+                &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+                &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+                &lt;MemberType&gt;
+                  &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+                  &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+                &lt;/MemberType&gt;
+                &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+                &lt;UserName&gt;String content&lt;/UserName&gt;
+              &lt;/LoggedBy&gt;
+              &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+              &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+              &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+              &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+            &lt;/TrackableLog&gt;
+            &lt;TrackableLog&gt;
+              &lt;CacheID&gt;2147483647&lt;/CacheID&gt;
+              &lt;Code&gt;String content&lt;/Code&gt;
+              &lt;ID&gt;2147483647&lt;/ID&gt;
+              &lt;Images&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+              &lt;/Images&gt;
+              &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+              &lt;LogGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/LogGuid&gt;
+              &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+              &lt;LogText&gt;String content&lt;/LogText&gt;
+              &lt;LogType&gt;
+                &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+                &lt;ImageName&gt;String content&lt;/ImageName&gt;
+                &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+                &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+                &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+                &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+              &lt;/LogType&gt;
+              &lt;LoggedBy&gt;
+                &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+                &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+                &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+                &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+                &lt;HomeCoordinates&gt;
+                  &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+                  &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+                &lt;/HomeCoordinates&gt;
+                &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+                &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+                &lt;MemberType&gt;
+                  &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+                  &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+                &lt;/MemberType&gt;
+                &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+                &lt;UserName&gt;String content&lt;/UserName&gt;
+              &lt;/LoggedBy&gt;
+              &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+              &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+              &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+              &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+            &lt;/TrackableLog&gt;
+          &lt;/TrackableLogs&gt;
+          &lt;TrackingCode&gt;String content&lt;/TrackingCode&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;UserCount&gt;9223372036854775807&lt;/UserCount&gt;
+          &lt;WptTypeID&gt;9223372036854775807&lt;/WptTypeID&gt;
+        &lt;/Trackable&gt;
+        &lt;Trackable&gt;
+          &lt;AllowedToBeCollected&gt;true&lt;/AllowedToBeCollected&gt;
+          &lt;Archived&gt;true&lt;/Archived&gt;
+          &lt;BugTypeID&gt;9223372036854775807&lt;/BugTypeID&gt;
+          &lt;Code&gt;String content&lt;/Code&gt;
+          &lt;CurrentGeocacheCode&gt;String content&lt;/CurrentGeocacheCode&gt;
+          &lt;CurrentGoal&gt;String content&lt;/CurrentGoal&gt;
+          &lt;CurrentOwner&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/CurrentOwner&gt;
+          &lt;DateCreated&gt;1999-05-31T11:20:00&lt;/DateCreated&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;IconUrl&gt;String content&lt;/IconUrl&gt;
+          &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+          &lt;Images&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+            &lt;ImageData&gt;
+              &lt;Description&gt;String content&lt;/Description&gt;
+              &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+              &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+              &lt;Name&gt;String content&lt;/Name&gt;
+              &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+            &lt;/ImageData&gt;
+          &lt;/Images&gt;
+          &lt;InCollection&gt;true&lt;/InCollection&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;OriginalOwner&gt;
+            &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+            &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+            &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+            &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+            &lt;HomeCoordinates&gt;
+              &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+              &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+            &lt;/HomeCoordinates&gt;
+            &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+            &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+            &lt;MemberType&gt;
+              &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+              &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+            &lt;/MemberType&gt;
+            &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+            &lt;UserName&gt;String content&lt;/UserName&gt;
+          &lt;/OriginalOwner&gt;
+          &lt;TBTypeName&gt;String content&lt;/TBTypeName&gt;
+          &lt;TBTypeNameSingular&gt;String content&lt;/TBTypeNameSingular&gt;
+          &lt;TrackableLogs&gt;
+            &lt;TrackableLog&gt;
+              &lt;CacheID&gt;2147483647&lt;/CacheID&gt;
+              &lt;Code&gt;String content&lt;/Code&gt;
+              &lt;ID&gt;2147483647&lt;/ID&gt;
+              &lt;Images&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+              &lt;/Images&gt;
+              &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+              &lt;LogGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/LogGuid&gt;
+              &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+              &lt;LogText&gt;String content&lt;/LogText&gt;
+              &lt;LogType&gt;
+                &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+                &lt;ImageName&gt;String content&lt;/ImageName&gt;
+                &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+                &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+                &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+                &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+              &lt;/LogType&gt;
+              &lt;LoggedBy&gt;
+                &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+                &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+                &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+                &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+                &lt;HomeCoordinates&gt;
+                  &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+                  &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+                &lt;/HomeCoordinates&gt;
+                &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+                &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+                &lt;MemberType&gt;
+                  &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+                  &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+                &lt;/MemberType&gt;
+                &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+                &lt;UserName&gt;String content&lt;/UserName&gt;
+              &lt;/LoggedBy&gt;
+              &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+              &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+              &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+              &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+            &lt;/TrackableLog&gt;
+            &lt;TrackableLog&gt;
+              &lt;CacheID&gt;2147483647&lt;/CacheID&gt;
+              &lt;Code&gt;String content&lt;/Code&gt;
+              &lt;ID&gt;2147483647&lt;/ID&gt;
+              &lt;Images&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+                &lt;ImageData&gt;
+                  &lt;Description&gt;String content&lt;/Description&gt;
+                  &lt;ImageGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ImageGuid&gt;
+                  &lt;MobileUrl&gt;String content&lt;/MobileUrl&gt;
+                  &lt;Name&gt;String content&lt;/Name&gt;
+                  &lt;ThumbUrl&gt;String content&lt;/ThumbUrl&gt;
+                  &lt;Url&gt;String content&lt;/Url&gt;
+                &lt;/ImageData&gt;
+              &lt;/Images&gt;
+              &lt;IsArchived&gt;true&lt;/IsArchived&gt;
+              &lt;LogGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/LogGuid&gt;
+              &lt;LogIsEncoded&gt;true&lt;/LogIsEncoded&gt;
+              &lt;LogText&gt;String content&lt;/LogText&gt;
+              &lt;LogType&gt;
+                &lt;AdminActionable&gt;true&lt;/AdminActionable&gt;
+                &lt;ImageName&gt;String content&lt;/ImageName&gt;
+                &lt;ImageURL&gt;String content&lt;/ImageURL&gt;
+                &lt;OwnerActionable&gt;true&lt;/OwnerActionable&gt;
+                &lt;WptLogTypeId&gt;9223372036854775807&lt;/WptLogTypeId&gt;
+                &lt;WptLogTypeName&gt;String content&lt;/WptLogTypeName&gt;
+              &lt;/LogType&gt;
+              &lt;LoggedBy&gt;
+                &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+                &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
+                &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
+                &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
+                &lt;HomeCoordinates&gt;
+                  &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Latitude&gt;
+                  &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
+                &lt;/HomeCoordinates&gt;
+                &lt;Id&gt;9223372036854775807&lt;/Id&gt;
+                &lt;IsAdmin&gt;true&lt;/IsAdmin&gt;
+                &lt;MemberType&gt;
+                  &lt;MemberTypeId&gt;9223372036854775807&lt;/MemberTypeId&gt;
+                  &lt;MemberTypeName&gt;String content&lt;/MemberTypeName&gt;
+                &lt;/MemberType&gt;
+                &lt;PublicGuid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PublicGuid&gt;
+                &lt;UserName&gt;String content&lt;/UserName&gt;
+              &lt;/LoggedBy&gt;
+              &lt;UTCCreateDate&gt;1999-05-31T11:20:00&lt;/UTCCreateDate&gt;
+              &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
+              &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+              &lt;Url&gt;String content&lt;/Url&gt;
+              &lt;VisitDate&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+            &lt;/TrackableLog&gt;
+          &lt;/TrackableLogs&gt;
+          &lt;TrackingCode&gt;String content&lt;/TrackingCode&gt;
+          &lt;Url&gt;String content&lt;/Url&gt;
+          &lt;UserCount&gt;9223372036854775807&lt;/UserCount&gt;
+          &lt;WptTypeID&gt;9223372036854775807&lt;/WptTypeID&gt;
+        &lt;/Trackable&gt;
+      &lt;/Trackables&gt;
+      &lt;UTCPlaceDate&gt;1999-05-31T11:20:00&lt;/UTCPlaceDate&gt;
+      &lt;UpgradeMessage&gt;String content&lt;/UpgradeMessage&gt;
+      &lt;Url&gt;String content&lt;/Url&gt;
+      &lt;UserWaypoints&gt;
+        &lt;UserWaypoint&gt;
+          &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+          &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
+          &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+          &lt;UTCDate&gt;1999-05-31T11:20:00&lt;/UTCDate&gt;
+          &lt;UserID&gt;2147483647&lt;/UserID&gt;
+        &lt;/UserWaypoint&gt;
+        &lt;UserWaypoint&gt;
+          &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+          &lt;Description&gt;String content&lt;/Description&gt;
+          &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+          &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
+          &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
+          &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
+          &lt;UTCDate&gt;1999-05-31T11:20:00&lt;/UTCDate&gt;
+          &lt;UserID&gt;2147483647&lt;/UserID&gt;
+        &lt;/UserWaypoint&gt;
+      &lt;/UserWaypoints&gt;
+    &lt;/Geocache&gt;
+  &lt;/Geocaches&gt;
+  &lt;PQCount&gt;9223372036854775807&lt;/PQCount&gt;
+  &lt;CacheCodes&gt;
+    &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+    &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+  &lt;/CacheCodes&gt;
+  &lt;CacheLimits&gt;
+    &lt;CachesLeft xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;2147483647&lt;/CachesLeft&gt;
+    &lt;CurrentCacheCount xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;2147483647&lt;/CurrentCacheCount&gt;
+    &lt;MaxCacheCount xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;2147483647&lt;/MaxCacheCount&gt;
+  &lt;/CacheLimits&gt;
+  &lt;TotalMatchingCaches&gt;2147483647&lt;/TotalMatchingCaches&gt;
+&lt;/GetGeocacheDataResponse&gt;</pre>
+      </p>
+      <p>
+        <a name="#response-json">The following is an example response Json body:</a>
+        <pre class="response-json">{
+	"Status":{
+		"StatusCode":2147483647,
+		"StatusMessage":"String content",
+		"ExceptionDetails":"String content",
+		"Warnings":[{
+			"StatusCode":2147483647,
+			"StatusMessage":"String content",
+			"ExceptionDetails":"String content",
+			"Warnings":[{
+				"StatusCode":2147483647,
+				"StatusMessage":"String content",
+				"ExceptionDetails":"String content",
+				"Warnings":null
+			}]
+		}]
+	},
+	"Geocaches":[{
+		"AccountID":2147483647,
+		"AdditionalWaypoints":[{
+			"Code":"String content",
+			"Comment":"String content",
+			"Description":"String content",
+			"GUID":"1627aea5-8e0a-4371-9022-9b504344e724",
+			"GeocacheCode":"String content",
+			"Latitude":1.26743233E+15,
+			"Longitude":1.26743233E+15,
+			"Name":"String content",
+			"Type":"String content",
+			"UTCEnteredDate":"\/Date(928174800000-0700)\/",
+			"Url":"String content",
+			"UrlName":"String content",
+			"WptTypeID":2147483647
+		}],
+		"Archived":true,
+		"Attributes":[{
+			"AttributeTypeID":2147483647,
+			"IsOn":true
+		}],
+		"Available":true,
+		"CacheType":{
+			"Description":"String content",
+			"GeocacheTypeId":9223372036854775807,
+			"GeocacheTypeName":"String content",
+			"ImageURL":"String content",
+			"IsContainer":true,
+			"UserCount":9223372036854775807
+		},
+		"CanCacheBeFavorited":true,
+		"Code":"String content",
+		"ContainerType":{
+			"ContainerTypeId":9223372036854775807,
+			"ContainerTypeName":"String content",
+			"Order":2147483647
+		},
+		"Country":"String content",
+		"CountryID":2147483647,
+		"CurrentDetailsCount":2147483647,
+		"DateCreated":"\/Date(928174800000-0700)\/",
+		"DateLastUpdate":"\/Date(928174800000-0700)\/",
+		"DateLastVisited":"\/Date(928174800000-0700)\/",
+		"Difficulty":1.26743233E+15,
+		"EncodedHints":"String content",
+		"FavoritePoints":2147483647,
+		"GUID":"1627aea5-8e0a-4371-9022-9b504344e724",
+		"GeocacheLogs":[{
+			"CacheCode":"String content",
+			"CannotDelete":true,
+			"Code":"String content",
+			"Finder":{
+				"AvatarUrl":"String content",
+				"FindCount":2147483647,
+				"GalleryImageCount":2147483647,
+				"HideCount":2147483647,
+				"HomeCoordinates":{
+					"Latitude":1.26743233E+15,
+					"Longitude":1.26743233E+15
+				},
+				"Id":9223372036854775807,
+				"IsAdmin":true,
+				"MemberType":{
+					"MemberTypeId":9223372036854775807,
+					"MemberTypeName":"String content"
+				},
+				"PublicGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+				"UserName":"String content"
+			},
+			"Guid":"1627aea5-8e0a-4371-9022-9b504344e724",
+			"ID":9223372036854775807,
+			"Images":[{
+				"Description":"String content",
+				"ImageGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+				"MobileUrl":"String content",
+				"Name":"String content",
+				"ThumbUrl":"String content",
+				"Url":"String content"
+			}],
+			"IsApproved":true,
+			"IsArchived":true,
+			"LogIsEncoded":true,
+			"LogText":"String content",
+			"LogType":{
+				"AdminActionable":true,
+				"ImageName":"String content",
+				"ImageURL":"String content",
+				"OwnerActionable":true,
+				"WptLogTypeId":9223372036854775807,
+				"WptLogTypeName":"String content"
+			},
+			"UTCCreateDate":"\/Date(928174800000-0700)\/",
+			"UpdatedLatitude":1.26743233E+15,
+			"UpdatedLongitude":1.26743233E+15,
+			"Url":"String content",
+			"VisitDate":"\/Date(928174800000-0700)\/"
+		}],
+		"GeocacheNote":"String content",
+		"HasbeenFavoritedbyUser":true,
+		"HasbeenFoundbyUser":true,
+		"ID":9223372036854775807,
+		"ImageCount":2147483647,
+		"Images":[{
+			"Description":"String content",
+			"ImageGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+			"MobileUrl":"String content",
+			"Name":"String content",
+			"ThumbUrl":"String content",
+			"Url":"String content"
+		}],
+		"IsLocked":true,
+		"IsPremium":true,
+		"Latitude":1.26743233E+15,
+		"LongDescription":"String content",
+		"LongDescriptionIsHtml":true,
+		"Longitude":1.26743233E+15,
+		"MaxDetailCount":2147483647,
+		"Name":"String content",
+		"Owner":{
+			"AvatarUrl":"String content",
+			"FindCount":2147483647,
+			"GalleryImageCount":2147483647,
+			"HideCount":2147483647,
+			"HomeCoordinates":{
+				"Latitude":1.26743233E+15,
+				"Longitude":1.26743233E+15
+			},
+			"Id":9223372036854775807,
+			"IsAdmin":true,
+			"MemberType":{
+				"MemberTypeId":9223372036854775807,
+				"MemberTypeName":"String content"
+			},
+			"PublicGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+			"UserName":"String content"
+		},
+		"PlacedBy":"String content",
+		"PublishDateUtc":"\/Date(928174800000-0700)\/",
+		"ShortDescription":"String content",
+		"ShortDescriptionIsHtml":true,
+		"State":"String content",
+		"StateID":2147483647,
+		"Terrain":1.26743233E+15,
+		"TrackableCount":2147483647,
+		"Trackables":[{
+			"AllowedToBeCollected":true,
+			"Archived":true,
+			"BugTypeID":9223372036854775807,
+			"Code":"String content",
+			"CurrentGeocacheCode":"String content",
+			"CurrentGoal":"String content",
+			"CurrentOwner":{
+				"AvatarUrl":"String content",
+				"FindCount":2147483647,
+				"GalleryImageCount":2147483647,
+				"HideCount":2147483647,
+				"HomeCoordinates":{
+					"Latitude":1.26743233E+15,
+					"Longitude":1.26743233E+15
+				},
+				"Id":9223372036854775807,
+				"IsAdmin":true,
+				"MemberType":{
+					"MemberTypeId":9223372036854775807,
+					"MemberTypeName":"String content"
+				},
+				"PublicGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+				"UserName":"String content"
+			},
+			"DateCreated":"\/Date(928174800000-0700)\/",
+			"Description":"String content",
+			"IconUrl":"String content",
+			"Id":9223372036854775807,
+			"Images":[{
+				"Description":"String content",
+				"ImageGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+				"MobileUrl":"String content",
+				"Name":"String content",
+				"ThumbUrl":"String content",
+				"Url":"String content"
+			}],
+			"InCollection":true,
+			"Name":"String content",
+			"OriginalOwner":{
+				"AvatarUrl":"String content",
+				"FindCount":2147483647,
+				"GalleryImageCount":2147483647,
+				"HideCount":2147483647,
+				"HomeCoordinates":{
+					"Latitude":1.26743233E+15,
+					"Longitude":1.26743233E+15
+				},
+				"Id":9223372036854775807,
+				"IsAdmin":true,
+				"MemberType":{
+					"MemberTypeId":9223372036854775807,
+					"MemberTypeName":"String content"
+				},
+				"PublicGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+				"UserName":"String content"
+			},
+			"TBTypeName":"String content",
+			"TBTypeNameSingular":"String content",
+			"TrackableLogs":[{
+				"CacheID":2147483647,
+				"Code":"String content",
+				"ID":2147483647,
+				"Images":[{
+					"Description":"String content",
+					"ImageGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+					"MobileUrl":"String content",
+					"Name":"String content",
+					"ThumbUrl":"String content",
+					"Url":"String content"
+				}],
+				"IsArchived":true,
+				"LogGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+				"LogIsEncoded":true,
+				"LogText":"String content",
+				"LogType":{
+					"AdminActionable":true,
+					"ImageName":"String content",
+					"ImageURL":"String content",
+					"OwnerActionable":true,
+					"WptLogTypeId":9223372036854775807,
+					"WptLogTypeName":"String content"
+				},
+				"LoggedBy":{
+					"AvatarUrl":"String content",
+					"FindCount":2147483647,
+					"GalleryImageCount":2147483647,
+					"HideCount":2147483647,
+					"HomeCoordinates":{
+						"Latitude":1.26743233E+15,
+						"Longitude":1.26743233E+15
+					},
+					"Id":9223372036854775807,
+					"IsAdmin":true,
+					"MemberType":{
+						"MemberTypeId":9223372036854775807,
+						"MemberTypeName":"String content"
+					},
+					"PublicGuid":"1627aea5-8e0a-4371-9022-9b504344e724",
+					"UserName":"String content"
+				},
+				"UTCCreateDate":"\/Date(928174800000-0700)\/",
+				"UpdatedLatitude":1.26743233E+15,
+				"UpdatedLongitude":1.26743233E+15,
+				"Url":"String content",
+				"VisitDate":"\/Date(928174800000-0700)\/"
+			}],
+			"TrackingCode":"String content",
+			"Url":"String content",
+			"UserCount":9223372036854775807,
+			"WptTypeID":9223372036854775807
+		}],
+		"UTCPlaceDate":"\/Date(928174800000-0700)\/",
+		"UpgradeMessage":"String content",
+		"Url":"String content",
+		"UserWaypoints":[{
+			"CacheCode":"String content",
+			"Description":"String content",
+			"ID":9223372036854775807,
+			"IsCorrectedCoordinate":true,
+			"Latitude":1.26743233E+15,
+			"Longitude":1.26743233E+15,
+			"UTCDate":"\/Date(928174800000-0700)\/",
+			"UserID":2147483647
+		}]
+	}],
+	"PQCount":9223372036854775807,
+	"CacheCodes":["String content"],
+	"CacheLimits":{
+		"CachesLeft":2147483647,
+		"CurrentCacheCount":2147483647,
+		"MaxCacheCount":2147483647
+	},
+	"TotalMatchingCaches":2147483647
+}</pre>
+      </p>
+      <p>
+        <a name="#request-schema">The following is the request Xml Schema:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://www.geocaching.com/Geocaching.Live/data" elementFormDefault="qualified" targetNamespace="http://www.geocaching.com/Geocaching.Live/data" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" /&gt;
+  &lt;xs:complexType name="SearchForGeocachesRequest"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AccessToken" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IsLite" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="MaxPerPage" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheLogCount" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="TrackableLogCount" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="PointRadius" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q1:PointRadiusFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="NotFoundByUsers" nillable="true" xmlns:q2="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q2:NotFoundByUsersFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="Terrain" nillable="true" xmlns:q3="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q3:TerrainFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheName" nillable="true" xmlns:q4="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q4:GeocacheNameFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="Difficulty" nillable="true" xmlns:q5="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q5:DifficultyFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="CacheCode" nillable="true" xmlns:q6="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q6:CacheCodeFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheType" nillable="true" xmlns:q7="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q7:GeocacheTypeFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheContainerSize" nillable="true" xmlns:q8="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q8:GeocacheContainerSizeFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheExclusions" nillable="true" xmlns:q9="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q9:GeocacheExclusionsFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="FavoritePoints" nillable="true" xmlns:q10="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q10:FavoritePointsFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="HiddenByUsers" nillable="true" xmlns:q11="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q11:HiddenByUsersFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="NotHiddenByUsers" nillable="true" xmlns:q12="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q12:NotHiddenByUsersFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="Viewport" nillable="true" xmlns:q13="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q13:ViewportFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="BookmarksExclude" nillable="true" xmlns:q14="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q14:BookmarksExcludeFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="TrackableCount" nillable="true" xmlns:q15="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q15:TrackableCountFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="FieldNoteFinds" nillable="true" xmlns:q16="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q16:FieldNoteFindFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="CachePublishedDate" nillable="true" xmlns:q17="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q17:CachePublishedDateFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="States" nillable="true" xmlns:q18="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q18:StateFilter" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="SearchForGeocachesRequest" nillable="true" type="tns:SearchForGeocachesRequest" /&gt;
+  &lt;xs:complexType name="DateRange"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="DateRange" nillable="true" type="tns:DateRange" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="#request-schema">Additional request Xml Schemas:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:import namespace="http://www.geocaching.com/Geocaching.Live/data" /&gt;
+  &lt;xs:complexType name="PointRadiusFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="DistanceInMeters" type="xs:long" /&gt;
+          &lt;xs:element minOccurs="0" name="Point" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q1:LatLngPoint" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="PointRadiusFilter" nillable="true" type="tns:PointRadiusFilter" /&gt;
+  &lt;xs:complexType name="BaseGeocacheFilter"&gt;
+    &lt;xs:sequence /&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="BaseGeocacheFilter" nillable="true" type="tns:BaseGeocacheFilter" /&gt;
+  &lt;xs:complexType name="StateFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="StateIds" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfint" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="StateFilter" nillable="true" type="tns:StateFilter" /&gt;
+  &lt;xs:complexType name="CachePublishedDateFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Range" nillable="true" xmlns:q3="http://www.geocaching.com/Geocaching.Live/data" type="q3:DateRange" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CachePublishedDateFilter" nillable="true" type="tns:CachePublishedDateFilter" /&gt;
+  &lt;xs:complexType name="TerrainFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="MinTerrain" nillable="true" type="xs:double" /&gt;
+          &lt;xs:element minOccurs="0" name="MaxTerrain" nillable="true" type="xs:double" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="TerrainFilter" nillable="true" type="tns:TerrainFilter" /&gt;
+  &lt;xs:complexType name="DifficultyFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="MinDifficulty" nillable="true" type="xs:double" /&gt;
+          &lt;xs:element minOccurs="0" name="MaxDifficulty" nillable="true" type="xs:double" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="DifficultyFilter" nillable="true" type="tns:DifficultyFilter" /&gt;
+  &lt;xs:complexType name="TrackableCountFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="MinTrackables" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="MaxTrackables" nillable="true" type="xs:int" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="TrackableCountFilter" nillable="true" type="tns:TrackableCountFilter" /&gt;
+  &lt;xs:complexType name="NotFoundByUsersFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="UserNames" nillable="true" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q4:ArrayOfstring" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="NotFoundByUsersFilter" nillable="true" type="tns:NotFoundByUsersFilter" /&gt;
+  &lt;xs:complexType name="NotHiddenByUsersFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="UserNames" nillable="true" xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q5:ArrayOfstring" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="NotHiddenByUsersFilter" nillable="true" type="tns:NotHiddenByUsersFilter" /&gt;
+  &lt;xs:complexType name="FieldNoteFindFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="FieldNoteFindFilter" nillable="true" type="tns:FieldNoteFindFilter" /&gt;
+  &lt;xs:complexType name="GeocacheContainerSizeFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="GeocacheContainerSizeIds" nillable="true" xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q6:ArrayOflong" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GeocacheContainerSizeFilter" nillable="true" type="tns:GeocacheContainerSizeFilter" /&gt;
+  &lt;xs:complexType name="BookmarksExcludeFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="BookmarkListIDs" nillable="true" xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q7:ArrayOfint" /&gt;
+          &lt;xs:element minOccurs="0" name="ExcludeIgnoreList" type="xs:boolean" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="BookmarksExcludeFilter" nillable="true" type="tns:BookmarksExcludeFilter" /&gt;
+  &lt;xs:complexType name="CacheCodeFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="CacheCodes" nillable="true" xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q8:ArrayOfstring" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CacheCodeFilter" nillable="true" type="tns:CacheCodeFilter" /&gt;
+  &lt;xs:complexType name="GeocacheTypeFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="GeocacheTypeIds" nillable="true" xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q9:ArrayOflong" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GeocacheTypeFilter" nillable="true" type="tns:GeocacheTypeFilter" /&gt;
+  &lt;xs:complexType name="GeocacheNameFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="GeocacheName" nillable="true" type="xs:string" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GeocacheNameFilter" nillable="true" type="tns:GeocacheNameFilter" /&gt;
+  &lt;xs:complexType name="GeocacheExclusionsFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Archived" nillable="true" type="xs:boolean" /&gt;
+          &lt;xs:element minOccurs="0" name="Available" nillable="true" type="xs:boolean" /&gt;
+          &lt;xs:element minOccurs="0" name="Premium" nillable="true" type="xs:boolean" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GeocacheExclusionsFilter" nillable="true" type="tns:GeocacheExclusionsFilter" /&gt;
+  &lt;xs:complexType name="FavoritePointsFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="MinFavoritePoints" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="MaxFavoritePoints" nillable="true" type="xs:int" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="FavoritePointsFilter" nillable="true" type="tns:FavoritePointsFilter" /&gt;
+  &lt;xs:complexType name="HiddenByUsersFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="UserNames" nillable="true" xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q10:ArrayOfstring" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="HiddenByUsersFilter" nillable="true" type="tns:HiddenByUsersFilter" /&gt;
+  &lt;xs:complexType name="ViewportFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="BottomRight" nillable="true" xmlns:q11="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q11:LatLngPoint" /&gt;
+          &lt;xs:element minOccurs="0" name="TopLeft" nillable="true" xmlns:q12="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q12:LatLngPoint" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ViewportFilter" nillable="true" type="tns:ViewportFilter" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" /&gt;
+  &lt;xs:complexType name="ArrayOfstring"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" /&gt;
+  &lt;xs:complexType name="ArrayOflong"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="long" type="xs:long" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOflong" nillable="true" type="tns:ArrayOflong" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="LatLngPoint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Latitude" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="Longitude" type="xs:double" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="LatLngPoint" nillable="true" type="tns:LatLngPoint" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="schema"&gt;
+    &lt;xs:complexType /&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="#response-schema">The following is the response Xml Schema:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://www.geocaching.com/Geocaching.Live/data" elementFormDefault="qualified" targetNamespace="http://www.geocaching.com/Geocaching.Live/data" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:complexType name="GetGeocacheDataResponse"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Status" nillable="true" type="tns:StatusResponse" /&gt;
+      &lt;xs:element minOccurs="0" name="Geocaches" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q1:ArrayOfGeocache" /&gt;
+      &lt;xs:element minOccurs="0" name="PQCount" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="CacheCodes" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfstring" /&gt;
+      &lt;xs:element minOccurs="0" name="CacheLimits" nillable="true" xmlns:q3="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" type="q3:CacheLimitCounts" /&gt;
+      &lt;xs:element minOccurs="0" name="TotalMatchingCaches" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GetGeocacheDataResponse" nillable="true" type="tns:GetGeocacheDataResponse" /&gt;
+  &lt;xs:complexType name="StatusResponse"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="StatusCode" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ExceptionDetails" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Warnings" nillable="true" type="tns:ArrayOfStatusResponse" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="StatusResponse" nillable="true" type="tns:StatusResponse" /&gt;
+  &lt;xs:complexType name="ArrayOfStatusResponse"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="StatusResponse" nillable="true" type="tns:StatusResponse" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfStatusResponse" nillable="true" type="tns:ArrayOfStatusResponse" /&gt;
+  &lt;xs:complexType name="ArrayOfAdditionalWaypoint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="AdditionalWaypoint" nillable="true" type="tns:AdditionalWaypoint" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfAdditionalWaypoint" nillable="true" type="tns:ArrayOfAdditionalWaypoint" /&gt;
+  &lt;xs:complexType name="AdditionalWaypoint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="GUID" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Latitude" nillable="true" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="Longitude" nillable="true" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="UTCEnteredDate" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="UrlName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="WptTypeID" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AdditionalWaypoint" nillable="true" type="tns:AdditionalWaypoint" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="#response-schema">Additional response Xml Schemas:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://www.geocaching.com/Geocaching.Live/data" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" /&gt;
+  &lt;xs:complexType name="ArrayOfGeocache"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="Geocache" nillable="true" type="tns:Geocache" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfGeocache" nillable="true" type="tns:ArrayOfGeocache" /&gt;
+  &lt;xs:complexType name="Geocache"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AccountID" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="AdditionalWaypoints" nillable="true" xmlns:q1="http://www.geocaching.com/Geocaching.Live/data" type="q1:ArrayOfAdditionalWaypoint" /&gt;
+      &lt;xs:element minOccurs="0" name="Archived" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfAttribute" /&gt;
+      &lt;xs:element minOccurs="0" name="Available" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="CacheType" nillable="true" type="tns:GeocacheType" /&gt;
+      &lt;xs:element minOccurs="0" name="CanCacheBeFavorited" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ContainerType" nillable="true" type="tns:ContainerType" /&gt;
+      &lt;xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CountryID" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="CurrentDetailsCount" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="DateLastUpdate" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="DateLastVisited" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="Difficulty" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="EncodedHints" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="FavoritePoints" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="GUID" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheLogs" nillable="true" type="tns:ArrayOfGeocacheLog" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheNote" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="HasbeenFavoritedbyUser" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="HasbeenFoundbyUser" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ID" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="ImageCount" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImageData" /&gt;
+      &lt;xs:element minOccurs="0" name="IsLocked" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsPremium" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Latitude" nillable="true" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="LongDescription" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LongDescriptionIsHtml" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Longitude" nillable="true" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="MaxDetailCount" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Owner" nillable="true" type="tns:Member" /&gt;
+      &lt;xs:element minOccurs="0" name="PlacedBy" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PublishDateUtc" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="ShortDescription" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ShortDescriptionIsHtml" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="State" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="StateID" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Terrain" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="TrackableCount" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Trackables" nillable="true" type="tns:ArrayOfTrackable" /&gt;
+      &lt;xs:element minOccurs="0" name="UTCPlaceDate" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="UpgradeMessage" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="UserWaypoints" nillable="true" type="tns:ArrayOfUserWaypoint" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="Geocache" nillable="true" type="tns:Geocache" /&gt;
+  &lt;xs:complexType name="ArrayOfAttribute"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="Attribute" nillable="true" type="tns:Attribute" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfAttribute" nillable="true" type="tns:ArrayOfAttribute" /&gt;
+  &lt;xs:complexType name="Attribute"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AttributeTypeID" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="IsOn" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="Attribute" nillable="true" type="tns:Attribute" /&gt;
+  &lt;xs:complexType name="GeocacheType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheTypeId" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheTypeName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ImageURL" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IsContainer" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="UserCount" nillable="true" type="xs:long" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GeocacheType" nillable="true" type="tns:GeocacheType" /&gt;
+  &lt;xs:complexType name="ContainerType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="ContainerTypeId" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="ContainerTypeName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Order" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ContainerType" nillable="true" type="tns:ContainerType" /&gt;
+  &lt;xs:complexType name="ArrayOfGeocacheLog"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="GeocacheLog" nillable="true" type="tns:GeocacheLog" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfGeocacheLog" nillable="true" type="tns:ArrayOfGeocacheLog" /&gt;
+  &lt;xs:complexType name="GeocacheLog"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CacheCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CannotDelete" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Finder" nillable="true" type="tns:Member" /&gt;
+      &lt;xs:element minOccurs="0" name="Guid" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="ID" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImageData" /&gt;
+      &lt;xs:element minOccurs="0" name="IsApproved" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsArchived" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="LogIsEncoded" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="LogText" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LogType" nillable="true" type="tns:WptLogType" /&gt;
+      &lt;xs:element minOccurs="0" name="UTCCreateDate" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="UpdatedLatitude" nillable="true" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="UpdatedLongitude" nillable="true" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="VisitDate" type="xs:dateTime" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GeocacheLog" nillable="true" type="tns:GeocacheLog" /&gt;
+  &lt;xs:complexType name="Member"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AvatarUrl" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="FindCount" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="GalleryImageCount" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="HideCount" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="HomeCoordinates" nillable="true" xmlns:q2="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q2:LatLngPoint" /&gt;
+      &lt;xs:element minOccurs="0" name="Id" nillable="true" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="IsAdmin" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="MemberType" nillable="true" type="tns:MembershipType" /&gt;
+      &lt;xs:element minOccurs="0" name="PublicGuid" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="Member" nillable="true" type="tns:Member" /&gt;
+  &lt;xs:complexType name="MembershipType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="MemberTypeId" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="MemberTypeName" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="MembershipType" nillable="true" type="tns:MembershipType" /&gt;
+  &lt;xs:complexType name="ArrayOfImageData"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="ImageData" nillable="true" type="tns:ImageData" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfImageData" nillable="true" type="tns:ArrayOfImageData" /&gt;
+  &lt;xs:complexType name="ImageData"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ImageGuid" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="MobileUrl" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ThumbUrl" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ImageData" nillable="true" type="tns:ImageData" /&gt;
+  &lt;xs:complexType name="WptLogType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AdminActionable" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ImageName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ImageURL" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="OwnerActionable" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="WptLogTypeId" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="WptLogTypeName" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="WptLogType" nillable="true" type="tns:WptLogType" /&gt;
+  &lt;xs:complexType name="ArrayOfTrackable"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="Trackable" nillable="true" type="tns:Trackable" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfTrackable" nillable="true" type="tns:ArrayOfTrackable" /&gt;
+  &lt;xs:complexType name="Trackable"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AllowedToBeCollected" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Archived" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="BugTypeID" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CurrentGeocacheCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CurrentGoal" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CurrentOwner" nillable="true" type="tns:Member" /&gt;
+      &lt;xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IconUrl" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Id" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImageData" /&gt;
+      &lt;xs:element minOccurs="0" name="InCollection" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="OriginalOwner" nillable="true" type="tns:Member" /&gt;
+      &lt;xs:element minOccurs="0" name="TBTypeName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="TBTypeNameSingular" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="TrackableLogs" nillable="true" type="tns:ArrayOfTrackableLog" /&gt;
+      &lt;xs:element minOccurs="0" name="TrackingCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="UserCount" nillable="true" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="WptTypeID" type="xs:long" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="Trackable" nillable="true" type="tns:Trackable" /&gt;
+  &lt;xs:complexType name="ArrayOfTrackableLog"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="TrackableLog" nillable="true" type="tns:TrackableLog" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfTrackableLog" nillable="true" type="tns:ArrayOfTrackableLog" /&gt;
+  &lt;xs:complexType name="TrackableLog"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CacheID" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ID" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImageData" /&gt;
+      &lt;xs:element minOccurs="0" name="IsArchived" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="LogGuid" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="LogIsEncoded" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="LogText" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LogType" nillable="true" type="tns:WptLogType" /&gt;
+      &lt;xs:element minOccurs="0" name="LoggedBy" nillable="true" type="tns:Member" /&gt;
+      &lt;xs:element minOccurs="0" name="UTCCreateDate" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="UpdatedLatitude" nillable="true" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="UpdatedLongitude" nillable="true" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="VisitDate" type="xs:dateTime" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="TrackableLog" nillable="true" type="tns:TrackableLog" /&gt;
+  &lt;xs:complexType name="ArrayOfUserWaypoint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="UserWaypoint" nillable="true" type="tns:UserWaypoint" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfUserWaypoint" nillable="true" type="tns:ArrayOfUserWaypoint" /&gt;
+  &lt;xs:complexType name="UserWaypoint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CacheCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ID" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="IsCorrectedCoordinate" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Latitude" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="Longitude" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="UTCDate" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="UserID" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="UserWaypoint" nillable="true" type="tns:UserWaypoint" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="LatLngPoint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Latitude" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="Longitude" type="xs:double" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="LatLngPoint" nillable="true" type="tns:LatLngPoint" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfstring"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="CacheLimitCounts"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CachesLeft" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="CurrentCacheCount" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="MaxCacheCount" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CacheLimitCounts" nillable="true" type="tns:CacheLimitCounts" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="schema"&gt;
+    &lt;xs:complexType /&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+    </div>
+  </body>
+</html>
