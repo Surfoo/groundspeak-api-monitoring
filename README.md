@@ -14,4 +14,4 @@ The script monitors these URLs:
 Notification
 ============
 
-Please "watch" this repository, and then use [hubnotify.com](http://www.hubnotify.com/) for your notifications.
+Please "Star" this repository, and then use [hubnotify.com](http://www.hubnotify.com/) for your notifications.
