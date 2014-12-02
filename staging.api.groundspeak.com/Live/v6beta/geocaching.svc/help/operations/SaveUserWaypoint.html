@@ -7,7 +7,15 @@
   <body>
     <div id="content">
       <p class="heading1">Reference for  https://staging.api.groundspeak.com/Live/V6Beta/geocaching.svc/SaveUserWaypoint</p>
-      <p>*Note* The ID field in the request should only be set with an ID returned from the service (when you are updating a waypoint) Otherwise this field should be left null.</p>
+      <p>*Note* The ID field in the request should only be set with an ID returned from the service (when you are updating a waypoint) Otherwise this field should be left null.
+        Possible status codes:
+        GetStatusOk - 0, 
+        GetFailStatus - 1, 
+        GetNotAuthorizedStatus - 2, 
+        GetGeocacheCodeIsNotValid - 12, 
+        GetInvalidInputsStatus - 100, 
+        GetCorrectedCoordinatesNotSupportedWithoutCacheId - 154,
+        GetCannotSupportMoreThanOneCorrectedCoordinatesPerGeocache - 155</p>
       <p xmlns="http://www.w3.org/1999/xhtml">
         <b>Url: </b>
         <span class="uri-template">https://staging.api.groundspeak.com/Live/V6Beta/geocaching.svc/SaveUserWaypoint</span>
@@ -58,6 +66,7 @@
   &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
   &lt;Description&gt;String content&lt;/Description&gt;
   &lt;ID&gt;9223372036854775807&lt;/ID&gt;
+  &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
 &lt;/SaveUserWaypointRequest&gt;</pre>
       </p>
       <p>
@@ -68,7 +77,8 @@
 	"Latitude":1.26743233E+15,
 	"Longitude":1.26743233E+15,
 	"Description":"String content",
-	"ID":9223372036854775807
+	"ID":9223372036854775807,
+	"IsCorrectedCoordinate":true
 }</pre>
       </p>
       <p>
@@ -173,6 +183,7 @@
       &lt;xs:element minOccurs="0" name="Longitude" type="xs:double" /&gt;
       &lt;xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="ID" nillable="true" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="IsCorrectedCoordinate" type="xs:boolean" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="SaveUserWaypointRequest" nillable="true" type="tns:SaveUserWaypointRequest" /&gt;
