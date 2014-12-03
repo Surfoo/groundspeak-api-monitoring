@@ -67,6 +67,8 @@
   &lt;Description&gt;String content&lt;/Description&gt;
   &lt;ID&gt;9223372036854775807&lt;/ID&gt;
   &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
+  &lt;AssociatedAdditionalWaypoint&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/AssociatedAdditionalWaypoint&gt;
+  &lt;IsUserCompleted&gt;true&lt;/IsUserCompleted&gt;
 &lt;/SaveUserWaypointRequest&gt;</pre>
       </p>
       <p>
@@ -78,7 +80,9 @@
 	"Longitude":1.26743233E+15,
 	"Description":"String content",
 	"ID":9223372036854775807,
-	"IsCorrectedCoordinate":true
+	"IsCorrectedCoordinate":true,
+	"AssociatedAdditionalWaypoint":"1627aea5-8e0a-4371-9022-9b504344e724",
+	"IsUserCompleted":true
 }</pre>
       </p>
       <p>
@@ -130,10 +134,12 @@
     &lt;/Warnings&gt;
   &lt;/Status&gt;
   &lt;NewWaypoint&gt;
+    &lt;AssociatedAdditionalWaypoint xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/AssociatedAdditionalWaypoint&gt;
     &lt;CacheCode xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/CacheCode&gt;
     &lt;Description xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/Description&gt;
     &lt;ID xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;9223372036854775807&lt;/ID&gt;
     &lt;IsCorrectedCoordinate xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/IsCorrectedCoordinate&gt;
+    &lt;IsUserCompleted xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/IsUserCompleted&gt;
     &lt;Latitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1.26743233E+15&lt;/Latitude&gt;
     &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1.26743233E+15&lt;/Longitude&gt;
     &lt;UTCDate xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1999-05-31T11:20:00&lt;/UTCDate&gt;
@@ -161,10 +167,12 @@
 		}]
 	},
 	"NewWaypoint":{
+		"AssociatedAdditionalWaypoint":"1627aea5-8e0a-4371-9022-9b504344e724",
 		"CacheCode":"String content",
 		"Description":"String content",
 		"ID":9223372036854775807,
 		"IsCorrectedCoordinate":true,
+		"IsUserCompleted":true,
 		"Latitude":1.26743233E+15,
 		"Longitude":1.26743233E+15,
 		"UTCDate":"\/Date(928174800000-0700)\/",
@@ -174,7 +182,8 @@
       </p>
       <p>
         <a name="#request-schema">The following is the request Xml Schema:</a>
-        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://www.geocaching.com/Geocaching.Live/data" elementFormDefault="qualified" targetNamespace="http://www.geocaching.com/Geocaching.Live/data" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+        <pre class="request-schema">&lt;xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://www.geocaching.com/Geocaching.Live/data" elementFormDefault="qualified" targetNamespace="http://www.geocaching.com/Geocaching.Live/data" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
   &lt;xs:complexType name="SaveUserWaypointRequest"&gt;
     &lt;xs:sequence&gt;
       &lt;xs:element minOccurs="0" name="AccessToken" nillable="true" type="xs:string" /&gt;
@@ -184,6 +193,8 @@
       &lt;xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="ID" nillable="true" type="xs:long" /&gt;
       &lt;xs:element minOccurs="0" name="IsCorrectedCoordinate" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AssociatedAdditionalWaypoint" nillable="true" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="IsUserCompleted" type="xs:boolean" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="SaveUserWaypointRequest" nillable="true" type="tns:SaveUserWaypointRequest" /&gt;
@@ -313,13 +324,16 @@
 &lt;/xs:schema&gt;</pre>
       </p>
       <p>
-        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+        <pre class="response-schema">&lt;xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
   &lt;xs:complexType name="UserWaypoint"&gt;
     &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AssociatedAdditionalWaypoint" nillable="true" type="ser:guid" /&gt;
       &lt;xs:element minOccurs="0" name="CacheCode" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="ID" type="xs:long" /&gt;
       &lt;xs:element minOccurs="0" name="IsCorrectedCoordinate" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsUserCompleted" type="xs:boolean" /&gt;
       &lt;xs:element minOccurs="0" name="Latitude" type="xs:double" /&gt;
       &lt;xs:element minOccurs="0" name="Longitude" type="xs:double" /&gt;
       &lt;xs:element minOccurs="0" name="UTCDate" type="xs:dateTime" /&gt;
