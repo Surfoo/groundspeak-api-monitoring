@@ -786,20 +786,24 @@
       &lt;Url&gt;String content&lt;/Url&gt;
       &lt;UserWaypoints&gt;
         &lt;UserWaypoint&gt;
+          &lt;AssociatedAdditionalWaypoint&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/AssociatedAdditionalWaypoint&gt;
           &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
           &lt;Description&gt;String content&lt;/Description&gt;
           &lt;ID&gt;9223372036854775807&lt;/ID&gt;
           &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
+          &lt;IsUserCompleted&gt;true&lt;/IsUserCompleted&gt;
           &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
           &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
           &lt;UTCDate&gt;1999-05-31T11:20:00&lt;/UTCDate&gt;
           &lt;UserID&gt;2147483647&lt;/UserID&gt;
         &lt;/UserWaypoint&gt;
         &lt;UserWaypoint&gt;
+          &lt;AssociatedAdditionalWaypoint&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/AssociatedAdditionalWaypoint&gt;
           &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
           &lt;Description&gt;String content&lt;/Description&gt;
           &lt;ID&gt;9223372036854775807&lt;/ID&gt;
           &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
+          &lt;IsUserCompleted&gt;true&lt;/IsUserCompleted&gt;
           &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
           &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
           &lt;UTCDate&gt;1999-05-31T11:20:00&lt;/UTCDate&gt;
@@ -1471,20 +1475,24 @@
       &lt;Url&gt;String content&lt;/Url&gt;
       &lt;UserWaypoints&gt;
         &lt;UserWaypoint&gt;
+          &lt;AssociatedAdditionalWaypoint&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/AssociatedAdditionalWaypoint&gt;
           &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
           &lt;Description&gt;String content&lt;/Description&gt;
           &lt;ID&gt;9223372036854775807&lt;/ID&gt;
           &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
+          &lt;IsUserCompleted&gt;true&lt;/IsUserCompleted&gt;
           &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
           &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
           &lt;UTCDate&gt;1999-05-31T11:20:00&lt;/UTCDate&gt;
           &lt;UserID&gt;2147483647&lt;/UserID&gt;
         &lt;/UserWaypoint&gt;
         &lt;UserWaypoint&gt;
+          &lt;AssociatedAdditionalWaypoint&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/AssociatedAdditionalWaypoint&gt;
           &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
           &lt;Description&gt;String content&lt;/Description&gt;
           &lt;ID&gt;9223372036854775807&lt;/ID&gt;
           &lt;IsCorrectedCoordinate&gt;true&lt;/IsCorrectedCoordinate&gt;
+          &lt;IsUserCompleted&gt;true&lt;/IsUserCompleted&gt;
           &lt;Latitude&gt;1.26743233E+15&lt;/Latitude&gt;
           &lt;Longitude&gt;1.26743233E+15&lt;/Longitude&gt;
           &lt;UTCDate&gt;1999-05-31T11:20:00&lt;/UTCDate&gt;
@@ -1795,10 +1803,12 @@
 		"UpgradeMessage":"String content",
 		"Url":"String content",
 		"UserWaypoints":[{
+			"AssociatedAdditionalWaypoint":"1627aea5-8e0a-4371-9022-9b504344e724",
 			"CacheCode":"String content",
 			"Description":"String content",
 			"ID":9223372036854775807,
 			"IsCorrectedCoordinate":true,
+			"IsUserCompleted":true,
 			"Latitude":1.26743233E+15,
 			"Longitude":1.26743233E+15,
 			"UTCDate":"\/Date(928174800000-0700)\/",
@@ -2233,10 +2243,12 @@
   &lt;xs:element name="ArrayOfUserWaypoint" nillable="true" type="tns:ArrayOfUserWaypoint" /&gt;
   &lt;xs:complexType name="UserWaypoint"&gt;
     &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AssociatedAdditionalWaypoint" nillable="true" type="ser:guid" /&gt;
       &lt;xs:element minOccurs="0" name="CacheCode" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="ID" type="xs:long" /&gt;
       &lt;xs:element minOccurs="0" name="IsCorrectedCoordinate" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsUserCompleted" type="xs:boolean" /&gt;
       &lt;xs:element minOccurs="0" name="Latitude" type="xs:double" /&gt;
       &lt;xs:element minOccurs="0" name="Longitude" type="xs:double" /&gt;
       &lt;xs:element minOccurs="0" name="UTCDate" type="xs:dateTime" /&gt;

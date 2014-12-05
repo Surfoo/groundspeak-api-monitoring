@@ -12,7 +12,7 @@ if [[ $(git ls-files -m | grep -E 'api.groundspeak.com|wsdl_' | wc -l) -gt 0 ]];
 $FILES";
     git commit -am "Changes detected on:
 $FILES";
-    #git push;
+    git push;
 else
     echo "Nothing to do.";
 fi
