@@ -10,7 +10,7 @@ if [[ $(git ls-files -m | grep -E 'api.groundspeak.com|wsdl_' | wc -l) -gt 0 ]];
     FILES=$(git ls-files -m | grep -E 'api.groundspeak.com|wsdl_');
     echo "Files found:
 $FILES";
-    git commit -am "Changes detected on:
+    git commit --author "Surfoo <surfooo@gmail.com>" -am "Changes detected on:
 $FILES";
     git push;
 else
