@@ -2638,16 +2638,6 @@
         <xs:sequence/>
       </xs:complexType>
       <xs:element name="BaseGeocacheFilter" nillable="true" type="tns:BaseGeocacheFilter"/>
-      <xs:complexType name="FoundByUserFilter">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:BaseGeocacheFilter">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="FoundByUserFilter" nillable="true" type="tns:FoundByUserFilter"/>
       <xs:complexType name="NotFoundByUsersFilter">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
@@ -2765,22 +2755,12 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="FavoritePointsFilter" nillable="true" type="tns:FavoritePointsFilter"/>
-      <xs:complexType name="HiddenByUsersFilter">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:BaseGeocacheFilter">
-            <xs:sequence>
-              <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserNames" nillable="true" type="q8:ArrayOfstring"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="HiddenByUsersFilter" nillable="true" type="tns:HiddenByUsersFilter"/>
       <xs:complexType name="ViewportFilter">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" minOccurs="0" name="BottomRight" nillable="true" type="q9:LatLngPoint"/>
-              <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" minOccurs="0" name="TopLeft" nillable="true" type="q10:LatLngPoint"/>
+              <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" minOccurs="0" name="BottomRight" nillable="true" type="q8:LatLngPoint"/>
+              <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" minOccurs="0" name="TopLeft" nillable="true" type="q9:LatLngPoint"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2790,7 +2770,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BookmarkListIDs" nillable="true" type="q11:ArrayOfint"/>
+              <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BookmarkListIDs" nillable="true" type="q10:ArrayOfint"/>
               <xs:element minOccurs="0" name="ExcludeIgnoreList" type="xs:boolean"/>
             </xs:sequence>
           </xs:extension>
@@ -2812,7 +2792,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q12="http://www.geocaching.com/Geocaching.Live/data" minOccurs="0" name="Range" nillable="true" type="q12:DateRange"/>
+              <xs:element xmlns:q11="http://www.geocaching.com/Geocaching.Live/data" minOccurs="0" name="Range" nillable="true" type="q11:DateRange"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2822,7 +2802,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="StateIds" nillable="true" type="q13:ArrayOfint"/>
+              <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="StateIds" nillable="true" type="q12:ArrayOfint"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2832,12 +2812,32 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CountryIds" nillable="true" type="q14:ArrayOfint"/>
+              <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CountryIds" nillable="true" type="q13:ArrayOfint"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="CountryFilter" nillable="true" type="tns:CountryFilter"/>
+      <xs:complexType name="HiddenByUsersFilter">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseGeocacheFilter">
+            <xs:sequence>
+              <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserNames" nillable="true" type="q14:ArrayOfstring"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="HiddenByUsersFilter" nillable="true" type="tns:HiddenByUsersFilter"/>
+      <xs:complexType name="FoundByUserFilter">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseGeocacheFilter">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="FoundByUserFilter" nillable="true" type="tns:FoundByUserFilter"/>
       <xs:complexType name="ArrayOfGeocache">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="unbounded" name="Geocache" nillable="true" type="tns:Geocache"/>
@@ -3488,6 +3488,7 @@
           <xs:enumeration value="PlaceDate"/>
           <xs:enumeration value="FoundDate"/>
           <xs:enumeration value="ContainerSize"/>
+          <xs:enumeration value="DateLastVisited"/>
         </xs:restriction>
       </xs:simpleType>
       <xs:element name="SortOrderBy" nillable="true" type="tns:SortOrderBy"/>
