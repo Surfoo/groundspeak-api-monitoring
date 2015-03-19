@@ -133,6 +133,14 @@
     &lt;RestrictbyIP xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;true&lt;/RestrictbyIP&gt;
     &lt;ValidateIPCounts xmlns="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib"&gt;true&lt;/ValidateIPCounts&gt;
   &lt;/Limits&gt;
+  &lt;MaxPerPage&gt;
+    &lt;Geocaches&gt;2147483647&lt;/Geocaches&gt;
+    &lt;GeocacheLogs&gt;2147483647&lt;/GeocacheLogs&gt;
+    &lt;Trackables&gt;2147483647&lt;/Trackables&gt;
+    &lt;TrackableLogs&gt;2147483647&lt;/TrackableLogs&gt;
+    &lt;CacheNotes&gt;2147483647&lt;/CacheNotes&gt;
+    &lt;GalleryImages&gt;2147483647&lt;/GalleryImages&gt;
+  &lt;/MaxPerPage&gt;
 &lt;/GetAPILimitsResponse&gt;</pre>
       </p>
       <p>
@@ -177,6 +185,14 @@
 		}],
 		"RestrictbyIP":true,
 		"ValidateIPCounts":true
+	},
+	"MaxPerPage":{
+		"Geocaches":2147483647,
+		"GeocacheLogs":2147483647,
+		"Trackables":2147483647,
+		"TrackableLogs":2147483647,
+		"CacheNotes":2147483647,
+		"GalleryImages":2147483647
 	}
 }</pre>
       </p>
@@ -188,6 +204,7 @@
     &lt;xs:sequence&gt;
       &lt;xs:element minOccurs="0" name="Status" nillable="true" type="tns:StatusResponse" /&gt;
       &lt;xs:element minOccurs="0" name="Limits" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/Groundspeak.API.AuthorizationLib" type="q1:RestrictionMatrix" /&gt;
+      &lt;xs:element minOccurs="0" name="MaxPerPage" nillable="true" type="tns:MaxPerPage" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="GetAPILimitsResponse" nillable="true" type="tns:GetAPILimitsResponse" /&gt;
@@ -206,6 +223,17 @@
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="ArrayOfStatusResponse" nillable="true" type="tns:ArrayOfStatusResponse" /&gt;
+  &lt;xs:complexType name="MaxPerPage"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Geocaches" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="GeocacheLogs" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Trackables" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="TrackableLogs" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="CacheNotes" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="GalleryImages" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="MaxPerPage" nillable="true" type="tns:MaxPerPage" /&gt;
 &lt;/xs:schema&gt;</pre>
       </p>
       <p>
