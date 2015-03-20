@@ -174,6 +174,12 @@
       &lt;Longitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"&gt;1.26743233E+15&lt;/Longitude&gt;
     &lt;/Origin&gt;
   &lt;/Recommended&gt;
+  &lt;EventsDateRangeUtc&gt;
+    &lt;Range xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
+      &lt;StartDate xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;1999-05-31T11:20:00&lt;/StartDate&gt;
+      &lt;EndDate xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;1999-05-31T11:20:00&lt;/EndDate&gt;
+    &lt;/Range&gt;
+  &lt;/EventsDateRangeUtc&gt;
   &lt;SortBys&gt;
     &lt;SortOrderAndDirection&gt;
       &lt;AscendingOrder&gt;true&lt;/AscendingOrder&gt;
@@ -287,6 +293,12 @@
 		"Origin":{
 			"Latitude":1.26743233E+15,
 			"Longitude":1.26743233E+15
+		}
+	},
+	"EventsDateRangeUtc":{
+		"Range":{
+			"StartDate":"\/Date(928174800000-0700)\/",
+			"EndDate":"\/Date(928174800000-0700)\/"
 		}
 	},
 	"SortBys":[{
@@ -2092,9 +2104,10 @@
       &lt;xs:element minOccurs="0" name="Countries" nillable="true" xmlns:q19="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q19:CountryFilter" /&gt;
       &lt;xs:element minOccurs="0" name="FoundByUser" nillable="true" xmlns:q20="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q20:FoundByUserFilter" /&gt;
       &lt;xs:element minOccurs="0" name="Recommended" nillable="true" xmlns:q21="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q21:RecommendedCacheFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="EventsDateRangeUtc" nillable="true" xmlns:q22="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q22:EventDateRangeUtcFilter" /&gt;
       &lt;xs:element minOccurs="0" name="SortBys" nillable="true" type="tns:ArrayOfSortOrderAndDirection" /&gt;
       &lt;xs:element minOccurs="0" name="IsSummaryOnly" type="xs:boolean" /&gt;
-      &lt;xs:element minOccurs="0" name="SortPoint" nillable="true" xmlns:q22="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q22:LatLngPoint" /&gt;
+      &lt;xs:element minOccurs="0" name="SortPoint" nillable="true" xmlns:q23="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q23:LatLngPoint" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="SearchForGeocachesRequest" nillable="true" type="tns:SearchForGeocachesRequest" /&gt;
@@ -2114,7 +2127,7 @@
   &lt;xs:complexType name="SortOrderAndDirection"&gt;
     &lt;xs:sequence&gt;
       &lt;xs:element minOccurs="0" name="AscendingOrder" type="xs:boolean" /&gt;
-      &lt;xs:element minOccurs="0" name="SortFilterId" xmlns:q23="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Filters" type="q23:SortOrderBy" /&gt;
+      &lt;xs:element minOccurs="0" name="SortFilterId" xmlns:q24="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Filters" type="q24:SortOrderBy" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="SortOrderAndDirection" nillable="true" type="tns:SortOrderAndDirection" /&gt;
@@ -2184,61 +2197,11 @@
     &lt;xs:sequence /&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="BaseGeocacheFilter" nillable="true" type="tns:BaseGeocacheFilter" /&gt;
-  &lt;xs:complexType name="FoundByUserFilter"&gt;
-    &lt;xs:complexContent mixed="false"&gt;
-      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
-        &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" /&gt;
-        &lt;/xs:sequence&gt;
-      &lt;/xs:extension&gt;
-    &lt;/xs:complexContent&gt;
-  &lt;/xs:complexType&gt;
-  &lt;xs:element name="FoundByUserFilter" nillable="true" type="tns:FoundByUserFilter" /&gt;
-  &lt;xs:complexType name="CountryFilter"&gt;
-    &lt;xs:complexContent mixed="false"&gt;
-      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
-        &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="CountryIds" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfint" /&gt;
-        &lt;/xs:sequence&gt;
-      &lt;/xs:extension&gt;
-    &lt;/xs:complexContent&gt;
-  &lt;/xs:complexType&gt;
-  &lt;xs:element name="CountryFilter" nillable="true" type="tns:CountryFilter" /&gt;
-  &lt;xs:complexType name="FieldNoteFindFilter"&gt;
-    &lt;xs:complexContent mixed="false"&gt;
-      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
-        &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" /&gt;
-        &lt;/xs:sequence&gt;
-      &lt;/xs:extension&gt;
-    &lt;/xs:complexContent&gt;
-  &lt;/xs:complexType&gt;
-  &lt;xs:element name="FieldNoteFindFilter" nillable="true" type="tns:FieldNoteFindFilter" /&gt;
-  &lt;xs:complexType name="CacheCodeFilter"&gt;
-    &lt;xs:complexContent mixed="false"&gt;
-      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
-        &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="CacheCodes" nillable="true" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q3:ArrayOfstring" /&gt;
-        &lt;/xs:sequence&gt;
-      &lt;/xs:extension&gt;
-    &lt;/xs:complexContent&gt;
-  &lt;/xs:complexType&gt;
-  &lt;xs:element name="CacheCodeFilter" nillable="true" type="tns:CacheCodeFilter" /&gt;
-  &lt;xs:complexType name="StateFilter"&gt;
-    &lt;xs:complexContent mixed="false"&gt;
-      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
-        &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="StateIds" nillable="true" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q4:ArrayOfint" /&gt;
-        &lt;/xs:sequence&gt;
-      &lt;/xs:extension&gt;
-    &lt;/xs:complexContent&gt;
-  &lt;/xs:complexType&gt;
-  &lt;xs:element name="StateFilter" nillable="true" type="tns:StateFilter" /&gt;
   &lt;xs:complexType name="NotFoundByUsersFilter"&gt;
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
         &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="UserNames" nillable="true" xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q5:ArrayOfstring" /&gt;
+          &lt;xs:element minOccurs="0" name="UserNames" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfstring" /&gt;
         &lt;/xs:sequence&gt;
       &lt;/xs:extension&gt;
     &lt;/xs:complexContent&gt;
@@ -2248,7 +2211,7 @@
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
         &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="UserNames" nillable="true" xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q6:ArrayOfstring" /&gt;
+          &lt;xs:element minOccurs="0" name="UserNames" nillable="true" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q3:ArrayOfstring" /&gt;
         &lt;/xs:sequence&gt;
       &lt;/xs:extension&gt;
     &lt;/xs:complexContent&gt;
@@ -2286,11 +2249,21 @@
     &lt;/xs:complexContent&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="DifficultyFilter" nillable="true" type="tns:DifficultyFilter" /&gt;
+  &lt;xs:complexType name="CacheCodeFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="CacheCodes" nillable="true" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q4:ArrayOfstring" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CacheCodeFilter" nillable="true" type="tns:CacheCodeFilter" /&gt;
   &lt;xs:complexType name="GeocacheTypeFilter"&gt;
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
         &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="GeocacheTypeIds" nillable="true" xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q7:ArrayOflong" /&gt;
+          &lt;xs:element minOccurs="0" name="GeocacheTypeIds" nillable="true" xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q5:ArrayOflong" /&gt;
         &lt;/xs:sequence&gt;
       &lt;/xs:extension&gt;
     &lt;/xs:complexContent&gt;
@@ -2300,7 +2273,7 @@
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
         &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="GeocacheContainerSizeIds" nillable="true" xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q8:ArrayOflong" /&gt;
+          &lt;xs:element minOccurs="0" name="GeocacheContainerSizeIds" nillable="true" xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q6:ArrayOflong" /&gt;
         &lt;/xs:sequence&gt;
       &lt;/xs:extension&gt;
     &lt;/xs:complexContent&gt;
@@ -2336,7 +2309,7 @@
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
         &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="UserNames" nillable="true" xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q9:ArrayOfstring" /&gt;
+          &lt;xs:element minOccurs="0" name="UserNames" nillable="true" xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q7:ArrayOfstring" /&gt;
         &lt;/xs:sequence&gt;
       &lt;/xs:extension&gt;
     &lt;/xs:complexContent&gt;
@@ -2346,8 +2319,8 @@
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
         &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="BottomRight" nillable="true" xmlns:q10="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q10:LatLngPoint" /&gt;
-          &lt;xs:element minOccurs="0" name="TopLeft" nillable="true" xmlns:q11="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q11:LatLngPoint" /&gt;
+          &lt;xs:element minOccurs="0" name="BottomRight" nillable="true" xmlns:q8="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q8:LatLngPoint" /&gt;
+          &lt;xs:element minOccurs="0" name="TopLeft" nillable="true" xmlns:q9="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q9:LatLngPoint" /&gt;
         &lt;/xs:sequence&gt;
       &lt;/xs:extension&gt;
     &lt;/xs:complexContent&gt;
@@ -2357,7 +2330,7 @@
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
         &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="BookmarkListIDs" nillable="true" xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q12:ArrayOfint" /&gt;
+          &lt;xs:element minOccurs="0" name="BookmarkListIDs" nillable="true" xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q10:ArrayOfint" /&gt;
           &lt;xs:element minOccurs="0" name="ExcludeIgnoreList" type="xs:boolean" /&gt;
         &lt;/xs:sequence&gt;
       &lt;/xs:extension&gt;
@@ -2379,17 +2352,67 @@
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
         &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="Range" nillable="true" xmlns:q13="http://www.geocaching.com/Geocaching.Live/data" type="q13:DateRange" /&gt;
+          &lt;xs:element minOccurs="0" name="Range" nillable="true" xmlns:q11="http://www.geocaching.com/Geocaching.Live/data" type="q11:DateRange" /&gt;
         &lt;/xs:sequence&gt;
       &lt;/xs:extension&gt;
     &lt;/xs:complexContent&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="CachePublishedDateFilter" nillable="true" type="tns:CachePublishedDateFilter" /&gt;
+  &lt;xs:complexType name="StateFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="StateIds" nillable="true" xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q12:ArrayOfint" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="StateFilter" nillable="true" type="tns:StateFilter" /&gt;
+  &lt;xs:complexType name="CountryFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="CountryIds" nillable="true" xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q13:ArrayOfint" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CountryFilter" nillable="true" type="tns:CountryFilter" /&gt;
+  &lt;xs:complexType name="FoundByUserFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="FoundByUserFilter" nillable="true" type="tns:FoundByUserFilter" /&gt;
+  &lt;xs:complexType name="EventDateRangeUtcFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Range" nillable="true" xmlns:q14="http://www.geocaching.com/Geocaching.Live/data" type="q14:DateRange" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="EventDateRangeUtcFilter" nillable="true" type="tns:EventDateRangeUtcFilter" /&gt;
+  &lt;xs:complexType name="FieldNoteFindFilter"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="FieldNoteFindFilter" nillable="true" type="tns:FieldNoteFindFilter" /&gt;
   &lt;xs:complexType name="RecommendedCacheFilter"&gt;
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
         &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="Origin" nillable="true" xmlns:q14="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q14:LatLngPoint" /&gt;
+          &lt;xs:element minOccurs="0" name="Origin" nillable="true" xmlns:q15="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" type="q15:LatLngPoint" /&gt;
         &lt;/xs:sequence&gt;
       &lt;/xs:extension&gt;
     &lt;/xs:complexContent&gt;
@@ -2399,12 +2422,6 @@
       </p>
       <p>
         <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;xs:complexType name="ArrayOfint"&gt;
-    &lt;xs:sequence&gt;
-      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" /&gt;
-    &lt;/xs:sequence&gt;
-  &lt;/xs:complexType&gt;
-  &lt;xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" /&gt;
   &lt;xs:complexType name="ArrayOfstring"&gt;
     &lt;xs:sequence&gt;
       &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" /&gt;
@@ -2417,6 +2434,12 @@
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="ArrayOflong" nillable="true" type="tns:ArrayOflong" /&gt;
+  &lt;xs:complexType name="ArrayOfint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" /&gt;
 &lt;/xs:schema&gt;</pre>
       </p>
       <p>
