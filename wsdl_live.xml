@@ -3617,6 +3617,7 @@
           <xs:enumeration value="regarea"/>
           <xs:enumeration value="favorite"/>
           <xs:enumeration value="difficultyterrain"/>
+          <xs:enumeration value="promo"/>
           <xs:enumeration value="poly"/>
         </xs:restriction>
       </xs:simpleType>
