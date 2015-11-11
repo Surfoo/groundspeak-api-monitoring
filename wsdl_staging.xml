@@ -4459,29 +4459,38 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="SocialMediaLinkAccountsRequestPublic" nillable="true" type="tns:SocialMediaLinkAccountsRequestPublic"/>
-      <xs:complexType name="GetReferAFriendShortUrlRequestPublic">
+      <xs:complexType name="GetAccountReferralStatisticsRequestPublic">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q3:AccessTokenRequestBase">
             <xs:sequence/>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="GetReferAFriendShortUrlRequestPublic" nillable="true" type="tns:GetReferAFriendShortUrlRequestPublic"/>
-      <xs:complexType name="GetAccountsRequest">
+      <xs:element name="GetAccountReferralStatisticsRequestPublic" nillable="true" type="tns:GetAccountReferralStatisticsRequestPublic"/>
+      <xs:complexType name="GetEmailPreferencesForAccountRequestPublic">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q4:AccessTokenRequestBase">
             <xs:sequence>
-              <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AccountIds" nillable="true" type="q5:ArrayOfint"/>
-              <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PublicGuids" nillable="true" type="q6:ArrayOfguid"/>
-              <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Usernames" nillable="true" type="q7:ArrayOfstring"/>
+              <xs:element minOccurs="0" name="EmailPreferencesAccountId" type="xs:long"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="GetAccountsRequest" nillable="true" type="tns:GetAccountsRequest"/>
+      <xs:element name="GetEmailPreferencesForAccountRequestPublic" nillable="true" type="tns:GetEmailPreferencesForAccountRequestPublic"/>
+      <xs:complexType name="UpdateEmailPreferencesForAccountRequestPublic">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q5:AccessTokenRequestBase">
+            <xs:sequence>
+              <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EmailPreferenceIds" nillable="true" type="q6:ArrayOfint"/>
+              <xs:element minOccurs="0" name="EmailPreferencesAccountId" type="xs:long"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="UpdateEmailPreferencesForAccountRequestPublic" nillable="true" type="tns:UpdateEmailPreferencesForAccountRequestPublic"/>
       <xs:complexType name="SocialMediaRevokeAccessRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q8:AccessTokenRequestBase">
+          <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q7:AccessTokenRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="ProviderType" type="xs:int"/>
               <xs:element minOccurs="0" name="SocialMediaAccessToken" nillable="true" type="xs:string"/>
@@ -4492,7 +4501,7 @@
       <xs:element name="SocialMediaRevokeAccessRequestPublic" nillable="true" type="tns:SocialMediaRevokeAccessRequestPublic"/>
       <xs:complexType name="SocialMediaUpdateStatusRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q9:AccessTokenRequestBase">
+          <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q8:AccessTokenRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="IncludedUrl" nillable="true" type="xs:string"/>
               <xs:element minOccurs="0" name="ProviderType" type="xs:int"/>
@@ -4504,7 +4513,7 @@
       <xs:element name="SocialMediaUpdateStatusRequestPublic" nillable="true" type="tns:SocialMediaUpdateStatusRequestPublic"/>
       <xs:complexType name="SocialMediaVerifyAccountLinkedRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q10:AccessTokenRequestBase">
+          <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q9:AccessTokenRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="ProviderType" type="xs:int"/>
             </xs:sequence>
@@ -4514,7 +4523,7 @@
       <xs:element name="SocialMediaVerifyAccountLinkedRequestPublic" nillable="true" type="tns:SocialMediaVerifyAccountLinkedRequestPublic"/>
       <xs:complexType name="SocialMediaVerifyAllLinkedAccountsRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q11:AccessTokenRequestBase">
+          <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q10:AccessTokenRequestBase">
             <xs:sequence/>
           </xs:extension>
         </xs:complexContent>
@@ -4522,7 +4531,7 @@
       <xs:element name="SocialMediaVerifyAllLinkedAccountsRequestPublic" nillable="true" type="tns:SocialMediaVerifyAllLinkedAccountsRequestPublic"/>
       <xs:complexType name="UserChangePasswordRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q12:AccessTokenRequestBase">
+          <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q11:AccessTokenRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="NewPassword" nillable="true" type="xs:string"/>
               <xs:element minOccurs="0" name="OldPassword" nillable="true" type="xs:string"/>
@@ -4531,20 +4540,20 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="UserChangePasswordRequestPublic" nillable="true" type="tns:UserChangePasswordRequestPublic"/>
-      <xs:complexType name="GetAccountReferralStatisticsRequestPublic">
+      <xs:complexType name="GetReferAFriendShortUrlRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q13:AccessTokenRequestBase">
+          <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q12:AccessTokenRequestBase">
             <xs:sequence/>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="GetAccountReferralStatisticsRequestPublic" nillable="true" type="tns:GetAccountReferralStatisticsRequestPublic"/>
+      <xs:element name="GetReferAFriendShortUrlRequestPublic" nillable="true" type="tns:GetReferAFriendShortUrlRequestPublic"/>
       <xs:complexType name="ReferAFriendEmailRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q14:AccessTokenRequestBase">
+          <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q13:AccessTokenRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="MessageBody" nillable="true" type="xs:string"/>
-              <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RecipientsEmail" nillable="true" type="q15:ArrayOfstring"/>
+              <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RecipientsEmail" nillable="true" type="q14:ArrayOfstring"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -4552,33 +4561,24 @@
       <xs:element name="ReferAFriendEmailRequestPublic" nillable="true" type="tns:ReferAFriendEmailRequestPublic"/>
       <xs:complexType name="SendValidationEmailRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q16:AccessTokenRequestBase">
+          <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q15:AccessTokenRequestBase">
             <xs:sequence/>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="SendValidationEmailRequestPublic" nillable="true" type="tns:SendValidationEmailRequestPublic"/>
-      <xs:complexType name="GetEmailPreferencesForAccountRequestPublic">
+      <xs:complexType name="GetAccountsRequest">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q17:AccessTokenRequestBase">
+          <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q16:AccessTokenRequestBase">
             <xs:sequence>
-              <xs:element minOccurs="0" name="EmailPreferencesAccountId" type="xs:long"/>
+              <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AccountIds" nillable="true" type="q17:ArrayOfint"/>
+              <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PublicGuids" nillable="true" type="q18:ArrayOfguid"/>
+              <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Usernames" nillable="true" type="q19:ArrayOfstring"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="GetEmailPreferencesForAccountRequestPublic" nillable="true" type="tns:GetEmailPreferencesForAccountRequestPublic"/>
-      <xs:complexType name="UpdateEmailPreferencesForAccountRequestPublic">
-        <xs:complexContent mixed="false">
-          <xs:extension xmlns:q18="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q18:AccessTokenRequestBase">
-            <xs:sequence>
-              <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EmailPreferenceIds" nillable="true" type="q19:ArrayOfint"/>
-              <xs:element minOccurs="0" name="EmailPreferencesAccountId" type="xs:long"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="UpdateEmailPreferencesForAccountRequestPublic" nillable="true" type="tns:UpdateEmailPreferencesForAccountRequestPublic"/>
+      <xs:element name="GetAccountsRequest" nillable="true" type="tns:GetAccountsRequest"/>
       <xs:complexType name="SetHomeCoordinatesRequestPublic">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q20="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q20:AccessTokenRequestBase">
