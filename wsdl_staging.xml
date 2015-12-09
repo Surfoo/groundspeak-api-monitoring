@@ -2516,7 +2516,7 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="GetGeocacheHealthResponse" nillable="true" type="tns:GetGeocacheHealthResponse"/>
-      <xs:complexType name="GetLatestGeocacheHealthNotificationByCacheId">
+      <xs:complexType name="GetActiveGeocacheHealthNotificationByCacheId">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q103="http://wwww.geocaching.com/Geocaching.Live/data" base="q103:GetGeocacheHealthNotificationRequest">
             <xs:sequence>
@@ -2525,8 +2525,8 @@
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="GetLatestGeocacheHealthNotificationByCacheId" nillable="true" type="tns:GetLatestGeocacheHealthNotificationByCacheId"/>
-      <xs:complexType name="GetActiveGeocacheHealthNotificationByCacheId">
+      <xs:element name="GetActiveGeocacheHealthNotificationByCacheId" nillable="true" type="tns:GetActiveGeocacheHealthNotificationByCacheId"/>
+      <xs:complexType name="GetLatestGeocacheHealthNotificationByCacheId">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q104="http://wwww.geocaching.com/Geocaching.Live/data" base="q104:GetGeocacheHealthNotificationRequest">
             <xs:sequence>
@@ -2535,7 +2535,7 @@
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="GetActiveGeocacheHealthNotificationByCacheId" nillable="true" type="tns:GetActiveGeocacheHealthNotificationByCacheId"/>
+      <xs:element name="GetLatestGeocacheHealthNotificationByCacheId" nillable="true" type="tns:GetLatestGeocacheHealthNotificationByCacheId"/>
       <xs:complexType name="GetGeocacheHealthNotificationHistoryByCacheId">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q105="http://wwww.geocaching.com/Geocaching.Live/data" base="q105:GetGeocacheHealthNotificationRequest">
@@ -2687,8 +2687,8 @@
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities"/>
       <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
-      <xs:import namespace="http://www.geocaching.com/Geocaching.Live/data"/>
       <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:import namespace="http://www.geocaching.com/Geocaching.Live/data"/>
       <xs:import namespace="http://www.geocaching.com/Challenges.Live/data"/>
       <xs:import namespace="http://schemas.datacontract.org/2004/07/Souvenirs.Common.Model"/>
       <xs:complexType name="ArrayOfMember">
@@ -2761,21 +2761,11 @@
         <xs:sequence/>
       </xs:complexType>
       <xs:element name="BaseGeocacheFilter" nillable="true" type="tns:BaseGeocacheFilter"/>
-      <xs:complexType name="EventDateRangeUtcFilter">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:BaseGeocacheFilter">
-            <xs:sequence>
-              <xs:element xmlns:q3="http://www.geocaching.com/Geocaching.Live/data" minOccurs="0" name="Range" nillable="true" type="q3:DateRange"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="EventDateRangeUtcFilter" nillable="true" type="tns:EventDateRangeUtcFilter"/>
       <xs:complexType name="NotFoundByUsersFilter">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserNames" nillable="true" type="q4:ArrayOfstring"/>
+              <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserNames" nillable="true" type="q3:ArrayOfstring"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2785,7 +2775,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserNames" nillable="true" type="q5:ArrayOfstring"/>
+              <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserNames" nillable="true" type="q4:ArrayOfstring"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2837,7 +2827,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CacheCodes" nillable="true" type="q6:ArrayOfstring"/>
+              <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CacheCodes" nillable="true" type="q5:ArrayOfstring"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2847,7 +2837,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GeocacheTypeIds" nillable="true" type="q7:ArrayOflong"/>
+              <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GeocacheTypeIds" nillable="true" type="q6:ArrayOflong"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2857,7 +2847,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GeocacheContainerSizeIds" nillable="true" type="q8:ArrayOflong"/>
+              <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GeocacheContainerSizeIds" nillable="true" type="q7:ArrayOflong"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2893,7 +2883,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserNames" nillable="true" type="q9:ArrayOfstring"/>
+              <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserNames" nillable="true" type="q8:ArrayOfstring"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2903,8 +2893,8 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" minOccurs="0" name="BottomRight" nillable="true" type="q10:LatLngPoint"/>
-              <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" minOccurs="0" name="TopLeft" nillable="true" type="q11:LatLngPoint"/>
+              <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" minOccurs="0" name="BottomRight" nillable="true" type="q9:LatLngPoint"/>
+              <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Utilities" minOccurs="0" name="TopLeft" nillable="true" type="q10:LatLngPoint"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2914,7 +2904,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BookmarkListIDs" nillable="true" type="q12:ArrayOfint"/>
+              <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BookmarkListIDs" nillable="true" type="q11:ArrayOfint"/>
               <xs:element minOccurs="0" name="ExcludeIgnoreList" type="xs:boolean"/>
             </xs:sequence>
           </xs:extension>
@@ -2936,7 +2926,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q13="http://www.geocaching.com/Geocaching.Live/data" minOccurs="0" name="Range" nillable="true" type="q13:DateRange"/>
+              <xs:element xmlns:q12="http://www.geocaching.com/Geocaching.Live/data" minOccurs="0" name="Range" nillable="true" type="q12:DateRange"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2946,7 +2936,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="StateIds" nillable="true" type="q14:ArrayOfint"/>
+              <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="StateIds" nillable="true" type="q13:ArrayOfint"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2956,7 +2946,7 @@
         <xs:complexContent mixed="false">
           <xs:extension base="tns:BaseGeocacheFilter">
             <xs:sequence>
-              <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CountryIds" nillable="true" type="q15:ArrayOfint"/>
+              <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CountryIds" nillable="true" type="q14:ArrayOfint"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
@@ -2972,6 +2962,16 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="FoundByUserFilter" nillable="true" type="tns:FoundByUserFilter"/>
+      <xs:complexType name="EventDateRangeUtcFilter">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseGeocacheFilter">
+            <xs:sequence>
+              <xs:element xmlns:q15="http://www.geocaching.com/Geocaching.Live/data" minOccurs="0" name="Range" nillable="true" type="q15:DateRange"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="EventDateRangeUtcFilter" nillable="true" type="tns:EventDateRangeUtcFilter"/>
       <xs:complexType name="ArrayOfGeocache">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="unbounded" name="Geocache" nillable="true" type="tns:Geocache"/>
@@ -3865,17 +3865,6 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="SocialMediaAccountCreateRequest" nillable="true" type="tns:SocialMediaAccountCreateRequest"/>
-      <xs:complexType name="SetLocaleRequest">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:AccessTokenRequestBase">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="AccountId" type="xs:long"/>
-              <xs:element minOccurs="0" name="Locale" nillable="true" type="xs:string"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="SetLocaleRequest" nillable="true" type="tns:SetLocaleRequest"/>
       <xs:complexType name="GetAccountRequest">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:AccessTokenRequestBase">
@@ -3892,6 +3881,17 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="GetAccountRequest" nillable="true" type="tns:GetAccountRequest"/>
+      <xs:complexType name="SetLocaleRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:AccessTokenRequestBase">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="AccountId" type="xs:long"/>
+              <xs:element minOccurs="0" name="Locale" nillable="true" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SetLocaleRequest" nillable="true" type="tns:SetLocaleRequest"/>
       <xs:complexType name="ConsumerKeyRequestBase">
         <xs:sequence>
           <xs:element minOccurs="0" name="ConsumerKey" nillable="true" type="xs:string"/>
@@ -3958,55 +3958,6 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="CreateAccountResponse" nillable="true" type="tns:CreateAccountResponse"/>
-      <xs:complexType name="GetAccountReferralStatisticsResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:AccountResponse">
-            <xs:sequence>
-              <xs:element xmlns:q3="http://www.geocaching.com/Account/data" minOccurs="0" name="ReferralStatistics" nillable="true" type="q3:AccountReferralStatistics"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="GetAccountReferralStatisticsResponse" nillable="true" type="tns:GetAccountReferralStatisticsResponse"/>
-      <xs:complexType name="SocialMediaUpdateStatusResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:AccountResponse">
-            <xs:sequence/>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="SocialMediaUpdateStatusResponse" nillable="true" type="tns:SocialMediaUpdateStatusResponse"/>
-      <xs:complexType name="SocialMediaVerifyAccountLinkedResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:AccountResponse">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="SocialMediaAccountExists" nillable="true" type="xs:boolean"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="SocialMediaVerifyAccountLinkedResponse" nillable="true" type="tns:SocialMediaVerifyAccountLinkedResponse"/>
-      <xs:complexType name="SetAccountToValidatedResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:AccountResponse">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="AccountValidated" type="xs:boolean"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="SetAccountToValidatedResponse" nillable="true" type="tns:SetAccountToValidatedResponse"/>
-      <xs:complexType name="SocialMediaVerifyAllLinkedAccountsResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:AccountResponse">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="FacebookAccountIsLinked" nillable="true" type="xs:boolean"/>
-              <xs:element minOccurs="0" name="TwitterAccountIsLinked" nillable="true" type="xs:boolean"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="SocialMediaVerifyAllLinkedAccountsResponse" nillable="true" type="tns:SocialMediaVerifyAllLinkedAccountsResponse"/>
       <xs:complexType name="SocialMediaLinkAccountsResponse">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:AccountResponse">
@@ -4027,30 +3978,35 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="SocialMediaRevokeAccessResponse" nillable="true" type="tns:SocialMediaRevokeAccessResponse"/>
-      <xs:complexType name="SocialMediaLoginResponsePublic">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:SocialMediaLoginResponseBase">
-            <xs:sequence/>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="SocialMediaLoginResponsePublic" nillable="true" type="tns:SocialMediaLoginResponsePublic"/>
-      <xs:complexType name="SocialMediaLoginResponseBase">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:LoginResponsePublic">
-            <xs:sequence/>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="SocialMediaLoginResponseBase" nillable="true" type="tns:SocialMediaLoginResponseBase"/>
-      <xs:complexType name="LoginResponsePublic">
+      <xs:complexType name="SocialMediaUpdateStatusResponse">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:AccountResponse">
             <xs:sequence/>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="LoginResponsePublic" nillable="true" type="tns:LoginResponsePublic"/>
+      <xs:element name="SocialMediaUpdateStatusResponse" nillable="true" type="tns:SocialMediaUpdateStatusResponse"/>
+      <xs:complexType name="SocialMediaVerifyAccountLinkedResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:AccountResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="SocialMediaAccountExists" nillable="true" type="xs:boolean"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SocialMediaVerifyAccountLinkedResponse" nillable="true" type="tns:SocialMediaVerifyAccountLinkedResponse"/>
+      <xs:complexType name="SocialMediaVerifyAllLinkedAccountsResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:AccountResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="FacebookAccountIsLinked" nillable="true" type="xs:boolean"/>
+              <xs:element minOccurs="0" name="TwitterAccountIsLinked" nillable="true" type="xs:boolean"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SocialMediaVerifyAllLinkedAccountsResponse" nillable="true" type="tns:SocialMediaVerifyAllLinkedAccountsResponse"/>
       <xs:complexType name="PasswordResponse">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:AccountResponse">
@@ -4061,6 +4017,38 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="PasswordResponse" nillable="true" type="tns:PasswordResponse"/>
+      <xs:complexType name="LoginResponsePublic">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:AccountResponse">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="LoginResponsePublic" nillable="true" type="tns:LoginResponsePublic"/>
+      <xs:complexType name="SocialMediaLoginResponseBase">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:LoginResponsePublic">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SocialMediaLoginResponseBase" nillable="true" type="tns:SocialMediaLoginResponseBase"/>
+      <xs:complexType name="SocialMediaLoginResponsePublic">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SocialMediaLoginResponseBase">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SocialMediaLoginResponsePublic" nillable="true" type="tns:SocialMediaLoginResponsePublic"/>
+      <xs:complexType name="GetAccountResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:AccountResponse">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="GetAccountResponse" nillable="true" type="tns:GetAccountResponse"/>
       <xs:complexType name="GetReferAFriendShortUrlResponse">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:AccountResponse">
@@ -4071,14 +4059,16 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="GetReferAFriendShortUrlResponse" nillable="true" type="tns:GetReferAFriendShortUrlResponse"/>
-      <xs:complexType name="GetAccountResponse">
+      <xs:complexType name="GetAccountReferralStatisticsResponse">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:AccountResponse">
-            <xs:sequence/>
+            <xs:sequence>
+              <xs:element xmlns:q3="http://www.geocaching.com/Account/data" minOccurs="0" name="ReferralStatistics" nillable="true" type="q3:AccountReferralStatistics"/>
+            </xs:sequence>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="GetAccountResponse" nillable="true" type="tns:GetAccountResponse"/>
+      <xs:element name="GetAccountReferralStatisticsResponse" nillable="true" type="tns:GetAccountReferralStatisticsResponse"/>
       <xs:complexType name="GetAccountsResponse">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:AccountResponse">
@@ -4107,6 +4097,16 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="EmailPreferencesResponse" nillable="true" type="tns:EmailPreferencesResponse"/>
+      <xs:complexType name="SetAccountToValidatedResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:AccountResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="AccountValidated" type="xs:boolean"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SetAccountToValidatedResponse" nillable="true" type="tns:SetAccountToValidatedResponse"/>
       <xs:complexType name="AccessTokenResponse">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:StatusOnlyResponse">
@@ -4459,28 +4459,9 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="SocialMediaLinkAccountsRequestPublic" nillable="true" type="tns:SocialMediaLinkAccountsRequestPublic"/>
-      <xs:complexType name="ReferAFriendEmailRequestPublic">
-        <xs:complexContent mixed="false">
-          <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q3:AccessTokenRequestBase">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="MessageBody" nillable="true" type="xs:string"/>
-              <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RecipientsEmail" nillable="true" type="q4:ArrayOfstring"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="ReferAFriendEmailRequestPublic" nillable="true" type="tns:ReferAFriendEmailRequestPublic"/>
-      <xs:complexType name="GetReferAFriendShortUrlRequestPublic">
-        <xs:complexContent mixed="false">
-          <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q5:AccessTokenRequestBase">
-            <xs:sequence/>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="GetReferAFriendShortUrlRequestPublic" nillable="true" type="tns:GetReferAFriendShortUrlRequestPublic"/>
       <xs:complexType name="SocialMediaRevokeAccessRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q6:AccessTokenRequestBase">
+          <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q3:AccessTokenRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="ProviderType" type="xs:int"/>
               <xs:element minOccurs="0" name="SocialMediaAccessToken" nillable="true" type="xs:string"/>
@@ -4491,7 +4472,7 @@
       <xs:element name="SocialMediaRevokeAccessRequestPublic" nillable="true" type="tns:SocialMediaRevokeAccessRequestPublic"/>
       <xs:complexType name="SocialMediaUpdateStatusRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q7:AccessTokenRequestBase">
+          <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q4:AccessTokenRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="IncludedUrl" nillable="true" type="xs:string"/>
               <xs:element minOccurs="0" name="ProviderType" type="xs:int"/>
@@ -4503,7 +4484,7 @@
       <xs:element name="SocialMediaUpdateStatusRequestPublic" nillable="true" type="tns:SocialMediaUpdateStatusRequestPublic"/>
       <xs:complexType name="SocialMediaVerifyAccountLinkedRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q8:AccessTokenRequestBase">
+          <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q5:AccessTokenRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="ProviderType" type="xs:int"/>
             </xs:sequence>
@@ -4513,7 +4494,7 @@
       <xs:element name="SocialMediaVerifyAccountLinkedRequestPublic" nillable="true" type="tns:SocialMediaVerifyAccountLinkedRequestPublic"/>
       <xs:complexType name="SocialMediaVerifyAllLinkedAccountsRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q9:AccessTokenRequestBase">
+          <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q6:AccessTokenRequestBase">
             <xs:sequence/>
           </xs:extension>
         </xs:complexContent>
@@ -4521,7 +4502,7 @@
       <xs:element name="SocialMediaVerifyAllLinkedAccountsRequestPublic" nillable="true" type="tns:SocialMediaVerifyAllLinkedAccountsRequestPublic"/>
       <xs:complexType name="UserChangePasswordRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q10:AccessTokenRequestBase">
+          <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q7:AccessTokenRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="NewPassword" nillable="true" type="xs:string"/>
               <xs:element minOccurs="0" name="OldPassword" nillable="true" type="xs:string"/>
@@ -4530,14 +4511,33 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="UserChangePasswordRequestPublic" nillable="true" type="tns:UserChangePasswordRequestPublic"/>
+      <xs:complexType name="GetReferAFriendShortUrlRequestPublic">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q8:AccessTokenRequestBase">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="GetReferAFriendShortUrlRequestPublic" nillable="true" type="tns:GetReferAFriendShortUrlRequestPublic"/>
       <xs:complexType name="GetAccountReferralStatisticsRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q11:AccessTokenRequestBase">
+          <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q9:AccessTokenRequestBase">
             <xs:sequence/>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="GetAccountReferralStatisticsRequestPublic" nillable="true" type="tns:GetAccountReferralStatisticsRequestPublic"/>
+      <xs:complexType name="ReferAFriendEmailRequestPublic">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q10:AccessTokenRequestBase">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="MessageBody" nillable="true" type="xs:string"/>
+              <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RecipientsEmail" nillable="true" type="q11:ArrayOfstring"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReferAFriendEmailRequestPublic" nillable="true" type="tns:ReferAFriendEmailRequestPublic"/>
       <xs:complexType name="SendValidationEmailRequestPublic">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q12:AccessTokenRequestBase">
@@ -4601,19 +4601,30 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="LoginRequestPublic" nillable="true" type="tns:LoginRequestPublic"/>
-      <xs:complexType name="RecoverUsernameRequestPublic">
+      <xs:complexType name="GetAccessTokenRequest">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q22="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q22:ConsumerKeyRequestBase">
             <xs:sequence>
-              <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+              <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="RecoverUsernameRequestPublic" nillable="true" type="tns:RecoverUsernameRequestPublic"/>
-      <xs:complexType name="IsUserNameValidAndAvailableRequestPublic">
+      <xs:element name="GetAccessTokenRequest" nillable="true" type="tns:GetAccessTokenRequest"/>
+      <xs:complexType name="SocialMediaLoginRequestPublic">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q23="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q23:ConsumerKeyRequestBase">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="ProviderType" type="xs:int"/>
+              <xs:element minOccurs="0" name="SocialMediaAccessToken" nillable="true" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="SocialMediaLoginRequestPublic" nillable="true" type="tns:SocialMediaLoginRequestPublic"/>
+      <xs:complexType name="IsUserNameValidAndAvailableRequestPublic">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q24="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q24:ConsumerKeyRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string"/>
             </xs:sequence>
@@ -4623,7 +4634,7 @@
       <xs:element name="IsUserNameValidAndAvailableRequestPublic" nillable="true" type="tns:IsUserNameValidAndAvailableRequestPublic"/>
       <xs:complexType name="CreateStandardAccountRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q24="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q24:ConsumerKeyRequestBase">
+          <xs:extension xmlns:q25="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q25:ConsumerKeyRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="AgreeToReceiveCompanyRelatedInformation" type="xs:boolean"/>
               <xs:element minOccurs="0" name="AgreeToTermsAndConditions" type="xs:boolean"/>
@@ -4647,7 +4658,7 @@
       <xs:element name="CreateStandardAccountRequestPublic" nillable="true" type="tns:CreateStandardAccountRequestPublic"/>
       <xs:complexType name="RecoverPasswordRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q25="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q25:ConsumerKeyRequestBase">
+          <xs:extension xmlns:q26="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q26:ConsumerKeyRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string"/>
               <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string"/>
@@ -4656,40 +4667,19 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="RecoverPasswordRequestPublic" nillable="true" type="tns:RecoverPasswordRequestPublic"/>
-      <xs:complexType name="GetAccessTokenRequest">
-        <xs:complexContent mixed="false">
-          <xs:extension xmlns:q26="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q26:ConsumerKeyRequestBase">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="GetAccessTokenRequest" nillable="true" type="tns:GetAccessTokenRequest"/>
-      <xs:complexType name="IsEmailAddressInUseRequestPublic">
+      <xs:complexType name="RecoverUsernameRequestPublic">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q27="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q27:ConsumerKeyRequestBase">
             <xs:sequence>
-              <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string"/>
+              <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="IsEmailAddressInUseRequestPublic" nillable="true" type="tns:IsEmailAddressInUseRequestPublic"/>
-      <xs:complexType name="SocialMediaLoginRequestPublic">
-        <xs:complexContent mixed="false">
-          <xs:extension xmlns:q28="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q28:ConsumerKeyRequestBase">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="ProviderType" type="xs:int"/>
-              <xs:element minOccurs="0" name="SocialMediaAccessToken" nillable="true" type="xs:string"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="SocialMediaLoginRequestPublic" nillable="true" type="tns:SocialMediaLoginRequestPublic"/>
+      <xs:element name="RecoverUsernameRequestPublic" nillable="true" type="tns:RecoverUsernameRequestPublic"/>
       <xs:complexType name="TrimbleRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q29="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q29:ConsumerKeyRequestBase">
+          <xs:extension xmlns:q28="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q28:ConsumerKeyRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="CellPhoneIdentifier" nillable="true" type="xs:string"/>
               <xs:element minOccurs="0" name="PhonePin" nillable="true" type="xs:string"/>
@@ -4719,7 +4709,7 @@
       <xs:element name="TrimbleCreatePhoneAccountRequest" nillable="true" type="tns:TrimbleCreatePhoneAccountRequest"/>
       <xs:complexType name="TrimblePinChangeRequestPublic">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q30="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q30:ConsumerKeyRequestBase">
+          <xs:extension xmlns:q29="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q29:ConsumerKeyRequestBase">
             <xs:sequence>
               <xs:element minOccurs="0" name="CellPhoneIdentifier" nillable="true" type="xs:string"/>
               <xs:element minOccurs="0" name="NewPhonePin" nillable="true" type="xs:string"/>
@@ -4728,6 +4718,16 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="TrimblePinChangeRequestPublic" nillable="true" type="tns:TrimblePinChangeRequestPublic"/>
+      <xs:complexType name="IsEmailAddressInUseRequestPublic">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q30="http://schemas.datacontract.org/2004/07/Groundspeak.User.Requests" base="q30:ConsumerKeyRequestBase">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="IsEmailAddressInUseRequestPublic" nillable="true" type="tns:IsEmailAddressInUseRequestPublic"/>
       <xs:complexType name="GetEmailPreferencesRequestPublic">
         <xs:sequence/>
       </xs:complexType>
