@@ -1049,17 +1049,6 @@ Array
             [ExcludeIgnoreList] => 1
         )
 
-    [TrackableCount] => Array
-        (
-            [MinTrackables] => 2147483647
-            [MaxTrackables] => 2147483647
-        )
-
-    [FieldNoteFinds] => Array
-        (
-            [UserName] => String content
-        )
-
     [CachePublishedDate] => Array
         (
             [Range] => Array
@@ -1356,12 +1345,6 @@ Array
                 )
 
             [ExcludeIgnoreList] => 1
-        )
-
-    [TrackableCount] => Array
-        (
-            [MinTrackables] => 2147483647
-            [MaxTrackables] => 2147483647
         )
 
     [CachePublishedDate] => Array

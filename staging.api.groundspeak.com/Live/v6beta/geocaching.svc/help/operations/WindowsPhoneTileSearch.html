@@ -139,10 +139,6 @@
     &lt;/BookmarkListIDs&gt;
     &lt;ExcludeIgnoreList xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/ExcludeIgnoreList&gt;
   &lt;/BookmarksExclude&gt;
-  &lt;TrackableCount&gt;
-    &lt;MinTrackables xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;2147483647&lt;/MinTrackables&gt;
-    &lt;MaxTrackables xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;2147483647&lt;/MaxTrackables&gt;
-  &lt;/TrackableCount&gt;
   &lt;CachePublishedDate&gt;
     &lt;Range xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
       &lt;StartDate xmlns="http://www.geocaching.com/Geocaching.Live/data"&gt;1999-05-31T11:20:00&lt;/StartDate&gt;
@@ -219,10 +215,6 @@
 	"BookmarksExclude":{
 		"BookmarkListIDs":[2147483647],
 		"ExcludeIgnoreList":true
-	},
-	"TrackableCount":{
-		"MinTrackables":2147483647,
-		"MaxTrackables":2147483647
 	},
 	"CachePublishedDate":{
 		"Range":{
@@ -2014,8 +2006,7 @@
       &lt;xs:element minOccurs="0" name="NotHiddenByUsers" nillable="true" xmlns:q12="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q12:NotHiddenByUsersFilter" /&gt;
       &lt;xs:element minOccurs="0" name="Viewport" nillable="true" xmlns:q13="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q13:ViewportFilter" /&gt;
       &lt;xs:element minOccurs="0" name="BookmarksExclude" nillable="true" xmlns:q14="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q14:BookmarksExcludeFilter" /&gt;
-      &lt;xs:element minOccurs="0" name="TrackableCount" nillable="true" xmlns:q15="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q15:TrackableCountFilter" /&gt;
-      &lt;xs:element minOccurs="0" name="CachePublishedDate" nillable="true" xmlns:q16="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q16:CachePublishedDateFilter" /&gt;
+      &lt;xs:element minOccurs="0" name="CachePublishedDate" nillable="true" xmlns:q15="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q15:CachePublishedDateFilter" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="WindowsPhoneTileSearchRequest" nillable="true" type="tns:WindowsPhoneTileSearchRequest" /&gt;
@@ -2112,16 +2103,6 @@
     &lt;/xs:complexContent&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="NotHiddenByUsersFilter" nillable="true" type="tns:NotHiddenByUsersFilter" /&gt;
-  &lt;xs:complexType name="FieldNoteFindFilter"&gt;
-    &lt;xs:complexContent mixed="false"&gt;
-      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
-        &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" /&gt;
-        &lt;/xs:sequence&gt;
-      &lt;/xs:extension&gt;
-    &lt;/xs:complexContent&gt;
-  &lt;/xs:complexType&gt;
-  &lt;xs:element name="FieldNoteFindFilter" nillable="true" type="tns:FieldNoteFindFilter" /&gt;
   &lt;xs:complexType name="TerrainFilter"&gt;
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
@@ -2242,17 +2223,6 @@
     &lt;/xs:complexContent&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="BookmarksExcludeFilter" nillable="true" type="tns:BookmarksExcludeFilter" /&gt;
-  &lt;xs:complexType name="TrackableCountFilter"&gt;
-    &lt;xs:complexContent mixed="false"&gt;
-      &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
-        &lt;xs:sequence&gt;
-          &lt;xs:element minOccurs="0" name="MinTrackables" nillable="true" type="xs:int" /&gt;
-          &lt;xs:element minOccurs="0" name="MaxTrackables" nillable="true" type="xs:int" /&gt;
-        &lt;/xs:sequence&gt;
-      &lt;/xs:extension&gt;
-    &lt;/xs:complexContent&gt;
-  &lt;/xs:complexType&gt;
-  &lt;xs:element name="TrackableCountFilter" nillable="true" type="tns:TrackableCountFilter" /&gt;
   &lt;xs:complexType name="CachePublishedDateFilter"&gt;
     &lt;xs:complexContent mixed="false"&gt;
       &lt;xs:extension base="tns:BaseGeocacheFilter"&gt;
