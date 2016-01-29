@@ -38,7 +38,7 @@ foreach($files as $file) {
     if($method == 'POST') {
         preg_match('#<pre class="request-json">([^<]+)</pre>#msU', $content, $request);
         $request = $request[1];
-        $queryParams = json_decode($request, true);
+        $queryParams = json_decode($request, true, 512, JSON_BIGINT_AS_STRING);
     } elseif ($method == 'GET' && array_key_exists('query', $url_parts)) {
         parse_str($url_parts['query'], $queryParams);
     }
