@@ -6,15 +6,22 @@ $wsdl_url = ['staging' => 'https://staging.api.groundspeak.com/Live/V6Beta/geoca
             ];
 
 echo "WSDL:\n";
+
+$arrContextOptions=array(
+    "ssl"=>array(
+        "verify_peer"=>false,
+        "verify_peer_name"=>false,
+    ),
+);
+
 foreach ($wsdl_url as $platform => $url) {
     echo $platform . "\n"; 
     $xml = new \DOMDocument();
     $xml->formatOutput = true;
-    $xml->loadXML(file_get_contents($url));
+    $xml->loadXML(file_get_contents($url, false, stream_context_create($arrContextOptions)));
     file_put_contents('wsdl_' . $platform . '.xml', $xml->saveXML());
 }
 echo "Check WSQL, done.\n";
-
 
 // Parsing of JSON requests
 $files = glob('api.groundspeak.com/LiveV6/geocaching.svc/help/operations/*.html');
