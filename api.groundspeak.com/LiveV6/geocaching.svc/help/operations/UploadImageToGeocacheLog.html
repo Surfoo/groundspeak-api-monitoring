@@ -60,6 +60,7 @@
     &lt;FileName xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/FileName&gt;
     &lt;base64ImageData xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/base64ImageData&gt;
   &lt;/ImageData&gt;
+  &lt;ReferenceCode&gt;String content&lt;/ReferenceCode&gt;
 &lt;/UploadImageToGeocacheLogRequest&gt;</pre>
       </p>
       <p>
@@ -72,7 +73,8 @@
 		"FileDescription":"String content",
 		"FileName":"String content",
 		"base64ImageData":"String content"
-	}
+	},
+	"ReferenceCode":"String content"
 }</pre>
       </p>
       <p>
@@ -156,6 +158,7 @@
       &lt;xs:element minOccurs="0" name="AccessToken" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="LogGuid" type="ser:guid" /&gt;
       &lt;xs:element minOccurs="0" name="ImageData" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" type="q1:UploadImageData" /&gt;
+      &lt;xs:element minOccurs="0" name="ReferenceCode" nillable="true" type="xs:string" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="UploadImageToGeocacheLogRequest" nillable="true" type="tns:UploadImageToGeocacheLogRequest" /&gt;

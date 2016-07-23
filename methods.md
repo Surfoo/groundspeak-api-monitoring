@@ -1181,6 +1181,7 @@ Array
             [base64ImageData] => String content
         )
 
+    [ReferenceCode] => String content
 )
 ```
 

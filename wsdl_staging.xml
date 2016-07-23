@@ -1991,6 +1991,7 @@
           <xs:element minOccurs="0" name="AccessToken" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="LogGuid" type="ser:guid"/>
           <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" minOccurs="0" name="ImageData" nillable="true" type="q61:UploadImageData"/>
+          <xs:element minOccurs="0" name="ReferenceCode" nillable="true" type="xs:string"/>
         </xs:sequence>
       </xs:complexType>
       <xs:element name="UploadImageToGeocacheLogRequest" nillable="true" type="tns:UploadImageToGeocacheLogRequest"/>
