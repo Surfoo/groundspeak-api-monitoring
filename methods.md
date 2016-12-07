@@ -64,6 +64,7 @@ Array
     [EncryptLogText] => 1
     [UpdatedLatitude] => 1.26743233E+15
     [UpdatedLongitude] => 1.26743233E+15
+    [Guid] => 1627aea5-8e0a-4371-9022-9b504344e724
 )
 ```
 

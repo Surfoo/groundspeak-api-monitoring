@@ -68,6 +68,7 @@
   &lt;EncryptLogText&gt;true&lt;/EncryptLogText&gt;
   &lt;UpdatedLatitude&gt;1.26743233E+15&lt;/UpdatedLatitude&gt;
   &lt;UpdatedLongitude&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
+  &lt;Guid&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/Guid&gt;
 &lt;/CreateFieldNoteAndPublishRequest&gt;</pre>
       </p>
       <p>
@@ -88,7 +89,8 @@
 	"FavoriteThisCache":true,
 	"EncryptLogText":true,
 	"UpdatedLatitude":1.26743233E+15,
-	"UpdatedLongitude":1.26743233E+15
+	"UpdatedLongitude":1.26743233E+15,
+	"Guid":"1627aea5-8e0a-4371-9022-9b504344e724"
 }</pre>
       </p>
       <p>
@@ -385,8 +387,9 @@
       </p>
       <p>
         <a name="request-schema">The following is the request Xml Schema:</a>
-        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://www.geocaching.com/Geocaching.Live/data" elementFormDefault="qualified" targetNamespace="http://www.geocaching.com/Geocaching.Live/data" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+        <pre class="request-schema">&lt;xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://www.geocaching.com/Geocaching.Live/data" elementFormDefault="qualified" targetNamespace="http://www.geocaching.com/Geocaching.Live/data" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
   &lt;xs:complexType name="CreateFieldNoteAndPublishRequest"&gt;
     &lt;xs:sequence&gt;
       &lt;xs:element minOccurs="0" name="AccessToken" nillable="true" type="xs:string" /&gt;
@@ -400,6 +403,7 @@
       &lt;xs:element minOccurs="0" name="EncryptLogText" type="xs:boolean" /&gt;
       &lt;xs:element minOccurs="0" name="UpdatedLatitude" type="xs:double" /&gt;
       &lt;xs:element minOccurs="0" name="UpdatedLongitude" type="xs:double" /&gt;
+      &lt;xs:element minOccurs="0" name="Guid" nillable="true" type="ser:guid" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="CreateFieldNoteAndPublishRequest" nillable="true" type="tns:CreateFieldNoteAndPublishRequest" /&gt;

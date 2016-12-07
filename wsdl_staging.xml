@@ -1935,6 +1935,7 @@
           <xs:element minOccurs="0" name="EncryptLogText" type="xs:boolean"/>
           <xs:element minOccurs="0" name="UpdatedLatitude" type="xs:double"/>
           <xs:element minOccurs="0" name="UpdatedLongitude" type="xs:double"/>
+          <xs:element minOccurs="0" name="Guid" nillable="true" type="ser:guid"/>
         </xs:sequence>
       </xs:complexType>
       <xs:element name="CreateFieldNoteAndPublishRequest" nillable="true" type="tns:CreateFieldNoteAndPublishRequest"/>
