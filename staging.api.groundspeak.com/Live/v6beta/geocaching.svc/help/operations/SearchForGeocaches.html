@@ -102,6 +102,7 @@
   &lt;GeocacheExclusions&gt;
     &lt;Archived xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/Archived&gt;
     &lt;Available xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/Available&gt;
+    &lt;AvailableOrOwned xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/AvailableOrOwned&gt;
     &lt;HasCorrectedCoordinates xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/HasCorrectedCoordinates&gt;
     &lt;HasPersonalCacheNote xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/HasPersonalCacheNote&gt;
     &lt;Premium xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;true&lt;/Premium&gt;
@@ -231,6 +232,7 @@
 	"GeocacheExclusions":{
 		"Archived":true,
 		"Available":true,
+		"AvailableOrOwned":true,
 		"HasCorrectedCoordinates":true,
 		"HasPersonalCacheNote":true,
 		"Premium":true,
@@ -2269,6 +2271,7 @@
         &lt;xs:sequence&gt;
           &lt;xs:element minOccurs="0" name="Archived" nillable="true" type="xs:boolean" /&gt;
           &lt;xs:element minOccurs="0" name="Available" nillable="true" type="xs:boolean" /&gt;
+          &lt;xs:element minOccurs="0" name="AvailableOrOwned" nillable="true" type="xs:boolean" /&gt;
           &lt;xs:element minOccurs="0" name="HasCorrectedCoordinates" nillable="true" type="xs:boolean" /&gt;
           &lt;xs:element minOccurs="0" name="HasPersonalCacheNote" nillable="true" type="xs:boolean" /&gt;
           &lt;xs:element minOccurs="0" name="Premium" nillable="true" type="xs:boolean" /&gt;
