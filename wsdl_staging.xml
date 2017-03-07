@@ -2848,7 +2848,6 @@
             <xs:sequence>
               <xs:element minOccurs="0" name="Archived" nillable="true" type="xs:boolean"/>
               <xs:element minOccurs="0" name="Available" nillable="true" type="xs:boolean"/>
-              <xs:element minOccurs="0" name="AvailableOrOwned" nillable="true" type="xs:boolean"/>
               <xs:element minOccurs="0" name="HasCorrectedCoordinates" nillable="true" type="xs:boolean"/>
               <xs:element minOccurs="0" name="HasPersonalCacheNote" nillable="true" type="xs:boolean"/>
               <xs:element minOccurs="0" name="Premium" nillable="true" type="xs:boolean"/>
