@@ -165,6 +165,7 @@
     &lt;/Finder&gt;
     &lt;Guid xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/Guid&gt;
     &lt;ID xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;9223372036854775807&lt;/ID&gt;
+    &lt;IanaTimezoneId xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/IanaTimezoneId&gt;
     &lt;Images xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
       &lt;ImageData&gt;
         &lt;DateCreated&gt;1999-05-31T11:20:00&lt;/DateCreated&gt;
@@ -202,6 +203,7 @@
     &lt;UpdatedLongitude xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1.26743233E+15&lt;/UpdatedLongitude&gt;
     &lt;Url xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/Url&gt;
     &lt;VisitDate xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;1999-05-31T11:20:00&lt;/VisitDate&gt;
+    &lt;VisitDateIso xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/VisitDateIso&gt;
   &lt;/Log&gt;
   &lt;Souvenirs&gt;
     &lt;Souvenir xmlns="http://schemas.datacontract.org/2004/07/Souvenirs.Common.Model"&gt;
@@ -320,6 +322,7 @@
 		},
 		"Guid":"1627aea5-8e0a-4371-9022-9b504344e724",
 		"ID":9223372036854775807,
+		"IanaTimezoneId":"String content",
 		"Images":[{
 			"DateCreated":"\/Date(928174800000-0700)\/",
 			"Description":"String content",
@@ -345,7 +348,8 @@
 		"UpdatedLatitude":1.26743233E+15,
 		"UpdatedLongitude":1.26743233E+15,
 		"Url":"String content",
-		"VisitDate":"\/Date(928174800000-0700)\/"
+		"VisitDate":"\/Date(928174800000-0700)\/",
+		"VisitDateIso":"String content"
 	},
 	"Souvenirs":[{
 		"AboutTheArtist":"String content",
@@ -561,6 +565,7 @@
       &lt;xs:element minOccurs="0" name="Finder" nillable="true" type="tns:Member" /&gt;
       &lt;xs:element minOccurs="0" name="Guid" type="ser:guid" /&gt;
       &lt;xs:element minOccurs="0" name="ID" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="IanaTimezoneId" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImageData" /&gt;
       &lt;xs:element minOccurs="0" name="IsApproved" type="xs:boolean" /&gt;
       &lt;xs:element minOccurs="0" name="IsArchived" type="xs:boolean" /&gt;
@@ -572,6 +577,7 @@
       &lt;xs:element minOccurs="0" name="UpdatedLongitude" nillable="true" type="xs:double" /&gt;
       &lt;xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="VisitDate" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="VisitDateIso" nillable="true" type="xs:string" /&gt;
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="GeocacheLog" nillable="true" type="tns:GeocacheLog" /&gt;
