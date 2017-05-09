@@ -2984,6 +2984,7 @@
           <xs:element minOccurs="0" name="HasbeenFavoritedbyUser" nillable="true" type="xs:boolean"/>
           <xs:element minOccurs="0" name="HasbeenFoundbyUser" nillable="true" type="xs:boolean"/>
           <xs:element minOccurs="0" name="ID" type="xs:long"/>
+          <xs:element minOccurs="0" name="IanaTimezoneId" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="ImageCount" type="xs:int"/>
           <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImageData"/>
           <xs:element minOccurs="0" name="IsLocked" nillable="true" type="xs:boolean"/>
@@ -3049,6 +3050,7 @@
           <xs:element minOccurs="0" name="Finder" nillable="true" type="tns:Member"/>
           <xs:element minOccurs="0" name="Guid" type="ser:guid"/>
           <xs:element minOccurs="0" name="ID" type="xs:long"/>
+          <xs:element minOccurs="0" name="IanaTimezoneId" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImageData"/>
           <xs:element minOccurs="0" name="IsApproved" type="xs:boolean"/>
           <xs:element minOccurs="0" name="IsArchived" type="xs:boolean"/>
@@ -3060,6 +3062,7 @@
           <xs:element minOccurs="0" name="UpdatedLongitude" nillable="true" type="xs:double"/>
           <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="VisitDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="VisitDateIso" nillable="true" type="xs:string"/>
         </xs:sequence>
       </xs:complexType>
       <xs:element name="GeocacheLog" nillable="true" type="tns:GeocacheLog"/>
