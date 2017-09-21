@@ -3000,6 +3000,7 @@
           <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:Member"/>
           <xs:element minOccurs="0" name="PlacedBy" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="PublishDateUtc" nillable="true" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="RelatedWebPage" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="ShortDescription" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="ShortDescriptionIsHtml" type="xs:boolean"/>
           <xs:element minOccurs="0" name="StagesCount" type="xs:int"/>
