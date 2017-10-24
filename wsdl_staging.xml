@@ -1139,7 +1139,7 @@
       <xs:element name="CreateForSocialMedia">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q117="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="socialMediaAccountCreateRequestPublic" nillable="true" type="q117:SocialMediaAccountCreateRequestPublic"/>
+            <xs:element xmlns:q117="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q117:SocialMediaAccountCreateRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1181,7 +1181,7 @@
       <xs:element name="SocialMediaUpdateStatus">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q123="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="socialMediaUpdateStatusRequest" nillable="true" type="q123:SocialMediaUpdateStatusRequestPublic"/>
+            <xs:element xmlns:q123="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q123:SocialMediaUpdateStatusRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1195,7 +1195,7 @@
       <xs:element name="SocialMediaVerifyAccountLinked">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q125="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="socialMediaVerifyAccountLinkedRequest" nillable="true" type="q125:SocialMediaVerifyAccountLinkedRequestPublic"/>
+            <xs:element xmlns:q125="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q125:SocialMediaVerifyAccountLinkedRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1209,7 +1209,7 @@
       <xs:element name="SocialMediaVerifyAllLinkedAccounts">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q127="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="socialMediaVerifyAllLinkedAccountsRequestPublic" nillable="true" type="q127:SocialMediaVerifyAllLinkedAccountsRequestPublic"/>
+            <xs:element xmlns:q127="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q127:SocialMediaVerifyAllLinkedAccountsRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1223,7 +1223,7 @@
       <xs:element name="UserChangePassword">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q129="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="userChangePasswordRequestPublic" nillable="true" type="q129:UserChangePasswordRequestPublic"/>
+            <xs:element xmlns:q129="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q129:UserChangePasswordRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1237,7 +1237,7 @@
       <xs:element name="Login">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q131="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="loginRequestPublic" nillable="true" type="q131:LoginRequestPublic"/>
+            <xs:element xmlns:q131="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q131:LoginRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1293,7 +1293,7 @@
       <xs:element name="SocialMediaLogin">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q139="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="socialMediaLoginRequestPublic" nillable="true" type="q139:SocialMediaLoginRequestPublic"/>
+            <xs:element xmlns:q139="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q139:SocialMediaLoginRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1307,7 +1307,7 @@
       <xs:element name="IsUserNameValidAndAvailable">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q141="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="isUserNameValidAndAvailableRequestPublic" nillable="true" type="q141:IsUserNameValidAndAvailableRequestPublic"/>
+            <xs:element xmlns:q141="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q141:IsUserNameValidAndAvailableRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1321,7 +1321,7 @@
       <xs:element name="CreateStandardAccount">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q143="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="createStandardAccountRequestPublic" nillable="true" type="q143:CreateStandardAccountRequestPublic"/>
+            <xs:element xmlns:q143="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q143:CreateStandardAccountRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1335,7 +1335,7 @@
       <xs:element name="RecoverPassword">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q145="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="recoverPasswordRequestPublic" nillable="true" type="q145:RecoverPasswordRequestPublic"/>
+            <xs:element xmlns:q145="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q145:RecoverPasswordRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1405,7 +1405,7 @@
       <xs:element name="RecoverUsername">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q155="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="recoverUsernameRequestPublic" nillable="true" type="q155:RecoverUsernameRequestPublic"/>
+            <xs:element xmlns:q155="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q155:RecoverUsernameRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1503,7 +1503,7 @@
       <xs:element name="SetHomeCoordinates">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q169="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="setHomeCoordinatesRequestPublic" nillable="true" type="q169:SetHomeCoordinatesRequestPublic"/>
+            <xs:element xmlns:q169="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q169:SetHomeCoordinatesRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1517,7 +1517,7 @@
       <xs:element name="IsEmailAddressInUse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q171="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="isEmailAddressInUseRequestPublic" nillable="true" type="q171:IsEmailAddressInUseRequestPublic"/>
+            <xs:element xmlns:q171="http://schemas.datacontract.org/2004/07/Groundspeak.User.PublicRequests" minOccurs="0" name="request" nillable="true" type="q171:IsEmailAddressInUseRequestPublic"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
