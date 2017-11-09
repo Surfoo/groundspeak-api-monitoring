@@ -3046,6 +3046,7 @@
       <xs:complexType name="GeocacheLog">
         <xs:sequence>
           <xs:element minOccurs="0" name="CacheCode" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="CacheName" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="CannotDelete" type="xs:boolean"/>
           <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="Finder" nillable="true" type="tns:Member"/>

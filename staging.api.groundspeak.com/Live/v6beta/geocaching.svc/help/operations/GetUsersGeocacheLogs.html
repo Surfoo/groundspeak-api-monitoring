@@ -133,6 +133,7 @@
   &lt;Logs&gt;
     &lt;GeocacheLog xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
       &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+      &lt;CacheName&gt;String content&lt;/CacheName&gt;
       &lt;CannotDelete&gt;true&lt;/CannotDelete&gt;
       &lt;Code&gt;String content&lt;/Code&gt;
       &lt;Finder&gt;
@@ -197,6 +198,7 @@
     &lt;/GeocacheLog&gt;
     &lt;GeocacheLog xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
       &lt;CacheCode&gt;String content&lt;/CacheCode&gt;
+      &lt;CacheName&gt;String content&lt;/CacheName&gt;
       &lt;CannotDelete&gt;true&lt;/CannotDelete&gt;
       &lt;Code&gt;String content&lt;/Code&gt;
       &lt;Finder&gt;
@@ -283,6 +285,7 @@
 	},
 	"Logs":[{
 		"CacheCode":"String content",
+		"CacheName":"String content",
 		"CannotDelete":true,
 		"Code":"String content",
 		"Finder":{
@@ -507,6 +510,7 @@
   &lt;xs:complexType name="GeocacheLog"&gt;
     &lt;xs:sequence&gt;
       &lt;xs:element minOccurs="0" name="CacheCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CacheName" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="CannotDelete" type="xs:boolean" /&gt;
       &lt;xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="Finder" nillable="true" type="tns:Member" /&gt;
