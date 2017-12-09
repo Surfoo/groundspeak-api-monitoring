@@ -2243,6 +2243,7 @@
               <xs:element minOccurs="0" name="GeocacheId" type="ser:guid"/>
               <xs:element minOccurs="0" name="GeocacheName" nillable="true" type="xs:string"/>
               <xs:element minOccurs="0" name="GeocacheOwnerId" nillable="true" type="ser:guid"/>
+              <xs:element minOccurs="0" name="Timezone" nillable="true" type="xs:string"/>
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
