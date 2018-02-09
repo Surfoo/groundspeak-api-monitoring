@@ -148,6 +148,7 @@
     &lt;Code xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;String content&lt;/Code&gt;
     &lt;Finder xmlns="http://schemas.datacontract.org/2004/07/Tucson.Geocaching.WCF.API.Geocaching.Types"&gt;
       &lt;AvatarUrl&gt;String content&lt;/AvatarUrl&gt;
+      &lt;BannerUrl&gt;String content&lt;/BannerUrl&gt;
       &lt;FindCount&gt;2147483647&lt;/FindCount&gt;
       &lt;GalleryImageCount&gt;2147483647&lt;/GalleryImageCount&gt;
       &lt;HideCount&gt;2147483647&lt;/HideCount&gt;
@@ -306,6 +307,7 @@
 		"Code":"String content",
 		"Finder":{
 			"AvatarUrl":"String content",
+			"BannerUrl":"String content",
 			"FindCount":2147483647,
 			"GalleryImageCount":2147483647,
 			"HideCount":2147483647,
@@ -587,6 +589,7 @@
   &lt;xs:complexType name="Member"&gt;
     &lt;xs:sequence&gt;
       &lt;xs:element minOccurs="0" name="AvatarUrl" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="BannerUrl" nillable="true" type="xs:string" /&gt;
       &lt;xs:element minOccurs="0" name="FindCount" nillable="true" type="xs:int" /&gt;
       &lt;xs:element minOccurs="0" name="GalleryImageCount" nillable="true" type="xs:int" /&gt;
       &lt;xs:element minOccurs="0" name="HideCount" nillable="true" type="xs:int" /&gt;

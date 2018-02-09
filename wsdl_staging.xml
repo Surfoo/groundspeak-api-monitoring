@@ -2700,6 +2700,7 @@
       <xs:complexType name="Member">
         <xs:sequence>
           <xs:element minOccurs="0" name="AvatarUrl" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="BannerUrl" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="FindCount" nillable="true" type="xs:int"/>
           <xs:element minOccurs="0" name="GalleryImageCount" nillable="true" type="xs:int"/>
           <xs:element minOccurs="0" name="HideCount" nillable="true" type="xs:int"/>
@@ -2975,6 +2976,7 @@
           <xs:element minOccurs="0" name="DateLastUpdate" type="xs:dateTime"/>
           <xs:element minOccurs="0" name="DateLastVisited" nillable="true" type="xs:dateTime"/>
           <xs:element minOccurs="0" name="Difficulty" type="xs:double"/>
+          <xs:element minOccurs="0" name="DnfDate" nillable="true" type="xs:dateTime"/>
           <xs:element minOccurs="0" name="EncodedHints" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="FavoritePoints" nillable="true" type="xs:int"/>
           <xs:element minOccurs="0" name="FoundDate" nillable="true" type="xs:dateTime"/>
@@ -2982,6 +2984,7 @@
           <xs:element minOccurs="0" name="GUID" type="ser:guid"/>
           <xs:element minOccurs="0" name="GeocacheLogs" nillable="true" type="tns:ArrayOfGeocacheLog"/>
           <xs:element minOccurs="0" name="GeocacheNote" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="HasbeenDnfedbyUser" nillable="true" type="xs:boolean"/>
           <xs:element minOccurs="0" name="HasbeenFavoritedbyUser" nillable="true" type="xs:boolean"/>
           <xs:element minOccurs="0" name="HasbeenFoundbyUser" nillable="true" type="xs:boolean"/>
           <xs:element minOccurs="0" name="ID" type="xs:long"/>

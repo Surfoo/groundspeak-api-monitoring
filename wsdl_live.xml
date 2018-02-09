@@ -2700,6 +2700,7 @@
       <xs:complexType name="Member">
         <xs:sequence>
           <xs:element minOccurs="0" name="AvatarUrl" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="BannerUrl" nillable="true" type="xs:string"/>
           <xs:element minOccurs="0" name="FindCount" nillable="true" type="xs:int"/>
           <xs:element minOccurs="0" name="GalleryImageCount" nillable="true" type="xs:int"/>
           <xs:element minOccurs="0" name="HideCount" nillable="true" type="xs:int"/>
