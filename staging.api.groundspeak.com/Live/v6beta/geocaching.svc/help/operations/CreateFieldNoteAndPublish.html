@@ -225,6 +225,8 @@
       &lt;Difficulty&gt;1.26743233E+15&lt;/Difficulty&gt;
       &lt;FavoritePoints&gt;2147483647&lt;/FavoritePoints&gt;
       &lt;Feedback&gt;String content&lt;/Feedback&gt;
+      &lt;FriendLeagueScoreThreshold&gt;2147483647&lt;/FriendLeagueScoreThreshold&gt;
+      &lt;FriendLeagueScoreTimePeriod&gt;Unset&lt;/FriendLeagueScoreTimePeriod&gt;
       &lt;Hidden&gt;true&lt;/Hidden&gt;
       &lt;HowFound&gt;2147483647&lt;/HowFound&gt;
       &lt;IgnoreLocation&gt;true&lt;/IgnoreLocation&gt;
@@ -259,6 +261,8 @@
       &lt;Difficulty&gt;1.26743233E+15&lt;/Difficulty&gt;
       &lt;FavoritePoints&gt;2147483647&lt;/FavoritePoints&gt;
       &lt;Feedback&gt;String content&lt;/Feedback&gt;
+      &lt;FriendLeagueScoreThreshold&gt;2147483647&lt;/FriendLeagueScoreThreshold&gt;
+      &lt;FriendLeagueScoreTimePeriod&gt;Unset&lt;/FriendLeagueScoreTimePeriod&gt;
       &lt;Hidden&gt;true&lt;/Hidden&gt;
       &lt;HowFound&gt;2147483647&lt;/HowFound&gt;
       &lt;IgnoreLocation&gt;true&lt;/IgnoreLocation&gt;
@@ -372,6 +376,8 @@
 		"Difficulty":1.26743233E+15,
 		"FavoritePoints":2147483647,
 		"Feedback":"String content",
+		"FriendLeagueScoreThreshold":2147483647,
+		"FriendLeagueScoreTimePeriod":0,
 		"Hidden":true,
 		"HowFound":2147483647,
 		"IgnoreLocation":true,
@@ -679,6 +685,8 @@
       &lt;xs:element minOccurs="0" name="Difficulty" type="xs:double" /&gt;
       &lt;xs:element minOccurs="0" name="FavoritePoints" type="xs:int" /&gt;
       &lt;xs:element minOccurs="0" name="Feedback" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="FriendLeagueScoreThreshold" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="FriendLeagueScoreTimePeriod" type="tns:FriendLeagueScoreTimePeriod" /&gt;
       &lt;xs:element minOccurs="0" name="Hidden" nillable="true" type="xs:boolean" /&gt;
       &lt;xs:element minOccurs="0" name="HowFound" type="xs:int" /&gt;
       &lt;xs:element minOccurs="0" name="IgnoreLocation" type="xs:boolean" /&gt;
@@ -698,6 +706,14 @@
     &lt;/xs:sequence&gt;
   &lt;/xs:complexType&gt;
   &lt;xs:element name="Souvenir" nillable="true" type="tns:Souvenir" /&gt;
+  &lt;xs:simpleType name="FriendLeagueScoreTimePeriod"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Unset" /&gt;
+      &lt;xs:enumeration value="IndividualWeekly" /&gt;
+      &lt;xs:enumeration value="IndividualAggregate" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="FriendLeagueScoreTimePeriod" nillable="true" type="tns:FriendLeagueScoreTimePeriod" /&gt;
   &lt;xs:simpleType name="SouvenirType"&gt;
     &lt;xs:restriction base="xs:string"&gt;
       &lt;xs:enumeration value="unk" /&gt;
@@ -709,6 +725,8 @@
       &lt;xs:enumeration value="difficultyterrain" /&gt;
       &lt;xs:enumeration value="promo" /&gt;
       &lt;xs:enumeration value="poly" /&gt;
+      &lt;xs:enumeration value="milestone" /&gt;
+      &lt;xs:enumeration value="individualfriendleague" /&gt;
     &lt;/xs:restriction&gt;
   &lt;/xs:simpleType&gt;
   &lt;xs:element name="SouvenirType" nillable="true" type="tns:SouvenirType" /&gt;

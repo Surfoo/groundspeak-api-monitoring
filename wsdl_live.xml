@@ -3689,6 +3689,8 @@
           <xs:element minOccurs="0" name="Difficulty" type="xs:double"/>
           <xs:element minOccurs="0" name="FavoritePoints" type="xs:int"/>
           <xs:element minOccurs="0" name="Feedback" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="FriendLeagueScoreThreshold" nillable="true" type="xs:int"/>
+          <xs:element minOccurs="0" name="FriendLeagueScoreTimePeriod" type="tns:FriendLeagueScoreTimePeriod"/>
           <xs:element minOccurs="0" name="Hidden" nillable="true" type="xs:boolean"/>
           <xs:element minOccurs="0" name="HowFound" type="xs:int"/>
           <xs:element minOccurs="0" name="IgnoreLocation" type="xs:boolean"/>
@@ -3708,6 +3710,14 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="Souvenir" nillable="true" type="tns:Souvenir"/>
+      <xs:simpleType name="FriendLeagueScoreTimePeriod">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unset"/>
+          <xs:enumeration value="IndividualWeekly"/>
+          <xs:enumeration value="IndividualAggregate"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="FriendLeagueScoreTimePeriod" nillable="true" type="tns:FriendLeagueScoreTimePeriod"/>
       <xs:simpleType name="SouvenirType">
         <xs:restriction base="xs:string">
           <xs:enumeration value="unk"/>
@@ -3719,6 +3729,8 @@
           <xs:enumeration value="difficultyterrain"/>
           <xs:enumeration value="promo"/>
           <xs:enumeration value="poly"/>
+          <xs:enumeration value="milestone"/>
+          <xs:enumeration value="individualfriendleague"/>
         </xs:restriction>
       </xs:simpleType>
       <xs:element name="SouvenirType" nillable="true" type="tns:SouvenirType"/>
