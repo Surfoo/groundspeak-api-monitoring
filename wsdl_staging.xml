@@ -3689,7 +3689,6 @@
           <xs:element minOccurs="0" name="Difficulty" type="xs:double"/>
           <xs:element minOccurs="0" name="FavoritePoints" type="xs:int"/>
           <xs:element minOccurs="0" name="Feedback" nillable="true" type="xs:string"/>
-          <xs:element minOccurs="0" name="FindCountThreshold" nillable="true" type="xs:short"/>
           <xs:element minOccurs="0" name="FriendLeagueScoreThreshold" nillable="true" type="xs:int"/>
           <xs:element minOccurs="0" name="FriendLeagueScoreTimePeriod" type="tns:FriendLeagueScoreTimePeriod"/>
           <xs:element minOccurs="0" name="Hidden" nillable="true" type="xs:boolean"/>
@@ -3732,22 +3731,9 @@
           <xs:enumeration value="poly"/>
           <xs:enumeration value="milestone"/>
           <xs:enumeration value="individualfriendleague"/>
-          <xs:enumeration value="groupfriendleague"/>
-          <xs:enumeration value="findcountthreshold"/>
-          <xs:enumeration value="geotour"/>
         </xs:restriction>
       </xs:simpleType>
       <xs:element name="SouvenirType" nillable="true" type="tns:SouvenirType"/>
-      <xs:complexType name="FindCountSouvenir">
-        <xs:complexContent mixed="false">
-          <xs:extension base="tns:Souvenir">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="UserFindCount" type="xs:int"/>
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="FindCountSouvenir" nillable="true" type="tns:FindCountSouvenir"/>
     </xs:schema>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/Souvenirs.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Souvenirs.Common">
       <xs:simpleType name="SharedUtilities.ApprovalStatus">
