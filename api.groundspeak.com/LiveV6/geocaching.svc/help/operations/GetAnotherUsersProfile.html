@@ -250,7 +250,8 @@
       &lt;d4:ProfileText&gt;String content&lt;/d4:ProfileText&gt;
     &lt;/d4:PublicProfile&gt;
     &lt;d4:Souvenirs&gt;
-      &lt;Souvenir xmlns="http://schemas.datacontract.org/2004/07/Souvenirs.Common.Model"&gt;
+      &lt;!--Valid elements of type: FindCountSouvenir--&gt;
+      &lt;Souvenir i:type="FindCountSouvenir" xmlns="http://schemas.datacontract.org/2004/07/Souvenirs.Common.Model"&gt;
         &lt;AboutTheArtist&gt;String content&lt;/AboutTheArtist&gt;
         &lt;ArtistName&gt;String content&lt;/ArtistName&gt;
         &lt;ArtistURL&gt;String content&lt;/ArtistURL&gt;
@@ -267,6 +268,7 @@
         &lt;Difficulty&gt;1.26743233E+15&lt;/Difficulty&gt;
         &lt;FavoritePoints&gt;2147483647&lt;/FavoritePoints&gt;
         &lt;Feedback&gt;String content&lt;/Feedback&gt;
+        &lt;FindCountThreshold&gt;32767&lt;/FindCountThreshold&gt;
         &lt;FriendLeagueScoreThreshold&gt;2147483647&lt;/FriendLeagueScoreThreshold&gt;
         &lt;FriendLeagueScoreTimePeriod&gt;Unset&lt;/FriendLeagueScoreTimePeriod&gt;
         &lt;Hidden&gt;true&lt;/Hidden&gt;
@@ -285,8 +287,10 @@
         &lt;ThumbPath&gt;String content&lt;/ThumbPath&gt;
         &lt;Title&gt;String content&lt;/Title&gt;
         &lt;TotalAwarded&gt;2147483647&lt;/TotalAwarded&gt;
+        &lt;UserFindCount&gt;2147483647&lt;/UserFindCount&gt;
       &lt;/Souvenir&gt;
-      &lt;Souvenir xmlns="http://schemas.datacontract.org/2004/07/Souvenirs.Common.Model"&gt;
+      &lt;!--Valid elements of type: FindCountSouvenir--&gt;
+      &lt;Souvenir i:type="FindCountSouvenir" xmlns="http://schemas.datacontract.org/2004/07/Souvenirs.Common.Model"&gt;
         &lt;AboutTheArtist&gt;String content&lt;/AboutTheArtist&gt;
         &lt;ArtistName&gt;String content&lt;/ArtistName&gt;
         &lt;ArtistURL&gt;String content&lt;/ArtistURL&gt;
@@ -303,6 +307,7 @@
         &lt;Difficulty&gt;1.26743233E+15&lt;/Difficulty&gt;
         &lt;FavoritePoints&gt;2147483647&lt;/FavoritePoints&gt;
         &lt;Feedback&gt;String content&lt;/Feedback&gt;
+        &lt;FindCountThreshold&gt;32767&lt;/FindCountThreshold&gt;
         &lt;FriendLeagueScoreThreshold&gt;2147483647&lt;/FriendLeagueScoreThreshold&gt;
         &lt;FriendLeagueScoreTimePeriod&gt;Unset&lt;/FriendLeagueScoreTimePeriod&gt;
         &lt;Hidden&gt;true&lt;/Hidden&gt;
@@ -321,6 +326,7 @@
         &lt;ThumbPath&gt;String content&lt;/ThumbPath&gt;
         &lt;Title&gt;String content&lt;/Title&gt;
         &lt;TotalAwarded&gt;2147483647&lt;/TotalAwarded&gt;
+        &lt;UserFindCount&gt;2147483647&lt;/UserFindCount&gt;
       &lt;/Souvenir&gt;
     &lt;/d4:Souvenirs&gt;
     &lt;d4:Stats&gt;
@@ -1278,6 +1284,7 @@
 			"Difficulty":1.26743233E+15,
 			"FavoritePoints":2147483647,
 			"Feedback":"String content",
+			"FindCountThreshold":32767,
 			"FriendLeagueScoreThreshold":2147483647,
 			"FriendLeagueScoreTimePeriod":0,
 			"Hidden":true,
@@ -1295,7 +1302,8 @@
 			"Terrain":1.26743233E+15,
 			"ThumbPath":"String content",
 			"Title":"String content",
-			"TotalAwarded":2147483647
+			"TotalAwarded":2147483647,
+			"UserFindCount":2147483647
 		}],
 		"Stats":{
 			"AccountsLogged":9223372036854775807,
@@ -2014,6 +2022,7 @@
       &lt;xs:element minOccurs="0" name="Difficulty" type="xs:double" /&gt;
       &lt;xs:element minOccurs="0" name="FavoritePoints" type="xs:int" /&gt;
       &lt;xs:element minOccurs="0" name="Feedback" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="FindCountThreshold" nillable="true" type="xs:short" /&gt;
       &lt;xs:element minOccurs="0" name="FriendLeagueScoreThreshold" nillable="true" type="xs:int" /&gt;
       &lt;xs:element minOccurs="0" name="FriendLeagueScoreTimePeriod" type="tns:FriendLeagueScoreTimePeriod" /&gt;
       &lt;xs:element minOccurs="0" name="Hidden" nillable="true" type="xs:boolean" /&gt;
@@ -2056,9 +2065,22 @@
       &lt;xs:enumeration value="poly" /&gt;
       &lt;xs:enumeration value="milestone" /&gt;
       &lt;xs:enumeration value="individualfriendleague" /&gt;
+      &lt;xs:enumeration value="groupfriendleague" /&gt;
+      &lt;xs:enumeration value="findcountthreshold" /&gt;
+      &lt;xs:enumeration value="geotour" /&gt;
     &lt;/xs:restriction&gt;
   &lt;/xs:simpleType&gt;
   &lt;xs:element name="SouvenirType" nillable="true" type="tns:SouvenirType" /&gt;
+  &lt;xs:complexType name="FindCountSouvenir"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:Souvenir"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="UserFindCount" type="xs:int" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="FindCountSouvenir" nillable="true" type="tns:FindCountSouvenir" /&gt;
 &lt;/xs:schema&gt;</pre>
       </p>
       <p>
