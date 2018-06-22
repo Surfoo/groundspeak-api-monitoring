@@ -1,15 +1,15 @@
 groundspeak-api-monitoring
 ==========================
 
-Backup all changes about the Groundspeak API.
+Backup all changes about the Groundspeak REST API.
 
 The script monitors these URLs:
-  - **Documentation**
-    - **Live** : https://api.groundspeak.com/LiveV6/geocaching.svc/help
-    - **Staging** : https://staging.api.groundspeak.com/Live/v6beta/geocaching.svc/help
-  - **Webservice**
-    - **Live** : https://api.groundspeak.com/LiveV6/geocaching.svc?singleWsdl
-    - **Staging** : https://staging.api.groundspeak.com/Live/V6Beta/geocaching.svc?singleWsdl
+  - **Staging**
+    - **Documentation**: https://staging.api.groundspeak.com/documentation
+    - **Swagger**: https://staging.api.groundspeak.com/api-docs/v1/swagger
+  - **Production**
+    - **Documentation**: https://api.groundspeak.com/documentation
+    - **Swagger**: https://api.groundspeak.com/api-docs/v1/swagger
 
 Notification
 ============

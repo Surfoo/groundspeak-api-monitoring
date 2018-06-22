@@ -1,17 +1,19 @@
-#!/bin/zsh
+#!/bin/sh
 
 cd $(dirname $0);
 
-wget -e robots=off -m -p -E -k -q -np "https://staging.api.groundspeak.com/Live/v6beta/geocaching.svc/help"
-wget -e robots=off -m -p -E -k -q -np "https://api.groundspeak.com/LiveV6/geocaching.svc/help"
-./monitoring.php;
+wget -e robots=off -m -E -q -A.html "https://staging.api.groundspeak.com/documentation" -O "staging/documentation.html"
+wget -e robots=off -m -E -q -A.html "https://staging.api.groundspeak.com/api-docs/v1/swagger" -O "staging/swagger.json"
 
-if [[ $(git ls-files -m | grep -E 'api.groundspeak.com|wsdl_|methods.md' | wc -l) -gt 0 ]];then
-    FILES=$(git ls-files -m | grep -E 'api.groundspeak.com|wsdl_|methods.md');
+wget -e robots=off -m -E -q -A.html "https://api.groundspeak.com/documentation" -O "production/documentation.html"
+wget -e robots=off -m -E -q -A.html "https://api.groundspeak.com/api-docs/v1/swagger" -O "production/swagger.json"
+
+if [[ $(git ls-files -m | grep -E 'staging|production' | wc -l) -gt 0 ]];then
+    FILES=$(git ls-files -m | grep -E 'staging|production');
     echo "Files found:
 $FILES";
     git commit --author "Surfoo <surfooo@gmail.com>" -am "Changes detected on:
-$FILES";
+# $FILES";
     git push;
 else
     echo "Nothing to do.";
