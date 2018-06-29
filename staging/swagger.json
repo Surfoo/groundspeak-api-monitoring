@@ -428,7 +428,7 @@
           {
             "name": "expand",
             "in": "query",
-            "description": "fields to include with base geocache object",
+            "description": "fields to include with base geocache log object",
             "required": false,
             "type": "string",
             "default": ""
@@ -3852,6 +3852,14 @@
             "description": "log types to include in response, defaults to all",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "fields to include with base geocache log object",
+            "required": false,
+            "type": "string",
+            "default": ""
           },
           {
             "name": "api-version",
