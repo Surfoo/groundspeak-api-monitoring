@@ -3230,6 +3230,82 @@
         "deprecated": false
       }
     },
+    "/v{api-version}/trackables/geocointypes": {
+      "get": {
+        "tags": [
+          "Trackables"
+        ],
+        "summary": "Get paged geocoin types",
+        "description": "This method will return a list of geocoin types.",
+        "operationId": "Trackables_GetGeocoinTypes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Amount of types to skip over used for pagination. Defaults to 0.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Amount of types to include in results. Defaults to 10.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return. Defaults to id.",
+            "required": false,
+            "type": "string",
+            "default": "id"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TrackableType"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/v{api-version}/trackables/{referenceCode}/Images": {
       "get": {
         "tags": [
@@ -5347,6 +5423,21 @@
         },
         "coordinates": {
           "$ref": "#/definitions/Coordinates"
+        }
+      }
+    },
+    "TrackableType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
         }
       }
     },
