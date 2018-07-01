@@ -13,7 +13,7 @@ if [[ $(git ls-files -m | grep -E 'staging|production' | wc -l) -gt 0 ]];then
     echo "Files found:
 $FILES";
     git commit --author "Surfoo <surfooo@gmail.com>" -am "Changes detected on:
-# $FILES";
+$FILES";
     git push;
 else
     echo "Nothing to do.";
