@@ -4898,6 +4898,9 @@
         "relatedWebPage": {
           "type": "string"
         },
+        "url": {
+          "type": "string"
+        },
         "containsHtml": {
           "type": "boolean"
         },
