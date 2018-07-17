@@ -5393,7 +5393,6 @@
     },
     "PostTrackableLog": {
       "required": [
-        "trackingNumber",
         "trackableCode",
         "loggedDate",
         "text",
@@ -5450,6 +5449,9 @@
         "imagePath": {
           "type": "string"
         },
+        "thumbImagePath": {
+          "type": "string"
+        },
         "title": {
           "type": "string"
         },
@@ -5458,6 +5460,9 @@
         },
         "foundDateUtc": {
           "format": "date-time",
+          "type": "string"
+        },
+        "url": {
           "type": "string"
         }
       }
