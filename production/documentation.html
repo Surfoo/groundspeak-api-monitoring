@@ -623,7 +623,7 @@
     "userData": 
     {
         "favorited": true,
-        "found": "2013-07-16T12:00:00",
+        "foundDate": "2013-07-16T12:00:00",
         ...
     }
 }</code></pre>
@@ -4445,7 +4445,7 @@
   "type": "GeocachingHq",
   "size": "Other",
   "userData": {
-    "foundDateUtc": "2016-06-24T12:00:00",
+    "foundDate": "2016-06-24T12:00:00",
     "isFavorited": false
   },
   "status": "Active",
@@ -4627,7 +4627,7 @@
   "type": "GeocachingHq",
   "size": "Other",
   "userData": {
-    "foundDateUtc": "2016-06-24T12:00:00",
+    "foundDate": "2016-06-24T12:00:00",
     "isFavorited": false
   },
   "status": "Active",
@@ -5945,11 +5945,16 @@
                             <td>bool</td>
                             <td>if the user has awarded this geocache a favorite point</td>
                         </tr>
-                        <tr>
-                            <td>foundDateUtc</td>
-                            <td>nullable datetime</td>
-                            <td>the date the user found the geocache in UTC (null if not found)</td>
-                        </tr>
+                    <tr>
+                        <td>foundDate</td>
+                        <td>nullable datetime</td>
+                        <td>the date the user found the geocache in the timezone of the geocache (null if not found)</td>
+                    </tr>
+                    <tr>
+                        <td>dnfDate</td>
+                        <td>nullable datetime</td>
+                        <td>the date the user logged a DNF on the geocache in the timezone of the geocache (null if no DNF exists)</td>
+                    </tr>
                         <tr>
                             <td>correctedCoordinates</td>
                             <td><a href="#coordinates">Coordinates</a></td>
@@ -5959,8 +5964,9 @@
                 </table>
                 <h3>Example</h3>
                 <pre><code>{
-    "foundDateUtc": "2017-10-03T23:37:53.079Z",
-    "userCorrectedCoordinates": {
+    "foundDate": "2017-10-03T23:37:53.079Z",
+    "dnfDate": "2017-05-03T12:34:26.648Z"
+    "correctedCoordinates": {
         "latitude": 0,
         "longitude": 0
     },
