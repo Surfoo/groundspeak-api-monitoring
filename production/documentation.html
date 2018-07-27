@@ -4771,7 +4771,7 @@
                             <th>Type</th>
                             <th>Description</th>
                         </tr>
-                    </thead>ge
+                    </thead>
                     <tbody>
                         <tr>
                             <td>referenceCode</td>
@@ -4838,11 +4838,16 @@
                             <td>bool</td>
                             <td>flag is trackable is marked as missing</td>
                         </tr>
-                        <tr>
-                            <td>type</td>
-                            <td>string</td>
-                            <td>category type display name</td>
-                        </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>string</td>
+                        <td>category type display name</td>
+                    </tr>
+                    <tr>
+                        <td>trackingNumber</td>
+                        <td>string</td>
+                        <td>unique number used to prove discovery of trackable. only returned if user matches the holderCode</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -4862,7 +4867,8 @@
   "inHolderCollection": false,
   "isMissing": true,
   "type": "Travel Bug Dog Tag",
-  "imageCount": 1
+  "imageCount": 1,
+  "trackingNumber": null
 }</code></pre>
             </div>
         </div>
