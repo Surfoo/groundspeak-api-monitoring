@@ -150,6 +150,7 @@
                     <li><a href="#update-list">Update List</a></li>
                     <li><a href="#remove-list">Delete List</a></li>
                     <li><a href="#get-list-geocaches">Get List's Geocaches</a></li>
+                    <li><a href="#get-pq-zip">Get Zipped Pocket Query</a></li>
                     <li><a href="#add-geocache-list">Add Geocache to List</a></li>
                     <li><a href="#add-geocaches-list">Add Geocaches to List</a></li>
                     <li><a href="#delete-geocache-list">Remove Geocache from List</a></li>
@@ -379,7 +380,7 @@
                     </tr>
                     <tr>
                         <td><code>refresh_token</code></td>
-                        <td>string code to use to get a new access token after expiration</td>
+                        <td>string code to use to get a new access token after expiration, expires after one year</td>
                     </tr>
                 </tbody>
             </table>
@@ -656,6 +657,7 @@
             "type": "Found It",
             "geocacheCode": "GC25",
             "usedFavoritePoint": false
+            ...
         },
         {
             "referenceCode": "GLV5F1VX",
@@ -667,6 +669,7 @@
             "type": "Found It",
             "geocacheCode": "GC25",
             "usedFavoritePoint": false
+            ...
         },
         {
             "referenceCode": "GLV5F0F6",
@@ -678,6 +681,7 @@
             "type": "Found It",
             "geocacheCode": "GC25",
             "usedFavoritePoint": false
+            ...
         },
         {
             "referenceCode": "GLTB2QD5",
@@ -689,6 +693,7 @@
             "type": "Found It",
             "geocacheCode": "GC25",
             "usedFavoritePoint": false
+            ...
         },
         {
             "referenceCode": "GLT39QME",
@@ -700,6 +705,7 @@
             "type": "Found It",
             "geocacheCode": "GC25",
             "usedFavoritePoint": false
+            ...
         }
     ]
 }</code></pre>
@@ -825,8 +831,8 @@
                         <td><code>box</code></td>
                         <td>N/A</td>
                         <td>set of coordinates</td>
-                        <td><code>box:[[47.01,-121.99],[47,-122]]</code></td>
-                        <td>the coordinates in decimal form to make a square bounding box (only caches inside box will be returned). if no sort is passed in, it will be sorted from the center of the box ascending</td>
+                        <td><code>box:[[47.01,-122],[47,-121.99]]</code></td>
+                        <td>the coordinates in decimal form to make a square bounding box (only caches inside box will be returned). the format should be upper left coordinate, lower right coordinate. if no sort is passed in, it will be sorted from the center of the box ascending</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -840,17 +846,17 @@
                     <tr>
                         <td><code>difficulty</code></td>
                         <td><code>diff</code></td>
-                        <td>range</td>
-                        <td><code>diff:1-5</code></td>
-                        <td>inclusive range of difficulty ratings to include in search results.</td>
+                        <td>range or comma delimited decimals</td>
+                        <td><code>diff:1-5</code> or <code>diff:1,3.5,5</code></td>
+                        <td>inclusive range or explicit list of difficulty ratings to include in search results. when using the comma delimited list, ratings can be excluded by putting the list in "not()". valid ratings are from 1 to 5 in .5 intervals</td>
                         <td>all ratings</td>
                     </tr>
                     <tr>
                         <td><code>terrain</code></td>
                         <td><code>terr</code></td>
-                        <td>range</td>
-                        <td><code>terr:1-5</code></td>
-                        <td>inclusive range of terrain ratings to include in search results.</td>
+                        <td>range or comma delimited decimals</td>
+                        <td><code>terr:1-5</code> or <code>terr:1,3.5,5</code></td>
+                        <td>inclusive range or explicit list of terrain ratings to include in search results. when using the comma delimited list, ratings can be excluded by putting the list in "not()". valid ratings are from 1 to 5 in .5 intervals</td>
                         <td>all ratings</td>
                     </tr>
                     <tr>
@@ -858,7 +864,7 @@
                         <td>N/A</td>
                         <td>comma delimited integers</td>
                         <td><code>size:1,2,3</code> or <code>size:not(1,2,3)</code></td>
-                        <td><a href="#container-types">geocache sizes</a> to include or exclude in search results. To exclude sizes, put the list of sizes in "not()".</td>
+                        <td><a href="#geocache-sizes">geocache sizes</a> to include or exclude in search results. To exclude sizes, put the list of sizes in "not()".</td>
                         <td>all sizes</td>
                     </tr>
                     <tr>
@@ -919,28 +925,44 @@
                         <td>Limits search results to geocaches hidden in country supplied. Country filter can only be used with one value.</td>
                         <td>-</td>
                     </tr>
-                    <tr>
-                        <td><code>level</code></td>
-                        <td><code>lvl</code></td>
-                        <td>string</td>
-                        <td><code>lvl:premium</code></td>
-                        <td>Limits search results to geocaches available to premium or basic level users. The supported values for this filter are "basic" and "premium".</td>
-                        <td>all levels</td>
-                    </tr>
+                <tr>
+                    <td><code>level</code></td>
+                    <td><code>lvl</code></td>
+                    <td>string</td>
+                    <td><code>lvl:premium</code></td>
+                    <td>Limits search results to geocaches available to premium or basic level users. The supported values for this filter are "basic" and "premium".</td>
+                    <td>all levels</td>
+                </tr>
+                <tr>
+                    <td><code>publishedDate</code></td>
+                    <td><code>pd</code></td>
+                    <td>date range</td>
+                    <td><code>pd:[2017-01-01,2017-12-31]</code> or <code>pd:[2018-01-01,]</code></td>
+                    <td>Limits search results to geocaches published in the inclusive date range. Provide one date to give an open ended range, such as all dates before XXXX-XX-XX or all dates after XXXX-XX-XX.</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><code>isPublished</code></td>
+                    <td><code>ip</code></td>
+                    <td>boolean</td>
+                    <td><code>ip:false</code></td>
+                    <td>Limits search results to geocaches either published or not published. Unpublished geocaches will only be returned if calling user is the owner of the geocache.</td>
+                    <td>all published geocaches and unpublished, owned geocaches</td>
+                </tr>
                     <tr>
                         <td><code>hasCorrectedCoordinates</code></td>
                         <td><code>hcc</code></td>
                         <td>string</td>
-                        <td><code>hcc:moun10bike</code></td>
-                        <td>Limits search results to geocaches with corrected coordinates by username.</td>
+                        <td><code>hcc</code></td>
+                        <td>Limits search results to geocaches with corrected coordinates by the calling user.</td>
                         <td>-</td>
                     </tr>
                     <tr>
                         <td><code>hasNote</code></td>
                         <td><code>hn</code></td>
                         <td>string</td>
-                        <td><code>hn:moun10bike</code></td>
-                        <td>Limits search results to geocaches with a personal note by username.</td>
+                        <td><code>hn</code></td>
+                        <td>Limits search results to geocaches with a personal note by the calling user.</td>
                         <td>-</td>
                     </tr>
                 </tbody>
@@ -1229,7 +1251,7 @@
                     <tr>
                         <td><code>note</code></td>
                         <td>body</td>
-                        <td><code>{"the cache is in a tree."}</code></td>
+                        <td><code>{"note": "the cache is in a tree."}</code></td>
                         <td>Yes</td>
                         <td>note text to add/update</td>
                         <td>-</td>
@@ -1944,7 +1966,7 @@
                 <br />
                 <b>HTTP Method: </b>GET
                 <br />
-                <b>Response Type: </b>Array of <a href="#trackabletype">TrackableTypes</a>
+                <b>Response Type: </b>Array of <a href="#type">Types</a>
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 500
             </p>
@@ -2045,14 +2067,22 @@
                         <td>the number of resources to skip over</td>
                         <td><code>0</code></td>
                     </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>how many resources to return. maximum value of 50</td>
-                        <td><code>10</code></td>
-                    </tr>
+                <tr>
+                    <td><code>take</code></td>
+                    <td>query</td>
+                    <td><code>take=0</code></td>
+                    <td>No</td>
+                    <td>how many resources to return. maximum value of 50</td>
+                    <td><code>10</code></td>
+                </tr>
+                <tr>
+                    <td><code>logTypes</code></td>
+                    <td>query</td>
+                    <td><code>logTypes=14,75</code></td>
+                    <td>No</td>
+                    <td>comma delimited list of log types to include in results</td>
+                    <td>all types</td>
+                </tr>
                 </tbody>
             </table>
             <br />
@@ -3290,21 +3320,103 @@
             </table>
             <br />
         </div>
-        <div id="get-list-geocaches">
-            <h3>Get List's Geocaches</h3>
+    <div id="get-list-geocaches">
+        <h3>Get List's Geocaches</h3>
+        <p>
+            This method will fetch the geocaches from the specified list.
+        </p>
+        <p>
+            <b>Path: </b><code>/v1/lists/{referenceCode}/geocaches</code>
+            <br />
+            <b>HTTP Method: </b>GET
+            <br />
+            <b>Response Type: </b>Array of <a href="#geocache">Geocaches</a> or <a href="#lite-geocache">Lite Geocaches</a>
+            <br />
+            <b>Response Codes: </b>200, 400, 401, 404, 500
+            <br />
+            <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
+        </p>
+        <br />
+        <table class="table table-striped table-hover table-responsive">
+            <caption>Parameters</caption>
+            <thead>
+            <tr>
+                <th class="col-xs-1">Argument</th>
+                <th class="col-xs-1">Type</th>
+                <th class="col-xs-2">Example</th>
+                <th class="col-xs-1">Required</th>
+                <th class="col-xs-5">Description</th>
+                <th class="col-xs-2">Default</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>referenceCode</code></td>
+                <td>path</td>
+                <td><code>BM1234</code></td>
+                <td>Yes</td>
+                <td>identifier of the list</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><code>fields</code></td>
+                <td>query</td>
+                <td><code>fields=name,referenceCode</code></td>
+                <td>No</td>
+                <td>partial response fields to return</td>
+                <td>all fields</td>
+            </tr>
+            <tr>
+                <td><code>skip</code></td>
+                <td>query</td>
+                <td><code>skip=10</code></td>
+                <td>No</td>
+                <td>the number of resources to skip over</td>
+                <td><code>0</code></td>
+            </tr>
+            <tr>
+                <td><code>take</code></td>
+                <td>query</td>
+                <td><code>take=0</code></td>
+                <td>No</td>
+                <td>how many resources to return. maximum value of 50</td>
+                <td><code>10</code></td>
+            </tr>
+            <tr>
+                <td><code>lite</code></td>
+                <td>query</td>
+                <td><code>lite=true</code></td>
+                <td>No</td>
+                <td>whether the response should be a lite geocaches or not</td>
+                <td><code>true</code></td>
+            </tr>
+            <tr>
+                <td><code>expand</code></td>
+                <td>query</td>
+                <td><code>expand=geocachelogs:5,trackables:5</code></td>
+                <td>false</td>
+                <td>The fields of the geocache object to expand. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                <td>-</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+    </div>
+        <div id="get-pq-zip">
+            <h3>Get Zipped Pocket Query</h3>
             <p>
-                This method will fetch the geocaches from the specified list.
+                This method will fetch a zipped file of the requested pocket query.
             </p>
             <p>
-                <b>Path: </b><code>/v1/lists/{referenceCode}/geocaches</code>
+                <b>Path: </b><code>/v1/lists/{referenceCode}/geocaches/zipped</code>
                 <br />
                 <b>HTTP Method: </b>GET
                 <br />
-                <b>Response Type: </b>Array of <a href="#geocache">Geocaches</a> or <a href="#lite-geocache">Lite Geocaches</a>
+                <b>Response Type: </b>Zip File ("application/zip") with a Content-Disposition of attachment
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 404, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
+                <b>Restrictions: </b>Only Read for Download pocket queries from the web may be fetched. Pocket queries are a premium member feature.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3323,49 +3435,9 @@
                     <tr>
                         <td><code>referenceCode</code></td>
                         <td>path</td>
-                        <td><code>BM1234</code></td>
+                        <td><code>PQ1234</code></td>
                         <td>Yes</td>
-                        <td>identifier of the list</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,referenceCode</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td>all fields</td>
-                    </tr>
-                    <tr>
-                        <td><code>skip</code></td>
-                        <td>query</td>
-                        <td><code>skip=10</code></td>
-                        <td>No</td>
-                        <td>the number of resources to skip over</td>
-                        <td><code>0</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>how many resources to return. maximum value of 50</td>
-                        <td><code>10</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>lite</code></td>
-                        <td>query</td>
-                        <td><code>lite=true</code></td>
-                        <td>No</td>
-                        <td>whether the response should be a lite geocaches or not</td>
-                        <td><code>true</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>expand</code></td>
-                        <td>query</td>
-                        <td><code>expand=geocachelogs:5,trackables:5</code></td>
-                        <td>false</td>
-                        <td>The fields of the geocache object to expand. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                        <td>identifier of the pocket query</td>
                         <td>-</td>
                     </tr>
                 </tbody>
@@ -3710,6 +3782,22 @@
                     <td>No</td>
                     <td>the log types to include in the results (see restrictions)</td>
                     <td>all types</td>
+                </tr>
+                <tr>
+                    <td><code>afterDate</code></td>
+                    <td>query</td>
+                    <td><code>afterDate=2018-01-01</code></td>
+                    <td>No</td>
+                    <td>filters results to loggedDates after this date (inclusive)</td>
+                    <td>all dates included</td>
+                </tr>
+                <tr>
+                    <td><code>beforeDate</code></td>
+                    <td>query</td>
+                    <td><code>beforeDate=2018-01-01</code></td>
+                    <td>No</td>
+                    <td>filters results to loggedDates before this date (inclusive)</td>
+                    <td>all dates included</td>
                 </tr>
                 <tr>
                     <td><code>skip</code></td>
@@ -4333,16 +4421,26 @@
                             <td>datetime</td>
                             <td>date when the cache was published</td>
                         </tr>
-                        <tr>
-                            <td>type</td>
-                            <td>enum</td>
-                            <td>type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info)</td>
-                        </tr>
-                        <tr>
-                            <td>size</td>
-                            <td>enum</td>
-                            <td>size of the geocache container (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
-                        </tr>
+                    <tr>
+                        <td>type (Deprecated)</td>
+                        <td>enum</td>
+                        <td>type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info)</td>
+                    </tr>
+                    <tr>
+                        <td>geocacheType</td>
+                        <td><a href="#type">Type</a></td>
+                        <td>type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info)</td>
+                    </tr>
+                    <tr>
+                        <td>size</td>
+                        <td>enum</td>
+                        <td>size of the geocache container (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
+                    </tr>
+                    <tr>
+                        <td>geocacheSize</td>
+                        <td><a href="#geocache-size">Size</a></td>
+                        <td>size of the geocache (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
+                    </tr>
                         <tr>
                             <td>userData</td>
                             <td><a href="#user-data">UserData</a></td>
@@ -4418,11 +4516,18 @@
                         <td>string</td>
                         <td>geocaching.com web page associated with geocache</td>
                     </tr>
-                        <tr>
-                            <td>containsHtml</td>
-                            <td>bool</td>
-                            <td>flag for if the short or long description contains html</td>
-                        </tr>
+                    <tr>
+                        <td>containsHtml</td>
+                        <td>bool</td>
+                        <td>flag for if the short or long description contains html</td>
+                    </tr>
+                    <tr>
+                        <td>owner</td>
+                        <td><a href="#user">User</a></td>
+                        <td>information about the owner of the geocache</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
                         <tr>
                             <td>additionalWaypoints</td>
                             <td>array of <a href="#additional-waypoint">AdditionalWaypoint</a></td>
@@ -4443,14 +4548,25 @@
   "trackableCount": 217,
   "placedDate": "2004-07-22T00:00:00",
   "type": "GeocachingHq",
+  "geocacheType": {
+    "id": 3773,
+    "name": "Geocaching HQ",
+    "imageUrl": "https://www.geocaching.com/images/wpttypes/3773.gif"
+  },
   "size": "Other",
+  "geocacheSize": {
+    "id": 6,
+    "name": "Other"
+  },
   "userData": {
     "foundDate": "2016-06-24T12:00:00",
     "isFavorited": false
   },
   "status": "Active",
   "location": {
+    "countryId": 2,
     "countryName": "United States",
+    "stateId": 48,
     "stateName": "Washington"
   },
   "postedCoordinates": {
@@ -4488,7 +4604,11 @@
   "ianaTimezoneId": "America/Los_Angeles",
   "relatedWebPage": "http://geocachinghq.com/schedule/",
   "url": "https://coord.info/GCK25B",
-  "containsHtml": false
+  "containsHtml": false,
+  "owner": {
+    "username": "Geocaching HQ",
+    "avatarUrl": "https://img.geocaching.com/user/square250/f777d091-4a90-406b-a998-70ec06b4f6f1.png"
+  }
 }</code></pre>
                 </div>
             </div>
@@ -4542,15 +4662,25 @@
                             <td>date when the cache was placed (if an event, this is the date of the event)</td>
                         </tr>
                         <tr>
-                            <td>type</td>
+                            <td>type (Deprecated)</td>
                             <td>enum</td>
                             <td>type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info)</td>
                         </tr>
-                        <tr>
-                            <td>size</td>
-                            <td>enum</td>
-                            <td>size of the geocache container (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
-                        </tr>
+                    <tr>
+                        <td>geocacheType</td>
+                        <td><a href="#type">Type</a></td>
+                        <td>type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info)</td>
+                    </tr>
+                    <tr>
+                        <td>size</td>
+                        <td>enum</td>
+                        <td>size of the geocache container (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
+                    </tr>
+                    <tr>
+                        <td>geocacheSize</td>
+                        <td><a href="#geocache-size">Size</a></td>
+                        <td>size of the geocache (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
+                    </tr>
                         <tr>
                             <td>userData</td>
                             <td><a href="#user-data">UserData</a></td>
@@ -4606,11 +4736,18 @@
                         <td>string</td>
                         <td>geocaching.com web page associated with geocache</td>
                     </tr>
-                        <tr>
-                            <td>containsHtml</td>
-                            <td>bool</td>
-                            <td>flag for if the short or long description contains html</td>
-                        </tr>
+                    <tr>
+                        <td>containsHtml</td>
+                        <td>bool</td>
+                        <td>flag for if the short or long description contains html</td>
+                    </tr>
+                    <tr>
+                        <td>owner</td>
+                        <td><a href="#user">User</a></td>
+                        <td>information about the owner of the geocache</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -4625,7 +4762,16 @@
   "trackableCount": 217,
   "placedDate": "2004-07-22T00:00:00",
   "type": "GeocachingHq",
+  "geocacheType": {
+    "id": 3773,
+    "name": "Geocaching HQ",
+    "imageUrl": "https://www.geocaching.com/images/wpttypes/3773.gif"
+  },
   "size": "Other",
+  "geocacheSize": {
+    "id": 6,
+    "name": "Other"
+  },
   "userData": {
     "foundDate": "2016-06-24T12:00:00",
     "isFavorited": false
@@ -4645,7 +4791,11 @@
   "ianaTimezoneId": "America/Los_Angeles",
   "relatedWebPage": "http://geocachinghq.com/schedule/",
   "url": "https://GCK25B",
-  "containsHtml": false
+  "containsHtml": false,
+  "owner": {
+    "username": "Geocaching HQ",
+    "avatarUrl": "https://img.geocaching.com/user/square250/f777d091-4a90-406b-a998-70ec06b4f6f1.png"
+  }
 }</code></pre>
             </div>
         </div>
@@ -4699,13 +4849,20 @@
                             <td>Yes</td>
                             <td>Yes</td>
                         </tr>
-                        <tr>
-                            <td>type</td>
-                            <td>string or integer</td>
-                            <td>name or id of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
-                            <td>Yes</td>
-                            <td>Yes</td>
-                        </tr>
+                    <tr>
+                        <td>type (Deprecated)</td>
+                        <td>string or integer</td>
+                        <td>name or id of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>geocacheLogType</td>
+                        <td><a href="#type">Type</a></td>
+                        <td>type of the geocache log (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
+                        <td>Yes (only id field is required)</td>
+                        <td>Yes (only id field is required)</td>
+                    </tr>
                         <tr>
                             <td>updatedCoordinates</td>
                             <td><a href="#coordinates">Coordinates</a></td>
@@ -4734,13 +4891,27 @@
                             <td>No</td>
                             <td>No</td>
                         </tr>
-                        <tr>
-                            <td>isArchived</td>
-                            <td>bool</td>
-                            <td>if the log has been deleted</td>
-                            <td>No</td>
-                            <td>No</td>
-                        </tr>
+                    <tr>
+                        <td>isArchived</td>
+                        <td>bool</td>
+                        <td>if the log has been deleted</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>string</td>
+                        <td>geocaching.com web page associated with geocache log</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>owner</td>
+                        <td><a href="#user">User</a></td>
+                        <td>information about the owner of the geocache log</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -4748,15 +4919,27 @@
                 <h3>Example</h3>
                 <pre><code>{
   "referenceCode": "GL5WEA9",
-  "ownerCode": "PR9CDE",
+  "ownerCode": "PR27A02",
   "imageCount": 0,
   "loggedDate": "2004-06-02T00:00:00",
   "text": "Example log text.",
   "typeId": 2,
+  "geocacheLogType": {
+    "id": 2,
+    "name": "Found It",
+    "imageUrl": "https://www.geocaching.com/images/logtypes/2.png"
+  },
   "isEncoded": false,
   "isArchived": false,
   "geocacheReferenceCode": "GCK25B",
-  "usedFavoritePoint": false
+  "usedFavoritePoint": false,
+  "url": "https://coord.info/GL5WEa9",
+  "owner": {
+    "findCount": 326,
+    "hideCount": 0,
+    "username": "MNofMind",
+    "avatarUrl": "https://img-stage.geocaching.com/gcstage/{0}/0640f488-9abe-4c2a-a786-bb75cec84357.gif",
+  }
 }</code></pre>
             </div>
         </div>
@@ -4838,17 +5021,21 @@
                             <td>bool</td>
                             <td>flag is trackable is marked as missing</td>
                         </tr>
+						<tr>
+	                        <td>trackingNumber</td>
+	                        <td>string</td>
+	                        <td>unique number used to prove discovery of trackable. only returned if user matches the holderCode</td>
+                    </tr>		
+                        <tr>
+                            <td>trackableType</td>
+                            <td><a href="#type">Type</a></td>
+                            <td>type of the trackable</td>
+                        </tr>
                     <tr>
-                        <td>type</td>
-                        <td>string</td>
-                        <td>category type display name</td>
-                    </tr>
-                    <tr>
-                        <td>trackingNumber</td>
-                        <td>string</td>
-                        <td>unique number used to prove discovery of trackable. only returned if user matches the holderCode</td>
-                    </tr>
-                    </tbody>
+	                        <td>url</td>
+	                        <td>string</td>
+	                        <td>geocaching.com web page associated with trackable</td>
+	                    </tr>                    </tbody>
                 </table>
             </div>
             <div class="row">
@@ -4858,7 +5045,7 @@
   "iconUrl": "http://www.geocaching.com/images/wpttypes/21.gif",
   "name": "Deadly Duck: Envy",
   "goal": "Tell a short story about committing the terrible sin of envy. Nothing incredibly evil. An example may be to envy that Ben & Jerry's pint the person at lunch was digging into.",
-  "description": "While traveling north through New Mexico I encountered a vortex where 7 deadly ducks emerged from the gates of hell (not Hell, the flaming sort, but the lowercase hell where all the mischevious critters live).<p>The only way to escape from these creatures is to tell a story about a specific sin you made. In this case the sin of envy.<p>Since this is little \"h\" hell, your sin can be pretty petty and small. Anything larger and the poor ducks tend to explode into flames. Leave the stronger sins to the big flaming ducks from the big \"H\".<p>Each deadly duck is tagged with its own special tracking number. See how far you can take it!",
+  "description": "While traveling north through New Mexico I encountered a vortex where 7 deadly ducks emerged from the gates of hell (not Hell, the flaming sort, but the lowercase hell where all the mischevious critters live).",
   "releasedDate": "2001-08-30T10:27:11",
   "originCountry": "United States",
   "allowedToBeCollected": false,
@@ -4866,10 +5053,12 @@
   "holderCode": null,
   "inHolderCollection": false,
   "isMissing": true,
-  "type": "Travel Bug Dog Tag",
-  "imageCount": 1,
-  "trackingNumber": null
-}</code></pre>
+  trackableType": {
+    "id": 21,
+    "name": "Travel Bug Dog Tag",
+    "imageUrl": "21.gif"
+  },
+  "trackingNumber": null,  "url": "https://coord.info/TB1"}</code></pre>
             </div>
         </div>
         <div id="trackable-log" class="container col-md-12">
@@ -4943,13 +5132,20 @@
                             <td>Optional, defaults to false</td>
                             <td>Yes</td>
                         </tr>
-                        <tr>
-                            <td>typeId</td>
-                            <td>integer</td>
-                            <td>type of the trackable log (see <a href="#trackable-log-types">Trackable Log Types</a> for more info)</td>
-                            <td>Yes</td>
-                            <td>No</td>
-                        </tr>
+                    <tr>
+                        <td>typeId (Deprecated)</td>
+                        <td>integer</td>
+                        <td>type of the trackable log (see <a href="#trackable-log-types">Trackable Log Types</a> for more info)</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>trackableLogType</td>
+                        <td><a href="#type">Type</a></td>
+                        <td>type of the trackable log (see <a href="#trackable-log-types">Trackable Log Types</a> for more info)</td>
+                        <td>Yes (only id field is required)</td>
+                        <td>No</td>
+                    </tr>
                     <tr>
                         <td>location</td>
                         <td><a href="#coordinates">Coordinates</a></td>
@@ -4962,6 +5158,13 @@
                         <td>string</td>
                         <td>code only found on the trackable itself (only needed for creating a log)</td>
                         <td>Required for retrieving from geocache, grab it, and discovered it activity types</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>string</td>
+                        <td>geocaching.com web page associated with trackable log</td>
+                        <td>No</td>
                         <td>No</td>
                     </tr>
                     </tbody>
@@ -4977,45 +5180,15 @@
   "LoggedDate": "2001-09-28T00:00:00",
   "text": "I envy Cache Maru's eTrex Vista, with it's amazing 24M of memory, color screen, and maps, way beyond my eTrex Summit.  Oh Garmin V, when will you come, so someone will envy me...\r\n\r\nI have Envy, given to Denise by jeremy and then given to me.  I bet you envy me now!  I hope to place envy during a Q-13 tv crew cache, stay tuned!",
   "isRot13Encoded": false,
-  "typeId": 19
+  "typeId": 19,
+  "trackableLogType": {
+    "id": 19,
+    "name": "Grab It (Not from a Cache)",
+    "imageUrl": "https://www.geocaching.com/images/logtypes/19.png"
+  },
+  "url": "https://coord.info/TL2A"
 }</code></pre>
             </div>
-        </div>
-        <div id="trackabletype" class="container col-md-12">
-            <h3><strong>TrackableType</strong></h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <caption>Fields</caption>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>id</td>
-                        <td>integer</td>
-                        <td>uniquely identifies the type</td>
-                    </tr>
-                    <tr>
-                        <td>name</td>
-                        <td>string</td>
-                        <td>name of the trackable type</td>
-                    </tr>
-                    <tr>
-                        <td>imageUrl</td>
-                        <td>string</td>
-                        <td>url link for trackable type image</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3>Example</h3>
-            <pre><code>{
-  "id": "22",
-  "name": "Moun10Bike Geocoin",
-  "imageUrl": "http://www.geocaching.com/images/wpttypes/22.gif"
-}</code></pre>
         </div>
         <div id="log-draft" class="container col-md-12">
             <h3><strong>LogDraft</strong></h3>
@@ -5045,13 +5218,20 @@
                         <td>Yes</td>
                         <td>No</td>
                     </tr>
-                    <tr>
-                        <td>logType</td>
-                        <td>string or integer</td>
-                        <td>name or id of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
-                        <td>Yes</td>
-                        <td>No</td>
-                    </tr>
+                <tr>
+                    <td>logType (Deprecated)</td>
+                    <td>string or integer</td>
+                    <td>name or id of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
+                    <td>Yes</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>geocacheLogType</td>
+                    <td><a href="#type">Type</a></td>
+                    <td>type of the geocache log (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
+                    <td>Yes (only the id field is required)</td>
+                    <td>No</td>
+                </tr>
                     <tr>
                         <td>note</td>
                         <td>string</td>
@@ -5088,6 +5268,11 @@
   "guid": "6ae15c22-132c-4869-aca1-86bffae5a775",
   "geocacheCode": "GCK25B",
   "logType": "WriteNote",
+  "geocacheLogType": {
+    "id": 2,
+    "name": "Found It",
+    "imageUrl": "https://www.geocaching.com/images/logtypes/2.png"
+  },
   "note": "example draft text",
   "dateLoggedUtc": "2017-10-13T16:28:59.51"
 }</code></pre>
@@ -5308,40 +5493,86 @@
 }</code></pre>
             </div>
         </div>
-        <div id="location-data" class="container col-md-12">
-            <h3><strong>Location</strong></h3>
-            <div class="row">
-                <table class="table table-striped table-hover table-responsive inherit-width">
-                    <caption>Fields</caption>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>country</td>
-                            <td>string</td>
-                            <td>display name of country</td>
-                        </tr>
-                        <tr>
-                            <td>state</td>
-                            <td>string</td>
-                            <td>display name of state</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <h3>Example</h3>
-                <pre><code>{
-    "state": "Washington",
-    "country": "United States"
-}</code></pre>
-            </div>
+    <div id="location-data" class="container col-md-12">
+        <h3><strong>Location</strong></h3>
+        <div class="row">
+            <table class="table table-striped table-hover table-responsive inherit-width">
+                <caption>Fields</caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>countryId</td>
+                    <td>integer</td>
+                    <td>id of country</td>
+                </tr>
+                <tr>
+                    <td>country</td>
+                    <td>string</td>
+                    <td>display name of country</td>
+                </tr>
+                <tr>
+                    <td>stateId</td>
+                    <td>integer</td>
+                    <td>id of state</td>
+                </tr>
+                <tr>
+                    <td>state</td>
+                    <td>string</td>
+                    <td>display name of state</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+        <div class="row">
+            <h3>Example</h3>
+            <pre><code>{
+    "country": "United States",
+    "countryId": 2,
+    "state": "Washington",
+    "stateId": 48
+}</code></pre>
+        </div>
+    </div>
+    <div id="geocache-size" class="container col-md-12">
+        <h3><strong>Size</strong></h3>
+        <div class="row">
+            <table class="table table-striped table-hover table-responsive inherit-width">
+                <caption>Fields</caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>integer</td>
+                    <td>id of size</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>string</td>
+                    <td>display name of size</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h3>Example</h3>
+            <pre><code>{
+    "id": 6,
+    "name": "Other"
+}</code></pre>
+        </div>
+    </div>
         <div id="list" class="container col-md-12">
             <h3><strong>List</strong></h3>
             <div class="row">
@@ -5427,13 +5658,20 @@
                             <td>Yes</td>
                             <td>Yes</td>
                         </tr>
-                        <tr>
-                            <td>isPublic</td>
-                            <td>bool</td>
-                            <td>if the list is accessible to everyone without a direct link</td>
-                            <td>Yes</td>
-                            <td>Yes</td>
-                        </tr>
+                    <tr>
+                        <td>isPublic</td>
+                        <td>bool</td>
+                        <td>if the list is accessible to everyone without a direct link</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>string</td>
+                        <td>geocaching.com web page associated with list (no url returned for pocket query types)</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -5449,7 +5687,8 @@
   "description": "to grab the HQ icon",
   "typeId": 2,
   "isPublic": false,
-  "isShared": false
+  "isShared": false,
+  "url": "https://coord.info/BM4GC42"
 }</code></pre>
             </div>
         </div>
@@ -5620,11 +5859,18 @@
                             <td>string</td>
                             <td>link to image of the user's profile avatar</td>
                         </tr>
-                        <tr>
-                            <td>bannerUrl</td>
-                            <td>string</td>
-                            <td>link to image of the user's banner image</td>
-                        </tr>
+                    <tr>
+                        <td>bannerUrl</td>
+                        <td>string</td>
+                        <td>link to image of the user's banner image</td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>string</td>
+                        <td>geocaching.com web page associated with user profile</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
                         <tr>
                             <td>profileText</td>
                             <td>string</td>
@@ -6015,46 +6261,86 @@
 }</code></pre>
             </div>
         </div>
-        <div id="user-reference" class="container col-md-12">
-            <h3><strong>UserReference</strong></h3>
-            <div class="row">
-                <table class="table table-striped table-hover table-responsive inherit-width">
-                    <caption>Fields</caption>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>referenceCode</td>
-                            <td>string</td>
-                            <td>identifier of the user</td>
-                        </tr>
-                        <tr>
-                            <td>username</td>
-                            <td>string</td>
-                            <td>the display username</td>
-                        </tr>
-                        <tr>
-                            <td>avatarUrl</td>
-                            <td>string</td>
-                            <td>source link of user avatar image</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <h3>Example</h3>
-                <pre><code>{
+    <div id="user-reference" class="container col-md-12">
+        <h3><strong>UserReference</strong></h3>
+        <div class="row">
+            <table class="table table-striped table-hover table-responsive inherit-width">
+                <caption>Fields</caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>referenceCode</td>
+                    <td>string</td>
+                    <td>identifier of the user</td>
+                </tr>
+                <tr>
+                    <td>username</td>
+                    <td>string</td>
+                    <td>the display username</td>
+                </tr>
+                <tr>
+                    <td>avatarUrl</td>
+                    <td>string</td>
+                    <td>source link of user avatar image</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h3>Example</h3>
+            <pre><code>{
     "referenceCode": "PRFAKEUSER",
     "username": "fakeusername",
     "avatarUrl": "https://geocaching.com/images/default_avatar.png"
 }</code></pre>
-            </div>
         </div>
+    </div>
+    <div id="type" class="container col-md-12">
+        <h3><strong>Type</strong></h3>
+        <div class="row">
+            <table class="table table-striped table-hover table-responsive inherit-width">
+                <caption>Fields</caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>integer</td>
+                    <td>identifier of the type</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>string</td>
+                    <td>the name of the type</td>
+                </tr>
+                <tr>
+                    <td>imageUrl</td>
+                    <td>string</td>
+                    <td>link to the image of the type</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h3>Example</h3>
+            <pre><code>{
+    "id": "2",
+    "name": "Found It",
+    "imageUrl": "https://www.geocaching.com/images/logtypes/2.png"
+}</code></pre>
+        </div>
+    </div>
     </section>
     <section id="reference-data">
         <h2>Reference Data</h2>
@@ -6460,6 +6746,22 @@
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>08.27.2018</h3>
+        <ul>
+            <li>An owner field has been added to the geocache and the geocache log object.</li>
+            <li>Url fields have been added to the geocache, geocache log, trackable, trackable log, list, souvenir, and user objects. This field will provide a link to the relevant website page.</li>
+            <li>Get Trackable's Logs can now be filtered by log type to help replace the old API's GetTrackableTravelList method functionality.</li>
+            <li>Location object now includes countryId and stateId</li>
+            <li>Search method now allows for terrain and difficulty to be filtered explicitly through a comma delimited list as well as a range (e.g. terr:1,3.5,5 vs terr:1-4)</li>
+            <li>Search method has a new filter for publishedDate</li>
+            <li>Search method has a new filter for is published</li>
+            <li>Search method filters hasNote and hasCorrectedCoordinates filters no longer require a username since they are only allowed for the calling user (q=hn instead of q=hn:username)</li>
+            <li>Get Zipped Pocket Query method has been added</li>
+            <li>Upsert Geocache Note returns an object instead of just a string</li>
+            <li>Get User's Geocache Logs method has new optional query string parameters for filtering the data set by dates</li>
+            <li>Geocache, geocache log, trackable and trackable log objects have new fields for types as a complex object instead of an enum. The old field will remain available to not make this a breaking change, but it is recommended to start using the new type fields (includes id, name, and image url)</li>
+            <li>Geocache type names have been changed to match the old API (except for types that have "Groundspeak" in the name, those have been changed to "Geocaching")</li>
+        </ul>
         <h3>07.23.2018</h3>
         <ul>
             <li>Geocache object has new field for url to geocaching.com</li>
