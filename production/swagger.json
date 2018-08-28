@@ -859,12 +859,12 @@
             "type": "string"
           },
           {
-            "name": "note",
+            "name": "geocacheNote",
             "in": "body",
             "description": "The geocache note text.",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/GeocacheNote"
             }
           },
           {
@@ -1647,6 +1647,61 @@
             "description": "Ok",
             "schema": {
               "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/lists/{referenceCode}/geocaches/zipped": {
+      "get": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Gets a zipped file for a pocket query",
+        "description": "This method will return a zipped file.",
+        "operationId": "Lists_GetZippedPocketQuery",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "identifier of the pocket query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "format": "byte",
+              "type": "string"
             }
           },
           "400": {
@@ -3438,6 +3493,13 @@
             "default": "referenceCode"
           },
           {
+            "name": "logTypes",
+            "in": "query",
+            "description": "what log types to include with results. defaults to all",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "api-version",
             "in": "path",
             "description": "The requested API version",
@@ -3905,6 +3967,22 @@
             "type": "integer",
             "format": "int32",
             "default": 10
+          },
+          {
+            "name": "afterDate",
+            "in": "query",
+            "description": "filters results to logs with logdates after this date (inclusive)",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "beforeDate",
+            "in": "query",
+            "description": "filters results to logs with logdates before this date (inclusive)",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
           },
           {
             "name": "fields",
@@ -4505,6 +4583,9 @@
         "bannerUrl": {
           "type": "string"
         },
+        "url": {
+          "type": "string"
+        },
         "referenceCode": {
           "type": "string"
         },
@@ -4603,7 +4684,6 @@
       "required": [
         "loggedDate",
         "text",
-        "type",
         "geocacheCode"
       ],
       "type": "object",
@@ -4613,6 +4693,9 @@
         },
         "ownerCode": {
           "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/User"
         },
         "imageCount": {
           "format": "int32",
@@ -4629,6 +4712,9 @@
           "items": {
             "$ref": "#/definitions/Image"
           }
+        },
+        "url": {
+          "type": "string"
         },
         "loggedDate": {
           "format": "date-time",
@@ -4658,6 +4744,9 @@
             "Event Announcement"
           ],
           "type": "string"
+        },
+        "geocacheLogType": {
+          "$ref": "#/definitions/GeocacheLogType"
         },
         "updatedCoordinates": {
           "$ref": "#/definitions/Coordinates"
@@ -4696,6 +4785,21 @@
         }
       }
     },
+    "GeocacheLogType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
     "PostImage": {
       "required": [
         "base64ImageData",
@@ -4720,7 +4824,6 @@
       "required": [
         "loggedDate",
         "text",
-        "type",
         "geocacheCode"
       ],
       "type": "object",
@@ -4754,6 +4857,9 @@
           ],
           "type": "string"
         },
+        "geocacheLogType": {
+          "$ref": "#/definitions/GeocacheLogType"
+        },
         "updatedCoordinates": {
           "$ref": "#/definitions/Coordinates"
         },
@@ -4762,6 +4868,17 @@
         },
         "usedFavoritePoint": {
           "type": "boolean"
+        }
+      }
+    },
+    "GeocacheNote": {
+      "required": [
+        "note"
+      ],
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string"
         }
       }
     },
@@ -4816,14 +4933,22 @@
             "Mystery",
             "ProjectApe",
             "Webcam",
+            "Locationless",
             "Cito",
             "EarthCache",
             "MegaEvent",
+            "GpsAdventuresExhibit",
             "Wherigo",
+            "LostAndFoundEvent",
             "GeocachingHq",
+            "LostAndFoundCelebration",
+            "BlockParty",
             "GigaEvent"
           ],
           "type": "string"
+        },
+        "geocacheType": {
+          "$ref": "#/definitions/GeocacheType"
         },
         "size": {
           "description": "Container or Size of cache",
@@ -4838,6 +4963,9 @@
             "Small"
           ],
           "type": "string"
+        },
+        "geocacheSize": {
+          "$ref": "#/definitions/GeocacheSize"
         },
         "userData": {
           "$ref": "#/definitions/UserData"
@@ -4867,6 +4995,9 @@
         "ownerCode": {
           "description": "The reference code of the geocache owner",
           "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/User"
         },
         "ownerAlias": {
           "type": "string"
@@ -4936,6 +5067,33 @@
         }
       }
     },
+    "GeocacheType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "GeocacheSize": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "UserData": {
       "type": "object",
       "properties": {
@@ -4965,8 +5123,16 @@
         "country": {
           "type": "string"
         },
+        "countryId": {
+          "format": "int32",
+          "type": "integer"
+        },
         "state": {
           "type": "string"
+        },
+        "stateId": {
+          "format": "int32",
+          "type": "integer"
         }
       }
     },
@@ -5054,11 +5220,17 @@
         "type": {
           "type": "string"
         },
+        "trackableType": {
+          "$ref": "#/definitions/TrackableType"
+        },
         "imageCount": {
           "format": "int32",
           "type": "integer"
         },
         "trackingNumber": {
+          "type": "string"
+        },
+        "url": {
           "type": "string"
         }
       }
@@ -5084,6 +5256,21 @@
           "$ref": "#/definitions/Coordinates"
         },
         "geocacheCode": {
+          "type": "string"
+        }
+      }
+    },
+    "TrackableType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
           "type": "string"
         }
       }
@@ -5119,6 +5306,9 @@
           "type": "integer"
         },
         "ownerCode": {
+          "type": "string"
+        },
+        "url": {
           "type": "string"
         },
         "name": {
@@ -5218,7 +5408,6 @@
         "referenceCode",
         "guid",
         "geocacheCode",
-        "logType",
         "note"
       ],
       "type": "object",
@@ -5259,6 +5448,9 @@
           ],
           "type": "string"
         },
+        "geocacheLogType": {
+          "$ref": "#/definitions/GeocacheLogType"
+        },
         "note": {
           "type": "string"
         },
@@ -5275,7 +5467,6 @@
       "required": [
         "guid",
         "geocacheCode",
-        "logType",
         "note"
       ],
       "type": "object",
@@ -5308,6 +5499,9 @@
             "Event Announcement"
           ],
           "type": "string"
+        },
+        "geocacheLogType": {
+          "$ref": "#/definitions/GeocacheLogType"
         },
         "note": {
           "type": "string"
@@ -5351,8 +5545,7 @@
       "required": [
         "trackableCode",
         "loggedDate",
-        "text",
-        "typeId"
+        "text"
       ],
       "type": "object",
       "properties": {
@@ -5365,6 +5558,9 @@
         "imageCount": {
           "format": "int32",
           "type": "integer"
+        },
+        "url": {
+          "type": "string"
         },
         "trackableCode": {
           "type": "string"
@@ -5386,8 +5582,26 @@
           "format": "int32",
           "type": "integer"
         },
+        "trackableLogType": {
+          "$ref": "#/definitions/TrackableLogType"
+        },
         "coordinates": {
           "$ref": "#/definitions/Coordinates"
+        }
+      }
+    },
+    "TrackableLogType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
         }
       }
     },
@@ -5395,8 +5609,7 @@
       "required": [
         "trackableCode",
         "loggedDate",
-        "text",
-        "typeId"
+        "text"
       ],
       "type": "object",
       "properties": {
@@ -5423,23 +5636,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "trackableLogType": {
+          "$ref": "#/definitions/TrackableLogType"
+        },
         "coordinates": {
           "$ref": "#/definitions/Coordinates"
-        }
-      }
-    },
-    "TrackableType": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "imageUrl": {
-          "type": "string"
         }
       }
     },
