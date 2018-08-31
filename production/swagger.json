@@ -3165,6 +3165,14 @@
             "default": "referenceCode"
           },
           {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
             "name": "api-version",
             "in": "path",
             "description": "The requested API version",
@@ -5232,6 +5240,18 @@
         },
         "url": {
           "type": "string"
+        },
+        "trackableLogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TrackableLog"
+          }
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
         }
       }
     },
@@ -5261,6 +5281,70 @@
       }
     },
     "TrackableType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "TrackableLog": {
+      "required": [
+        "trackableCode",
+        "loggedDate",
+        "text"
+      ],
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "ownerCode": {
+          "type": "string"
+        },
+        "imageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        },
+        "trackableCode": {
+          "type": "string"
+        },
+        "geocacheCode": {
+          "type": "string"
+        },
+        "loggedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "isRot13Encoded": {
+          "type": "boolean"
+        },
+        "typeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "trackableLogType": {
+          "$ref": "#/definitions/TrackableLogType"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/Coordinates"
+        }
+      }
+    },
+    "TrackableLogType": {
       "type": "object",
       "properties": {
         "id": {
@@ -5538,70 +5622,6 @@
         },
         "draftDeleted": {
           "type": "boolean"
-        }
-      }
-    },
-    "TrackableLog": {
-      "required": [
-        "trackableCode",
-        "loggedDate",
-        "text"
-      ],
-      "type": "object",
-      "properties": {
-        "referenceCode": {
-          "type": "string"
-        },
-        "ownerCode": {
-          "type": "string"
-        },
-        "imageCount": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "url": {
-          "type": "string"
-        },
-        "trackableCode": {
-          "type": "string"
-        },
-        "geocacheCode": {
-          "type": "string"
-        },
-        "loggedDate": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "text": {
-          "type": "string"
-        },
-        "isRot13Encoded": {
-          "type": "boolean"
-        },
-        "typeId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "trackableLogType": {
-          "$ref": "#/definitions/TrackableLogType"
-        },
-        "coordinates": {
-          "$ref": "#/definitions/Coordinates"
-        }
-      }
-    },
-    "TrackableLogType": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "imageUrl": {
-          "type": "string"
         }
       }
     },

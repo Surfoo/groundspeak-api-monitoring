@@ -163,7 +163,7 @@
                     <li><a href="#get-users">Get Users</a></li>
                     <li><a href="#get-user-logs">Get User Geocache Logs</a></li>
                     <li><a href="#get-lists">Get User Lists</a></li>
-                    <li><a href="#get-souvenirs">Get Souvenirs</a></li>
+                    <li><a href="#get-souvenirs">Get User Souvenirs</a></li>
                     <li><a href="#get-user-images">Get User Images</a></li>
                 </ul>
             </li>
@@ -3894,7 +3894,7 @@
             <br />
         </div>
         <div id="get-souvenirs">
-            <h3>Get Souvenirs</h3>
+            <h3>Get User Souvenirs</h3>
             <p>
                 This method will fetch the awarded souvenirs for the specified user.
             </p>
@@ -4414,12 +4414,12 @@
                         <tr>
                             <td>placedDate</td>
                             <td>datetime</td>
-                            <td>date when the cache was placed (if an event, this is the date of the event)</td>
+                            <td>date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache</td>
                         </tr>
                         <tr>
                             <td>publishedDate</td>
                             <td>datetime</td>
-                            <td>date when the cache was published</td>
+                            <td>date when the cache was published in the timezone of the geocache</td>
                         </tr>
                     <tr>
                         <td>type (Deprecated)</td>
@@ -4464,7 +4464,7 @@
                         <tr>
                             <td>lastVisitedDate</td>
                             <td>nullable datetime</td>
-                            <td>datetime of last logged visit to geocache</td>
+                            <td>datetime of last logged visit to geocache in the timezone of the geocache</td>
                         </tr>
                         <tr>
                             <td>ownerCode</td>
@@ -4659,7 +4659,7 @@
                         <tr>
                             <td>placedDate</td>
                             <td>datetime</td>
-                            <td>date when the cache was placed (if an event, this is the date of the event)</td>
+                            <td>date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache</td>
                         </tr>
                         <tr>
                             <td>type (Deprecated)</td>
@@ -4702,9 +4702,9 @@
                             <td>latitude and longitude of the geocache</td>
                         </tr>
                         <tr>
-                            <td>lastVisitedUtc</td>
+                            <td>lastVisitedDate</td>
                             <td>nullable datetime</td>
-                            <td>datetime of last logged visit to geocache</td>
+                            <td>datetime of last logged visit to geocache in the timezone of the geocache</td>
                         </tr>
                         <tr>
                             <td>ownerCode</td>
@@ -4785,7 +4785,7 @@
     "latitude": 47.648967,
     "longitude": -122.348117
   },
-  "lastVisitedUtc": "2017-10-05T12:27:50",
+  "lastVisitedDate": "2017-10-05T12:27:50",
   "ownerCode": "PRA09E",
   "isPremiumOnly": false,
   "ianaTimezoneId": "America/Los_Angeles",
@@ -4853,7 +4853,7 @@
                         <td>type (Deprecated)</td>
                         <td>string or integer</td>
                         <td>name or id of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
-                        <td>Yes</td>
+                        <td>No</td>
                         <td>Yes</td>
                     </tr>
                     <tr>
@@ -4988,7 +4988,7 @@
                         </tr>
                         <tr>
                             <td>releasedDate</td>
-                            <td>datetime</td>
+                            <td>date</td>
                             <td>when the trackable was activated</td>
                         </tr>
                         <tr>
@@ -5105,8 +5105,8 @@
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td>LoggedDate</td>
-                            <td>datetime</td>
+                            <td>loggedDate</td>
+                            <td>date</td>
                             <td>when the user logged the trackable</td>
                             <td>Yes</td>
                             <td>Yes</td>
@@ -5136,7 +5136,7 @@
                         <td>typeId (Deprecated)</td>
                         <td>integer</td>
                         <td>type of the trackable log (see <a href="#trackable-log-types">Trackable Log Types</a> for more info)</td>
-                        <td>Yes</td>
+                        <td>No</td>
                         <td>No</td>
                     </tr>
                     <tr>
@@ -5177,7 +5177,7 @@
   "ownerCode": "PR2E27",
   "imageCount": 0,
   "trackableCode": "TB1",
-  "LoggedDate": "2001-09-28T00:00:00",
+  "loggedDate": "2001-09-28T00:00:00",
   "text": "I envy Cache Maru's eTrex Vista, with it's amazing 24M of memory, color screen, and maps, way beyond my eTrex Summit.  Oh Garmin V, when will you come, so someone will envy me...\r\n\r\nI have Envy, given to Denise by jeremy and then given to me.  I bet you envy me now!  I hope to place envy during a Q-13 tv crew cache, stay tuned!",
   "isRot13Encoded": false,
   "typeId": 19,
@@ -5222,7 +5222,7 @@
                     <td>logType (Deprecated)</td>
                     <td>string or integer</td>
                     <td>name or id of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
-                    <td>Yes</td>
+                    <td>No</td>
                     <td>No</td>
                 </tr>
                 <tr>
@@ -5240,7 +5240,7 @@
                         <td>Yes</td>
                     </tr>
                     <tr>
-                        <td>dateLoggedUtc</td>
+                        <td>loggedDateUtc</td>
                         <td>datetime</td>
                         <td>when the user logged the geocache in UTC</td>
                         <td>Optional, defaults to current datetime</td>
@@ -5274,7 +5274,7 @@
     "imageUrl": "https://www.geocaching.com/images/logtypes/2.png"
   },
   "note": "example draft text",
-  "dateLoggedUtc": "2017-10-13T16:28:59.51"
+  "loggedDateUtc": "2017-10-13T16:28:59.51"
 }</code></pre>
         </div>
         <div id="promoted-log-draft" class="container col-md-12">
@@ -5323,7 +5323,7 @@
   "geocacheCode": "GCK25B",
   "logTypeId": 4,
   "note": "example draft text",
-  "dateLoggedUtc": "2017-10-13T16:28:59.51"
+  "loggedDateUtc": "2017-10-13T16:28:59.51"
 }</code></pre>
         </div>
         <div id="user-waypoint" class="container col-md-12">
@@ -5480,16 +5480,9 @@
             <div class="row">
                 <h3>Example</h3>
                 <pre><code>{
-    "id": 0,
-    "datePostedUtc": "2017-10-03T23:37:53.272Z",
-    "description": "string",
-    "accountId": 0,
-    "isCorrectedCoordinates": true,
-    "coordinates": {
-        "latitude": 0,
-        "longitude": 0
-    },
-    "geocacheCode": "string"
+   "id": 1,
+   "name": "Dogs",
+   "isOn": true
 }</code></pre>
             </div>
         </div>
@@ -6119,9 +6112,9 @@
                             <td>identifier of the related entity (geocache log, trackable log, etc.)</td>
                         </tr>
                         <tr>
-                            <td>dateCreated</td>
+                            <td>createdDate</td>
                             <td>DateTime</td>
-                            <td>date image was uploaded</td>
+                            <td>date image was uploaded in UTC</td>
                         </tr>
                     </tbody>
                 </table>
@@ -6169,7 +6162,7 @@
             <div class="row">
                 <h3>Example</h3>
                 <pre><code>{
-    "imageData": "base64 data string here",
+    "base64ImageData": "base64 data string here",
     "description": "Great Scenery"
 }</code></pre>
             </div>
