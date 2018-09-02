@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+date;
 
 cd $(dirname $0);
 
@@ -10,11 +12,11 @@ wget -e robots=off -m -E -q -A.html "https://api.groundspeak.com/api-docs/v1/swa
 
 if [[ $(git ls-files -m | grep -E 'staging|production' | wc -l) -gt 0 ]];then
     FILES=$(git ls-files -m | grep -E 'staging|production');
-    echo "Files found:
-$FILES";
+    printf "Files found:\n%s\n\n" "$FILES";
     git commit --author "Surfoo <surfooo@gmail.com>" -am "Changes detected on:
-$FILES";
-    git push;
+$FILES" && git push;
 else
-    echo "Nothing to do.";
+    printf 'Nothing to do.\n\n';
 fi
+
+exit 0;
