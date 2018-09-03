@@ -4846,6 +4846,9 @@
         "type": {
           "enum": [
             "Found It",
+            "Publish Listing",
+            "Enable Listing",
+            "Temporarily Disable Listing",
             "DNF it",
             "Write note",
             "Archive",
@@ -4854,9 +4857,6 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
-            "Temporarily Disable Listing",
-            "Enable Listing",
-            "Publish Listing",
             "Needs Maintenance",
             "Owner Maintenance",
             "Update Coordinates",
@@ -5513,6 +5513,9 @@
         "logType": {
           "enum": [
             "Found It",
+            "Publish Listing",
+            "Enable Listing",
+            "Temporarily Disable Listing",
             "DNF it",
             "Write note",
             "Archive",
@@ -5521,9 +5524,6 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
-            "Temporarily Disable Listing",
-            "Enable Listing",
-            "Publish Listing",
             "Needs Maintenance",
             "Owner Maintenance",
             "Update Coordinates",
@@ -5565,6 +5565,9 @@
         "logType": {
           "enum": [
             "Found It",
+            "Publish Listing",
+            "Enable Listing",
+            "Temporarily Disable Listing",
             "DNF it",
             "Write note",
             "Archive",
@@ -5573,9 +5576,6 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
-            "Temporarily Disable Listing",
-            "Enable Listing",
-            "Publish Listing",
             "Needs Maintenance",
             "Owner Maintenance",
             "Update Coordinates",
