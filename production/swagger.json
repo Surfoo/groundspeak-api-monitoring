@@ -4846,7 +4846,6 @@
         "type": {
           "enum": [
             "Found It",
-            "Owner Maintenance",
             "DNF it",
             "Write note",
             "Archive",
@@ -4859,6 +4858,7 @@
             "Enable Listing",
             "Publish Listing",
             "Needs Maintenance",
+            "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
             "Event Announcement"
@@ -5513,7 +5513,6 @@
         "logType": {
           "enum": [
             "Found It",
-            "Owner Maintenance",
             "DNF it",
             "Write note",
             "Archive",
@@ -5526,6 +5525,7 @@
             "Enable Listing",
             "Publish Listing",
             "Needs Maintenance",
+            "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
             "Event Announcement"
@@ -5565,7 +5565,6 @@
         "logType": {
           "enum": [
             "Found It",
-            "Owner Maintenance",
             "DNF it",
             "Write note",
             "Archive",
@@ -5578,6 +5577,7 @@
             "Enable Listing",
             "Publish Listing",
             "Needs Maintenance",
+            "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
             "Event Announcement"
