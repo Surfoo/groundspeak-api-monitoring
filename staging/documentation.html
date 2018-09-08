@@ -122,7 +122,6 @@
             <li class="method-heading">
                 <a href="#logDraftMethods" class="method-toggle" data-toggle="collapse" aria-expanded="true"><i>Log Draft Methods</i></a>
                 <ul id="logDraftMethods" class="collapse in">
-                    <li><a href="#get-geocache-logdrafts">Get Geocache's Log Drafts</a></li>
                     <li><a href="#get-logdrafts">Get Log Drafts</a></li>
                     <li><a href="#get-logdraft">Get Log Draft</a></li>
                     <li><a href="#create-logdraft">Create Log Draft</a></li>
@@ -2408,70 +2407,6 @@
     </section>
     <section id="logdraft-methods">
         <h2>Log Draft Methods</h2>
-        <div id="get-geocache-logdrafts">
-            <h3>Get Geocache's Log Drafts</h3>
-            <p>
-                This method will fetch a specified geocache's log drafts for the calling user sorted by date logged descending.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocaches/{referenceCode}/logdrafts</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b>Array of <a href="#log-draft">Log Drafts</a>
-                <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>path</td>
-                        <td><code>gc25</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the geocache</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,referenceCode</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td><code>referenceCode</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>skip</code></td>
-                        <td>query</td>
-                        <td><code>skip=10</code></td>
-                        <td>No</td>
-                        <td>the number of resources to skip over</td>
-                        <td><code>0</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>how many resources to return. maximum value of 50</td>
-                        <td><code>10</code></td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
         <div id="get-logdrafts">
             <h3>Get Log Drafts</h3>
             <p>
@@ -5265,7 +5200,6 @@
             <h3>Example</h3>
             <pre><code>{
   "referenceCode": "LD7Z53GB",
-  "guid": "6ae15c22-132c-4869-aca1-86bffae5a775",
   "geocacheCode": "GCK25B",
   "logType": "WriteNote",
   "geocacheLogType": {
@@ -5641,7 +5575,7 @@
                             <td>typeId</td>
                             <td>integer</td>
                             <td>type of the list (see <a href="#list-types">List Types</a> for more info)</td>
-                            <td>Yes</td>
+                            <td>No (defaults to bookmark list type)</td>
                             <td>No</td>
                         </tr>
                         <tr>

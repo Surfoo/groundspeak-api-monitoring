@@ -2445,97 +2445,6 @@
         "deprecated": false
       }
     },
-    "/v{api-version}/geocaches/{referenceCode}/logdrafts": {
-      "get": {
-        "tags": [
-          "LogDrafts"
-        ],
-        "summary": "Get a list of log draft by geocache for the calling user",
-        "description": "This method will return a page (list + total) of log draft.",
-        "operationId": "LogDrafts_GetGeocacheDrafts",
-        "consumes": [],
-        "produces": [
-          "application/json",
-          "text/json",
-          "application/json-patch+json"
-        ],
-        "parameters": [
-          {
-            "name": "referenceCode",
-            "in": "path",
-            "description": "The reference code of the geocache (example: GC25).",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "skip",
-            "in": "query",
-            "description": "How many drafts to skip (default = 0)",
-            "required": false,
-            "type": "integer",
-            "format": "int32",
-            "default": 0
-          },
-          {
-            "name": "take",
-            "in": "query",
-            "description": "How many drafts to return (default = 10)",
-            "required": false,
-            "type": "integer",
-            "format": "int32",
-            "default": 10
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "description": "How to sort the drafts (default = dateloggedutc)",
-            "required": false,
-            "type": "string",
-            "default": "dateloggedutc"
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "Properties you want to return, defaults to referenceCode",
-            "required": false,
-            "type": "string",
-            "default": "referenceCode"
-          },
-          {
-            "name": "api-version",
-            "in": "path",
-            "description": "The requested API version",
-            "required": true,
-            "type": "string",
-            "default": "1.0"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/LogDraft"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "401": {
-            "description": "Not Authorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Server Error"
-          }
-        },
-        "deprecated": false
-      }
-    },
     "/v{api-version}/logdrafts/{referenceCode}/promote": {
       "post": {
         "tags": [
@@ -4058,74 +3967,6 @@
         "deprecated": false
       }
     },
-    "/v{api-version}/_users/{username}/validate": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Validate User",
-        "description": "This method will return an access token of the validated account. Request must be sent with content-type x-www-form-urlencoded",
-        "operationId": "Users_ValidateUserAsync",
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/json-patch+json",
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json",
-          "text/json",
-          "application/json-patch+json"
-        ],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "description": "username of the account",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "request",
-            "in": "body",
-            "description": "",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ValidationRequest"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "path",
-            "description": "The requested API version",
-            "required": true,
-            "type": "string",
-            "default": "1.0"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "schema": {
-              "$ref": "#/definitions/TokenResponse"
-            }
-          },
-          "400": {
-            "description": "Bad Request (bad validation code)"
-          },
-          "401": {
-            "description": "Not Authorized"
-          },
-          "404": {
-            "description": "Not Found (username not found)"
-          },
-          "500": {
-            "description": "Server Error"
-          }
-        },
-        "deprecated": false
-      }
-    },
     "/v{api-version}/userwaypoints": {
       "get": {
         "tags": [
@@ -5361,8 +5202,7 @@
     },
     "GeocacheList": {
       "required": [
-        "name",
-        "typeId"
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -5429,8 +5269,7 @@
     },
     "PostGeocacheList": {
       "required": [
-        "name",
-        "typeId"
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -5489,9 +5328,6 @@
     },
     "LogDraft": {
       "required": [
-        "referenceCode",
-        "guid",
-        "geocacheCode",
         "note"
       ],
       "type": "object",
@@ -5549,7 +5385,6 @@
     },
     "PostLogDraft": {
       "required": [
-        "guid",
         "geocacheCode",
         "note"
       ],
@@ -5684,42 +5519,6 @@
           "type": "string"
         },
         "url": {
-          "type": "string"
-        }
-      }
-    },
-    "ValidationRequest": {
-      "required": [
-        "clientId",
-        "clientSecret",
-        "validationCode"
-      ],
-      "type": "object",
-      "properties": {
-        "clientId": {
-          "type": "string"
-        },
-        "clientSecret": {
-          "type": "string"
-        },
-        "validationCode": {
-          "type": "string"
-        }
-      }
-    },
-    "TokenResponse": {
-      "type": "object",
-      "properties": {
-        "access_token": {
-          "type": "string"
-        },
-        "refresh_token": {
-          "type": "string"
-        },
-        "token_type": {
-          "type": "string"
-        },
-        "expires_in": {
           "type": "string"
         }
       }
