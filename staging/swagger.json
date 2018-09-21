@@ -2164,7 +2164,7 @@
         ],
         "summary": "Update a log draft",
         "description": "This method will return the log draft edited.",
-        "operationId": "LogDrafts_Put",
+        "operationId": "LogDrafts_Update",
         "consumes": [
           "application/json",
           "text/json",
@@ -2380,7 +2380,7 @@
         ],
         "summary": "Create a log draft",
         "description": "This method will return the log draft created.",
-        "operationId": "LogDrafts_Post",
+        "operationId": "LogDrafts_Create",
         "consumes": [
           "application/json",
           "text/json",
@@ -2523,7 +2523,7 @@
         ],
         "summary": "Add image to log draft",
         "description": "This method will return the image created.",
-        "operationId": "LogDrafts_Post",
+        "operationId": "LogDrafts_AddImage",
         "consumes": [
           "application/json",
           "text/json",
