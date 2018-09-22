@@ -1118,89 +1118,6 @@
         "deprecated": false
       }
     },
-    "/v{api-version}/geocaches/{referenceCode}/trackables": {
-      "get": {
-        "tags": [
-          "Geocaches"
-        ],
-        "summary": "Get a list of trackables in a geocache",
-        "description": "This method will return a list of trackables.",
-        "operationId": "Geocaches_GetTrackables",
-        "consumes": [],
-        "produces": [
-          "application/json",
-          "text/json",
-          "application/json-patch+json"
-        ],
-        "parameters": [
-          {
-            "name": "referenceCode",
-            "in": "path",
-            "description": "The reference code of the geocache (example: GC25).",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "skip",
-            "in": "query",
-            "description": "how many trackables to skip",
-            "required": false,
-            "type": "integer",
-            "format": "int32",
-            "default": 0
-          },
-          {
-            "name": "take",
-            "in": "query",
-            "description": "how many trackables to retrieve",
-            "required": false,
-            "type": "integer",
-            "format": "int32",
-            "default": 10
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "fields you want to return, defaults to referenceCode",
-            "required": false,
-            "type": "string",
-            "default": "referenceCode"
-          },
-          {
-            "name": "api-version",
-            "in": "path",
-            "description": "The requested API version",
-            "required": true,
-            "type": "string",
-            "default": "1.0"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Trackable"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "401": {
-            "description": "Not Authorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Server Error"
-          }
-        },
-        "deprecated": false
-      }
-    },
     "/v{api-version}/geocaches": {
       "get": {
         "tags": [
@@ -1263,6 +1180,97 @@
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Geocache"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocaches/{referenceCode}/trackables": {
+      "get": {
+        "tags": [
+          "Geocaches"
+        ],
+        "summary": "Get a list of trackables in a geocache",
+        "description": "This method will return a list of trackables.",
+        "operationId": "Geocaches_GetTrackables",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache (example: GC25).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many trackables to skip",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "how many trackables to retrieve",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Trackable"
               }
             }
           },
@@ -2595,6 +2603,341 @@
         "deprecated": false
       }
     },
+    "/v{api-version}/states": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the state (aka region) names and ids",
+        "description": "",
+        "operationId": "ReferenceData_GetStates",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/State"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/countries": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns current list of country ids and names",
+        "description": "",
+        "operationId": "ReferenceData_GetCountries",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Country"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/attributes": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the available attributes",
+        "description": "",
+        "operationId": "ReferenceData_GetAttributes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AttributeType"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocachetypes": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the available geocache types",
+        "description": "",
+        "operationId": "ReferenceData_GetGeocacheTypes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeocacheType"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocachelogtypes": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the geocache log types",
+        "description": "",
+        "operationId": "ReferenceData_GetGeocacheLogTypes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeocacheLogType"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/membershiplevels": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the membership levels",
+        "description": "",
+        "operationId": "ReferenceData_GetMembershipLevels",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MembershipLevel"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackablelogtypes": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the trackable log types",
+        "description": "",
+        "operationId": "ReferenceData_GetTrackableLogTypes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TrackableLogType"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/countries/{countryId}/states": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the state (aka region) names and ids",
+        "description": "",
+        "operationId": "ReferenceData_GetStates",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/State"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/status/ping": {
       "get": {
         "tags": [
@@ -2652,6 +2995,14 @@
             "required": false,
             "type": "string",
             "default": "referencecode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
           },
           {
             "name": "api-version",
@@ -3113,95 +3464,6 @@
         "deprecated": false
       }
     },
-    "/v{api-version}/trackables": {
-      "get": {
-        "tags": [
-          "Trackables"
-        ],
-        "summary": "Gets a list of the calling user's trackables",
-        "description": "This method will return a list of trackables.",
-        "operationId": "Trackables_GetUserTrackables",
-        "consumes": [],
-        "produces": [
-          "application/json",
-          "text/json",
-          "application/json-patch+json"
-        ],
-        "parameters": [
-          {
-            "name": "type",
-            "in": "query",
-            "description": "1= inventory, 2 = collection, 3 = owned (default: 1)",
-            "required": false,
-            "type": "string",
-            "default": 1,
-            "enum": [
-              "Inventory",
-              "Collection",
-              "Owned"
-            ]
-          },
-          {
-            "name": "skip",
-            "in": "query",
-            "description": "default = 0",
-            "required": false,
-            "type": "integer",
-            "format": "int32",
-            "default": 0
-          },
-          {
-            "name": "take",
-            "in": "query",
-            "description": "default = 10",
-            "required": false,
-            "type": "integer",
-            "format": "int32",
-            "default": 10
-          },
-          {
-            "name": "fields",
-            "in": "query",
-            "description": "fields you want to return, defaults to referenceCode",
-            "required": false,
-            "type": "string",
-            "default": "referenceCode"
-          },
-          {
-            "name": "api-version",
-            "in": "path",
-            "description": "The requested API version",
-            "required": true,
-            "type": "string",
-            "default": "1.0"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Trackable"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "401": {
-            "description": "Not Authorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Server Error"
-          }
-        },
-        "deprecated": false
-      }
-    },
     "/v{api-version}/trackables/geocointypes": {
       "get": {
         "tags": [
@@ -3361,6 +3623,103 @@
         "deprecated": false
       }
     },
+    "/v{api-version}/trackables": {
+      "get": {
+        "tags": [
+          "Trackables"
+        ],
+        "summary": "Gets a list of the calling user's trackables",
+        "description": "This method will return a list of trackables.",
+        "operationId": "Trackables_GetUserTrackables",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "1= inventory, 2 = collection, 3 = owned (default: 1)",
+            "required": false,
+            "type": "string",
+            "default": 1,
+            "enum": [
+              "Inventory",
+              "Collection",
+              "Owned"
+            ]
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "default = 0",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "default = 10",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Trackable"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/v{api-version}/trackables/{referenceCode}/trackablelogs": {
       "get": {
         "tags": [
@@ -3408,6 +3767,14 @@
             "required": false,
             "type": "string",
             "default": "referenceCode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
           },
           {
             "name": "logTypes",
@@ -4995,6 +5362,9 @@
         "name": {
           "type": "string"
         },
+        "imageUrl": {
+          "type": "string"
+        },
         "isOn": {
           "type": "boolean"
         }
@@ -5053,6 +5423,9 @@
         },
         "ownerCode": {
           "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/User"
         },
         "holderCode": {
           "type": "string"
@@ -5150,12 +5523,21 @@
         "ownerCode": {
           "type": "string"
         },
+        "owner": {
+          "$ref": "#/definitions/User"
+        },
         "imageCount": {
           "format": "int32",
           "type": "integer"
         },
         "url": {
           "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
         },
         "trackableCode": {
           "type": "string"
@@ -5457,6 +5839,72 @@
         },
         "draftDeleted": {
           "type": "boolean"
+        }
+      }
+    },
+    "State": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "countryId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Country": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "AttributeType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "hasYesOption": {
+          "type": "boolean"
+        },
+        "hasNoOption": {
+          "type": "boolean"
+        },
+        "yesIconUrl": {
+          "type": "string"
+        },
+        "noIconUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "MembershipLevel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
         }
       }
     },
