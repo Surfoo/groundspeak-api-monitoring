@@ -4687,7 +4687,12 @@
         "type": {
           "enum": [
             "Found It",
+            "Publish Listing",
+            "Enable Listing",
+            "Owner Maintenance",
+            "Temporarily Disable Listing",
             "DNF it",
+            "Needs Maintenance",
             "Write note",
             "Archive",
             "Needs archiving",
@@ -4695,11 +4700,6 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
-            "Temporarily Disable Listing",
-            "Enable Listing",
-            "Publish Listing",
-            "Needs Maintenance",
-            "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
             "Event Announcement"
@@ -5349,7 +5349,12 @@
         "logType": {
           "enum": [
             "Found It",
+            "Publish Listing",
+            "Enable Listing",
+            "Owner Maintenance",
+            "Temporarily Disable Listing",
             "DNF it",
+            "Needs Maintenance",
             "Write note",
             "Archive",
             "Needs archiving",
@@ -5357,11 +5362,6 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
-            "Temporarily Disable Listing",
-            "Enable Listing",
-            "Publish Listing",
-            "Needs Maintenance",
-            "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
             "Event Announcement"
@@ -5400,7 +5400,12 @@
         "logType": {
           "enum": [
             "Found It",
+            "Publish Listing",
+            "Enable Listing",
+            "Owner Maintenance",
+            "Temporarily Disable Listing",
             "DNF it",
+            "Needs Maintenance",
             "Write note",
             "Archive",
             "Needs archiving",
@@ -5408,11 +5413,6 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
-            "Temporarily Disable Listing",
-            "Enable Listing",
-            "Publish Listing",
-            "Needs Maintenance",
-            "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
             "Event Announcement"
