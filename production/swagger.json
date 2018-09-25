@@ -4575,6 +4575,7 @@
         "type": {
           "enum": [
             "Found It",
+            "Publish Listing",
             "DNF it",
             "Write note",
             "Archive",
@@ -4585,7 +4586,6 @@
             "Unarchive",
             "Temporarily Disable Listing",
             "Enable Listing",
-            "Publish Listing",
             "Needs Maintenance",
             "Owner Maintenance",
             "Update Coordinates",
@@ -4687,6 +4687,7 @@
         "type": {
           "enum": [
             "Found It",
+            "Publish Listing",
             "DNF it",
             "Write note",
             "Archive",
@@ -4697,7 +4698,6 @@
             "Unarchive",
             "Temporarily Disable Listing",
             "Enable Listing",
-            "Publish Listing",
             "Needs Maintenance",
             "Owner Maintenance",
             "Update Coordinates",
@@ -4802,14 +4802,14 @@
         "size": {
           "description": "Container or Size of cache",
           "enum": [
-            "Unknown",
             "Micro",
-            "Regular",
-            "Medium",
-            "Large",
             "Virtual",
+            "Small",
+            "Medium",
             "Other",
-            "Small"
+            "Unknown",
+            "Regular",
+            "Large"
           ],
           "type": "string"
         },
@@ -5349,6 +5349,7 @@
         "logType": {
           "enum": [
             "Found It",
+            "Publish Listing",
             "DNF it",
             "Write note",
             "Archive",
@@ -5359,7 +5360,6 @@
             "Unarchive",
             "Temporarily Disable Listing",
             "Enable Listing",
-            "Publish Listing",
             "Needs Maintenance",
             "Owner Maintenance",
             "Update Coordinates",
@@ -5400,6 +5400,7 @@
         "logType": {
           "enum": [
             "Found It",
+            "Publish Listing",
             "DNF it",
             "Write note",
             "Archive",
@@ -5410,7 +5411,6 @@
             "Unarchive",
             "Temporarily Disable Listing",
             "Enable Listing",
-            "Publish Listing",
             "Needs Maintenance",
             "Owner Maintenance",
             "Update Coordinates",
