@@ -5373,6 +5373,9 @@
     "AdditionalWaypoint": {
       "type": "object",
       "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },

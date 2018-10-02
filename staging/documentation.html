@@ -5226,7 +5226,7 @@
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td>loggedBy</td>
+                            <td>ownerCode</td>
                             <td>string</td>
                             <td>reference code of the owner</td>
                             <td>No</td>
@@ -5289,7 +5289,7 @@
                         <td>No</td>
                     </tr>
                     <tr>
-                        <td>location</td>
+                        <td>coordinates</td>
                         <td><a href="#coordinates">Coordinates</a></td>
                         <td>latitude and longitude of the trackable log</td>
                         <td>Optional</td>
@@ -5298,7 +5298,7 @@
                     <tr>
                         <td>trackingNumber</td>
                         <td>string</td>
-                        <td>code only found on the trackable itself (only needed for creating a log)</td>
+                        <td>code only found on the trackable itself (only needed for creating a log, this will not be returned with any GET methods)</td>
                         <td>Required for retrieving from geocache, grab it, and discovered it activity types</td>
                         <td>No</td>
                     </tr>
@@ -5684,7 +5684,7 @@
                     <td>image url for the attribute if isOn = true</td>
                 </tr>
                 <tr>
-                    <td>yesIconUrl</td>
+                    <td>noIconUrl</td>
                     <td>string</td>
                     <td>image url for the attribute if isOn = false</td>
                 </tr>
