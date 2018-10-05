@@ -70,6 +70,7 @@
             <li><a href="#pagination">Pagination</a></li>
             <li><a href="#fields">Fields</a></li>
             <li><a href="#expand">Expand</a></li>
+            <li><a href="#referencecodes">Reference Codes</a></li>
         </ul>
         <h3>Methods</h3>
         <ul>
@@ -245,7 +246,7 @@
                 <li>We hope you create an application that is useful, inspiring and benefits the geocaching community.</li>
                 <li>You may not create an application that merely replicates or competes with the Geocaching HQ core services.</li>
                 <li>You must respect geocaching users and their privacy choices.</li>
-                <li>You must comply with Geocaching HQ’s Branding Guidelines and use the provided Geocaching logos and links where you use Geocaching HQ data and services in your application.</li>
+                <li>You must comply with Geocaching HQâ€™s Branding Guidelines and use the provided Geocaching logos and links where you use Geocaching HQ data and services in your application.</li>
                 <li>Your application must comply with the <a href="https://www.geocaching.com/mobile/api_license_agreement.aspx">Geocaching API Agreement</a>, Geocaching Service Terms, your privacy policy and all applicable laws.</li>
             </ul>
         </p>
@@ -557,7 +558,7 @@
         <p>
             To act in accordance with our <a href="https://www.geocaching.com/mobile/api_license_agreement.aspx">Geocaching API Agreement</a>, there are certain restrictions you must be include for Geocaching.com Basic Members.<ul>
                 <li>Basic Members on Geocaching.com should only be offered an introductory experience and therefore be limited to three traditional or event caches per day with a maximum D/T rating of 1.5/1.5.</li>
-                <li>Basic Members should not be able to link to Geocaching.com pages for full cache data after they’ve found three geocaches for that day.</li>
+                <li>Basic Members should not be able to link to Geocaching.com pages for full cache data after theyâ€™ve found three geocaches for that day.</li>
                 <li>Once three caches have been found in a day by Basic Members, the following text must be displayed when the user searches for cache details on additional caches:<blockquote>Upgrade to Geocaching.com Premium Membership today for as little at $2.50 per month to download the full details for up to 6000 caches per day, view all cache types in your area, and access many more benefits. Visit Geocaching.com to upgrade.</blockquote></li>
                 <li>Basic Members should not be able to access Premium Member features including Premium Member only geocaches, list functionality, etc. See a full list of Premium Member features <a href="https://payments.geocaching.com/">here</a>.</li>
             </ul>
@@ -715,6 +716,46 @@
         }
     ]
 }</code></pre>
+    </section>
+    <section id="referencecodes">
+        <h2>Reference Codes</h2>
+        <p>Reference codes are the primary means of uniquely identifying a data object sent to or returned by the API. They are identified by a string with a two character prefix followed by a sequence of base16 or base31 characters.</p>
+        <p>The following pseudo code shows how to perform the conversion from a string based code to the 64bit integer value and vice versa.</p>
+        <pre>Base16_Characters = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+]
+
+Base31_Characters = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+    'G', 'H', 'J', 'K', 'M', 'N', 'P', 'Q', 'R', 'T', 'V', 'W', 'X', 'Y', 'Z'
+]
+
+
+Id to Reference Code
+--------------------
+
+If Id < 65536
+    ReferenceCode = Base16(Id) // Decimal to Hex
+else
+    ReferenceCode = Base31(Id + 411120)
+
+
+    
+Reference Code to Id
+--------------------
+
+if Prefix == "GC" 
+    ReferenceCode = Replace(code, "S", "5")
+    ReferenceCode = Replace(code, "O", "0")
+
+ReferenceCode = RemovePrefix(ReferenceCode)
+    
+FirstChar = substring(ReferenceCode, 0, 1)
+    
+if len(ReferenceCode) >= 5 or FirstChar >= 'G'
+    Id = Base31(ReferenceCode) - 411120
+else
+    Id = Base16(ReferenceCode)</pre>
     </section>
     <section id="geocache-methods">
         <h2>Geocache Methods</h2>
@@ -4707,7 +4748,7 @@
   "lastVisitedDate": "2017-10-05T12:27:50",
   "ownerCode": "PRA09E",
   "isPremiumOnly": false,
-  "shortDescription": "&lt;h1 style=\"text-align:center;\"&gt;&lt;strong&gt;&lt;font color=\"#02874D\"&gt;Welcome to Geocaching HQ’s Visitor Center!&lt;/font&gt;&lt;/strong&gt;&lt;/h1&gt;\r\n&lt;br /&gt;\r\n",
+  "shortDescription": "&lt;h1 style=\"text-align:center;\"&gt;&lt;strong&gt;&lt;font color=\"#02874D\"&gt;Welcome to Geocaching HQâ€™s Visitor Center!&lt;/font&gt;&lt;/strong&gt;&lt;/h1&gt;\r\n&lt;br /&gt;\r\n",
   "longDescription": "&lt;h2 style=\"text-align:center;\"&gt;&lt;strong&gt;&lt;span style=\"color:#00B265;\"&gt;This cache is only available while the Visitor Center at HQ is open.&lt;/span&gt;&lt;/strong&gt;&lt;/h2&gt;",
   "hints": "Where would you look if you were a pirate?",
   "attributes": [
