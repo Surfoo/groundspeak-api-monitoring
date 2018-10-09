@@ -70,6 +70,7 @@
             <li><a href="#pagination">Pagination</a></li>
             <li><a href="#fields">Fields</a></li>
             <li><a href="#expand">Expand</a></li>
+            <li><a href="#referencecodes">Reference Codes</a></li>
         </ul>
         <h3>Methods</h3>
         <ul>
@@ -82,6 +83,8 @@
                     <li><a href="#get-geocache-images">Get Geocache Images</a></li>
                     <li><a href="#upsert-geocachenote">Upsert Geocache Note</a></li>
                     <li><a href="#delete-geocachenote">Delete Geocache Note</a></li>
+                    <li><a href="#get-geocache-types">Get Geocache Types</a></li>
+                    <li><a href="#get-attributes">Get Attributes</a></li>
                 </ul>
             </li>
             <li class="method-heading">
@@ -94,6 +97,7 @@
                     <li><a href="#delete-geocachelog">Delete Geocache Log</a></li>
                     <li><a href="#get-geocachelog-images">Get Geocache Log Images</a></li>
                     <li><a href="#create-geocachelog-image">Add Geocache Log Image</a></li>
+                    <li><a href="#get-geocachelog-types">Get Geocache Log Types</a></li>
                 </ul>
             </li>
             <li class="method-heading">
@@ -101,7 +105,6 @@
                 <ul id="trackableMethods" class="collapse in">
                     <li><a href="#get-geocache-trackables">Get Geocache's Trackables</a></li>
                     <li><a href="#get-trackable">Get Trackable</a></li>
-                    
                     <li><a href="#get-users-trackables">Get User's Trackables</a></li>
                     <li><a href="#get-trackable-images">Get Trackable Images</a></li>
                     <li><a href="#get-geocoin-types">Get Geocoin Types</a></li>
@@ -117,12 +120,12 @@
                     <li><a href="#delete-trackablelog">Delete Trackable Log</a></li>
                     <li><a href="#get-trackablelog-images">Get Trackable Log Images</a></li>
                     <li><a href="#create-trackablelog-image">Add Trackable Log Image</a></li>
+                    <li><a href="#get-trackablelog-types">Get Trackable Log Types</a></li>
                 </ul>
             </li>
             <li class="method-heading">
                 <a href="#logDraftMethods" class="method-toggle" data-toggle="collapse" aria-expanded="true"><i>Log Draft Methods</i></a>
                 <ul id="logDraftMethods" class="collapse in">
-                    <li><a href="#get-geocache-logdrafts">Get Geocache's Log Drafts</a></li>
                     <li><a href="#get-logdrafts">Get Log Drafts</a></li>
                     <li><a href="#get-logdraft">Get Log Draft</a></li>
                     <li><a href="#create-logdraft">Create Log Draft</a></li>
@@ -165,6 +168,7 @@
                     <li><a href="#get-lists">Get User Lists</a></li>
                     <li><a href="#get-souvenirs">Get User Souvenirs</a></li>
                     <li><a href="#get-user-images">Get User Images</a></li>
+                    <li><a href="#get-membership-levels">Get Membership Levels</a></li>
                 </ul>
             </li>
             <li class="method-heading">
@@ -182,6 +186,9 @@
                 <a href="#utilityMethods" class="method-toggle" data-toggle="collapse" aria-expanded="true"><i>Utility Methods</i></a>
                 <ul id="utilityMethods" class="collapse in">
                     <li><a href="#get-reference-code">Get Reference Code</a></li>
+                    <li><a href="#get-countries">Get Countries</a></li>
+                    <li><a href="#get-states">Get States</a></li>
+                    <li><a href="#get-country-states">Get States By Country</a></li>
                 </ul>
             </li>
         </ul>
@@ -191,7 +198,6 @@
             <li><a href="#geocache-log">GeocacheLog</a></li>
             <li><a href="#trackable">Trackable</a></li>
             <li><a href="#trackable-log">TrackableLog</a></li>
-            <li><a href="#trackabletype">TrackableType</a></li>
             <li><a href="#log-draft">LogDraft</a></li>
             <li><a href="#promoted-log-draft">PromotedLogDraft</a></li>
             <li><a href="#user-waypoint">UserWaypoint</a></li>
@@ -240,7 +246,7 @@
                 <li>We hope you create an application that is useful, inspiring and benefits the geocaching community.</li>
                 <li>You may not create an application that merely replicates or competes with the Geocaching HQ core services.</li>
                 <li>You must respect geocaching users and their privacy choices.</li>
-                <li>You must comply with Geocaching HQ’s Branding Guidelines and use the provided Geocaching logos and links where you use Geocaching HQ data and services in your application.</li>
+                <li>You must comply with Geocaching HQâ€™s Branding Guidelines and use the provided Geocaching logos and links where you use Geocaching HQ data and services in your application.</li>
                 <li>Your application must comply with the <a href="https://www.geocaching.com/mobile/api_license_agreement.aspx">Geocaching API Agreement</a>, Geocaching Service Terms, your privacy policy and all applicable laws.</li>
             </ul>
         </p>
@@ -552,7 +558,7 @@
         <p>
             To act in accordance with our <a href="https://www.geocaching.com/mobile/api_license_agreement.aspx">Geocaching API Agreement</a>, there are certain restrictions you must be include for Geocaching.com Basic Members.<ul>
                 <li>Basic Members on Geocaching.com should only be offered an introductory experience and therefore be limited to three traditional or event caches per day with a maximum D/T rating of 1.5/1.5.</li>
-                <li>Basic Members should not be able to link to Geocaching.com pages for full cache data after they’ve found three geocaches for that day.</li>
+                <li>Basic Members should not be able to link to Geocaching.com pages for full cache data after theyâ€™ve found three geocaches for that day.</li>
                 <li>Once three caches have been found in a day by Basic Members, the following text must be displayed when the user searches for cache details on additional caches:<blockquote>Upgrade to Geocaching.com Premium Membership today for as little at $2.50 per month to download the full details for up to 6000 caches per day, view all cache types in your area, and access many more benefits. Visit Geocaching.com to upgrade.</blockquote></li>
                 <li>Basic Members should not be able to access Premium Member features including Premium Member only geocaches, list functionality, etc. See a full list of Premium Member features <a href="https://payments.geocaching.com/">here</a>.</li>
             </ul>
@@ -602,17 +608,17 @@
     "name": "Camels Prairie Stash"
 }</code></pre>
         <p>
-            To specify nested object fields, use a period (".") to drill down into the object. Including the top level of an object
-            will include all nested properties
+            To specify nested object fields, list the nested fields as a comma separated list inside square brackets ("[", "]"). Including the top level of an object will include all nested properties
         </p>
         <p>
-            <b>Example Request:</b> <code>https://api.groundspeak.com/v1/geocaches/gc25?fields=userData.favorited</code>
+            <b>Example Request:</b> <code>https://api.groundspeak.com/v1/geocaches/gc25?fields=userData[favorited,founddate]</code>
             <br />
             <b>Example Response:</b>
             <pre><code>{
     "userData": 
     {
-        "favorited": true
+        "favorited": true,
+        "foundDate": "2013-07-16T12:00:00"
     }
 }</code></pre>
             <br />
@@ -625,6 +631,7 @@
     {
         "favorited": true,
         "foundDate": "2013-07-16T12:00:00",
+        "dnfDate": "2013-07-05T12:00:00",
         ...
     }
 }</code></pre>
@@ -709,6 +716,46 @@
         }
     ]
 }</code></pre>
+    </section>
+    <section id="referencecodes">
+        <h2>Reference Codes</h2>
+        <p>Reference codes are the primary means of uniquely identifying a data object sent to or returned by the API. They are identified by a string with a two character prefix followed by a sequence of base16 or base31 characters.</p>
+        <p>The following pseudo code shows how to perform the conversion from a string based code to the 64bit integer value and vice versa.</p>
+        <pre>Base16_Characters = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+]
+
+Base31_Characters = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+    'G', 'H', 'J', 'K', 'M', 'N', 'P', 'Q', 'R', 'T', 'V', 'W', 'X', 'Y', 'Z'
+]
+
+
+Id to Reference Code
+--------------------
+
+If Id < 65536
+    ReferenceCode = Base16(Id) // Decimal to Hex
+else
+    ReferenceCode = Base31(Id + 411120)
+
+
+    
+Reference Code to Id
+--------------------
+
+if Prefix == "GC" 
+    ReferenceCode = Replace(code, "S", "5")
+    ReferenceCode = Replace(code, "O", "0")
+
+ReferenceCode = RemovePrefix(ReferenceCode)
+    
+FirstChar = substring(ReferenceCode, 0, 1)
+    
+if len(ReferenceCode) >= 5 or FirstChar >= 'G'
+    Id = Base31(ReferenceCode) - 411120
+else
+    Id = Base16(ReferenceCode)</pre>
     </section>
     <section id="geocache-methods">
         <h2>Geocache Methods</h2>
@@ -925,30 +972,30 @@
                         <td>Limits search results to geocaches hidden in country supplied. Country filter can only be used with one value.</td>
                         <td>-</td>
                     </tr>
-                <tr>
-                    <td><code>level</code></td>
-                    <td><code>lvl</code></td>
-                    <td>string</td>
-                    <td><code>lvl:premium</code></td>
-                    <td>Limits search results to geocaches available to premium or basic level users. The supported values for this filter are "basic" and "premium".</td>
-                    <td>all levels</td>
-                </tr>
-                <tr>
-                    <td><code>publishedDate</code></td>
-                    <td><code>pd</code></td>
-                    <td>date range</td>
-                    <td><code>pd:[2017-01-01,2017-12-31]</code> or <code>pd:[2018-01-01,]</code></td>
-                    <td>Limits search results to geocaches published in the inclusive date range. Provide one date to give an open ended range, such as all dates before XXXX-XX-XX or all dates after XXXX-XX-XX.</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td><code>isPublished</code></td>
-                    <td><code>ip</code></td>
-                    <td>boolean</td>
-                    <td><code>ip:false</code></td>
-                    <td>Limits search results to geocaches either published or not published. Unpublished geocaches will only be returned if calling user is the owner of the geocache.</td>
-                    <td>all published geocaches and unpublished, owned geocaches</td>
-                </tr>
+                    <tr>
+                        <td><code>level</code></td>
+                        <td><code>lvl</code></td>
+                        <td>string</td>
+                        <td><code>lvl:premium</code></td>
+                        <td>Limits search results to geocaches available to premium or basic level users. The supported values for this filter are "basic" and "premium".</td>
+                        <td>all levels</td>
+                    </tr>
+                    <tr>
+                        <td><code>publishedDate</code></td>
+                        <td><code>pd</code></td>
+                        <td>date range</td>
+                        <td><code>pd:[2017-01-01,2017-12-31]</code> or <code>pd:[2018-01-01,]</code></td>
+                        <td>Limits search results to geocaches published in the inclusive date range. Provide one date to give an open ended range, such as all dates before XXXX-XX-XX or all dates after XXXX-XX-XX.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>isPublished</code></td>
+                        <td><code>ip</code></td>
+                        <td>boolean</td>
+                        <td><code>ip:false</code></td>
+                        <td>Limits search results to geocaches either published or not published. Unpublished geocaches will only be returned if calling user is the owner of the geocache.</td>
+                        <td>all published geocaches and unpublished, owned geocaches</td>
+                    </tr>
                     <tr>
                         <td><code>hasCorrectedCoordinates</code></td>
                         <td><code>hcc</code></td>
@@ -1302,6 +1349,38 @@
             </table>
             <br />
         </div>
+        <div id="get-geocache-types">
+            <h3>Get Geocache Types</h3>
+            <p>
+                This method will fetch all valid geocache types
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocachetypes</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of <a href="#type">Geocache Types</a>
+                <br />
+                <b>Response Codes: </b>200, 401, 500
+            </p>
+            <br />
+        </div>
+    <div id="get-attributes">
+        <h3>Get Attributes</h3>
+        <p>
+            This method will fetch all valid attributes
+        </p>
+        <p>
+            <b>Path: </b><code>/v1/attributes</code>
+            <br />
+            <b>HTTP Method: </b>GET
+            <br />
+            <b>Response Type: </b>Array of <a href="#attributetype">Attribute Types</a>
+            <br />
+            <b>Response Codes: </b>200, 401, 500
+        </p>
+        <br />
+    </div>
     </section>
 
     <section id="geocachelog-methods">
@@ -1652,64 +1731,80 @@
             </table>
             <br />
         </div>
-        <div id="create-geocachelog-image">
-            <h3>Add Geocache Log Image</h3>
-            <p>
-                This method will add a new image to the specified geocache log. It will return the added image.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocachelogs/{referenceCode}/images</code>
-                <br />
-                <b>HTTP Method: </b>POST
-                <br />
-                <b>Response Type: </b><a href="#image">Image</a>
-                <br />
-                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
-                <br />
-                <b>Restrictions: </b>Only owner of geocache log may add an image.
-            </p>
+    <div id="create-geocachelog-image">
+        <h3>Add Geocache Log Image</h3>
+        <p>
+            This method will add a new image to the specified geocache log. It will return the added image.
+        </p>
+        <p>
+            <b>Path: </b><code>/v1/geocachelogs/{referenceCode}/images</code>
             <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>path</td>
-                        <td><code>gc25</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the geocache</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>image</code></td>
-                        <td>body</td>
-                        <td><a href="#post-image">ImageToUpload</a></td>
-                        <td>Yes</td>
-                        <td>image to add to log</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=guid,url</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td><code>url</code></td>
-                    </tr>
-                </tbody>
-            </table>
+            <b>HTTP Method: </b>POST
             <br />
-        </div>
+            <b>Response Type: </b><a href="#image">Image</a>
+            <br />
+            <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
+            <br />
+            <b>Restrictions: </b>Only owner of geocache log may add an image.
+        </p>
+        <br />
+        <table class="table table-striped table-hover table-responsive">
+            <caption>Parameters</caption>
+            <thead>
+            <tr>
+                <th class="col-xs-1">Argument</th>
+                <th class="col-xs-1">Type</th>
+                <th class="col-xs-2">Example</th>
+                <th class="col-xs-1">Required</th>
+                <th class="col-xs-5">Description</th>
+                <th class="col-xs-2">Default</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>referenceCode</code></td>
+                <td>path</td>
+                <td><code>gc25</code></td>
+                <td>Yes</td>
+                <td>the identifier of the geocache</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><code>image</code></td>
+                <td>body</td>
+                <td><a href="#post-image">ImageToUpload</a></td>
+                <td>Yes</td>
+                <td>image to add to log</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><code>fields</code></td>
+                <td>query</td>
+                <td><code>fields=guid,url</code></td>
+                <td>No</td>
+                <td>partial response fields to return</td>
+                <td><code>url</code></td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+    </div>
+    <div id="get-geocachelog-types">
+        <h3>Get Geocache Log Types</h3>
+        <p>
+            This method will fetch all valid geocache log types
+        </p>
+        <p>
+            <b>Path: </b><code>/v1/geocachelogtypes</code>
+            <br />
+            <b>HTTP Method: </b>GET
+            <br />
+            <b>Response Type: </b>Array of <a href="#type">Geocache Log Types</a>
+            <br />
+            <b>Response Codes: </b>200, 401, 500
+        </p>
+        <br />
+    </div>
     </section>
     <section id="trackable-methods">
         <h2>Trackable Methods</h2>
@@ -1767,14 +1862,22 @@
                         <td>the number of resources to skip over</td>
                         <td><code>0</code></td>
                     </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>how many resources to return. maximum value of 50</td>
-                        <td><code>10</code></td>
-                    </tr>
+                <tr>
+                    <td><code>take</code></td>
+                    <td>query</td>
+                    <td><code>take=0</code></td>
+                    <td>No</td>
+                    <td>how many resources to return. maximum value of 50</td>
+                    <td><code>10</code></td>
+                </tr>
+                <tr>
+                    <td><code>expand</code></td>
+                    <td>query</td>
+                    <td><code>expand=trackablelogs:5</code></td>
+                    <td>No</td>
+                    <td>The fields of the trackable object to expand. The available options are trackablelogs, trackablelog.images, and images.</td>
+                    <td>-</td>
+                </tr>
                 </tbody>
             </table>
             <br />
@@ -1815,19 +1918,26 @@
                         <td>the identifier of the trackable (tb code or tracking number found on the physical object)</td>
                         <td>-</td>
                     </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,referenceCode</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td><code>referenceCode</code></td>
-                    </tr>
+                <tr>
+                    <td><code>fields</code></td>
+                    <td>query</td>
+                    <td><code>fields=name,referenceCode</code></td>
+                    <td>No</td>
+                    <td>partial response fields to return</td>
+                    <td><code>referenceCode</code></td>
+                </tr>
+                <tr>
+                    <td><code>expand</code></td>
+                    <td>query</td>
+                    <td><code>expand=trackablelogs:5</code></td>
+                    <td>No</td>
+                    <td>The fields of the trackable object to expand. The available options are trackablelogs, trackablelog.images, and images.</td>
+                    <td>-</td>
+                </tr>
                 </tbody>
             </table>
             <br />
         </div>
-        
         <div id="get-users-trackables">
             <h3>Get User's Trackables</h3>
             <p>
@@ -1880,14 +1990,22 @@
                         <td>the number of resources to skip over</td>
                         <td><code>0</code></td>
                     </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>how many resources to return. maximum value of 50</td>
-                        <td><code>10</code></td>
-                    </tr>
+                <tr>
+                    <td><code>take</code></td>
+                    <td>query</td>
+                    <td><code>take=0</code></td>
+                    <td>No</td>
+                    <td>how many resources to return. maximum value of 50</td>
+                    <td><code>10</code></td>
+                </tr>
+                <tr>
+                    <td><code>expand</code></td>
+                    <td>query</td>
+                    <td><code>expand=trackablelogs:5</code></td>
+                    <td>No</td>
+                    <td>The fields of the trackable object to expand. The available options are trackablelogs, trackablelog.images, and images.</td>
+                    <td>-</td>
+                </tr>
                 </tbody>
             </table>
             <br />
@@ -2076,6 +2194,14 @@
                     <td><code>10</code></td>
                 </tr>
                 <tr>
+                    <td><code>expand</code></td>
+                    <td>query</td>
+                    <td><code>expand=images:5</code></td>
+                    <td>No</td>
+                    <td>The fields of the trackable log object to expand. The available options are images.</td>
+                    <td>-</td>
+                </tr>
+                <tr>
                     <td><code>logTypes</code></td>
                     <td>query</td>
                     <td><code>logTypes=14,75</code></td>
@@ -2123,14 +2249,22 @@
                         <td>the identifiers of the trackable log</td>
                         <td>-</td>
                     </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,referenceCode</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td><code>referenceCode</code></td>
-                    </tr>
+                <tr>
+                    <td><code>fields</code></td>
+                    <td>query</td>
+                    <td><code>fields=name,referenceCode</code></td>
+                    <td>No</td>
+                    <td>partial response fields to return</td>
+                    <td><code>referenceCode</code></td>
+                </tr>
+                <tr>
+                    <td><code>expand</code></td>
+                    <td>query</td>
+                    <td><code>expand=images:5</code></td>
+                    <td>No</td>
+                    <td>The fields of the trackable log object to expand. The available options are images.</td>
+                    <td>-</td>
+                </tr>
                 </tbody>
             </table>
             <br />
@@ -2347,131 +2481,83 @@
             </table>
             <br />
         </div>
-        <div id="create-trackablelog-image">
-            <h3>Add Trackable Log Image</h3>
-            <p>
-                This method will add a new image to the specified trackable log. It will return the added image.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/trackablelogs/{referenceCode}/images</code>
-                <br />
-                <b>HTTP Method: </b>POST
-                <br />
-                <b>Response Type: </b><a href="#image">Image</a>
-                <br />
-                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
-                <br />
-                <b>Restrictions: </b>Only owner of trackable log may add an image.
-            </p>
+    <div id="create-trackablelog-image">
+        <h3>Add Trackable Log Image</h3>
+        <p>
+            This method will add a new image to the specified trackable log. It will return the added image.
+        </p>
+        <p>
+            <b>Path: </b><code>/v1/trackablelogs/{referenceCode}/images</code>
             <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>path</td>
-                        <td><code>tl25</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the trackable</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>image</td>
-                        <td>body</td>
-                        <td><a href="#post-image">ImageToUpload</a></td>
-                        <td>Yes</td>
-                        <td>image to add to log</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=url</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td><code>url</code></td>
-                    </tr>
-                </tbody>
-            </table>
+            <b>HTTP Method: </b>POST
             <br />
-        </div>
+            <b>Response Type: </b><a href="#image">Image</a>
+            <br />
+            <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
+            <br />
+            <b>Restrictions: </b>Only owner of trackable log may add an image.
+        </p>
+        <br />
+        <table class="table table-striped table-hover table-responsive">
+            <caption>Parameters</caption>
+            <thead>
+            <tr>
+                <th class="col-xs-1">Argument</th>
+                <th class="col-xs-1">Type</th>
+                <th class="col-xs-2">Example</th>
+                <th class="col-xs-1">Required</th>
+                <th class="col-xs-5">Description</th>
+                <th class="col-xs-2">Default</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>referenceCode</code></td>
+                <td>path</td>
+                <td><code>tl25</code></td>
+                <td>Yes</td>
+                <td>the identifier of the trackable</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>image</td>
+                <td>body</td>
+                <td><a href="#post-image">ImageToUpload</a></td>
+                <td>Yes</td>
+                <td>image to add to log</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><code>fields</code></td>
+                <td>query</td>
+                <td><code>fields=url</code></td>
+                <td>No</td>
+                <td>partial response fields to return</td>
+                <td><code>url</code></td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+    </div>
+    <div id="get-trackablelog-types">
+        <h3>Get Trackable Log Types</h3>
+        <p>
+            This method will fetch all valid trackable log types
+        </p>
+        <p>
+            <b>Path: </b><code>/v1/trackablelogtypes</code>
+            <br />
+            <b>HTTP Method: </b>GET
+            <br />
+            <b>Response Type: </b>Array of <a href="#type">Trackable Log Types</a>
+            <br />
+            <b>Response Codes: </b>200, 401, 500
+        </p>
+        <br />
+    </div>
     </section>
     <section id="logdraft-methods">
         <h2>Log Draft Methods</h2>
-        <div id="get-geocache-logdrafts">
-            <h3>Get Geocache's Log Drafts</h3>
-            <p>
-                This method will fetch a specified geocache's log drafts for the calling user sorted by date logged descending.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocaches/{referenceCode}/logdrafts</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b>Array of <a href="#log-draft">Log Drafts</a>
-                <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>path</td>
-                        <td><code>gc25</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the geocache</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,referenceCode</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td><code>referenceCode</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>skip</code></td>
-                        <td>query</td>
-                        <td><code>skip=10</code></td>
-                        <td>No</td>
-                        <td>the number of resources to skip over</td>
-                        <td><code>0</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>how many resources to return. maximum value of 50</td>
-                        <td><code>10</code></td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
         <div id="get-logdrafts">
             <h3>Get Log Drafts</h3>
             <p>
@@ -3959,72 +4045,88 @@
             </table>
             <br />
         </div>
-        <div id="get-user-images">
-            <h3>Get User Images</h3>
-            <p>
-                This method will fetch the images for the specified user.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/users/{referenceCode}/images</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b>Array of <a href="#image">Images</a>
-                <br />
-                <b>Response Codes: </b>200, 400, 401, 403, 404, 500
-                <br />
-                <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
-            </p>
+    <div id="get-user-images">
+        <h3>Get User Images</h3>
+        <p>
+            This method will fetch the images for the specified user.
+        </p>
+        <p>
+            <b>Path: </b><code>/v1/users/{referenceCode}/images</code>
             <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>path</td>
-                        <td><code>PR18</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the user. Can also use <code>me</code> to fetch the calling user's information</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,referenceCode</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td><code>url</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>skip</code></td>
-                        <td>query</td>
-                        <td><code>skip=10</code></td>
-                        <td>No</td>
-                        <td>the number of resources to skip over</td>
-                        <td><code>0</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>how many resources to return. maximum value of 50</td>
-                        <td><code>10</code></td>
-                    </tr>
-                </tbody>
-            </table>
+            <b>HTTP Method: </b>GET
             <br />
-        </div>
+            <b>Response Type: </b>Array of <a href="#image">Images</a>
+            <br />
+            <b>Response Codes: </b>200, 400, 401, 403, 404, 500
+            <br />
+            <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
+        </p>
+        <br />
+        <table class="table table-striped table-hover table-responsive">
+            <caption>Parameters</caption>
+            <thead>
+            <tr>
+                <th class="col-xs-1">Argument</th>
+                <th class="col-xs-1">Type</th>
+                <th class="col-xs-2">Example</th>
+                <th class="col-xs-1">Required</th>
+                <th class="col-xs-5">Description</th>
+                <th class="col-xs-2">Default</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>referenceCode</code></td>
+                <td>path</td>
+                <td><code>PR18</code></td>
+                <td>Yes</td>
+                <td>the identifier of the user. Can also use <code>me</code> to fetch the calling user's information</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><code>fields</code></td>
+                <td>query</td>
+                <td><code>fields=name,referenceCode</code></td>
+                <td>No</td>
+                <td>partial response fields to return</td>
+                <td><code>url</code></td>
+            </tr>
+            <tr>
+                <td><code>skip</code></td>
+                <td>query</td>
+                <td><code>skip=10</code></td>
+                <td>No</td>
+                <td>the number of resources to skip over</td>
+                <td><code>0</code></td>
+            </tr>
+            <tr>
+                <td><code>take</code></td>
+                <td>query</td>
+                <td><code>take=0</code></td>
+                <td>No</td>
+                <td>how many resources to return. maximum value of 50</td>
+                <td><code>10</code></td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+    </div>
+    <div id="get-membership-levels">
+        <h3>Get Membership Levels</h3>
+        <p>
+            This method will fetch all valid membership levels
+        </p>
+        <p>
+            <b>Path: </b><code>/v1/membershiplevels</code>
+            <br />
+            <b>HTTP Method: </b>GET
+            <br />
+            <b>Response Type: </b>Array of id and name
+            <br />
+            <b>Response Codes: </b>200, 401, 500
+        </p>
+        <br />
+    </div>
     </section>
     <section id="friend-methods">
         <h2>Friend Methods</h2>
@@ -4337,7 +4439,7 @@
                 <thead>
                     <tr>
                         <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Path</th>
+                        <th class="col-xs-1">Type</th>
                         <th class="col-xs-2">Example</th>
                         <th class="col-xs-1">Required</th>
                         <th class="col-xs-5">Description</th>
@@ -4361,6 +4463,76 @@
                         <td>the type of reference code to return</td>
                         <td>-</td>
                     </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+        <div id="get-countries">
+            <h3>Get Countries</h3>
+            <p>
+                This method will fetch all valid countries
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/countries</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of id and name
+                <br />
+                <b>Response Codes: </b>200, 401, 500
+            </p>
+            <br />
+        </div>
+        <div id="get-states">
+            <h3>Get States</h3>
+            <p>
+                This method will fetch all valid states
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/states</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of id, name, and countryId
+            </p>
+            <br />
+        </div>
+        <div id="get-country-states">
+            <h3>Get States By Country</h3>
+            <p>
+                This method will fetch all valid states of a provided country
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/countries/{countryId}/states</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of id, name, and countryId
+                <br />
+                <b>Response Codes: </b>200, 401, 500
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                <tr>
+                    <th class="col-xs-1">Argument</th>
+                    <th class="col-xs-1">Type</th>
+                    <th class="col-xs-2">Example</th>
+                    <th class="col-xs-1">Required</th>
+                    <th class="col-xs-5">Description</th>
+                    <th class="col-xs-2">Default</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>countryId</code></td>
+                    <td>path</td>
+                    <td><code>countryId=1</code></td>
+                    <td>Yes</td>
+                    <td>the id of the country</td>
+                    <td>-</td>
+                </tr>
                 </tbody>
             </table>
             <br />
@@ -4576,7 +4748,7 @@
   "lastVisitedDate": "2017-10-05T12:27:50",
   "ownerCode": "PRA09E",
   "isPremiumOnly": false,
-  "shortDescription": "&lt;h1 style=\"text-align:center;\"&gt;&lt;strong&gt;&lt;font color=\"#02874D\"&gt;Welcome to Geocaching HQ’s Visitor Center!&lt;/font&gt;&lt;/strong&gt;&lt;/h1&gt;\r\n&lt;br /&gt;\r\n",
+  "shortDescription": "&lt;h1 style=\"text-align:center;\"&gt;&lt;strong&gt;&lt;font color=\"#02874D\"&gt;Welcome to Geocaching HQâ€™s Visitor Center!&lt;/font&gt;&lt;/strong&gt;&lt;/h1&gt;\r\n&lt;br /&gt;\r\n",
   "longDescription": "&lt;h2 style=\"text-align:center;\"&gt;&lt;strong&gt;&lt;span style=\"color:#00B265;\"&gt;This cache is only available while the Visitor Center at HQ is open.&lt;/span&gt;&lt;/strong&gt;&lt;/h2&gt;",
   "hints": "Where would you look if you were a pirate?",
   "attributes": [
@@ -5035,7 +5207,13 @@
 	                        <td>url</td>
 	                        <td>string</td>
 	                        <td>geocaching.com web page associated with trackable</td>
-	                    </tr>                    </tbody>
+                    </tr>  
+                    <tr>
+                        <td>owner</td>
+                        <td><a href="#user">User</a></td>
+                        <td>information about the owner of the trackable</td>
+                    </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="row">
@@ -5050,6 +5228,11 @@
   "originCountry": "United States",
   "allowedToBeCollected": false,
   "ownerCode": "PR3",
+  "owner": {
+    "username": "MNofMind",
+    "avatarUrl": "https://img-stage.geocaching.com/gcstage/{0}/0640f488-9abe-4c2a-a786-bb75cec84357.gif",
+    ...
+  },
   "holderCode": null,
   "inHolderCollection": false,
   "isMissing": true,
@@ -5084,7 +5267,7 @@
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td>loggedBy</td>
+                            <td>ownerCode</td>
                             <td>string</td>
                             <td>reference code of the owner</td>
                             <td>No</td>
@@ -5147,7 +5330,7 @@
                         <td>No</td>
                     </tr>
                     <tr>
-                        <td>location</td>
+                        <td>coordinates</td>
                         <td><a href="#coordinates">Coordinates</a></td>
                         <td>latitude and longitude of the trackable log</td>
                         <td>Optional</td>
@@ -5156,7 +5339,7 @@
                     <tr>
                         <td>trackingNumber</td>
                         <td>string</td>
-                        <td>code only found on the trackable itself (only needed for creating a log)</td>
+                        <td>code only found on the trackable itself (only needed for creating a log, this will not be returned with any GET methods)</td>
                         <td>Required for retrieving from geocache, grab it, and discovered it activity types</td>
                         <td>No</td>
                     </tr>
@@ -5164,6 +5347,13 @@
                         <td>url</td>
                         <td>string</td>
                         <td>geocaching.com web page associated with trackable log</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>owner</td>
+                        <td><a href="#user">User</a></td>
+                        <td>information about the owner of the trackable log</td>
                         <td>No</td>
                         <td>No</td>
                     </tr>
@@ -5175,6 +5365,11 @@
                 <pre><code>{
   "referenceCode": "TL2A",
   "ownerCode": "PR2E27",
+  "owner": {
+    "username": "MNofMind",
+    "avatarUrl": "https://img-stage.geocaching.com/gcstage/{0}/0640f488-9abe-4c2a-a786-bb75cec84357.gif",
+    ...
+  },
   "imageCount": 0,
   "trackableCode": "TB1",
   "loggedDate": "2001-09-28T00:00:00",
@@ -5265,7 +5460,6 @@
             <h3>Example</h3>
             <pre><code>{
   "referenceCode": "LD7Z53GB",
-  "guid": "6ae15c22-132c-4869-aca1-86bffae5a775",
   "geocacheCode": "GCK25B",
   "logType": "WriteNote",
   "geocacheLogType": {
@@ -5446,46 +5640,110 @@
     "prefix": "PK"
 }</code></pre>
         </div>
-        <div id="attribute" class="container col-md-12">
-            <h3><strong>Attribute</strong></h3>
-            <div class="row">
-                <table class="table table-striped table-hover table-responsive inherit-width">
-                    <caption>Fields</caption>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>id</td>
-                            <td>integer</td>
-                            <td>identifier of the attribute</td>
-                        </tr>
-                        <tr>
-                            <td>name</td>
-                            <td>string</td>
-                            <td>display name of the attribute</td>
-                        </tr>
-                        <tr>
-                            <td>isOn</td>
-                            <td>boolean</td>
-                            <td>flag for is the the attribute is a positive or negative (e.g. available 24/7 vs not available 24/7)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <h3>Example</h3>
-                <pre><code>{
+    <div id="attribute" class="container col-md-12">
+        <h3><strong>Attribute</strong></h3>
+        <div class="row">
+            <table class="table table-striped table-hover table-responsive inherit-width">
+                <caption>Fields</caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>integer</td>
+                    <td>identifier of the attribute</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>string</td>
+                    <td>display name of the attribute</td>
+                </tr>
+                <tr>
+                    <td>isOn</td>
+                    <td>boolean</td>
+                    <td>flag for if the attribute is a positive or negative (e.g. available 24/7 vs not available 24/7)</td>
+                </tr>
+                <tr>
+                    <td>imageUrl</td>
+                    <td>string</td>
+                    <td>link to the image for the attribute</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h3>Example</h3>
+            <pre><code>{
    "id": 1,
    "name": "Dogs",
-   "isOn": true
+   "isOn": true,
+   "imageUrl": "https://www.geocaching.com/images/attributes/dogs-yes.gif"
 }</code></pre>
-            </div>
         </div>
+    </div>
+    <div id="attributetype" class="container col-md-12">
+        <h3><strong>Attribute Type</strong></h3>
+        <div class="row">
+            <table class="table table-striped table-hover table-responsive inherit-width">
+                <caption>Fields</caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>integer</td>
+                    <td>identifier of the attribute</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>string</td>
+                    <td>display name of the attribute</td>
+                </tr>
+                <tr>
+                    <td>hasYesOption</td>
+                    <td>boolean</td>
+                    <td>flag for if the attribute can be set to isOn = true</td>
+                </tr>
+                <tr>
+                    <td>hasNoOption</td>
+                    <td>boolean</td>
+                    <td>flag for if the attribute can be set to isOn = false</td>
+                </tr>
+                <tr>
+                    <td>yesIconUrl</td>
+                    <td>string</td>
+                    <td>image url for the attribute if isOn = true</td>
+                </tr>
+                <tr>
+                    <td>noIconUrl</td>
+                    <td>string</td>
+                    <td>image url for the attribute if isOn = false</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h3>Example</h3>
+            <pre><code>{
+   "id": 1,
+   "name": "Dogs",
+   "hasYesOption": true,
+   "hasNoOption": true,
+   "yesIconUrl": "https://www.geocaching.com/images/attributes/dogs-yes.gif",
+   "noIconUrl": "https://www.geocaching.com/images/attributes/dogs-no.gif"
+}</code></pre>
+        </div>
+    </div>
     <div id="location-data" class="container col-md-12">
         <h3><strong>Location</strong></h3>
         <div class="row">
@@ -5641,7 +5899,7 @@
                             <td>typeId</td>
                             <td>integer</td>
                             <td>type of the list (see <a href="#list-types">List Types</a> for more info)</td>
-                            <td>Yes</td>
+                            <td>No (defaults to bookmark list type)</td>
                             <td>No</td>
                         </tr>
                         <tr>
@@ -6739,6 +6997,18 @@
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>10.08.2018</h3>
+        <ul>
+            <li>New methods have been added to get valid countries, states, and states by country id.</li>
+            <li>A new method has been added to get all valid attributes.</li>
+            <li>The field imageUrl has been added to attributes.</li>
+            <li>New methods have been added to get all valid types for geocaches, geocache logs, and trackable logs.</li>
+            <li>A new method has been added to get all valid membership levels.</li>
+            <li>Owner field has been added to both trackable and trackable log objects.</li>
+            <li>Expand has been added to all trackable and trackable log methods. See the method for details on what can be expanded.</li>
+            <li>A new syntax for fields has been added to send nested fields on complex objects.</li>
+            <li>Fields can be specified for expanded objects.</li>
+        </ul>
         <h3>08.27.2018</h3>
         <ul>
             <li>An owner field has been added to the geocache and the geocache log object.</li>
