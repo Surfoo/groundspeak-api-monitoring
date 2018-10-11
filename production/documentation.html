@@ -546,7 +546,7 @@
                 <tbody>
                     <tr><td><code>x-total-count</code></td><td>the sum of all resources that match the request, regardless of what is returned via pagination</td></tr>
                     
-                    
+                    <tr><td><code>x-rate-limit-reset</code></td><td>how much time in seconds before the rate limit remaining number is reset</td></tr>
                 </tbody>
             </table>
         </p>
@@ -571,7 +571,7 @@
                 <li>1200 calls per minute for partner consumer key</li>
                 <li>6000 calls per minute for IP address</li>
             </ul>
-            If abuse is detected, we may add additional limiting to mitigate risk and attacks on the server. If the call is being subject to rate limiting, a 429 HTTP status code will be returned.
+            If abuse is detected, we may add additional limiting to mitigate risk and attacks on the server. If the call is being subject to rate limiting, a 429 HTTP status code will be returned. If a 429 HTTP status code is returned, the x-rate-limit-reset header is returned with the number of seconds until the limit is reset.
         </p>
         <h3 id="opt-out">Third Party Data Sharing</h3>
         <p>
@@ -4828,11 +4828,16 @@ else
                             <td>integer</td>
                             <td>number of trackables currently in the geocache</td>
                         </tr>
-                        <tr>
-                            <td>placedDate</td>
-                            <td>datetime</td>
-                            <td>date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache</td>
-                        </tr>
+                    <tr>
+                        <td>placedDate</td>
+                        <td>datetime</td>
+                        <td>date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache</td>
+                    </tr>
+                    <tr>
+                        <td>publishedDate</td>
+                        <td>datetime</td>
+                        <td>date when the cache was published in the timezone of the geocache</td>
+                    </tr>
                         <tr>
                             <td>type (Deprecated)</td>
                             <td>enum</td>

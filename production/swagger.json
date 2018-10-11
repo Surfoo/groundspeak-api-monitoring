@@ -84,6 +84,9 @@
           "404": {
             "description": "Not Found"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -160,6 +163,9 @@
           "404": {
             "description": "Not Found"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -230,6 +236,9 @@
           "409": {
             "description": "Conflict"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -280,6 +289,9 @@
           },
           "409": {
             "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -338,6 +350,9 @@
           "409": {
             "description": "Conflict"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -395,6 +410,9 @@
           },
           "409": {
             "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -463,8 +481,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -478,7 +502,7 @@
         ],
         "summary": "Update a geocache log",
         "description": "This method will return a geocache log.",
-        "operationId": "GeocacheLogs_Put",
+        "operationId": "GeocacheLogs_UpdateGeocacheLog",
         "consumes": [
           "application/json",
           "text/json",
@@ -546,6 +570,9 @@
           "422": {
             "description": "Unprocessable Entity"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -597,6 +624,9 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -678,8 +708,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -693,7 +729,7 @@
         ],
         "summary": "Add an image to a geocache log",
         "description": "This method will return a single Geocache.",
-        "operationId": "GeocacheLogs_PostImages",
+        "operationId": "GeocacheLogs_AddImage",
         "consumes": [
           "application/json",
           "text/json",
@@ -752,8 +788,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -769,7 +811,7 @@
         ],
         "summary": "Add a log to a geocache",
         "description": "This method will return the created geocache log.",
-        "operationId": "GeocacheLogs_PostLog",
+        "operationId": "GeocacheLogs_CreateGeocacheLog",
         "consumes": [
           "application/json",
           "text/json",
@@ -821,8 +863,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -838,7 +886,7 @@
         ],
         "summary": "Upsert a geocache note for the calling user",
         "description": "This method will return the upserted text.",
-        "operationId": "GeocacheNotes_UpsertGeocacheNoteAsync",
+        "operationId": "GeocacheNotes_UpsertNote",
         "consumes": [
           "application/json",
           "text/json",
@@ -895,6 +943,9 @@
           "409": {
             "description": "Conflict"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -907,7 +958,7 @@
         ],
         "summary": "Delete a geocache note for the calling user",
         "description": "This method will return no content.",
-        "operationId": "GeocacheNotes_Delete",
+        "operationId": "GeocacheNotes_DeleteNote",
         "consumes": [],
         "produces": [
           "application/json",
@@ -950,6 +1001,9 @@
           "409": {
             "description": "Conflict"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -964,7 +1018,7 @@
         ],
         "summary": "Get a single Geocache",
         "description": "This method will return a single Geocache.",
-        "operationId": "Geocaches_Get",
+        "operationId": "Geocaches_GetGeocache",
         "consumes": [],
         "produces": [
           "application/json",
@@ -1025,8 +1079,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1108,8 +1168,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1191,6 +1257,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1280,8 +1349,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1373,6 +1448,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1478,6 +1556,9 @@
           "401": {
             "description": "Not Authorized"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -1537,8 +1618,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1611,8 +1698,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1626,7 +1719,7 @@
         ],
         "summary": "Remove a list",
         "description": "This method will not return anything.",
-        "operationId": "Lists_RemoveGeocache",
+        "operationId": "Lists_DeleteList",
         "consumes": [],
         "produces": [
           "application/json",
@@ -1663,8 +1756,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1718,8 +1817,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1817,8 +1922,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1891,8 +2002,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -1908,7 +2025,7 @@
         ],
         "summary": "Create a list",
         "description": "This method will return the created geocache list.",
-        "operationId": "Lists_PostList",
+        "operationId": "Lists_CreateList",
         "consumes": [
           "application/json",
           "text/json",
@@ -1960,8 +2077,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -2031,8 +2154,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -2048,7 +2177,7 @@
         ],
         "summary": "Remove a geocache from a list",
         "description": "This method will not return anything.",
-        "operationId": "Lists_RemoveList",
+        "operationId": "Lists_DeleteGeocache",
         "consumes": [],
         "produces": [
           "application/json",
@@ -2092,8 +2221,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -2109,7 +2244,7 @@
         ],
         "summary": "Get a single log draft for the calling user",
         "description": "This method will return a single draft log.",
-        "operationId": "LogDrafts_Get",
+        "operationId": "LogDrafts_GetDraft",
         "consumes": [],
         "produces": [
           "application/json",
@@ -2160,6 +2295,9 @@
           "404": {
             "description": "Not Found"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -2172,7 +2310,7 @@
         ],
         "summary": "Update a log draft",
         "description": "This method will return the log draft edited.",
-        "operationId": "LogDrafts_Update",
+        "operationId": "LogDrafts_UpdateDraft",
         "consumes": [
           "application/json",
           "text/json",
@@ -2237,6 +2375,9 @@
           "409": {
             "description": "Conflict"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -2249,7 +2390,7 @@
         ],
         "summary": "Delete a log draft",
         "description": "This method will return no content.",
-        "operationId": "LogDrafts_Delete",
+        "operationId": "LogDrafts_DeleteDraft",
         "consumes": [],
         "produces": [
           "application/json",
@@ -2291,6 +2432,9 @@
           },
           "409": {
             "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -2376,6 +2520,9 @@
           "404": {
             "description": "Not Found"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -2388,7 +2535,7 @@
         ],
         "summary": "Create a log draft",
         "description": "This method will return the log draft created.",
-        "operationId": "LogDrafts_Create",
+        "operationId": "LogDrafts_CreateDraft",
         "consumes": [
           "application/json",
           "text/json",
@@ -2445,6 +2592,9 @@
           },
           "409": {
             "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -2516,6 +2666,9 @@
           },
           "409": {
             "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -2596,6 +2749,9 @@
           "409": {
             "description": "Conflict"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -2639,6 +2795,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
@@ -2680,6 +2839,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
@@ -2721,6 +2883,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
@@ -2762,6 +2927,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
@@ -2803,6 +2971,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
@@ -2844,6 +3015,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
@@ -2885,6 +3059,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
@@ -2897,7 +3074,7 @@
         ],
         "summary": "Returns the state (aka region) names and ids",
         "description": "",
-        "operationId": "ReferenceData_GetStates",
+        "operationId": "ReferenceData_GetStatesByCountry",
         "consumes": [],
         "produces": [
           "application/json",
@@ -2933,6 +3110,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
@@ -2961,6 +3141,9 @@
         "responses": {
           "200": {
             "description": "Ok"
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
@@ -3029,6 +3212,9 @@
           "404": {
             "description": "Not Found"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -3041,7 +3227,7 @@
         ],
         "summary": "Update a trackable log",
         "description": "This method will return a trackable log.",
-        "operationId": "TrackableLogs_Put",
+        "operationId": "TrackableLogs_UpdateTrackableLog",
         "consumes": [
           "application/json",
           "text/json",
@@ -3109,6 +3295,9 @@
           "422": {
             "description": "Unprocessable Entity"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -3121,7 +3310,7 @@
         ],
         "summary": "Deletes a trackable log",
         "description": "This method will not return anything in the body.",
-        "operationId": "TrackableLogs_ArchiveTrackableLog",
+        "operationId": "TrackableLogs_DeleteTrackableLog",
         "consumes": [],
         "produces": [
           "application/json",
@@ -3160,6 +3349,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -3244,6 +3436,9 @@
           "404": {
             "description": "Not Found"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -3256,7 +3451,7 @@
         ],
         "summary": "Add an image to a trackable log",
         "description": "This method will return a single image.",
-        "operationId": "TrackableLogs_PostImages",
+        "operationId": "TrackableLogs_AddImage",
         "consumes": [
           "application/json",
           "text/json",
@@ -3315,8 +3510,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -3332,7 +3533,7 @@
         ],
         "summary": "Add a log to a trackable",
         "description": "This method will return the created trackable log.",
-        "operationId": "TrackableLogs_PostLog",
+        "operationId": "TrackableLogs_CreateTrackableLog",
         "consumes": [
           "application/json",
           "text/json",
@@ -3386,6 +3587,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -3454,8 +3658,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -3532,6 +3742,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -3613,8 +3826,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -3713,6 +3932,9 @@
           "404": {
             "description": "Not Found"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -3727,7 +3949,7 @@
         ],
         "summary": "Get a list of trackable logs for the specified trackable",
         "description": "This method will return a list of trackable logs.",
-        "operationId": "Trackables_GetLogs",
+        "operationId": "Trackables_GetTrackableLogs",
         "consumes": [],
         "produces": [
           "application/json",
@@ -3808,8 +4030,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -3875,6 +4103,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -3956,8 +4187,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -4039,8 +4276,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -4113,6 +4356,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -4202,8 +4448,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -4324,8 +4576,14 @@
           "401": {
             "description": "Not Authorized"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -4341,7 +4599,7 @@
         ],
         "summary": "Get a list of user waypoints for the calling user",
         "description": "This method will return an array of user waypoints.",
-        "operationId": "UserWaypoints_GetUserWaypointsAsync",
+        "operationId": "UserWaypoints_GetUserWaypoints",
         "consumes": [],
         "produces": [
           "application/json",
@@ -4411,6 +4669,9 @@
           "404": {
             "description": "Not Found"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -4423,7 +4684,7 @@
         ],
         "summary": "Create a user waypoint",
         "description": "This method will return the user waypoint created.",
-        "operationId": "UserWaypoints_Post",
+        "operationId": "UserWaypoints_CreateUserWaypoint",
         "consumes": [
           "application/json",
           "text/json",
@@ -4481,6 +4742,9 @@
           "409": {
             "description": "Conflict"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -4495,7 +4759,7 @@
         ],
         "summary": "Gets the user waypoints for a geocache",
         "description": "This method will return a paged list of userwaypoints",
-        "operationId": "UserWaypoints_GetGeocacheUserWaypointsAsync",
+        "operationId": "UserWaypoints_GetGeocacheUserWaypoints",
         "consumes": [],
         "produces": [
           "application/json",
@@ -4575,6 +4839,9 @@
           "404": {
             "description": "Not Found"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -4589,7 +4856,7 @@
         ],
         "summary": "Update a user waypoint",
         "description": "This method will return the updated user waypoint.",
-        "operationId": "UserWaypoints_Put",
+        "operationId": "UserWaypoints_UpdateUserWaypoint",
         "consumes": [
           "application/json",
           "text/json",
@@ -4654,6 +4921,9 @@
           "409": {
             "description": "Conflict"
           },
+          "429": {
+            "description": "Too many requests"
+          },
           "500": {
             "description": "Server Error"
           }
@@ -4666,7 +4936,7 @@
         ],
         "summary": "Delete a user waypoint",
         "description": "This method will return no content.",
-        "operationId": "UserWaypoints_Delete",
+        "operationId": "UserWaypoints_DeleteUserWaypoint",
         "consumes": [],
         "produces": [
           "application/json",
@@ -4708,6 +4978,9 @@
           },
           "409": {
             "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
           },
           "500": {
             "description": "Server Error"
@@ -4761,6 +5034,9 @@
             "schema": {
               "type": "string"
             }
+          },
+          "429": {
+            "description": "Too many requests"
           }
         },
         "deprecated": false
