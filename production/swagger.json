@@ -5332,7 +5332,6 @@
             "Found It",
             "DNF it",
             "Write note",
-            "Owner Maintenance",
             "Archive",
             "Needs archiving",
             "Will attend",
@@ -5343,6 +5342,7 @@
             "Enable Listing",
             "Publish Listing",
             "Needs Maintenance",
+            "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
             "Event Announcement"
@@ -6012,7 +6012,6 @@
             "Found It",
             "DNF it",
             "Write note",
-            "Owner Maintenance",
             "Archive",
             "Needs archiving",
             "Will attend",
@@ -6023,6 +6022,7 @@
             "Enable Listing",
             "Publish Listing",
             "Needs Maintenance",
+            "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
             "Event Announcement"
@@ -6063,7 +6063,6 @@
             "Found It",
             "DNF it",
             "Write note",
-            "Owner Maintenance",
             "Archive",
             "Needs archiving",
             "Will attend",
@@ -6074,6 +6073,7 @@
             "Enable Listing",
             "Publish Listing",
             "Needs Maintenance",
+            "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
             "Event Announcement"
