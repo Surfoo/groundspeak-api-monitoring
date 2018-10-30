@@ -5226,6 +5226,7 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
+            "Post Reviewer Note",
             "Temporarily Disable Listing",
             "Enable Listing",
             "Publish Listing",
@@ -5233,7 +5234,8 @@
             "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
-            "Event Announcement"
+            "Event Announcement",
+            "Submit for Review"
           ],
           "type": "string"
         },
@@ -5338,6 +5340,7 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
+            "Post Reviewer Note",
             "Temporarily Disable Listing",
             "Enable Listing",
             "Publish Listing",
@@ -5345,7 +5348,8 @@
             "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
-            "Event Announcement"
+            "Event Announcement",
+            "Submit for Review"
           ],
           "type": "string"
         },
@@ -6018,6 +6022,7 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
+            "Post Reviewer Note",
             "Temporarily Disable Listing",
             "Enable Listing",
             "Publish Listing",
@@ -6025,7 +6030,8 @@
             "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
-            "Event Announcement"
+            "Event Announcement",
+            "Submit for Review"
           ],
           "type": "string"
         },
@@ -6069,6 +6075,7 @@
             "Attended",
             "Webcam photo taken",
             "Unarchive",
+            "Post Reviewer Note",
             "Temporarily Disable Listing",
             "Enable Listing",
             "Publish Listing",
@@ -6076,7 +6083,8 @@
             "Owner Maintenance",
             "Update Coordinates",
             "Post Reviewer Note",
-            "Event Announcement"
+            "Event Announcement",
+            "Submit for Review"
           ],
           "type": "string"
         },
