@@ -5332,8 +5332,8 @@
         "type": {
           "enum": [
             "Found It",
-            "DNF it",
             "Write note",
+            "DNF it",
             "Archive",
             "Needs archiving",
             "Will attend",
@@ -6014,8 +6014,8 @@
         "logType": {
           "enum": [
             "Found It",
-            "DNF it",
             "Write note",
+            "DNF it",
             "Archive",
             "Needs archiving",
             "Will attend",
@@ -6067,8 +6067,8 @@
         "logType": {
           "enum": [
             "Found It",
-            "DNF it",
             "Write note",
+            "DNF it",
             "Archive",
             "Needs archiving",
             "Will attend",
