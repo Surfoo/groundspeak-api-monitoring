@@ -1,0 +1,6292 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "API v1.0",
+    "description": "API version 1.0.",
+    "contact": {
+      "name": "API Team",
+      "url": "http://www.geocaching.com",
+      "email": "apihelp@geocaching.com"
+    }
+  },
+  "host": "staging.api.groundspeak.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/v{api-version}/friends": {
+      "get": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Get a list of friends for the calling user",
+        "description": "This method will return a list of Users.",
+        "operationId": "Friends_GetFriends",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "How many friends to skip (default = 0)",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "How many friends to return (default = 10, max = 50)",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/friendrequests": {
+      "get": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Get a list of friend requests for the calling user",
+        "description": "This method will return a list of requests including both inbound and outbound requests.",
+        "operationId": "Friends_GetFriendRequests",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "How many requests to skip (default = 0)",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "How many requests to return (default = 10, max = 50)",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return, defaults to id",
+            "required": false,
+            "type": "string",
+            "default": "id"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FriendRequest"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Create a friend request",
+        "description": "This method will return the friend request created.",
+        "operationId": "Friends_CreateFriendRequest",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "friendRequest",
+            "in": "body",
+            "description": "The friend request to create.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FriendRequest"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return, defaults to id",
+            "required": false,
+            "type": "string",
+            "default": "id"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/FriendRequest"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/friendrequests/{requestId}/accept": {
+      "post": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Accept a friend request",
+        "description": "",
+        "operationId": "Friends_AcceptFriendRequest",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "description": "friend request identifier",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/friends/{userCode}": {
+      "delete": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Removes a friend",
+        "description": "This method will return no content.",
+        "operationId": "Friends_RemoveFriend",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "userCode",
+            "in": "path",
+            "description": "The identifier of the friend (their user reference code)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/friendrequests/{requestId}": {
+      "delete": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Delete a friend request",
+        "description": "This method will return no content.",
+        "operationId": "Friends_DeleteFriendRequest",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "description": "The identifier of the friend request",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocachelogs/{referenceCode}": {
+      "get": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "summary": "Get a single geocache log",
+        "description": "This method will return a single geocache log.",
+        "operationId": "GeocacheLogs_GetGeocacheLog",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache log (example: GL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "fields to include with base geocache log object",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referencecode",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/GeocacheLog"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "summary": "Update a geocache log",
+        "description": "This method will return a geocache log.",
+        "operationId": "GeocacheLogs_UpdateGeocacheLog",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The log reference code (example: GL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "log",
+            "in": "body",
+            "description": "An instance of the log that is being modified",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GeocacheLog"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referencecode",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/GeocacheLog"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "summary": "Delete a geocache log",
+        "description": "This method will not have a response body.",
+        "operationId": "GeocacheLogs_DeleteGeocacheLog",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache log (example: GL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocachelogs/{referenceCode}/images": {
+      "get": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "summary": "Get a the images attached to a geocache log",
+        "description": "This method will return a list of images.",
+        "operationId": "GeocacheLogs_GetImages",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache log (example: GL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Amount of images to skip over used for pagination. Defaults to 0.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Amount of images to include in results. Defaults to 10.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return. Defaults to \"url\".",
+            "required": false,
+            "type": "string",
+            "default": "url"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Image"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "summary": "Add an image to a geocache log",
+        "description": "This method will return a single Geocache.",
+        "operationId": "GeocacheLogs_AddImage",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache log (example: GL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostImage"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields to return on the response object, defaults to \"url\"",
+            "required": false,
+            "type": "string",
+            "default": "url"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Image"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocachelogs": {
+      "post": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "summary": "Add a log to a geocache",
+        "description": "This method will return the created geocache log.",
+        "operationId": "GeocacheLogs_CreateGeocacheLog",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "log",
+            "in": "body",
+            "description": "The log to add",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostGeocacheLog"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "the fields to return in the response body, defaults to referencecode",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/GeocacheLog"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocaches/{referenceCode}/notes": {
+      "put": {
+        "tags": [
+          "GeocacheNotes"
+        ],
+        "summary": "Upsert a geocache note for the calling user",
+        "description": "This method will return the upserted text.",
+        "operationId": "GeocacheNotes_UpsertNote",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The identifier of the geocache (ex: GC25)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "geocacheNote",
+            "in": "body",
+            "description": "The geocache note text.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GeocacheNote"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "GeocacheNotes"
+        ],
+        "summary": "Delete a geocache note for the calling user",
+        "description": "This method will return no content.",
+        "operationId": "GeocacheNotes_DeleteNote",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The identifier of the geocache (ex: GC25)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocaches/{referenceCode}": {
+      "get": {
+        "tags": [
+          "Geocaches"
+        ],
+        "summary": "Get a single Geocache",
+        "description": "This method will return a single Geocache.",
+        "operationId": "Geocaches_GetGeocache",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache (example: GC25).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "lite",
+            "in": "query",
+            "description": "Select to return a geocache object without the description and hints",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "fields to include with base geocache object",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to \"referenceCode\"",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Geocache"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocaches/{referenceCode}/images": {
+      "get": {
+        "tags": [
+          "Geocaches"
+        ],
+        "summary": "Get a list of images for a geocache",
+        "description": "This method will return a list of images.",
+        "operationId": "Geocaches_GetImages",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache (example: GC25).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many images to skip",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "how many images to retrieve",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to \"url\"",
+            "required": false,
+            "type": "string",
+            "default": "url"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Image"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocaches": {
+      "get": {
+        "tags": [
+          "Geocaches"
+        ],
+        "summary": "Get a list of geocaches",
+        "description": "This method will return a list of geocaches.",
+        "operationId": "Geocaches_GetGeocaches",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCodes",
+            "in": "query",
+            "description": "comma delimited list of geocache reference codes to retrieve (example: GC25,GC26,GC27).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "lite",
+            "in": "query",
+            "description": "Select to return a geocache object without the description and hints",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "fields to include with base geocache object",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to \"referenceCode\"",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Geocache"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocaches/{referenceCode}/trackables": {
+      "get": {
+        "tags": [
+          "Geocaches"
+        ],
+        "summary": "Get a list of trackables in a geocache",
+        "description": "This method will return a list of trackables.",
+        "operationId": "Geocaches_GetTrackables",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache (example: GC25).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many trackables to skip",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "how many trackables to retrieve",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Trackable"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocaches/{referenceCode}/geocachelogs": {
+      "get": {
+        "tags": [
+          "Geocaches"
+        ],
+        "summary": "Get a list of geocache logs for the specified geocache",
+        "description": "This method will return a list of geocache logs.",
+        "operationId": "Geocaches_GetLogs",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache (example: GC25).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many logs to skip over",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "how many logs to retrieve",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "fields to include with base geocache object",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeocacheLog"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocaches/search": {
+      "get": {
+        "tags": [
+          "Geocaches"
+        ],
+        "summary": "Search for Geocaches",
+        "description": "This method will return search results.",
+        "operationId": "Geocaches_Search",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query used on the geocaches",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Defaults to distance if coords are provided otherwise favoritepoints (distance, favoritepoints, cachename, id)",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "lite",
+            "in": "query",
+            "description": "Return a lite version of geocache (no description, hint, or",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Defaults to 0, how many geocaches to skip",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Defaults to 20, how many geocaches to return",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "fields to include with base geocache object",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return, defaults to \"referencecode\"",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Geocache"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/lists/{referenceCode}": {
+      "get": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Get a list",
+        "description": "This method will return a list.",
+        "operationId": "Lists_GetList",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the list (example: BM25).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/GeocacheList"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Edit a list",
+        "description": "This method will return the updated geocache list.",
+        "operationId": "Lists_UpdateList",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "the unique identifier of the list (ex: BM100)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "list",
+            "in": "body",
+            "description": "The list to update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GeocacheList"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/GeocacheList"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Remove a list",
+        "description": "This method will not return anything.",
+        "operationId": "Lists_DeleteList",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "unique identifier of the list",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/lists/{referenceCode}/geocaches/zipped": {
+      "get": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Gets a zipped file for a pocket query",
+        "description": "This method will return a zipped file.",
+        "operationId": "Lists_GetZippedPocketQuery",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "identifier of the pocket query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "format": "byte",
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/lists/{referenceCode}/geocaches": {
+      "get": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Get a list of geocaches for a specified list",
+        "description": "This method will return a list of geocaches.",
+        "operationId": "Lists_GetGeocaches",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "identifier of the list",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many geocaches to skip over",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "how many geocaches to retrieve",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "lite",
+            "in": "query",
+            "description": "whether to return lite geocaches or not",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to \"referenceCode\"",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "fields to include with base geocache object",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Geocache"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Add a geocache to a list",
+        "description": "This method will return the geocache added.",
+        "operationId": "Lists_AddGeocache",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "unique identifier of the list",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "geocache",
+            "in": "body",
+            "description": "geocache to add to the list",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListGeocache"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Geocache"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/lists": {
+      "post": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Create a list",
+        "description": "This method will return the created geocache list.",
+        "operationId": "Lists_CreateList",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "list",
+            "in": "body",
+            "description": "The list to add",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostGeocacheList"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/GeocacheList"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/lists/{referenceCode}/bulkgeocaches": {
+      "post": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Add multiple geocaches to a list",
+        "description": "This method will return the successful and failed geocache codes.",
+        "operationId": "Lists_AddGeocaches",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "unique identifier of the list",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "geocacheCodes",
+            "in": "body",
+            "description": "geocache reference codes to add to the list",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/BulkResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/lists/{referenceCode}/geocaches/{geocacheReferenceCode}": {
+      "delete": {
+        "tags": [
+          "Lists"
+        ],
+        "summary": "Remove a geocache from a list",
+        "description": "This method will not return anything.",
+        "operationId": "Lists_DeleteGeocache",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "unique identifier of the list",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "geocacheReferenceCode",
+            "in": "path",
+            "description": "unique identifier of the geocache to remove",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/logdrafts/{referenceCode}": {
+      "get": {
+        "tags": [
+          "LogDrafts"
+        ],
+        "summary": "Get a single log draft for the calling user",
+        "description": "This method will return a single draft log.",
+        "operationId": "LogDrafts_GetDraft",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the log draft (example: LD25).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/LogDraft"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "LogDrafts"
+        ],
+        "summary": "Update a log draft",
+        "description": "This method will return the log draft edited.",
+        "operationId": "LogDrafts_UpdateDraft",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The identifier of the log draft (ex: LD25)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "logDraft",
+            "in": "body",
+            "description": "The log draft to edit.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogDraft"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/LogDraft"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "LogDrafts"
+        ],
+        "summary": "Delete a log draft",
+        "description": "This method will return no content.",
+        "operationId": "LogDrafts_DeleteDraft",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The identifier of the log draft (ex: LD25)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/logdrafts": {
+      "get": {
+        "tags": [
+          "LogDrafts"
+        ],
+        "summary": "Get a list of log drafts for the calling user",
+        "description": "This method will return a page (list + total) of log drafts.",
+        "operationId": "LogDrafts_GetUserDrafts",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "How many drafts to skip (default = 0)",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "How many drafts to return (default = 10)",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "How to sort the drafts (default = loggeddateutc)",
+            "required": false,
+            "type": "string",
+            "default": "dateloggedutc"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LogDraft"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "LogDrafts"
+        ],
+        "summary": "Create a log draft",
+        "description": "This method will return the log draft created.",
+        "operationId": "LogDrafts_CreateDraft",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "logDraft",
+            "in": "body",
+            "description": "The log draft to create.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostLogDraft"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/LogDraft"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/logdrafts/{referenceCode}/promote": {
+      "post": {
+        "tags": [
+          "LogDrafts"
+        ],
+        "summary": "Promote Log Draft to Geocache Log",
+        "description": "This method will return the promoted draft info.",
+        "operationId": "LogDrafts_PromoteToGeocacheLog",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "draft",
+            "in": "body",
+            "description": "The draft to promote to log",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogDraft"
+            }
+          },
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "identifier of the log draft",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/PromotedDraft"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/logdrafts/{referenceCode}/images": {
+      "post": {
+        "tags": [
+          "LogDrafts"
+        ],
+        "summary": "Add image to log draft",
+        "description": "This method will return the image created.",
+        "operationId": "LogDrafts_AddImage",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "image",
+            "in": "body",
+            "description": "The image to upload and add",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostImage"
+            }
+          },
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "identifier of the log draft",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return, defaults to url",
+            "required": false,
+            "type": "string",
+            "default": "url"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Image"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/states": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the state (aka region) names and ids",
+        "description": "",
+        "operationId": "ReferenceData_GetStates",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/State"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/countries": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns current list of country ids and names",
+        "description": "",
+        "operationId": "ReferenceData_GetCountries",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Country"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/attributes": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the available attributes",
+        "description": "",
+        "operationId": "ReferenceData_GetAttributes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AttributeType"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocachetypes": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the available geocache types",
+        "description": "",
+        "operationId": "ReferenceData_GetGeocacheTypes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeocacheType"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocachelogtypes": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the geocache log types",
+        "description": "",
+        "operationId": "ReferenceData_GetGeocacheLogTypes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeocacheLogType"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/membershiplevels": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the membership levels",
+        "description": "",
+        "operationId": "ReferenceData_GetMembershipLevels",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MembershipLevel"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackablelogtypes": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the trackable log types",
+        "description": "",
+        "operationId": "ReferenceData_GetTrackableLogTypes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TrackableLogType"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/countries/{countryId}/states": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "summary": "Returns the state (aka region) names and ids",
+        "description": "",
+        "operationId": "ReferenceData_GetStatesByCountry",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/State"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/status/ping": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Returns Ok.",
+        "description": "This method return Ok.",
+        "operationId": "Status_PingAsync",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackablelogs/{referenceCode}": {
+      "get": {
+        "tags": [
+          "TrackableLogs"
+        ],
+        "summary": "Get a single trackable log",
+        "description": "This method will return a single trackable log.",
+        "operationId": "TrackableLogs_GetTrackableLog",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the trackable log (example: TL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referencecode",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/TrackableLog"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "TrackableLogs"
+        ],
+        "summary": "Update a trackable log",
+        "description": "This method will return a trackable log.",
+        "operationId": "TrackableLogs_UpdateTrackableLog",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The log reference code (example: TL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "log",
+            "in": "body",
+            "description": "An instance of the log that is being modified. Text is the only modified parameter",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrackableLog"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referencecode",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/TrackableLog"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "TrackableLogs"
+        ],
+        "summary": "Deletes a trackable log",
+        "description": "This method will not return anything in the body.",
+        "operationId": "TrackableLogs_DeleteTrackableLog",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the trackable log (example: TL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackablelogs/{referenceCode}/images": {
+      "get": {
+        "tags": [
+          "TrackableLogs"
+        ],
+        "summary": "Get a the images attached to a trackable log",
+        "description": "This method will return a list of images.",
+        "operationId": "TrackableLogs_GetImages",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the trackable log (example: TL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Amount of images to skip over used for pagination. Defaults to 0.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Amount of images to include in results. Defaults to 10.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return. Defaults to referencecode.",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Image"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "TrackableLogs"
+        ],
+        "summary": "Add an image to a trackable log",
+        "description": "This method will return a single image.",
+        "operationId": "TrackableLogs_AddImage",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the trackable log (example: TL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "body",
+            "description": "image to add",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostImage"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to url",
+            "required": false,
+            "type": "string",
+            "default": "url"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Image"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackablelogs": {
+      "post": {
+        "tags": [
+          "TrackableLogs"
+        ],
+        "summary": "Add a log to a trackable",
+        "description": "This method will return the created trackable log.",
+        "operationId": "TrackableLogs_CreateTrackableLog",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "log",
+            "in": "body",
+            "description": "The log to add",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostTrackableLog"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referencecode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/TrackableLog"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackables/{referenceCode}": {
+      "get": {
+        "tags": [
+          "Trackables"
+        ],
+        "summary": "Get a single trackable",
+        "description": "This method will return a single trackable.",
+        "operationId": "Trackables_GetTrackable",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code or tracking number of the trackable (example: TB100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Trackable"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackables/geocointypes": {
+      "get": {
+        "tags": [
+          "Trackables"
+        ],
+        "summary": "Get paged geocoin types",
+        "description": "This method will return a list of geocoin types.",
+        "operationId": "Trackables_GetGeocoinTypes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Amount of types to skip over used for pagination. Defaults to 0.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Amount of types to include in results. Defaults to 10.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return. Defaults to id.",
+            "required": false,
+            "type": "string",
+            "default": "id"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TrackableType"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackables/{referenceCode}/Images": {
+      "get": {
+        "tags": [
+          "Trackables"
+        ],
+        "summary": "Get the images attached to a trackable",
+        "description": "This method will return a list of images.",
+        "operationId": "Trackables_GetImages",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the trackable (example: TB100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Amount of images to skip over used for pagination. Defaults to 0.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Amount of images to include in results. Defaults to 10.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return. Defaults to url.",
+            "required": false,
+            "type": "string",
+            "default": "url"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Image"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackables": {
+      "get": {
+        "tags": [
+          "Trackables"
+        ],
+        "summary": "Gets a list of the calling user's trackables",
+        "description": "This method will return a list of trackables.",
+        "operationId": "Trackables_GetUserTrackables",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "1= inventory, 2 = collection, 3 = owned (default: 1)",
+            "required": false,
+            "type": "string",
+            "default": 1,
+            "enum": [
+              "Inventory",
+              "Collection",
+              "Owned"
+            ]
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "default = 0",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "default = 10",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Trackable"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/trackables/{referenceCode}/trackablelogs": {
+      "get": {
+        "tags": [
+          "Trackables"
+        ],
+        "summary": "Get a list of trackable logs for the specified trackable",
+        "description": "This method will return a list of trackable logs.",
+        "operationId": "Trackables_GetTrackableLogs",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the trackable (example: TB100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many logs to skip over",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "how many logs to retrieve",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "logTypes",
+            "in": "query",
+            "description": "what log types to include with results. defaults to all",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TrackableLog"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/users/{referenceCode}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a user",
+        "description": "This method will return a user.",
+        "operationId": "Users_GetUser",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the user (example: PR18).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/users/{referenceCode}/images": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get the images attached to a user profile",
+        "description": "This method will return a list of images.",
+        "operationId": "Users_GetImages",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the user (example: PR18).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Amount of images to skip over used for pagination. Defaults to 0.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Amount of images to include in results. Defaults to 10.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return. Defaults to url.",
+            "required": false,
+            "type": "string",
+            "default": "url"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Image"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/users/{referenceCode}/souvenirs": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get an account's souvenirs",
+        "description": "This method will return a list of souvenirs.",
+        "operationId": "Users_GetSouvenirs",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the user (example: PR18).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Property fields you want to return, defaults to title",
+            "required": false,
+            "type": "string",
+            "default": "title"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Souvenir"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a list of users",
+        "description": "This method will return a list of users.",
+        "operationId": "Users_GetUsers",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCodes",
+            "in": "query",
+            "description": "comma delimited list of user reference codes to retrieve (example: PR1,PR2,PR3)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "usernames",
+            "in": "query",
+            "description": "comma delimited list of usernames to retrieve",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to \"referenceCode\"",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/users/{referenceCode}/lists": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a list of user's geocache lists",
+        "description": "This method will return a list of geocache lists.",
+        "operationId": "Users_GetLists",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "user identifier, use \"me\" to get lists for calling user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "description": "comma delimited list of list types to return (fl, wl, il, bm, pq). Defaults to \"bm\"",
+            "required": false,
+            "type": "string",
+            "default": "bm"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many lists to skip over",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "how many lists to retrieve",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeocacheList"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/users/{referenceCode}/geocachelogs": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a list of a user's geocache logs",
+        "description": "This method will return a list of geocache lists.",
+        "operationId": "Users_GetGeocacheLogs",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "user identifier, use \"me\" to get lists for calling user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "how many lists to skip over",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "how many lists to retrieve",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "afterDate",
+            "in": "query",
+            "description": "filters results to logs with logdates after this date (inclusive)",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "beforeDate",
+            "in": "query",
+            "description": "filters results to logs with logdates before this date (inclusive)",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "fields you want to return, defaults to referenceCode",
+            "required": false,
+            "type": "string",
+            "default": "referenceCode"
+          },
+          {
+            "name": "includeArchived",
+            "in": "query",
+            "description": "flag to include archived logs",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "logTypes",
+            "in": "query",
+            "description": "log types to include in response, defaults to all",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "fields to include with base geocache log object",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GeocacheLog"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/userwaypoints": {
+      "get": {
+        "tags": [
+          "UserWaypoints"
+        ],
+        "summary": "Get a list of user waypoints for the calling user",
+        "description": "This method will return an array of user waypoints.",
+        "operationId": "UserWaypoints_GetUserWaypoints",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "How many waypoints to skip (default = 0)",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "How many drafts to return (default = 10)",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "includeCorrectedCoordinates",
+            "in": "query",
+            "description": "Include corrected coordinates in the results. default = false",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return (default = referenceCode)",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserWaypoint"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "UserWaypoints"
+        ],
+        "summary": "Create a user waypoint",
+        "description": "This method will return the user waypoint created.",
+        "operationId": "UserWaypoints_CreateUserWaypoint",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "userWaypoint",
+            "in": "body",
+            "description": "The user waypoint to create.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostUserWaypoint"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return (default = referenceCode)",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/UserWaypoint"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/geocaches/{referenceCode}/userwaypoints": {
+      "get": {
+        "tags": [
+          "UserWaypoints"
+        ],
+        "summary": "Gets the user waypoints for a geocache",
+        "description": "This method will return a paged list of userwaypoints",
+        "operationId": "UserWaypoints_GetGeocacheUserWaypoints",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache (example: GC25).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "How many user waypoints to skip. default = 0",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "How many user waypoints to include in result set. default = 10",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "includeCorrectedCoordinates",
+            "in": "query",
+            "description": "Include corrected coordinates in the results. default = false",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return. default = referencecode",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserWaypoint"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/userwaypoints/{referenceCode}": {
+      "put": {
+        "tags": [
+          "UserWaypoints"
+        ],
+        "summary": "Update a user waypoint",
+        "description": "This method will return the updated user waypoint.",
+        "operationId": "UserWaypoints_UpdateUserWaypoint",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The identifier of the user waypoint",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userWaypoint",
+            "in": "body",
+            "description": "The user waypoint to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserWaypoint"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return (default = referenceCode)",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/UserWaypoint"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "UserWaypoints"
+        ],
+        "summary": "Delete a user waypoint",
+        "description": "This method will return no content.",
+        "operationId": "UserWaypoints_DeleteUserWaypoint",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The identifier of the user waypoint",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/v{api-version}/utilities/referencecode": {
+      "get": {
+        "tags": [
+          "Utilities"
+        ],
+        "summary": "Returns the reference code from an id",
+        "description": "",
+        "operationId": "Utilities_GetReferenceCode",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "the id to get the reference code for",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "codePrefix",
+            "in": "query",
+            "description": "the prefix of the reference code (e.g. GC)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "429": {
+            "description": "Too many requests"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "membershipLevelId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "findCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "hideCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "favoritePoints": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "homeCoordinates": {
+          "$ref": "#/definitions/Coordinates"
+        },
+        "geocacheLimits": {
+          "$ref": "#/definitions/GeocacheLimit"
+        },
+        "profileText": {
+          "type": "string"
+        },
+        "bannerUrl": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "referenceCode": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "Coordinates": {
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "GeocacheLimit": {
+      "type": "object",
+      "properties": {
+        "liteCallsRemaining": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "liteCallsSecondsToLive": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fullCallsRemaining": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fullCallsSecondsToLive": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "FriendRequest": {
+      "required": [
+        "requestedUserCode",
+        "message"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "requestorUserCode": {
+          "type": "string"
+        },
+        "requestor": {
+          "$ref": "#/definitions/UserReference"
+        },
+        "requestedUserCode": {
+          "type": "string"
+        },
+        "requested": {
+          "$ref": "#/definitions/UserReference"
+        },
+        "message": {
+          "type": "string"
+        },
+        "isOutgoing": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UserReference": {
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "GeocacheLog": {
+      "required": [
+        "loggedDate",
+        "text",
+        "geocacheCode"
+      ],
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "ownerCode": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/User"
+        },
+        "imageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isEncoded": {
+          "type": "boolean"
+        },
+        "isArchived": {
+          "type": "boolean"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "url": {
+          "type": "string"
+        },
+        "loggedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "Found It",
+            "DNF it",
+            "Write note",
+            "Archive",
+            "Needs archiving",
+            "Will attend",
+            "Attended",
+            "Webcam photo taken",
+            "Unarchive",
+            "Post Reviewer Note",
+            "Temporarily Disable Listing",
+            "Enable Listing",
+            "Publish Listing",
+            "Needs Maintenance",
+            "Owner Maintenance",
+            "Update Coordinates",
+            "Post Reviewer Note - Post Publish",
+            "Event Announcement",
+            "Submit for Review"
+          ],
+          "type": "string"
+        },
+        "geocacheLogType": {
+          "$ref": "#/definitions/GeocacheLogType"
+        },
+        "updatedCoordinates": {
+          "$ref": "#/definitions/Coordinates"
+        },
+        "geocacheCode": {
+          "type": "string"
+        },
+        "usedFavoritePoint": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Image": {
+      "required": [
+        "description"
+      ],
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "referenceCode": {
+          "type": "string"
+        },
+        "createdDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the image",
+          "type": "string"
+        },
+        "guid": {
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "GeocacheLogType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "PostImage": {
+      "required": [
+        "base64ImageData",
+        "description"
+      ],
+      "type": "object",
+      "properties": {
+        "base64ImageData": {
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the image",
+          "type": "string"
+        },
+        "guid": {
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "PostGeocacheLog": {
+      "required": [
+        "loggedDate",
+        "text",
+        "geocacheCode"
+      ],
+      "type": "object",
+      "properties": {
+        "loggedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "Found It",
+            "DNF it",
+            "Write note",
+            "Archive",
+            "Needs archiving",
+            "Will attend",
+            "Attended",
+            "Webcam photo taken",
+            "Unarchive",
+            "Post Reviewer Note",
+            "Temporarily Disable Listing",
+            "Enable Listing",
+            "Publish Listing",
+            "Needs Maintenance",
+            "Owner Maintenance",
+            "Update Coordinates",
+            "Post Reviewer Note - Post Publish",
+            "Event Announcement",
+            "Submit for Review"
+          ],
+          "type": "string"
+        },
+        "geocacheLogType": {
+          "$ref": "#/definitions/GeocacheLogType"
+        },
+        "updatedCoordinates": {
+          "$ref": "#/definitions/Coordinates"
+        },
+        "geocacheCode": {
+          "type": "string"
+        },
+        "usedFavoritePoint": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GeocacheNote": {
+      "required": [
+        "note"
+      ],
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "Geocache": {
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "description": "This code uniquely identifies the geocache",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the Geocache",
+          "type": "string"
+        },
+        "difficulty": {
+          "format": "double",
+          "description": "Difficulty of cache between 1.0 and 5.0",
+          "type": "number"
+        },
+        "terrain": {
+          "format": "double",
+          "description": "Terrain of cache between 1.0 and 5.0",
+          "type": "number"
+        },
+        "favoritePoints": {
+          "format": "int32",
+          "description": "The number of favorite points on the Geocache",
+          "type": "integer"
+        },
+        "trackableCount": {
+          "format": "int32",
+          "description": "The number of trackables on the Geocache",
+          "type": "integer"
+        },
+        "placedDate": {
+          "format": "date-time",
+          "description": "Date the geocache was placed (If the Geocache is an event then this represents the date of the event).",
+          "type": "string"
+        },
+        "publishedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of Geocache",
+          "enum": [
+            "Traditional",
+            "MultiCache",
+            "Virtual",
+            "Letterbox",
+            "Event",
+            "Mystery",
+            "ProjectApe",
+            "Webcam",
+            "Locationless",
+            "Cito",
+            "EarthCache",
+            "MegaEvent",
+            "GpsAdventuresExhibit",
+            "Wherigo",
+            "LostAndFoundEvent",
+            "GeocachingHq",
+            "LostAndFoundCelebration",
+            "BlockParty",
+            "GigaEvent"
+          ],
+          "type": "string"
+        },
+        "geocacheType": {
+          "$ref": "#/definitions/GeocacheType"
+        },
+        "size": {
+          "description": "Container or Size of cache",
+          "enum": [
+            "Unknown",
+            "Micro",
+            "Regular",
+            "Medium",
+            "Large",
+            "Virtual",
+            "Other",
+            "Small"
+          ],
+          "type": "string"
+        },
+        "geocacheSize": {
+          "$ref": "#/definitions/GeocacheSize"
+        },
+        "userData": {
+          "$ref": "#/definitions/UserData"
+        },
+        "status": {
+          "description": "The state of the Geocache",
+          "enum": [
+            "Unpublished",
+            "Active",
+            "Disabled",
+            "Locked",
+            "Archived"
+          ],
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/Location"
+        },
+        "postedCoordinates": {
+          "$ref": "#/definitions/Coordinates",
+          "description": "The posted coordinates of the Geocache"
+        },
+        "lastVisitedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ownerCode": {
+          "description": "The reference code of the geocache owner",
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/User"
+        },
+        "ownerAlias": {
+          "type": "string"
+        },
+        "isPremiumOnly": {
+          "type": "boolean"
+        },
+        "shortDescription": {
+          "description": "Summary or short description of the geocache.",
+          "type": "string"
+        },
+        "longDescription": {
+          "description": "Detailed description of the geocache.",
+          "type": "string"
+        },
+        "hints": {
+          "description": "Hints to find the geocache.",
+          "type": "string"
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Attribute"
+          }
+        },
+        "ianaTimezoneId": {
+          "type": "string"
+        },
+        "relatedWebPage": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "containsHtml": {
+          "type": "boolean"
+        },
+        "additionalWaypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdditionalWaypoint"
+          }
+        },
+        "trackables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Trackable"
+          }
+        },
+        "geocacheLogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GeocacheLog"
+          }
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "userWaypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserWaypoint"
+          }
+        }
+      }
+    },
+    "GeocacheType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "GeocacheSize": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "UserData": {
+      "type": "object",
+      "properties": {
+        "foundDate": {
+          "format": "date-time",
+          "description": "The date the user found the Geocache",
+          "type": "string"
+        },
+        "dnfDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "correctedCoordinates": {
+          "$ref": "#/definitions/Coordinates"
+        },
+        "isFavorited": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "countryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Attribute": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "isOn": {
+          "type": "boolean"
+        }
+      }
+    },
+    "AdditionalWaypoint": {
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/Coordinates"
+        },
+        "description": {
+          "type": "string"
+        },
+        "typeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "typeName": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        }
+      }
+    },
+    "Trackable": {
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "goal": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "releasedDate": {
+          "type": "string"
+        },
+        "originCountry": {
+          "type": "string"
+        },
+        "allowedToBeCollected": {
+          "type": "boolean"
+        },
+        "ownerCode": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/User"
+        },
+        "holderCode": {
+          "type": "string"
+        },
+        "inHolderCollection": {
+          "type": "boolean"
+        },
+        "currentGeocacheCode": {
+          "type": "string"
+        },
+        "isMissing": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "string"
+        },
+        "trackableType": {
+          "$ref": "#/definitions/TrackableType"
+        },
+        "imageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "trackingNumber": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "trackableLogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TrackableLog"
+          }
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        }
+      }
+    },
+    "UserWaypoint": {
+      "required": [
+        "isCorrectedCoordinates",
+        "coordinates",
+        "geocacheCode"
+      ],
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isCorrectedCoordinates": {
+          "type": "boolean"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/Coordinates"
+        },
+        "geocacheCode": {
+          "type": "string"
+        }
+      }
+    },
+    "TrackableType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "TrackableLog": {
+      "required": [
+        "trackableCode",
+        "loggedDate",
+        "text"
+      ],
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "ownerCode": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/User"
+        },
+        "imageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "trackableCode": {
+          "type": "string"
+        },
+        "geocacheCode": {
+          "type": "string"
+        },
+        "loggedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "isRot13Encoded": {
+          "type": "boolean"
+        },
+        "typeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "trackableLogType": {
+          "$ref": "#/definitions/TrackableLogType"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/Coordinates"
+        }
+      }
+    },
+    "TrackableLogType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "GeocacheList": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "description": "This unqiuely identifies the list.  Use this code to get more details about this list. Example (PQ25)",
+          "type": "string"
+        },
+        "lastUpdatedDateUtc": {
+          "format": "date-time",
+          "description": "When was the list last updated.  If the list is a pocket query then this property references the last time it was generated. (default order: desc)",
+          "type": "string"
+        },
+        "createdDateUtc": {
+          "format": "date-time",
+          "description": "When the list was created",
+          "type": "string"
+        },
+        "count": {
+          "format": "int32",
+          "description": "Number of items on the list",
+          "type": "integer"
+        },
+        "findCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ownerCode": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the list",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the list",
+          "type": "string"
+        },
+        "typeId": {
+          "format": "int32",
+          "description": "List Type",
+          "type": "integer"
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "isShared": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ListGeocache": {
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "PostGeocacheList": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the list",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the list",
+          "type": "string"
+        },
+        "typeId": {
+          "format": "int32",
+          "description": "List Type",
+          "type": "integer"
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "isShared": {
+          "type": "boolean"
+        }
+      }
+    },
+    "BulkResponse": {
+      "type": "object",
+      "properties": {
+        "successes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "failures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BulkFailure"
+          }
+        }
+      }
+    },
+    "BulkFailure": {
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "statusCode": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "LogDraft": {
+      "required": [
+        "note"
+      ],
+      "type": "object",
+      "properties": {
+        "referenceCode": {
+          "type": "string"
+        },
+        "imageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "guid": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "geocacheCode": {
+          "type": "string"
+        },
+        "logType": {
+          "enum": [
+            "Found It",
+            "DNF it",
+            "Write note",
+            "Archive",
+            "Needs archiving",
+            "Will attend",
+            "Attended",
+            "Webcam photo taken",
+            "Unarchive",
+            "Post Reviewer Note",
+            "Temporarily Disable Listing",
+            "Enable Listing",
+            "Publish Listing",
+            "Needs Maintenance",
+            "Owner Maintenance",
+            "Update Coordinates",
+            "Post Reviewer Note - Post Publish",
+            "Event Announcement",
+            "Submit for Review"
+          ],
+          "type": "string"
+        },
+        "geocacheLogType": {
+          "$ref": "#/definitions/GeocacheLogType"
+        },
+        "note": {
+          "type": "string"
+        },
+        "loggedDateUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "useFavoritePoint": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PostLogDraft": {
+      "required": [
+        "geocacheCode",
+        "note"
+      ],
+      "type": "object",
+      "properties": {
+        "guid": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "geocacheCode": {
+          "type": "string"
+        },
+        "logType": {
+          "enum": [
+            "Found It",
+            "DNF it",
+            "Write note",
+            "Archive",
+            "Needs archiving",
+            "Will attend",
+            "Attended",
+            "Webcam photo taken",
+            "Unarchive",
+            "Post Reviewer Note",
+            "Temporarily Disable Listing",
+            "Enable Listing",
+            "Publish Listing",
+            "Needs Maintenance",
+            "Owner Maintenance",
+            "Update Coordinates",
+            "Post Reviewer Note - Post Publish",
+            "Event Announcement",
+            "Submit for Review"
+          ],
+          "type": "string"
+        },
+        "geocacheLogType": {
+          "$ref": "#/definitions/GeocacheLogType"
+        },
+        "note": {
+          "type": "string"
+        },
+        "loggedDateUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "useFavoritePoint": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PromotedDraft": {
+      "type": "object",
+      "properties": {
+        "geocacheLog": {
+          "$ref": "#/definitions/GeocacheLog"
+        },
+        "successfulImages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "failedImages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "favoritePointApplied": {
+          "type": "boolean"
+        },
+        "draftDeleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "State": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "countryId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Country": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "AttributeType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "hasYesOption": {
+          "type": "boolean"
+        },
+        "hasNoOption": {
+          "type": "boolean"
+        },
+        "yesIconUrl": {
+          "type": "string"
+        },
+        "noIconUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "MembershipLevel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "PostTrackableLog": {
+      "required": [
+        "trackableCode",
+        "loggedDate",
+        "text"
+      ],
+      "type": "object",
+      "properties": {
+        "trackingNumber": {
+          "type": "string"
+        },
+        "trackableCode": {
+          "type": "string"
+        },
+        "geocacheCode": {
+          "type": "string"
+        },
+        "loggedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "isRot13Encoded": {
+          "type": "boolean"
+        },
+        "typeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "trackableLogType": {
+          "$ref": "#/definitions/TrackableLogType"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/Coordinates"
+        }
+      }
+    },
+    "Souvenir": {
+      "type": "object",
+      "properties": {
+        "imagePath": {
+          "type": "string"
+        },
+        "thumbImagePath": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "foundDateUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "PostUserWaypoint": {
+      "required": [
+        "isCorrectedCoordinates",
+        "coordinates",
+        "geocacheCode"
+      ],
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "isCorrectedCoordinates": {
+          "type": "boolean"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/Coordinates"
+        },
+        "geocacheCode": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "AccessToken": {
+      "type": "apiKey",
+      "description": "AccessToken passed in the header",
+      "name": "AccessToken",
+      "in": "header"
+    }
+  }
+}
