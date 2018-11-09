@@ -879,6 +879,71 @@
         "deprecated": false
       }
     },
+    "/v{api-version}/geocachelogs/{referenceCode}/images/{imageGuid}": {
+      "delete": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "summary": "Deletes a geocache log image",
+        "description": "This method will not return anything in the body.",
+        "operationId": "GeocacheLogs_DeleteGeocacheLogImages",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the geocache log (example: GL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "imageGuid",
+            "in": "path",
+            "description": "the guid of the image",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/v{api-version}/geocaches/{referenceCode}/notes": {
       "put": {
         "tags": [
@@ -3598,6 +3663,71 @@
         "deprecated": false
       }
     },
+    "/v{api-version}/trackablelogs/{referenceCode}/images/{imageGuid}": {
+      "delete": {
+        "tags": [
+          "TrackableLogs"
+        ],
+        "summary": "Deletes a trackable log image",
+        "description": "This method will not return anything in the body.",
+        "operationId": "TrackableLogs_DeleteTrackableLogImages",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "The reference code of the trackable log (example: TL100).",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "imageGuid",
+            "in": "path",
+            "description": "the guid of the image",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/v{api-version}/trackables/{referenceCode}": {
       "get": {
         "tags": [
@@ -4989,6 +5119,145 @@
         "deprecated": false
       }
     },
+    "/v{api-version}/geocaches/{referenceCode}/correctedcoordinates": {
+      "put": {
+        "tags": [
+          "UserWaypoints"
+        ],
+        "summary": "Upsert a corrected coordinate for the calling user",
+        "description": "This method will return the created or updated corrected coordinate.",
+        "operationId": "UserWaypoints_UpsertCorrectedCoordinates",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "the geocache identifier",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "coordinates",
+            "in": "body",
+            "description": "The corrected coordinates to upsert",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Coordinates"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Properties you want to return (default = referenceCode)",
+            "required": false,
+            "type": "string",
+            "default": "referencecode"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/UserWaypoint"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "UserWaypoints"
+        ],
+        "summary": "Delete a corrected coordinate for the calling user",
+        "operationId": "UserWaypoints_DeleteCorrectedCoordinates",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "parameters": [
+          {
+            "name": "referenceCode",
+            "in": "path",
+            "description": "geocache identifier",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api-version",
+            "in": "path",
+            "description": "The requested API version",
+            "required": true,
+            "type": "string",
+            "default": "1.0"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Not Authorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "429": {
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/v{api-version}/utilities/referencecode": {
       "get": {
         "tags": [
@@ -5155,6 +5424,10 @@
         },
         "isOutgoing": {
           "type": "boolean"
+        },
+        "requestDateUtc": {
+          "format": "date-time",
+          "type": "string"
         }
       }
     },
@@ -5206,6 +5479,12 @@
           }
         },
         "url": {
+          "type": "string"
+        },
+        "geocacheName": {
+          "type": "string"
+        },
+        "ianaTimezoneId": {
           "type": "string"
         },
         "loggedDate": {
@@ -5261,6 +5540,10 @@
       "properties": {
         "url": {
           "type": "string"
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "readOnly": true
         },
         "referenceCode": {
           "type": "string"
@@ -5713,6 +5996,9 @@
         "holderCode": {
           "type": "string"
         },
+        "holder": {
+          "$ref": "#/definitions/User"
+        },
         "inHolderCollection": {
           "type": "boolean"
         },
@@ -5736,6 +6022,9 @@
           "type": "string"
         },
         "url": {
+          "type": "string"
+        },
+        "currentGeocacheName": {
           "type": "string"
         },
         "trackableLogs": {
@@ -5814,6 +6103,9 @@
           "type": "integer"
         },
         "url": {
+          "type": "string"
+        },
+        "geocacheName": {
           "type": "string"
         },
         "images": {
@@ -6047,6 +6339,9 @@
         },
         "useFavoritePoint": {
           "type": "boolean"
+        },
+        "geocacheName": {
+          "type": "string"
         }
       }
     },
@@ -6177,6 +6472,9 @@
           "type": "string"
         },
         "noIconUrl": {
+          "type": "string"
+        },
+        "notChosenIconUrl": {
           "type": "string"
         }
       }
