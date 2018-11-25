@@ -5331,13 +5331,13 @@
         },
         "type": {
           "enum": [
-            "Attended",
             "Found It",
             "DNF it",
             "Write note",
             "Archive",
             "Needs archiving",
             "Will attend",
+            "Attended",
             "Webcam photo taken",
             "Unarchive",
             "Post Reviewer Note",
@@ -6013,13 +6013,13 @@
         },
         "logType": {
           "enum": [
-            "Attended",
             "Found It",
             "DNF it",
             "Write note",
             "Archive",
             "Needs archiving",
             "Will attend",
+            "Attended",
             "Webcam photo taken",
             "Unarchive",
             "Post Reviewer Note",
@@ -6066,13 +6066,13 @@
         },
         "logType": {
           "enum": [
-            "Attended",
             "Found It",
             "DNF it",
             "Write note",
             "Archive",
             "Needs archiving",
             "Will attend",
+            "Attended",
             "Webcam photo taken",
             "Unarchive",
             "Post Reviewer Note",
