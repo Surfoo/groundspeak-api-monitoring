@@ -648,7 +648,7 @@
             Expand allows resources that have a parent child relationship (especially when the parent has a one to many relationship with the child) from different endpoints to be combined under the parent resource.
             An example of this would be including geocache logs within the Get Geocache endpoint.
             The drawback of this approach is the payload will be larger and the call duration will be longer but depending on the platform used, this approach may be useful to your application. Expand queries allow a limited subset of data to be returned then the correct endpoint will be needed to page upon the results.
-            Use the specific endpoint documentation to see if expand is allowed and what values are able to be expanded. The expand parameter is a comma separated array of the expanded values. Optionally, you can add a colon and number (<code>:5</code>) to set the number of expanded resources returned. All expanded resources are allowed a max take of 30.
+            Use the specific endpoint documentation to see if expand is allowed and what values are able to be expanded. The expand parameter is a comma separated array of the expanded values. Each expand parameter will include the resource name, a colon, and number (<code>geocachelogs:5</code>) to set the number of expanded resources returned. All expanded resources are allowed a max take of 30.
         </p>
         <p>
             <b>Example Request:</b> <code>https://api.groundspeak.com/v1/geocaches/gc25?expand=geocachelogs:5</code>
