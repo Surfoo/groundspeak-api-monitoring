@@ -5615,8 +5615,8 @@
         "type": {
           "enum": [
             "Found It",
-            "Write note",
             "DNF it",
+            "Write note",
             "Archive",
             "Needs archiving",
             "Will attend",
