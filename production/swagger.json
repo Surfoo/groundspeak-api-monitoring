@@ -5614,9 +5614,12 @@
         },
         "type": {
           "enum": [
-            "Publish Listing",
             "Found It",
+            "Needs Maintenance",
             "Write note",
+            "Owner Maintenance",
+            "Update Coordinates",
+            "Publish Listing",
             "DNF it",
             "Archive",
             "Needs archiving",
@@ -5627,9 +5630,6 @@
             "Post Reviewer Note",
             "Temporarily Disable Listing",
             "Enable Listing",
-            "Needs Maintenance",
-            "Owner Maintenance",
-            "Update Coordinates",
             "Post Reviewer Note - Post Publish",
             "Event Announcement",
             "Submit for Review"
@@ -6305,10 +6305,9 @@
         },
         "logType": {
           "enum": [
-            "Publish Listing",
             "Found It",
-            "Write note",
             "DNF it",
+            "Write note",
             "Archive",
             "Needs archiving",
             "Will attend",
@@ -6318,6 +6317,7 @@
             "Post Reviewer Note",
             "Temporarily Disable Listing",
             "Enable Listing",
+            "Publish Listing",
             "Needs Maintenance",
             "Owner Maintenance",
             "Update Coordinates",
@@ -6361,10 +6361,9 @@
         },
         "logType": {
           "enum": [
-            "Publish Listing",
             "Found It",
-            "Write note",
             "DNF it",
+            "Write note",
             "Archive",
             "Needs archiving",
             "Will attend",
@@ -6374,6 +6373,7 @@
             "Post Reviewer Note",
             "Temporarily Disable Listing",
             "Enable Listing",
+            "Publish Listing",
             "Needs Maintenance",
             "Owner Maintenance",
             "Update Coordinates",
