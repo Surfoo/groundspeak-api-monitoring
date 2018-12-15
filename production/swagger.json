@@ -5615,12 +5615,8 @@
         "type": {
           "enum": [
             "Found It",
-            "Needs Maintenance",
-            "Write note",
-            "Owner Maintenance",
-            "Update Coordinates",
-            "Publish Listing",
             "DNF it",
+            "Write note",
             "Archive",
             "Needs archiving",
             "Will attend",
@@ -5630,6 +5626,10 @@
             "Post Reviewer Note",
             "Temporarily Disable Listing",
             "Enable Listing",
+            "Publish Listing",
+            "Needs Maintenance",
+            "Owner Maintenance",
+            "Update Coordinates",
             "Post Reviewer Note - Post Publish",
             "Event Announcement",
             "Submit for Review"
