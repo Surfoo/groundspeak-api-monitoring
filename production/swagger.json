@@ -5614,10 +5614,10 @@
         },
         "type": {
           "enum": [
-            "Will attend",
             "Found It",
-            "DNF it",
             "Write note",
+            "Will attend",
+            "DNF it",
             "Archive",
             "Needs archiving",
             "Attended",
@@ -6305,12 +6305,12 @@
         },
         "logType": {
           "enum": [
-            "Will attend",
             "Found It",
             "DNF it",
             "Write note",
             "Archive",
             "Needs archiving",
+            "Will attend",
             "Attended",
             "Webcam photo taken",
             "Unarchive",
@@ -6361,12 +6361,12 @@
         },
         "logType": {
           "enum": [
-            "Will attend",
             "Found It",
             "DNF it",
             "Write note",
             "Archive",
             "Needs archiving",
+            "Will attend",
             "Attended",
             "Webcam photo taken",
             "Unarchive",
