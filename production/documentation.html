@@ -612,7 +612,7 @@
     "name": "Camels Prairie Stash"
 }</code></pre>
         <p>
-            To specify nested object fields, list the nested fields as a comma separated list inside square brackets ("[", "]"). Including the top level of an object will include all nested properties
+            To specify nested object fields, list the nested fields as a comma separated list inside square brackets ("[", "]"). This is especially useful when using the expand parameter as you can request specific expanded fields. Including the top level of an object will include all nested properties.
         </p>
         <p>
             <b>Example Request:</b> <code>https://api.groundspeak.com/v1/geocaches/gc25?fields=userData[favorited,founddate]</code>
@@ -648,7 +648,10 @@
             Expand allows resources that have a parent child relationship (especially when the parent has a one to many relationship with the child) from different endpoints to be combined under the parent resource.
             An example of this would be including geocache logs within the Get Geocache endpoint.
             The drawback of this approach is the payload will be larger and the call duration will be longer but depending on the platform used, this approach may be useful to your application. Expand queries allow a limited subset of data to be returned then the correct endpoint will be needed to page upon the results.
-            Use the specific endpoint documentation to see if expand is allowed and what values are able to be expanded. The expand parameter is a comma separated array of the expanded values. Each expand parameter will include the resource name, a colon, and number (<code>geocachelogs:5</code>) to set the number of expanded resources returned. All expanded resources are allowed a max take of 30.
+            Use the specific endpoint documentation to see if expand is allowed and what values are able to be expanded. The expand parameter is a comma separated array of the expanded values. Each expand parameter will include the resource name, a colon, and number (<code>geocachelogs:5</code>) to set the number of expanded resources returned. All expanded resources are allowed a max take of 30. 
+        </p>
+        <p>
+            <i>Tip:</i> Use the fields parameter to reduce the fields that come back with the expanded resource. This will increase the efficiency as well as decrease the payload size of the request.
         </p>
         <p>
             <b>Example Request:</b> <code>https://api.groundspeak.com/v1/geocaches/gc25?expand=geocachelogs:5</code>
@@ -1104,7 +1107,7 @@ else
                     <tr>
                         <td><code>referenceCode</code></td>
                         <td>path</td>
-                        <td><code>gc25</code></td>
+                        <td><code>GCK25B</code></td>
                         <td>Yes</td>
                         <td>the identifier of the geocache</td>
                         <td>-</td>
@@ -1188,22 +1191,6 @@ else
                         <td><code>referenceCode</code></td>
                     </tr>
                     <tr>
-                        <td><code>skip</code></td>
-                        <td>query</td>
-                        <td><code>skip=10</code></td>
-                        <td>No</td>
-                        <td>the number of resources to skip over</td>
-                        <td><code>0</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>how many resources to return</td>
-                        <td><code>10</code></td>
-                    </tr>
-                    <tr>
                         <td><code>expand</code></td>
                         <td>query</td>
                         <td><code>expand=geocachelogs:5</code></td>
@@ -1244,7 +1231,7 @@ else
                     <tr>
                         <td><code>referenceCode</code></td>
                         <td>path</td>
-                        <td><code>gc25</code></td>
+                        <td><code>GCK25B</code></td>
                         <td>Yes</td>
                         <td>the identifier of the geocache</td>
                         <td>-</td>
@@ -1252,7 +1239,7 @@ else
                     <tr>
                         <td><code>fields</code></td>
                         <td>query</td>
-                        <td><code>fields=name,state</code></td>
+                        <td><code>fields=url,description</code></td>
                         <td>No</td>
                         <td>partial response fields to return</td>
                         <td><code>url</code></td>
@@ -1310,7 +1297,7 @@ else
                     <tr>
                         <td><code>referenceCode</code></td>
                         <td>path</td>
-                        <td><code>gc25</code></td>
+                        <td><code>GCK25B</code></td>
                         <td>Yes</td>
                         <td>the identifier of the geocache</td>
                         <td>-</td>
@@ -1360,7 +1347,7 @@ else
                     <tr>
                         <td><code>referenceCode</code></td>
                         <td>path</td>
-                        <td><code>gc25</code></td>
+                        <td><code>GCK25B</code></td>
                         <td>Yes</td>
                         <td>the identifier of the geocache</td>
                         <td>-</td>
@@ -4814,7 +4801,7 @@ else
                         <td>type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info)</td>
                     </tr>
                     <tr>
-                        <td>size</td>
+                        <td>size (Deprecated)</td>
                         <td>enum</td>
                         <td>size of the geocache container (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
                     </tr>
@@ -4926,9 +4913,10 @@ else
   "name": "Geocaching Headquarters",
   "difficulty": 1,
   "terrain": 1,
-  "favoritePoints": 3878,
-  "trackableCount": 217,
-  "placedDate": "2004-07-22T00:00:00",
+  "favoritePoints": 4482,
+  "trackableCount": 211,
+  "placedDate": "2004-07-22T00:00:00.000",
+  "publishedDate": "2004-07-22T00:00:00.000",
   "type": "GeocachingHq",
   "geocacheType": {
     "id": 3773,
@@ -4941,56 +4929,109 @@ else
     "name": "Other"
   },
   "userData": {
-    "foundDate": "2016-06-24T12:00:00",
-    "isFavorited": false
+    "foundDate": "2016-06-24T12:00:00.000",
+    "correctedCoordinates": {
+      "latitude": 47,
+      "longitude": -122
+    },
+    "isFavorited": true
   },
   "status": "Active",
   "location": {
+    "country": "United States",
     "countryId": 2,
-    "countryName": "United States",
-    "stateId": 48,
-    "stateName": "Washington"
+    "state": "Washington",
+    "stateId": 48
   },
   "postedCoordinates": {
     "latitude": 47.648967,
     "longitude": -122.348117
   },
-  "lastVisitedDate": "2017-10-05T12:27:50",
+  "lastVisitedDate": "2018-11-29T12:00:00.000",
   "ownerCode": "PRA09E",
+  "ownerAlias": "Geocaching HQ",
   "isPremiumOnly": false,
-  "shortDescription": "&lt;h1 style=\"text-align:center;\"&gt;&lt;strong&gt;&lt;font color=\"#02874D\"&gt;Welcome to Geocaching HQâ€™s Visitor Center!&lt;/font&gt;&lt;/strong&gt;&lt;/h1&gt;\r\n&lt;br /&gt;\r\n",
-  "longDescription": "&lt;h2 style=\"text-align:center;\"&gt;&lt;strong&gt;&lt;span style=\"color:#00B265;\"&gt;This cache is only available while the Visitor Center at HQ is open.&lt;/span&gt;&lt;/strong&gt;&lt;/h2&gt;",
+  "shortDescription": "Welcome to Geocaching HQâ€™s Visitor Center!",
+  "longDescription": "This cache is only available while the Visitor Center at HQ is open. ...",
   "hints": "Where would you look if you were a pirate?",
   "attributes": [
     {
       "id": 24,
       "name": "Wheelchair accessible",
+      "imageUrl": "https://www.geocaching.com/images/attributes/wheelchair-yes.gif",
       "isOn": true
     },
     {
       "id": 13,
       "name": "Available at all times",
+      "imageUrl": "https://www.geocaching.com/images/attributes/available-no.gif",
       "isOn": false
     },
     {
       "id": 7,
       "name": "Takes less than an hour",
+      "imageUrl": "https://www.geocaching.com/images/attributes/onehour-yes.gif",
       "isOn": true
     },
     {
       "id": 6,
       "name": "Recommended for kids",
+      "imageUrl": "https://www.geocaching.com/images/attributes/kids-yes.gif",
       "isOn": true
+    },
+    {
+      "id": 41,
+      "name": "Stroller accessible",
+      "imageUrl": "https://www.geocaching.com/images/attributes/stroller-yes.gif",
+      "isOn": true
+    },
+    {
+      "id": 28,
+      "name": "Public restrooms nearby",
+      "imageUrl": "https://www.geocaching.com/images/attributes/restrooms-yes.gif",
+      "isOn": true
+    },
+    {
+      "id": 26,
+      "name": "Public transportation",
+      "imageUrl": "https://www.geocaching.com/images/attributes/public-yes.gif",
+      "isOn": true
+    },
+    {
+      "id": 27,
+      "name": "Drinking water nearby",
+      "imageUrl": "https://www.geocaching.com/images/attributes/water-yes.gif",
+      "isOn": true
+    },
+    {
+      "id": 14,
+      "name": "Recommended at night",
+      "imageUrl": "https://www.geocaching.com/images/attributes/night-no.gif",
+      "isOn": false
+    },
+    {
+      "id": 38,
+      "name": "Campfires",
+      "imageUrl": "https://www.geocaching.com/images/attributes/campfires-no.gif",
+      "isOn": false
     }
   ],
   "ianaTimezoneId": "America/Los_Angeles",
   "relatedWebPage": "http://geocachinghq.com/schedule/",
   "url": "https://coord.info/GCK25B",
-  "containsHtml": false,
+  "containsHtml": true,
   "owner": {
+    "membershipLevelId": 2,
+    "findCount": 0,
+    "hideCount": 114,
+    "favoritePoints": 1,
+    "profileText": "Geocaching HQ is the home base for all Geocaching employees...",
+    "url": "https://coord.info/PRA09E",
+    "referenceCode": "PRA09E",
     "username": "Geocaching HQ",
-    "avatarUrl": "https://img.geocaching.com/user/square250/f777d091-4a90-406b-a998-70ec06b4f6f1.png"
-  }
+    "avatarUrl": "https://img.geocaching.com/user/avatar/f777d091-4a90-406b-a998-70ec06b4f6f1.png"
+  },
+  "additionalWaypoints": []
 }</code></pre>
                 </div>
             </div>
@@ -5059,7 +5100,7 @@ else
                         <td>type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info)</td>
                     </tr>
                     <tr>
-                        <td>size</td>
+                        <td>size (Deprecated)</td>
                         <td>enum</td>
                         <td>size of the geocache container (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
                     </tr>
@@ -5145,9 +5186,10 @@ else
   "name": "Geocaching Headquarters",
   "difficulty": 1,
   "terrain": 1,
-  "favoritePoints": 3878,
-  "trackableCount": 217,
-  "placedDate": "2004-07-22T00:00:00",
+  "favoritePoints": 4482,
+  "trackableCount": 211,
+  "placedDate": "2004-07-22T00:00:00.000",
+  "publishedDate": "2004-07-22T00:00:00.000",
   "type": "GeocachingHq",
   "geocacheType": {
     "id": 3773,
@@ -5160,28 +5202,42 @@ else
     "name": "Other"
   },
   "userData": {
-    "foundDate": "2016-06-24T12:00:00",
+    "foundDate": "2016-06-24T12:00:00.000",
+    "correctedCoordinates": {
+      "latitude": 47,
+      "longitude": -122
+    },
     "isFavorited": false
   },
   "status": "Active",
   "location": {
-    "countryName": "United States",
-    "stateName": "Washington"
+    "country": "United States",
+    "countryId": 2,
+    "state": "Washington",
+    "stateId": 48
   },
   "postedCoordinates": {
     "latitude": 47.648967,
     "longitude": -122.348117
   },
-  "lastVisitedDate": "2017-10-05T12:27:50",
+  "lastVisitedDate": "2018-11-29T12:00:00.000",
   "ownerCode": "PRA09E",
+  "ownerAlias": "Geocaching HQ",
   "isPremiumOnly": false,
   "ianaTimezoneId": "America/Los_Angeles",
   "relatedWebPage": "http://geocachinghq.com/schedule/",
-  "url": "https://GCK25B",
-  "containsHtml": false,
+  "url": "https://coord.info/GCK25B",
+  "containsHtml": true,
   "owner": {
+    "membershipLevelId": 2,
+    "findCount": 0,
+    "hideCount": 114,
+    "favoritePoints": 1,
+    "profileText": "Geocaching HQ is the home base for all Geocaching employees...",
+    "url": "https://coord.info/PRA09E",
+    "referenceCode": "PRA09E",
     "username": "Geocaching HQ",
-    "avatarUrl": "https://img.geocaching.com/user/square250/f777d091-4a90-406b-a998-70ec06b4f6f1.png"
+    "avatarUrl": "https://img.geocaching.com/user/avatar/f777d091-4a90-406b-a998-70ec06b4f6f1.png"
   }
 }</code></pre>
             </div>

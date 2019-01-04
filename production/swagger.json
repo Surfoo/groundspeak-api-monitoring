@@ -5615,11 +5615,11 @@
         "type": {
           "enum": [
             "Found It",
-            "Write note",
-            "Will attend",
             "DNF it",
+            "Write note",
             "Archive",
             "Needs archiving",
+            "Will attend",
             "Attended",
             "Webcam photo taken",
             "Unarchive",
