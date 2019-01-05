@@ -654,74 +654,47 @@
             <i>Tip:</i> Use the fields parameter to reduce the fields that come back with the expanded resource. This will increase the efficiency as well as decrease the payload size of the request.
         </p>
         <p>
-            <b>Example Request:</b> <code>https://api.groundspeak.com/v1/geocaches/gc25?expand=geocachelogs:5</code>
+            <b>Example Request:</b> <code>https://api.groundspeak.com/v1/geocaches/gck25b?expand=geocachelogs:5,geocachelog.images:5&fields=referenceCode,geocachelogs[referencecode,text,images[url]]</code>
         </p>
         <p>
             <b>Example Response:</b>
             <pre><code>{
-    "referenceCode": "GC25",
-    "geocacheLogs": [
+  "referenceCode": "GCK25B",
+  "geocacheLogs": [
+    {
+      "referenceCode": "GLXJA1WB",
+      "text": "Nice to be able to finally visit the center of it all! TFTC!",
+      "images": [
         {
-            "referenceCode": "GLV5F2C8",
-            "ownerCode": "PRGEDM5",
-            "imageCount": 0,
-            "isEncoded": false,
-            "loggedDate": "2018-03-23T12:00:00",
-            "text": "test",
-            "type": "Found It",
-            "geocacheCode": "GC25",
-            "usedFavoritePoint": false
-            ...
-        },
-        {
-            "referenceCode": "GLV5F1VX",
-            "ownerCode": "PR6",
-            "imageCount": 0,
-            "isEncoded": false,
-            "loggedDate": "2018-03-20T12:00:00",
-            "text": "test",
-            "type": "Found It",
-            "geocacheCode": "GC25",
-            "usedFavoritePoint": false
-            ...
-        },
-        {
-            "referenceCode": "GLV5F0F6",
-            "ownerCode": "PRMW8JZ",
-            "imageCount": 0,
-            "isEncoded": false,
-            "loggedDate": "2018-03-13T12:00:00",
-            "text": "TEST",
-            "type": "Found It",
-            "geocacheCode": "GC25",
-            "usedFavoritePoint": false
-            ...
-        },
-        {
-            "referenceCode": "GLTB2QD5",
-            "ownerCode": "PRBHDVR",
-            "imageCount": 0,
-            "isEncoded": false,
-            "loggedDate": "2017-10-07T12:00:00",
-            "text": "Oldest cache in Idaho and oldest cache we've ever found, Woo Hoo!!! :)  When planning our fall getaway to the Idaho panhandle, finding this cache was at the top of our To Do list.  Even though others had said in their logs that the road was drivable in a low clearance vehicle, we weren't confident that our sedan would make it.  But the road was in surprisingly great shape most of the way, and even the final half mile to get to Huckle-bear-ies (GC2DX5R) wasn't too bad.  We had downloaded the GPX file of the route ahead of time, and Mr. AlohaMT had also found a free app so we could use it with our phones, so taking the correct roads was a no-brainer.  We're sure it saved us from making at least one wrong turn.  After pulling off the road near Huckle-bear-ies, we ate a quick lunch, changed into our hiking boots, and strapped on our hiking packs and bear spray.  The road to the cache was a steady uphill hike most of the way, but we saw several birds, chipmunks, and squirrels to entertain us, and the spots of fall color, most especially the huckleberry bushes, were gorgeous.  We were sheltered from the wind until we hit the summit.  It was blowing strongly and was COLD, so we didn't linger long at GZ, though we did take time to look through the swag.  We took a small geocaching magnet in exchange for a piece of coral we found in Kaua'i and a Helena geotour pin.  We also dropped a TB we've been carrying around for the last two months.  The hike back down went quickly, and while we'd been hit with an occasional semi-snowflake or graupel during both the hikes up and back, the graupel didn't began in earnest until a few yards before we reached our car.  Typical October weather, it had stopped again by the time we unloaded our gear and were ready to leave.  This experience was everything we'd been looking forward to, and we enjoyed ourselves thoroughly.  Thanks so much for keeping this wonderful old cache going and for adding to our geocaching memories!",
-            "type": "Found It",
-            "geocacheCode": "GC25",
-            "usedFavoritePoint": false
-            ...
-        },
-        {
-            "referenceCode": "GLT39QME",
-            "ownerCode": "PRCA8KK",
-            "imageCount": 0,
-            "isEncoded": false,
-            "loggedDate": "2017-08-23T12:00:00",
-            "text": "The sun was barely up when our intrepid group began an eight-day odyssey that would have Bearberry's Cub, BearClaw1, Gatekeeper, Trefoil/Voyager, and me making a road trip from Calgary through Kamloops and Vancouver in BC, to Seattle/Issaquah in Washington state, down to Portland, Oregon, with a final stop in Priest River, Idaho before returning home. NurseB33 joined our group in Seattle to make the return journey with all of us.\n\nDay eight of our odyssey. Time to make our way home, but first we have a plan for some important caches in the Priest River area.\n\nThis was our first stop for the day. As Bearberry's Cub and BearClaw1 have already indicated in their logs, definitely, absolutely, under no circumstances, do you want to park at  N 48 32.864 W 116 47.964 as had been indicated in a previous log...unless you really, really, really like severe bushwhacking!\n\nWhen we eventually arrived at GZ, it was a quick find. Thanks for maintaining this old cache for all of us! TFTC\n",
-            "type": "Found It",
-            "geocacheCode": "GC25",
-            "usedFavoritePoint": false
-            ...
+          "url": "https://img.geocaching.com/12345.jpg"
         }
-    ]
+      ]
+    },
+    {
+      "referenceCode": "GLXJ723B",
+      "text": "2nd visit. Was here last year visiting family. Dropping off TB. ",
+      "images": []
+    },
+    {
+      "referenceCode": "GLXJ71J5",
+      "text": "Drop off travel bugs at headquarters ",
+      "images": [
+        {
+          "url": "https://img.geocaching.com/67890.jpg"
+        }
+      ]
+    },
+    {
+      "referenceCode": "GLXJ710W",
+      "text": "2nd visit 20018 drop off travel bugs",
+      "images": []
+    },
+    {
+      "referenceCode": "GLXJ6J18",
+      "text": "Dropping off TBs",
+      "images": []
+    }
+  ]
 }</code></pre>
     </section>
     <section id="referencecodes">
@@ -843,7 +816,7 @@ else
                         <td>query</td>
                         <td><code>expand=geocachelogs:5</code></td>
                         <td>false</td>
-                        <td>The fields of the geocache object to expand. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
                         <td>-</td>
                     </tr>
                 </tbody>
@@ -1133,7 +1106,7 @@ else
                         <td>query</td>
                         <td><code>expand=geocachelogs:5,trackables:5</code></td>
                         <td>false</td>
-                        <td>The fields of the geocache object to expand. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
                         <td>-</td>
                     </tr>
                 </tbody>
@@ -1195,7 +1168,7 @@ else
                         <td>query</td>
                         <td><code>expand=geocachelogs:5</code></td>
                         <td>false</td>
-                        <td>The fields of the geocache object to expand. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
                         <td>-</td>
                     </tr>
                 </tbody>
@@ -3678,7 +3651,7 @@ else
                 <td>query</td>
                 <td><code>expand=geocachelogs:5,trackables:5</code></td>
                 <td>false</td>
-                <td>The fields of the geocache object to expand. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
                 <td>-</td>
             </tr>
             </tbody>
