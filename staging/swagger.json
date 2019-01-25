@@ -5614,14 +5614,14 @@
         },
         "type": {
           "enum": [
-            "Attended",
-            "Webcam photo taken",
-            "DNF it",
             "Found It",
+            "DNF it",
             "Write note",
             "Archive",
             "Needs archiving",
             "Will attend",
+            "Attended",
+            "Webcam photo taken",
             "Unarchive",
             "Post Reviewer Note",
             "Temporarily Disable Listing",
