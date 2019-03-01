@@ -172,7 +172,7 @@
                     <li><a href="#get-lists">Get User Lists</a></li>
                     <li><a href="#get-souvenirs">Get User Souvenirs</a></li>
                     <li><a href="#get-user-images">Get User Images</a></li>
-                    <li><a href="#get-membership-levels">Get Membership Levels</a></li>
+                    
                 </ul>
             </li>
             <li class="method-heading">
@@ -193,6 +193,7 @@
                     <li><a href="#get-countries">Get Countries</a></li>
                     <li><a href="#get-states">Get States</a></li>
                     <li><a href="#get-country-states">Get States By Country</a></li>
+                    <li><a href="#get-membership-levels">Get Membership Levels</a></li>
                 </ul>
             </li>
         </ul>
@@ -748,6 +749,8 @@ else
                 <b>HTTP Method: </b>GET
                 <br />
                 <b>Response Type: </b>Array of <a href="#geocache">Geocaches</a> or <a href="#lite-geocache">Lite Geocaches</a>
+                <br />
+                <b>Restrictions: </b>This method will not return any archived or locked geocaches. Unpublished geocaches will be excluded unless the calling user is the geocache owner. Geocaches on ignored list of calling user will also be excluded from search results. Basic members will only return traditionals and event types.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3925,7 +3928,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 404, 500
                 <br />
-                <b>Restrictions: </b>Only referenceCodes or usernames will be respected if both are passed in. Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
+                <b>Restrictions: </b>Only referenceCodes will be respected if both are passed in. Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3944,7 +3947,7 @@ else
                 <tr>
                     <td><code>referenceCodes</code></td>
                     <td>query</td>
-                    <td><code>referenceCode=PR1,PR2,PR3</code></td>
+                    <td><code>referenceCodes=PR1,PR2,PR3</code></td>
                     <td>No (see restrictions)</td>
                     <td>the identifiers of the users. The max amount of codes allowed is 50.</td>
                     <td>-</td>
@@ -4281,22 +4284,7 @@ else
         </table>
         <br />
     </div>
-    <div id="get-membership-levels">
-        <h3>Get Membership Levels</h3>
-        <p>
-            This method will fetch all valid membership levels
-        </p>
-        <p>
-            <b>Path: </b><code>/v1/membershiplevels</code>
-            <br />
-            <b>HTTP Method: </b>GET
-            <br />
-            <b>Response Type: </b>Array of id and name
-            <br />
-            <b>Response Codes: </b>200, 401, 500
-        </p>
-        <br />
-    </div>
+    
     </section>
     <section id="friend-methods">
         <h2>Friend Methods</h2>
@@ -4405,10 +4393,10 @@ else
                     <tr>
                         <td><code>fields</code></td>
                         <td>query</td>
-                        <td><code>fields=requested.username,referenceCode</code></td>
+                        <td><code>fields=requested.username,id</code></td>
                         <td>No</td>
                         <td>partial response fields to return</td>
-                        <td>referenceCode</td>
+                        <td><code>id</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -4685,26 +4673,42 @@ else
             <table class="table table-striped table-hover table-responsive">
                 <caption>Parameters</caption>
                 <thead>
-                <tr>
-                    <th class="col-xs-1">Argument</th>
-                    <th class="col-xs-1">Type</th>
-                    <th class="col-xs-2">Example</th>
-                    <th class="col-xs-1">Required</th>
-                    <th class="col-xs-5">Description</th>
-                    <th class="col-xs-2">Default</th>
-                </tr>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><code>countryId</code></td>
-                    <td>path</td>
-                    <td><code>countryId=1</code></td>
-                    <td>Yes</td>
-                    <td>the id of the country</td>
-                    <td>-</td>
-                </tr>
+                    <tr>
+                        <td><code>countryId</code></td>
+                        <td>path</td>
+                        <td><code>countryId=1</code></td>
+                        <td>Yes</td>
+                        <td>the id of the country</td>
+                        <td>-</td>
+                    </tr>
                 </tbody>
             </table>
+            <br />
+        </div>
+        <div id="get-membership-levels">
+            <h3>Get Membership Levels</h3>
+            <p>
+                This method will fetch all valid membership levels
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/membershiplevels</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of id and name
+                <br />
+                <b>Response Codes: </b>200, 401, 500
+            </p>
             <br />
         </div>
     </section>
@@ -5267,8 +5271,8 @@ else
                         </tr>
                     <tr>
                         <td>type (Deprecated)</td>
-                        <td>string or integer</td>
-                        <td>name or id of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
+                        <td>string</td>
+                        <td>name of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
                         <td>No</td>
                         <td>No</td>
                     </tr>
@@ -5353,7 +5357,6 @@ else
   "imageCount": 0,
   "loggedDate": "2004-06-02T00:00:00",
   "text": "Example log text.",
-  "typeId": 2,
   "geocacheLogType": {
     "id": 2,
     "name": "Found It",
@@ -5361,7 +5364,7 @@ else
   },
   "isEncoded": false,
   "isArchived": false,
-  "geocacheReferenceCode": "GCK25B",
+  "geocacheCode": "GCK25B",
   "geocacheName": "Geocaching Headquarters",
   "ianaTimezoneId": "America/Los_Angeles",
   "usedFavoritePoint": false,
@@ -5655,7 +5658,6 @@ else
   "loggedDate": "2001-09-28T00:00:00",
   "text": "I envy Cache Maru's eTrex Vista, with it's amazing 24M of memory, color screen, and maps, way beyond my eTrex Summit.  Oh Garmin V, when will you come, so someone will envy me...\r\n\r\nI have Envy, given to Denise by jeremy and then given to me.  I bet you envy me now!  I hope to place envy during a Q-13 tv crew cache, stay tuned!",
   "isRot13Encoded": false,
-  "typeId": 19,
   "trackableLogType": {
     "id": 19,
     "name": "Grab It (Not from a Cache)",
@@ -5702,8 +5704,8 @@ else
                 </tr>
                 <tr>
                     <td>logType (Deprecated)</td>
-                    <td>string or integer</td>
-                    <td>name or id of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
+                    <td>string</td>
+                    <td>name of the geocache log type (see <a href="#geocache-log-types">Geocache Log Types</a> for more info)</td>
                     <td>No</td>
                     <td>No</td>
                 </tr>
@@ -5748,7 +5750,6 @@ else
             <pre><code>{
   "referenceCode": "LD7Z53GB",
   "geocacheCode": "GCK25B",
-  "logType": "WriteNote",
   "geocacheLogType": {
     "id": 2,
     "name": "Found It",
@@ -5799,12 +5800,30 @@ else
             </table>
             <h3>Example</h3>
             <pre><code>{
-  "referenceCode": "LD7Z53GB",
-  "guid": "6ae15c22-132c-4869-aca1-86bffae5a775",
-  "geocacheCode": "GCK25B",
-  "logTypeId": 4,
-  "note": "example draft text",
-  "loggedDateUtc": "2017-10-13T16:28:59.51"
+  "geocacheLog": {
+    "referenceCode": "GL12345",
+    "ownerCode": "PR1",
+    "owner": {
+      "referenceCode": "PR1",
+      "username": "testuser"
+    },
+    "imageCount": 0,
+    "isEncoded": false,
+    "isArchived": false,
+    "url": "https://coord.info/GL12345",
+    "loggedDate": "2019-02-08T17:28:04.827Z",
+    "text": "i promoted a draft.",
+    "geocacheLogType": {
+      "id": 2,
+      "name": "FoundIt"
+    },
+    "geocacheCode": "GC12345",
+    "usedFavoritePoint": false
+  },
+  "successfulImages": [],
+  "failedImages": [],
+  "favoritePointApplied": false,
+  "draftDeleted": true
 }</code></pre>
         </div>
         <div id="user-waypoint" class="container col-md-12">

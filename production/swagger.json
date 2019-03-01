@@ -6284,9 +6284,6 @@
             }
         },
         "LogDraft": {
-            "required": [
-                "note"
-            ],
             "type": "object",
             "properties": {
                 "referenceCode": {
@@ -6305,23 +6302,23 @@
                 },
                 "logType": {
                     "enum": [
+                        "Temporarily Disable Listing",
                         "Found It",
                         "Owner Maintenance",
-                        "Write note",
-                        "DNF it",
-                        "Publish Listing",
-                        "Enable Listing",
-                        "Temporarily Disable Listing",
-                        "Needs Maintenance",
-                        "Post Reviewer Note - Post Publish",
-                        "Needs archiving",
-                        "Attended",
-                        "Will attend",
                         "Update Coordinates",
+                        "Write note",
+                        "Publish Listing",
+                        "DNF it",
                         "Archive",
+                        "Needs archiving",
+                        "Will attend",
+                        "Attended",
                         "Webcam photo taken",
                         "Unarchive",
                         "Post Reviewer Note",
+                        "Enable Listing",
+                        "Needs Maintenance",
+                        "Post Reviewer Note - Post Publish",
                         "Event Announcement",
                         "Submit for Review"
                     ],
@@ -6347,8 +6344,7 @@
         },
         "PostLogDraft": {
             "required": [
-                "geocacheCode",
-                "note"
+                "geocacheCode"
             ],
             "type": "object",
             "properties": {
@@ -6361,23 +6357,23 @@
                 },
                 "logType": {
                     "enum": [
+                        "Temporarily Disable Listing",
                         "Found It",
                         "Owner Maintenance",
-                        "Write note",
-                        "DNF it",
-                        "Publish Listing",
-                        "Enable Listing",
-                        "Temporarily Disable Listing",
-                        "Needs Maintenance",
-                        "Post Reviewer Note - Post Publish",
-                        "Needs archiving",
-                        "Attended",
-                        "Will attend",
                         "Update Coordinates",
+                        "Write note",
+                        "Publish Listing",
+                        "DNF it",
                         "Archive",
+                        "Needs archiving",
+                        "Will attend",
+                        "Attended",
                         "Webcam photo taken",
                         "Unarchive",
                         "Post Reviewer Note",
+                        "Enable Listing",
+                        "Needs Maintenance",
+                        "Post Reviewer Note - Post Publish",
                         "Event Announcement",
                         "Submit for Review"
                     ],
