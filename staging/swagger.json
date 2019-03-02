@@ -5825,14 +5825,14 @@
                 "size": {
                     "description": "Container or Size of cache",
                     "enum": [
-                        "Unknown",
-                        "Micro",
-                        "Regular",
-                        "Medium",
                         "Large",
-                        "Virtual",
+                        "Medium",
+                        "Micro",
                         "Other",
-                        "Small"
+                        "Regular",
+                        "Small",
+                        "Unknown",
+                        "Virtual"
                     ],
                     "type": "string"
                 },
@@ -5845,11 +5845,11 @@
                 "status": {
                     "description": "The state of the Geocache",
                     "enum": [
-                        "Unpublished",
                         "Active",
+                        "Archived",
                         "Disabled",
                         "Locked",
-                        "Archived"
+                        "Unpublished"
                     ],
                     "type": "string"
                 },
@@ -6358,14 +6358,14 @@
                 "size": {
                     "description": "Container or Size of cache",
                     "enum": [
-                        "Unknown",
-                        "Micro",
-                        "Regular",
-                        "Medium",
                         "Large",
-                        "Virtual",
+                        "Medium",
+                        "Micro",
                         "Other",
-                        "Small"
+                        "Regular",
+                        "Small",
+                        "Unknown",
+                        "Virtual"
                     ],
                     "type": "string"
                 },
@@ -6378,11 +6378,11 @@
                 "status": {
                     "description": "The state of the Geocache",
                     "enum": [
-                        "Unpublished",
                         "Active",
+                        "Archived",
                         "Disabled",
                         "Locked",
-                        "Archived"
+                        "Unpublished"
                     ],
                     "type": "string"
                 },
@@ -6561,25 +6561,25 @@
                 },
                 "logType": {
                     "enum": [
-                        "Found It",
-                        "DNF it",
-                        "Write note",
                         "Archive",
-                        "Needs archiving",
-                        "Will attend",
                         "Attended",
-                        "Webcam photo taken",
-                        "Unarchive",
-                        "Post Reviewer Note",
-                        "Temporarily Disable Listing",
+                        "DNF it",
                         "Enable Listing",
-                        "Publish Listing",
-                        "Needs Maintenance",
-                        "Owner Maintenance",
-                        "Update Coordinates",
-                        "Post Reviewer Note - Post Publish",
                         "Event Announcement",
-                        "Submit for Review"
+                        "Found It",
+                        "Needs Maintenance",
+                        "Needs archiving",
+                        "Owner Maintenance",
+                        "Post Reviewer Note",
+                        "Post Reviewer Note - Post Publish",
+                        "Publish Listing",
+                        "Submit for Review",
+                        "Temporarily Disable Listing",
+                        "Unarchive",
+                        "Update Coordinates",
+                        "Webcam photo taken",
+                        "Will attend",
+                        "Write note"
                     ],
                     "type": "string"
                 },
@@ -6616,25 +6616,25 @@
                 },
                 "logType": {
                     "enum": [
-                        "Found It",
-                        "DNF it",
-                        "Write note",
                         "Archive",
-                        "Needs archiving",
-                        "Will attend",
                         "Attended",
-                        "Webcam photo taken",
-                        "Unarchive",
-                        "Post Reviewer Note",
-                        "Temporarily Disable Listing",
+                        "DNF it",
                         "Enable Listing",
-                        "Publish Listing",
-                        "Needs Maintenance",
-                        "Owner Maintenance",
-                        "Update Coordinates",
-                        "Post Reviewer Note - Post Publish",
                         "Event Announcement",
-                        "Submit for Review"
+                        "Found It",
+                        "Needs Maintenance",
+                        "Needs archiving",
+                        "Owner Maintenance",
+                        "Post Reviewer Note",
+                        "Post Reviewer Note - Post Publish",
+                        "Publish Listing",
+                        "Submit for Review",
+                        "Temporarily Disable Listing",
+                        "Unarchive",
+                        "Update Coordinates",
+                        "Webcam photo taken",
+                        "Will attend",
+                        "Write note"
                     ],
                     "type": "string"
                 },

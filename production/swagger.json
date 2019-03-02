@@ -5732,14 +5732,14 @@
                 "size": {
                     "description": "Container or Size of cache",
                     "enum": [
-                        "Unknown",
-                        "Micro",
-                        "Regular",
-                        "Medium",
                         "Large",
-                        "Virtual",
+                        "Medium",
+                        "Micro",
                         "Other",
-                        "Small"
+                        "Regular",
+                        "Small",
+                        "Unknown",
+                        "Virtual"
                     ],
                     "type": "string"
                 },
@@ -5752,11 +5752,11 @@
                 "status": {
                     "description": "The state of the Geocache",
                     "enum": [
-                        "Unpublished",
                         "Active",
+                        "Archived",
                         "Disabled",
                         "Locked",
-                        "Archived"
+                        "Unpublished"
                     ],
                     "type": "string"
                 },
@@ -6302,25 +6302,25 @@
                 },
                 "logType": {
                     "enum": [
-                        "Found It",
-                        "Owner Maintenance",
-                        "Publish Listing",
-                        "DNF it",
-                        "Needs Maintenance",
-                        "Will attend",
-                        "Write note",
-                        "Enable Listing",
-                        "Post Reviewer Note - Post Publish",
-                        "Temporarily Disable Listing",
                         "Archive",
-                        "Update Coordinates",
-                        "Needs archiving",
                         "Attended",
-                        "Webcam photo taken",
-                        "Unarchive",
-                        "Post Reviewer Note",
+                        "DNF it",
+                        "Enable Listing",
                         "Event Announcement",
-                        "Submit for Review"
+                        "Found It",
+                        "Needs Maintenance",
+                        "Needs archiving",
+                        "Owner Maintenance",
+                        "Post Reviewer Note",
+                        "Post Reviewer Note - Post Publish",
+                        "Publish Listing",
+                        "Submit for Review",
+                        "Temporarily Disable Listing",
+                        "Unarchive",
+                        "Update Coordinates",
+                        "Webcam photo taken",
+                        "Will attend",
+                        "Write note"
                     ],
                     "type": "string"
                 },
@@ -6357,25 +6357,25 @@
                 },
                 "logType": {
                     "enum": [
-                        "Found It",
-                        "Owner Maintenance",
-                        "Publish Listing",
-                        "DNF it",
-                        "Needs Maintenance",
-                        "Will attend",
-                        "Write note",
-                        "Enable Listing",
-                        "Post Reviewer Note - Post Publish",
-                        "Temporarily Disable Listing",
                         "Archive",
-                        "Update Coordinates",
-                        "Needs archiving",
                         "Attended",
-                        "Webcam photo taken",
-                        "Unarchive",
-                        "Post Reviewer Note",
+                        "DNF it",
+                        "Enable Listing",
                         "Event Announcement",
-                        "Submit for Review"
+                        "Found It",
+                        "Needs Maintenance",
+                        "Needs archiving",
+                        "Owner Maintenance",
+                        "Post Reviewer Note",
+                        "Post Reviewer Note - Post Publish",
+                        "Publish Listing",
+                        "Submit for Review",
+                        "Temporarily Disable Listing",
+                        "Unarchive",
+                        "Update Coordinates",
+                        "Webcam photo taken",
+                        "Will attend",
+                        "Write note"
                     ],
                     "type": "string"
                 },
