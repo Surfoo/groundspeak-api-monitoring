@@ -6083,7 +6083,6 @@
         },
         "TrackableLog": {
             "required": [
-                "trackableCode",
                 "loggedDate",
                 "text"
             ],
@@ -6491,7 +6490,6 @@
         },
         "PostTrackableLog": {
             "required": [
-                "trackableCode",
                 "loggedDate",
                 "text"
             ],
