@@ -606,7 +606,7 @@
         <p>
             Rate limiting is enforced on all methods of the Geocaching API. The methods are limited on the calling IP, end user, and by partner consumer key. The current limits are set to:
             <ul>
-                <li>60 calls per minute for user</li>
+                <li>60 calls per minute for each API method (tracked per user)</li>
                 <li>1200 calls per minute for partner consumer key</li>
                 <li>6000 calls per minute for IP address</li>
             </ul>
@@ -7784,7 +7784,7 @@ else
         <h3>03.11.2019</h3>
         <ul>
             <li>OAuth library has been updated and now supports PKCE.</li>
-            <li>User calls per minute limit has been increased from 30 to 60.</li>
+            <li>User calls per minute limit has been changed. It's now tracked per method call by each user and the limit has been increased from 30 to 60 calls per minute.</li>
             <li>Requests that only include the reference code in the fields do not count against the daily geocache limit.</li>
             <li>Get Trackables endpoint has been modified to accept a querystring param for referenceCodes to allow for a bulk fetch of trackables.</li>
             <li>Get Trackables endpoint has been modified to accept a querystring param for referenceCodes to allow for a bulk fetch of trackables.</li>
