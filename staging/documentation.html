@@ -260,10 +260,13 @@
     <section id="authorization">
         <h2>Authorization</h2>
         <p>
-            The API uses <a href="https://oauth.net/2">OAuth 2.0</a>'s authorization code grant flow to authorize you to access Geocaching.com data on behalf of your app/site user. The OAuth process uses simple steps to authorize the application and allow the end user to grant your app/site permission to access their data. 
+            The API uses <a href="https://oauth.net/2">OAuth 2.0</a>'s authorization code grant flow to authorize you to access Geocaching.com data on behalf of your app/site user. The OAuth process uses simple steps to authorize the application and allow the end user to grant your app/site permission to access their data.
         </p>
         <p>
-            The API also supports <a href="https://tools.ietf.org/html/rfc7636">PKCE</a> use which protects against authorization code interception attacks. You can implement PKCE as part of the authorization code grant by generating a <code>code_verifier</code> and <code>code_challenge</code>. To create a code_verifier, the partner application should create a record a secret, which should be a high-entropy cryptographic random string (ASCII characters) using the unreserved characters [A-Z][a-z][0-9]["-",".","_","~"] with a minimum length of 43 characters and a maximum length of 128 characters. The code_challenge is then created by creating a SHA2 256-bit hash of the code_verifier and then base64url encoding the hash. If your application is unable to support S256 hashing, you may pass in the code_verifier untransformed and use <code>plain</code> as the <code>code_challenge_method</code>. 
+            The API also supports <a href="https://tools.ietf.org/html/rfc7636">PKCE</a> use which protects against authorization code interception attacks. You can implement PKCE as part of the authorization code grant by generating a <code>code_verifier</code> and <code>code_challenge</code>. To create a code_verifier, the partner application should create a record a secret, which should be a high-entropy cryptographic random string (ASCII characters) using the unreserved characters [A-Z][a-z][0-9]["-",".","_","~"] with a minimum length of 43 characters and a maximum length of 128 characters. The code_challenge is then created by creating a SHA2 256-bit hash of the code_verifier and then base64url encoding the hash. If your application is unable to support S256 hashing, you may pass in the code_verifier untransformed and use <code>plain</code> as the <code>code_challenge_method</code>.
+        </p>
+        <p>
+            <b>Requirements</b>: In order to utilize OAuth 2.0, partners need to provide Geocaching HQ with the application's redirect uris. The redirect uri passed in during the authorization process will be verified against the known uris by matching exactly.
         </p>
         <p>
             <h3>Authorize Endpoint</h3>
