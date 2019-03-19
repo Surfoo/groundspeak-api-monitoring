@@ -5618,9 +5618,6 @@
             }
         },
         "Image": {
-            "required": [
-                "description"
-            ],
             "type": "object",
             "properties": {
                 "url": {
@@ -5664,8 +5661,7 @@
         },
         "PostImage": {
             "required": [
-                "base64ImageData",
-                "description"
+                "base64ImageData"
             ],
             "type": "object",
             "properties": {
