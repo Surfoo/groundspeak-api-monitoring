@@ -1631,6 +1631,52 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/HQPromotions\/metadata": {
+            "get": {
+                "tags": [
+                    "HQPromotions"
+                ],
+                "summary": "Returns a list of metadata for currently visible and upcoming Geocaching HQ promotions",
+                "operationId": "HQPromotions_Get",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/HQPromotionMetadata"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/lists\/{referenceCode}": {
             "get": {
                 "tags": [
@@ -6211,6 +6257,46 @@
                     "type": "string"
                 },
                 "imageUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "HQPromotionMetadata": {
+            "type": "object",
+            "properties": {
+                "pageTitle": {
+                    "description": "Page title for the campaign.",
+                    "type": "string"
+                },
+                "linkText": {
+                    "description": "Text that should be displayed on the link\/button leading to the campaign page.",
+                    "type": "string"
+                },
+                "linkSubText": {
+                    "description": "SubText that should be displayed on the link\/button leading to the campaign page.",
+                    "type": "string"
+                },
+                "iconData": {
+                    "description": "Byte array containing the icon for the campaign in png",
+                    "type": "string"
+                },
+                "relativeUrl": {
+                    "description": "Link off geocaching root for the campaign (\"\/play\/leaderboard\", \"\/play\/hqpromo\/campaignname\" for example)",
+                    "type": "string"
+                },
+                "campaignId": {
+                    "format": "int32",
+                    "description": "Unique Campaign Identifier",
+                    "type": "integer"
+                },
+                "linkVisibleStartDateUtc": {
+                    "format": "date-time",
+                    "description": "UTC date and time at which the link should start showing up to get to the page (on the profile page, in the app, ...)",
+                    "type": "string"
+                },
+                "linkVisibleEndDateUtc": {
+                    "format": "date-time",
+                    "description": "UTC date and time at which the link should stop showing up to get to the page (on the profile page, in the app, ...)",
                     "type": "string"
                 }
             }
