@@ -5673,6 +5673,10 @@
                     "type": "string",
                     "readOnly": true
                 },
+                "largeUrl": {
+                    "type": "string",
+                    "readOnly": true
+                },
                 "referenceCode": {
                     "type": "string"
                 },
@@ -5868,7 +5872,6 @@
                     "description": "Container or Size of cache",
                     "enum": [
                         "Large",
-                        "Medium",
                         "Micro",
                         "Other",
                         "Regular",
@@ -5941,6 +5944,9 @@
                     "type": "string"
                 },
                 "relatedWebPage": {
+                    "type": "string"
+                },
+                "backgroundImageUrl": {
                     "type": "string"
                 },
                 "url": {
@@ -6076,6 +6082,9 @@
                     "type": "string"
                 },
                 "prefix": {
+                    "type": "string"
+                },
+                "url": {
                     "type": "string"
                 }
             }
@@ -6440,7 +6449,6 @@
                     "description": "Container or Size of cache",
                     "enum": [
                         "Large",
-                        "Medium",
                         "Micro",
                         "Other",
                         "Regular",
@@ -6513,6 +6521,9 @@
                     "type": "string"
                 },
                 "relatedWebPage": {
+                    "type": "string"
+                },
+                "backgroundImageUrl": {
                     "type": "string"
                 },
                 "url": {
