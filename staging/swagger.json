@@ -1631,52 +1631,6 @@
                 "deprecated": false
             }
         },
-        "\/v{api-version}\/HQPromotions\/metadata": {
-            "get": {
-                "tags": [
-                    "HQPromotions"
-                ],
-                "summary": "Returns a list of metadata for currently visible and upcoming Geocaching HQ promotions",
-                "operationId": "HQPromotions_Get",
-                "consumes": [],
-                "produces": [
-                    "application\/json",
-                    "text\/json",
-                    "application\/json-patch+json"
-                ],
-                "parameters": [
-                    {
-                        "name": "api-version",
-                        "in": "path",
-                        "description": "The requested API version",
-                        "required": true,
-                        "type": "string",
-                        "default": "1.0"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Ok",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#\/definitions\/HQPromotionMetadata"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "500": {
-                        "description": "Server Error"
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "\/v{api-version}\/lists\/{referenceCode}": {
             "get": {
                 "tags": [
@@ -2023,7 +1977,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#\/definitions\/ListGeocache"
+                                "$ref": "#\/definitions\/Geocache"
                             }
                         }
                     },
@@ -2080,7 +2034,7 @@
                         "description": "geocache to add to the list",
                         "required": true,
                         "schema": {
-                            "$ref": "#\/definitions\/PostListGeocache"
+                            "$ref": "#\/definitions\/ListGeocache"
                         }
                     },
                     {
@@ -4023,8 +3977,8 @@
                 "tags": [
                     "Trackables"
                 ],
-                "summary": "Gets a list of trackables",
-                "description": "This method will return a list of trackables, either by specified codes or get user trackables if you leave referenceCodes null",
+                "summary": "Gets a list of the calling user's trackables",
+                "description": "This method will return a list of trackables.",
                 "operationId": "Trackables_GetUserTrackables",
                 "consumes": [],
                 "produces": [
@@ -4033,13 +3987,6 @@
                     "application\/json-patch+json"
                 ],
                 "parameters": [
-                    {
-                        "name": "referenceCodes",
-                        "in": "query",
-                        "description": "The reference code or tracking number of the trackables (example: TB100). Don't pass in this param if you want to return user trackables",
-                        "required": false,
-                        "type": "string"
-                    },
                     {
                         "name": "type",
                         "in": "query",
@@ -5400,30 +5347,6 @@
                 "url": {
                     "type": "string"
                 },
-                "geocacheFindCounts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/GeocacheCount"
-                    }
-                },
-                "geocacheHideCounts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/GeocacheCount"
-                    }
-                },
-                "trackableFindCounts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/TrackableCount"
-                    }
-                },
-                "trackableOwnedCounts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/TrackableCount"
-                    }
-                },
                 "referenceCode": {
                     "type": "string"
                 },
@@ -5470,60 +5393,6 @@
                 "fullCallsSecondsToLive": {
                     "format": "int32",
                     "type": "integer"
-                }
-            }
-        },
-        "GeocacheCount": {
-            "type": "object",
-            "properties": {
-                "geocacheType": {
-                    "$ref": "#\/definitions\/GeocacheType"
-                },
-                "count": {
-                    "format": "int32",
-                    "type": "integer"
-                }
-            }
-        },
-        "TrackableCount": {
-            "type": "object",
-            "properties": {
-                "trackableType": {
-                    "$ref": "#\/definitions\/TrackableType"
-                },
-                "count": {
-                    "format": "int32",
-                    "type": "integer"
-                }
-            }
-        },
-        "GeocacheType": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "imageUrl": {
-                    "type": "string"
-                }
-            }
-        },
-        "TrackableType": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "imageUrl": {
-                    "type": "string"
                 }
             }
         },
@@ -5664,16 +5533,15 @@
             }
         },
         "Image": {
+            "required": [
+                "description"
+            ],
             "type": "object",
             "properties": {
                 "url": {
                     "type": "string"
                 },
                 "thumbnailUrl": {
-                    "type": "string",
-                    "readOnly": true
-                },
-                "largeUrl": {
                     "type": "string",
                     "readOnly": true
                 },
@@ -5711,7 +5579,8 @@
         },
         "PostImage": {
             "required": [
-                "base64ImageData"
+                "base64ImageData",
+                "description"
             ],
             "type": "object",
             "properties": {
@@ -5818,10 +5687,6 @@
                     "description": "The number of favorite points on the Geocache",
                     "type": "integer"
                 },
-                "findCount": {
-                    "format": "int32",
-                    "type": "integer"
-                },
                 "trackableCount": {
                     "format": "int32",
                     "description": "The number of trackables on the Geocache",
@@ -5833,10 +5698,6 @@
                     "type": "string"
                 },
                 "publishedDate": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "eventEndDate": {
                     "format": "date-time",
                     "type": "string"
                 },
@@ -5872,6 +5733,7 @@
                     "description": "Container or Size of cache",
                     "enum": [
                         "Large",
+                        "Medium",
                         "Micro",
                         "Other",
                         "Regular",
@@ -5946,9 +5808,6 @@
                 "relatedWebPage": {
                     "type": "string"
                 },
-                "backgroundImageUrl": {
-                    "type": "string"
-                },
                 "url": {
                     "type": "string"
                 },
@@ -5984,6 +5843,21 @@
                     "items": {
                         "$ref": "#\/definitions\/UserWaypoint"
                     }
+                }
+            }
+        },
+        "GeocacheType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "imageUrl": {
+                    "type": "string"
                 }
             }
         },
@@ -6082,9 +5956,6 @@
                     "type": "string"
                 },
                 "prefix": {
-                    "type": "string"
-                },
-                "url": {
                     "type": "string"
                 }
             }
@@ -6195,8 +6066,24 @@
                 }
             }
         },
+        "TrackableType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "imageUrl": {
+                    "type": "string"
+                }
+            }
+        },
         "TrackableLog": {
             "required": [
+                "trackableCode",
                 "loggedDate",
                 "text"
             ],
@@ -6270,46 +6157,6 @@
                 }
             }
         },
-        "HQPromotionMetadata": {
-            "type": "object",
-            "properties": {
-                "pageTitle": {
-                    "description": "Page title for the campaign.",
-                    "type": "string"
-                },
-                "linkText": {
-                    "description": "Text that should be displayed on the link\/button leading to the campaign page.",
-                    "type": "string"
-                },
-                "linkSubText": {
-                    "description": "SubText that should be displayed on the link\/button leading to the campaign page.",
-                    "type": "string"
-                },
-                "iconData": {
-                    "description": "Byte array containing the icon for the campaign in png",
-                    "type": "string"
-                },
-                "relativeUrl": {
-                    "description": "Link off geocaching root for the campaign (\"\/play\/leaderboard\", \"\/play\/hqpromo\/campaignname\" for example)",
-                    "type": "string"
-                },
-                "campaignId": {
-                    "format": "int32",
-                    "description": "Unique Campaign Identifier",
-                    "type": "integer"
-                },
-                "linkVisibleStartDateUtc": {
-                    "format": "date-time",
-                    "description": "UTC date and time at which the link should start showing up to get to the page (on the profile page, in the app, ...)",
-                    "type": "string"
-                },
-                "linkVisibleEndDateUtc": {
-                    "format": "date-time",
-                    "description": "UTC date and time at which the link should stop showing up to get to the page (on the profile page, in the app, ...)",
-                    "type": "string"
-                }
-            }
-        },
         "GeocacheList": {
             "required": [
                 "name"
@@ -6367,204 +6214,6 @@
             }
         },
         "ListGeocache": {
-            "type": "object",
-            "properties": {
-                "listItemName": {
-                    "type": "string"
-                },
-                "referenceCode": {
-                    "description": "This code uniquely identifies the geocache",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "Name of the Geocache",
-                    "type": "string"
-                },
-                "difficulty": {
-                    "format": "double",
-                    "description": "Difficulty of cache between 1.0 and 5.0",
-                    "type": "number"
-                },
-                "terrain": {
-                    "format": "double",
-                    "description": "Terrain of cache between 1.0 and 5.0",
-                    "type": "number"
-                },
-                "favoritePoints": {
-                    "format": "int32",
-                    "description": "The number of favorite points on the Geocache",
-                    "type": "integer"
-                },
-                "findCount": {
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "trackableCount": {
-                    "format": "int32",
-                    "description": "The number of trackables on the Geocache",
-                    "type": "integer"
-                },
-                "placedDate": {
-                    "format": "date-time",
-                    "description": "Date the geocache was placed (If the Geocache is an event then this represents the date of the event).",
-                    "type": "string"
-                },
-                "publishedDate": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "eventEndDate": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "type": {
-                    "description": "The type of Geocache",
-                    "enum": [
-                        "BlockParty",
-                        "Cito",
-                        "EarthCache",
-                        "Event",
-                        "GeocachingHq",
-                        "GigaEvent",
-                        "GpsAdventuresExhibit",
-                        "Letterbox",
-                        "Locationless",
-                        "LostAndFoundCelebration",
-                        "LostAndFoundEvent",
-                        "MegaEvent",
-                        "MultiCache",
-                        "Mystery",
-                        "ProjectApe",
-                        "Traditional",
-                        "Virtual",
-                        "Webcam",
-                        "Wherigo"
-                    ],
-                    "type": "string"
-                },
-                "geocacheType": {
-                    "$ref": "#\/definitions\/GeocacheType"
-                },
-                "size": {
-                    "description": "Container or Size of cache",
-                    "enum": [
-                        "Large",
-                        "Micro",
-                        "Other",
-                        "Regular",
-                        "Small",
-                        "Unknown",
-                        "Virtual"
-                    ],
-                    "type": "string"
-                },
-                "geocacheSize": {
-                    "$ref": "#\/definitions\/GeocacheSize"
-                },
-                "userData": {
-                    "$ref": "#\/definitions\/UserData"
-                },
-                "status": {
-                    "description": "The state of the Geocache",
-                    "enum": [
-                        "Active",
-                        "Archived",
-                        "Disabled",
-                        "Locked",
-                        "Unpublished"
-                    ],
-                    "type": "string"
-                },
-                "location": {
-                    "$ref": "#\/definitions\/Location"
-                },
-                "postedCoordinates": {
-                    "$ref": "#\/definitions\/Coordinates",
-                    "description": "The posted coordinates of the Geocache"
-                },
-                "lastVisitedDate": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "ownerCode": {
-                    "description": "The reference code of the geocache owner",
-                    "type": "string"
-                },
-                "owner": {
-                    "$ref": "#\/definitions\/User"
-                },
-                "ownerAlias": {
-                    "type": "string"
-                },
-                "isPremiumOnly": {
-                    "type": "boolean"
-                },
-                "shortDescription": {
-                    "description": "Summary or short description of the geocache.",
-                    "type": "string"
-                },
-                "longDescription": {
-                    "description": "Detailed description of the geocache.",
-                    "type": "string"
-                },
-                "hints": {
-                    "description": "Hints to find the geocache.",
-                    "type": "string"
-                },
-                "attributes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/Attribute"
-                    }
-                },
-                "ianaTimezoneId": {
-                    "type": "string"
-                },
-                "relatedWebPage": {
-                    "type": "string"
-                },
-                "backgroundImageUrl": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                },
-                "containsHtml": {
-                    "type": "boolean"
-                },
-                "additionalWaypoints": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/AdditionalWaypoint"
-                    }
-                },
-                "trackables": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/Trackable"
-                    }
-                },
-                "geocacheLogs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/GeocacheLog"
-                    }
-                },
-                "images": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/Image"
-                    }
-                },
-                "userWaypoints": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/UserWaypoint"
-                    }
-                }
-            }
-        },
-        "PostListGeocache": {
             "type": "object",
             "properties": {
                 "referenceCode": {
@@ -6635,6 +6284,9 @@
             }
         },
         "LogDraft": {
+            "required": [
+                "note"
+            ],
             "type": "object",
             "properties": {
                 "referenceCode": {
@@ -6695,7 +6347,8 @@
         },
         "PostLogDraft": {
             "required": [
-                "geocacheCode"
+                "geocacheCode",
+                "note"
             ],
             "type": "object",
             "properties": {
@@ -6842,6 +6495,7 @@
         },
         "PostTrackableLog": {
             "required": [
+                "trackableCode",
                 "loggedDate",
                 "text"
             ],
