@@ -1249,6 +1249,95 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/geocaches\/{referenceCode}\/favoritedby": {
+            "get": {
+                "tags": [
+                    "Geocaches"
+                ],
+                "summary": "Get a list of Users that have favorited a geocache",
+                "description": "This method will return a list of users.",
+                "operationId": "Geocaches_GetFavoritedBy",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "The reference code of the geocache (example: GC25)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "how many users to skip",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "how many users to retrieve",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 10
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "fields you want to return, defaults to \"referenceCode\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "referenceCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/User"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/geocaches": {
             "get": {
                 "tags": [
@@ -1320,8 +1409,8 @@
                     "401": {
                         "description": "Not Authorized"
                     },
-                    "404": {
-                        "description": "Not Found"
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "429": {
                         "description": "Too many requests"
@@ -1511,6 +1600,9 @@
                     "401": {
                         "description": "Not Authorized"
                     },
+                    "403": {
+                        "description": "Forbidden"
+                    },
                     "404": {
                         "description": "Not Found"
                     },
@@ -1549,7 +1641,7 @@
                     {
                         "name": "sort",
                         "in": "query",
-                        "description": "Defaults to distance if coords are provided otherwise favoritepoints (distance, favoritepoints, cachename, id)",
+                        "description": "Defaults to distance if coords are provided otherwise favoritepoints (distance, favorites, cachename, size, difficulty, terrain, founddate, placeddate, id)",
                         "required": false,
                         "type": "string",
                         "default": ""
@@ -1620,6 +1712,9 @@
                     },
                     "401": {
                         "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "429": {
                         "description": "Too many requests"
@@ -5373,6 +5468,10 @@
                     "format": "int32",
                     "type": "integer"
                 },
+                "joinedDateUtc": {
+                    "format": "date-time",
+                    "type": "string"
+                },
                 "findCount": {
                     "format": "int32",
                     "type": "integer"
@@ -5626,27 +5725,6 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "Archive",
-                        "Attended",
-                        "DNF it",
-                        "Enable Listing",
-                        "Event Announcement",
-                        "Found It",
-                        "Needs Maintenance",
-                        "Needs archiving",
-                        "Owner Maintenance",
-                        "Post Reviewer Note",
-                        "Post Reviewer Note - Post Publish",
-                        "Publish Listing",
-                        "Submit for Review",
-                        "Temporarily Disable Listing",
-                        "Unarchive",
-                        "Update Coordinates",
-                        "Webcam photo taken",
-                        "Will attend",
-                        "Write note"
-                    ],
                     "type": "string"
                 },
                 "geocacheLogType": {
@@ -5744,27 +5822,6 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "Archive",
-                        "Attended",
-                        "DNF it",
-                        "Enable Listing",
-                        "Event Announcement",
-                        "Found It",
-                        "Needs Maintenance",
-                        "Needs archiving",
-                        "Owner Maintenance",
-                        "Post Reviewer Note",
-                        "Post Reviewer Note - Post Publish",
-                        "Publish Listing",
-                        "Submit for Review",
-                        "Temporarily Disable Listing",
-                        "Unarchive",
-                        "Update Coordinates",
-                        "Webcam photo taken",
-                        "Will attend",
-                        "Write note"
-                    ],
                     "type": "string"
                 },
                 "geocacheLogType": {
@@ -6652,27 +6709,6 @@
                     "type": "string"
                 },
                 "logType": {
-                    "enum": [
-                        "Archive",
-                        "Attended",
-                        "DNF it",
-                        "Enable Listing",
-                        "Event Announcement",
-                        "Found It",
-                        "Needs Maintenance",
-                        "Needs archiving",
-                        "Owner Maintenance",
-                        "Post Reviewer Note",
-                        "Post Reviewer Note - Post Publish",
-                        "Publish Listing",
-                        "Submit for Review",
-                        "Temporarily Disable Listing",
-                        "Unarchive",
-                        "Update Coordinates",
-                        "Webcam photo taken",
-                        "Will attend",
-                        "Write note"
-                    ],
                     "type": "string"
                 },
                 "geocacheLogType": {
@@ -6682,6 +6718,10 @@
                     "type": "string"
                 },
                 "loggedDateUtc": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "loggedDate": {
                     "format": "date-time",
                     "type": "string"
                 },
@@ -6707,27 +6747,6 @@
                     "type": "string"
                 },
                 "logType": {
-                    "enum": [
-                        "Archive",
-                        "Attended",
-                        "DNF it",
-                        "Enable Listing",
-                        "Event Announcement",
-                        "Found It",
-                        "Needs Maintenance",
-                        "Needs archiving",
-                        "Owner Maintenance",
-                        "Post Reviewer Note",
-                        "Post Reviewer Note - Post Publish",
-                        "Publish Listing",
-                        "Submit for Review",
-                        "Temporarily Disable Listing",
-                        "Unarchive",
-                        "Update Coordinates",
-                        "Webcam photo taken",
-                        "Will attend",
-                        "Write note"
-                    ],
                     "type": "string"
                 },
                 "geocacheLogType": {
@@ -6737,6 +6756,10 @@
                     "type": "string"
                 },
                 "loggedDateUtc": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "loggedDate": {
                     "format": "date-time",
                     "type": "string"
                 },
@@ -6881,6 +6904,10 @@
         "Souvenir": {
             "type": "object",
             "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "integer"
+                },
                 "imagePath": {
                     "type": "string"
                 },

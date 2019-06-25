@@ -172,7 +172,7 @@
                     <li><a href="#get-lists">Get User Lists</a></li>
                     <li><a href="#get-souvenirs">Get User Souvenirs</a></li>
                     <li><a href="#get-user-images">Get User Images</a></li>
-                    
+                    <li><a href="#get-geocache-favoritedby">Get Favorited Users by Geocache</a></li>
                 </ul>
             </li>
             <li class="method-heading">
@@ -599,7 +599,7 @@
                 <li>16,000 full geocaches per premium user per day</li>
                 <li>10,000 lite geocaches per premium user per day</li>
             </ul>
-            The user's geocache remaining limit and when the limit is reset can be viewed as part of the User object using the Get User endpoint.
+            The user's geocache remaining limit and when the limit is reset can be viewed as part of the User object using the Get User endpoint. If geocache data is request and the limit has been reached, the API will return a 403 (Forbidden) response.
         </p>
         <h3 id="opt-out">Third Party Data Sharing</h3>
         <p>
@@ -787,6 +787,8 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#geocache">Geocaches</a> or <a href="#lite-geocache">Lite Geocaches</a>
                 <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 429, 500
+                <br />
                 <b>Restrictions: </b>This method will not return any archived or locked geocaches. Unpublished geocaches will be excluded unless the calling user is the geocache owner. Geocaches on ignored list of calling user will also be excluded from search results. Basic members will only return traditionals and event types.
             </p>
             <br />
@@ -899,7 +901,7 @@ else
                         <td>N/A</td>
                         <td>set of coordinates</td>
                         <td><code>box:[[47.01,-122],[47,-121.99]]</code></td>
-                        <td>the coordinates in decimal form to make a square bounding box (only caches inside box will be returned). the format should be upper left coordinate, lower right coordinate. if no sort is passed in, it will be sorted from the center of the box ascending</td>
+                        <td>the coordinates in decimal form to make a square bounding box (only caches inside box will be returned). the format should be upper left coordinate, lower right coordinate. if no sort is passed in, it will be sorted from the center of the box ascending. Max limit of 100,000 meters between bounding box points.</td>
                         <td>-</td>
                     </tr>
                 <tr>
@@ -1085,6 +1087,36 @@ else
                         <td>sort by favorite points on the geocache</td>
                     </tr>
                     <tr>
+                        <td><code>difficulty</code></td>
+                        <td><code>diff</code></td>
+                        <td><code>diff+</code></td>
+                        <td>sort by the geocache difficulty rating</td>
+                    </tr>
+                    <tr>
+                        <td><code>terrain</code></td>
+                        <td><code>terr</code></td>
+                        <td><code>name+</code></td>
+                        <td>sort by the geocache cache name alphabetically</td>
+                    </tr>
+                    <tr>
+                        <td><code>size</code></td>
+                        <td>N/A</td>
+                        <td><code>size-</code></td>
+                        <td>sort by the geocache container size</td>
+                    </tr>
+                    <tr>
+                        <td><code>founddate</code></td>
+                        <td><code>fdate</code></td>
+                        <td><code>fdate-</code></td>
+                        <td>sort by the calling user's found dates</td>
+                    </tr>
+                    <tr>
+                        <td><code>placeddate</code></td>
+                        <td><code>pdate</code></td>
+                        <td><code>pdate-</code></td>
+                        <td>sort by the geocache's placed date</td>
+                    </tr>
+                    <tr>
                         <td><code>cachename</code></td>
                         <td><code>name</code></td>
                         <td><code>name+</code></td>
@@ -1110,6 +1142,8 @@ else
                 <b>HTTP Method: </b>GET
                 <br />
                 <b>Response Type: </b><a href="#geocache">Geocache</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1172,6 +1206,9 @@ else
                 <b>HTTP Method: </b>GET
                 <br />
                 <b>Response Type: </b>Array of <a href="#geocache">Geocaches</a> or <a href="#lite-geocache">Lite Geocaches</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 429, 500
+                <br />
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1234,6 +1271,8 @@ else
                 <b>HTTP Method: </b>GET
                 <br />
                 <b>Response Type: </b>Array of <a href="#image">Images</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1297,7 +1336,7 @@ else
                 <br />
                 <b>Response Type: </b>string
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
                 <br />
                 <b>Restrictions: </b>Only owner may update the note.
             </p>
@@ -1347,7 +1386,7 @@ else
                 <br />
                 <b>Response Type: </b>No response body
                 <br />
-                <b>Response Codes: </b>204, 400, 401, 409, 500
+                <b>Response Codes: </b>204, 400, 401, 409, 429, 500
                 <br />
                 <b>Restrictions: </b>Only owner may delete the geocache note.
             </p>
@@ -1389,7 +1428,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#type">Geocache Types</a>
                 <br />
-                <b>Response Codes: </b>200, 401, 500
+                <b>Response Codes: </b>200, 401, 429, 500
             </p>
             <br />
         </div>
@@ -1405,7 +1444,7 @@ else
             <br />
             <b>Response Type: </b>Array of <a href="#attributetype">Attribute Types</a>
             <br />
-            <b>Response Codes: </b>200, 401, 500
+            <b>Response Codes: </b>200, 401, 429, 500
         </p>
         <br />
     </div>
@@ -1425,7 +1464,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#geocache-log">Geocache Logs</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
                 <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
             </p>
@@ -1499,7 +1538,7 @@ else
                 <br />
                 <b>Response Type: </b><a href="#geocache-log">Geocache Log</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
                 <br />
                 <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
             </p>
@@ -1557,7 +1596,7 @@ else
                 <br />
                 <b>Response Type: </b><a href="#geocache-log">Geocache Log</a>
                 <br />
-                <b>Response Codes: </b>201, 400, 401, 404, 409, 500
+                <b>Response Codes: </b>201, 400, 401, 404, 409, 429, 500
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1605,7 +1644,7 @@ else
                 <br />
                 <b>Response Type: </b><a href="#geocache-log">GeocacheLog</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
                 <br />
                 <b>Restrictions: </b>Only owner of geocache log may update the log.
             </p>
@@ -1663,7 +1702,7 @@ else
                 <br />
                 <b>Response Type: </b>No response body
                 <br />
-                <b>Response Codes: </b>204, 400, 401, 403, 409, 500
+                <b>Response Codes: </b>204, 400, 401, 403, 409, 429, 500
                 <br />
                 <b>Restrictions: </b>Only owner of geocache log may delete the log.
             </p>
@@ -1705,7 +1744,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#image">Images</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
                 <br />
                 <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
             </p>
@@ -1771,7 +1810,7 @@ else
                 <br />
                 <b>Response Type: </b><a href="#image">Image</a>
                 <br />
-                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
+                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 429, 500
                 <br />
                 <b>Restrictions: </b>Only owner of geocache log may add an image.
             </p>
@@ -1829,7 +1868,7 @@ else
                 <br />
                 <b>Response Type: </b>No response body
                 <br />
-                <b>Response Codes: </b>201, 400, 401, 403, 409, 500
+                <b>Response Codes: </b>201, 400, 401, 403, 409, 429, 500
                 <br />
                 <b>Restrictions: </b>Only owner of geocache log may delete an image.
             </p>
@@ -1879,7 +1918,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#type">Geocache Log Types</a>
                 <br />
-                <b>Response Codes: </b>200, 401, 500
+                <b>Response Codes: </b>200, 401, 429, 500
             </p>
             <br />
         </div>
@@ -1898,7 +1937,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#trackable">Trackables</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
                 <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
             </p>
@@ -2231,7 +2270,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#trackable-log">Trackable Logs</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2706,7 +2745,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#log-draft">Log Drafts</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3071,7 +3110,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#user-waypoint">User Waypoints</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
                 <br />
                 <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Only owner of user waypoints can fetch them.
             </p>
@@ -3444,7 +3483,7 @@ else
                 <br />
                 <b>Response Type: </b><a href="#list">List</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
                 <br />
                 <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may only see their own lists or lists marked public.
             </p>
@@ -3929,7 +3968,7 @@ else
                 <br />
                 <b>Response Type: </b><a href="#user">User</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 403, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
                 <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
             </p>
@@ -4337,7 +4376,72 @@ else
         </table>
         <br />
     </div>
-    
+    <div id="get-geocache-favoritedby">
+        <h3>Get Favorited Users by Geocache</h3>
+        <p>
+            This method will fetch the users that have favorited the specified geocache.
+        </p>
+        <p>
+            <b>Path: </b><code>/v1/geocaches/{referenceCode}/favoritedby</code>
+            <br />
+            <b>HTTP Method: </b>GET
+            <br />
+            <b>Response Type: </b>Array of <a href="#user">Users</a>
+            <br />
+            <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+            <br />
+            <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
+        </p>
+        <br />
+        <table class="table table-striped table-hover table-responsive">
+            <caption>Parameters</caption>
+            <thead>
+                <tr>
+                    <th class="col-xs-1">Argument</th>
+                    <th class="col-xs-1">Type</th>
+                    <th class="col-xs-2">Example</th>
+                    <th class="col-xs-1">Required</th>
+                    <th class="col-xs-5">Description</th>
+                    <th class="col-xs-2">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>referenceCode</code></td>
+                    <td>path</td>
+                    <td><code>GCK25B</code></td>
+                    <td>Yes</td>
+                    <td>the identifier of the geocache</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><code>fields</code></td>
+                    <td>query</td>
+                    <td><code>fields=username,referenceCode</code></td>
+                    <td>No</td>
+                    <td>partial response fields to return</td>
+                    <td><code>referenceCode</code></td>
+                </tr>
+                <tr>
+                    <td><code>skip</code></td>
+                    <td>query</td>
+                    <td><code>skip=10</code></td>
+                    <td>No</td>
+                    <td>the number of resources to skip over</td>
+                    <td><code>0</code></td>
+                </tr>
+                <tr>
+                    <td><code>take</code></td>
+                    <td>query</td>
+                    <td><code>take=0</code></td>
+                    <td>No</td>
+                    <td>how many resources to return. maximum value of 50</td>
+                    <td><code>10</code></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+    </div>
     </section>
     <section id="friend-methods">
         <h2>Friend Methods</h2>
@@ -4353,7 +4457,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#user">Users</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 500
+                <b>Response Codes: </b>200, 400, 401, 429, 500
                 <br />
                 <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
             </p>
@@ -4642,7 +4746,7 @@ else
                 <br />
                 <b>Response Type: </b>string
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 500
+                <b>Response Codes: </b>200, 400, 401, 429, 500
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -5807,9 +5911,16 @@ else
                         <td>Yes</td>
                     </tr>
                     <tr>
-                        <td>loggedDateUtc</td>
+                        <td>loggedDateUtc (Deprecated)</td>
                         <td>datetime</td>
                         <td>when the user logged the geocache in UTC</td>
+                        <td>Optional, defaults to current datetime</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>loggedDate</td>
+                        <td>datetime</td>
+                        <td>when the user logged the geocache in the geocache's local timezone</td>
                         <td>Optional, defaults to current datetime</td>
                         <td>No</td>
                     </tr>
@@ -5839,7 +5950,7 @@ else
     "imageUrl": "https://www.geocaching.com/images/logtypes/2.png"
   },
   "note": "example draft text",
-  "loggedDateUtc": "2017-10-13T16:28:59.51"
+  "loggedDate": "2017-10-13T16:28:59.51"
 }</code></pre>
         </div>
         <div id="promoted-log-draft" class="container col-md-12">
@@ -6688,6 +6799,11 @@ else
                             <td>type of the membership (see <a href="#membership-types">Membership Types</a> for more info)</td>
                         </tr>
                         <tr>
+                            <td>joinedDateUtc</td>
+                            <td>nullable datetime</td>
+                            <td>datetime indicating when the user account was created</td>
+                        </tr>
+                        <tr>
                             <td>avatarUrl</td>
                             <td>string</td>
                             <td>link to image of the user's profile avatar</td>
@@ -6701,8 +6817,6 @@ else
                             <td>url</td>
                             <td>string</td>
                             <td>geocaching.com web page associated with user profile</td>
-                            <td>No</td>
-                            <td>No</td>
                         </tr>
                         <tr>
                             <td>profileText</td>
@@ -6749,6 +6863,7 @@ else
   "favoritePoints": 18,
   "username": "MNofMind",
   "membershipLevelId": 3,
+  "joinedDateUtc": "2008-05-27 11:39:56.880",
   "avatarUrl": "https://img-stage.geocaching.com/gcstage/{0}/0640f488-9abe-4c2a-a786-bb75cec84357.gif",
   "homeCoordinates": {
     "latitude": 47.6760654544942,
@@ -7080,6 +7195,11 @@ else
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>unique id of the souvenir</td>
+                        </tr>
                         <tr>
                             <td>title</td>
                             <td>string</td>
@@ -7459,7 +7579,7 @@ else
                     </tr>
                     <tr>
                         <td>3653</td>
-                        <td>Lost and Found Event Cache</td>
+                        <td>Community Celebration Event</td>
                     </tr>
                     <tr>
                         <td>3773</td>
@@ -7467,11 +7587,11 @@ else
                     </tr>
                     <tr>
                         <td>3774</td>
-                        <td>Geocaching Lost and Found Celebration</td>
+                        <td>Geocaching HQ Celebration</td>
                     </tr>
                     <tr>
                         <td>4738</td>
-                        <td>Geocaching Block Party</td>
+                        <td>Geocaching HQ Block Party</td>
                     </tr>
                     <tr>
                         <td>7005</td>
@@ -7573,8 +7693,8 @@ else
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>DNF it</td>
-                        <td>Did Not Find (DNF) the geocache</td>
+                        <td>Didn't find it</td>
+                        <td>Did not find (DNF) the geocache</td>
                     </tr>
                     <tr>
                         <td>4</td>
@@ -7587,13 +7707,18 @@ else
                         <td>changing the status of the geocache to archived</td>
                     </tr>
                     <tr>
+                        <td>6</td>
+                        <td>Permanently Archived</td>
+                        <td>changing the status of the geocache to archived (deprecated)</td>
+                    </tr>
+                    <tr>
                         <td>7</td>
-                        <td>Needs archiving</td>
+                        <td>Needs Archived</td>
                         <td>flagging the geocache as needing to be archived</td>
                     </tr>
                     <tr>
                         <td>9</td>
-                        <td>Will attend</td>
+                        <td>Will Attend</td>
                         <td>RSVPing for an event</td>
                     </tr>
                     <tr>
@@ -7603,13 +7728,13 @@ else
                     </tr>
                     <tr>
                         <td>11</td>
-                        <td>Webcam photo taken</td>
+                        <td>Webcam Photo Taken</td>
                         <td>Successfully captured a webcam geocache (counts as a find)</td>
                     </tr>
                     <tr>
                         <td>12</td>
                         <td>Unarchive</td>
-                        <td>changing the status of the geocache from archived to active</td>
+                        <td>changing the status of the geocache from archived to active (reviewer only)</td>
                     </tr>
                     <tr>
                         <td>22</td>
@@ -7619,12 +7744,17 @@ else
                     <tr>
                         <td>23</td>
                         <td>Enable Listing</td>
-                        <td>changing the status of the geocache from disabled to active</td>
+                        <td>changing the status of the geocache from disabled to active (reviewer only)</td>
                     </tr>
                     <tr>
                         <td>24</td>
                         <td>Publish Listing</td>
-                        <td>changing the status of the geocache from unpublished to active</td>
+                        <td>changing the status of the geocache from unpublished to active (reviewer only)</td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>Retract Listing</td>
+                        <td>retracting the geocache (admin only)</td>
                     </tr>
                     <tr>
                         <td>45</td>
@@ -7636,19 +7766,19 @@ else
                         <td>Owner Maintenance</td>
                         <td>announcing that owner maintenance was done</td>
                     </tr>
-                <tr>
-                    <td>47</td>
-                    <td>Update Coordinates</td>
-                    <td>updating the coordinates of the geocache</td>
-                </tr>
-                <tr>
-                    <td>68</td>
-                    <td>Post Reviewer Note</td>
-                    <td>a note left by the reviewer</td>
-                </tr>
+                    <tr>
+                        <td>47</td>
+                        <td>Update Coordinates</td>
+                        <td>updating the coordinates of the geocache</td>
+                    </tr>
+                    <tr>
+                        <td>68</td>
+                        <td>Post Reviewer Note</td>
+                        <td>a note left by the reviewer (reviewer only)</td>
+                    </tr>
                     <tr>
                         <td>74</td>
-                        <td>Event Announcement</td>
+                        <td>Announcement</td>
                         <td>event host announcement to attendees</td>
                     </tr>
                 </tbody>
@@ -7809,6 +7939,15 @@ else
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>06.24.2019</h3>
+        <ul>
+            <li>Added method to return users that have favorited a geocache</li>
+            <li>Souvenir objects have a new field id</li>
+            <li>LogDraft objects have a new field loggedDate (local to the timezone of the geocache)</li>
+            <li>User objects have a new field joinedDateUtc</li>
+            <li>Geocache Log Types have been updated to have the descriptions match the website (ids remain unchanged)</li>
+            <li>Geocache Types 3653, 3774, and 4738 have names that have been updated (ids remain unchanged)</li>
+        </ul>
         <h3>04.15.2019</h3>
         <ul>
             <li>Geocache daily limit per user is now tracked by unique geocache codes (e.g. the same call to GetGeocache on GCK25B will count as one)</li>
