@@ -1726,6 +1726,278 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/geotours\/{referenceCode}": {
+            "get": {
+                "tags": [
+                    "GeoTours"
+                ],
+                "summary": "Get a GeoTour",
+                "operationId": "GeoTours_GetGeoTour",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "Identifier of the GeoTour (e.g. GT7)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Properties you want to return, defaults to \"referencecode\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "referenceCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/GeoTour"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/geotours": {
+            "get": {
+                "tags": [
+                    "GeoTours"
+                ],
+                "summary": "Get GeoTours",
+                "operationId": "GeoTours_GetGeoTours",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Defaults to unsorted (distance, name). If using distance sorting, must provide latitude and longitude (e.g. dist+:[47,-122])",
+                        "required": false,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "Defaults to 0, how many geocaches to skip",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "Defaults to 20, how many geocaches to return",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 20
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Properties you want to return, defaults to \"referencecode\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "referenceCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/GeoTour"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/geotours\/{referenceCode}\/geocaches": {
+            "get": {
+                "tags": [
+                    "GeoTours"
+                ],
+                "summary": "Get the geocaches on the GeoTour",
+                "description": "This method will return a list of geocaches.",
+                "operationId": "GeoTours_GetGeocachesByGeoTour",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "Identifier of the GeoTour (e.g. GT7)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "lite",
+                        "in": "query",
+                        "description": "Select to return a geocache object without the description and hints",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "Defaults to 0, how many geocaches to skip",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "Defaults to 20, how many geocaches to return",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 20
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Options are distance (must provide lat\/lng), name (of the geocache), favorites, and geotour (order defined by GeoTour). Defaults to geotour.",
+                        "required": false,
+                        "type": "string",
+                        "default": "gt+"
+                    },
+                    {
+                        "name": "expand",
+                        "in": "query",
+                        "description": "fields to include with base geocache object",
+                        "required": false,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "fields you want to return, defaults to \"referencecode\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "referenceCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/Geocache"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/HQPromotions\/metadata": {
             "get": {
                 "tags": [
@@ -5499,6 +5771,12 @@
                 "url": {
                     "type": "string"
                 },
+                "isFriend": {
+                    "type": "boolean"
+                },
+                "optedInFriendSharing": {
+                    "type": "boolean"
+                },
                 "geocacheFindCounts": {
                     "type": "array",
                     "items": {
@@ -6041,6 +6319,12 @@
                     "items": {
                         "$ref": "#\/definitions\/UserWaypoint"
                     }
+                },
+                "geoTours": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#\/definitions\/GeoTour"
+                    }
                 }
             }
         },
@@ -6213,6 +6497,14 @@
                 "currentGeocacheName": {
                     "type": "string"
                 },
+                "kilometersTraveled": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "milesTraveled": {
+                    "format": "double",
+                    "type": "number"
+                },
                 "trackableLogs": {
                     "type": "array",
                     "items": {
@@ -6249,6 +6541,43 @@
                 },
                 "geocacheCode": {
                     "type": "string"
+                }
+            }
+        },
+        "GeoTour": {
+            "type": "object",
+            "properties": {
+                "referenceCode": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "postedCoordinates": {
+                    "$ref": "#\/definitions\/Coordinates"
+                },
+                "geocacheCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "coverImageUrl": {
+                    "type": "string"
+                },
+                "logoImageUrl": {
+                    "type": "string"
+                },
+                "favoritePoints": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "sponsor": {
+                    "$ref": "#\/definitions\/Sponsor"
                 }
             }
         },
@@ -6309,6 +6638,20 @@
                 },
                 "coordinates": {
                     "$ref": "#\/definitions\/Coordinates"
+                }
+            }
+        },
+        "Sponsor": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "relatedWebPage": {
+                    "type": "string"
+                },
+                "relatedWebPageText": {
+                    "type": "string"
                 }
             }
         },
@@ -6617,6 +6960,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#\/definitions\/UserWaypoint"
+                    }
+                },
+                "geoTours": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#\/definitions\/GeoTour"
                     }
                 }
             }
