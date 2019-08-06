@@ -613,10 +613,6 @@
             </ul>
             The user's geocache remaining limit and when the limit is reset can be viewed as part of the User object using the Get User endpoint. If geocache data is request and the limit has been reached, the API will return a 403 (Forbidden) response.
         </p>
-        <h3 id="opt-out">Third Party Data Sharing</h3>
-        <p>
-            Users have the ability to opt-out of allowing other users to view their public profile data, shared through our Geocaching API, in their account settings. If the user has not authorized the sharing of their public profile data, the API will return only the reference code and username, and the reference code will be returned as part of a comma delimited list of strings in the header named <code>x-opted-out</code>.
-        </p>
         <h3 id="rate-limiting">Rate Limiting</h3>
         <p>
             Rate limiting is enforced on all methods of the Geocaching API. The methods are limited on the calling IP, end user, and by partner consumer key. The current limits are set to:
