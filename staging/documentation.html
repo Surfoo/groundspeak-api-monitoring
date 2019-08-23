@@ -35,6 +35,7 @@
                 <li><a class="" href="#responses">Responses</a></li>
                 <li><a class="" href="#restrictions">Restrictions</a></li>
                 <li><a class="" href="#pagination">Pagination</a></li>
+                <li><a class="" href="#sorting">Sorting</a></li>
                 <li><a class="" href="#fields">Fields</a></li>
                 <li><a class="" href="#expand">Expand</a></li>
                 <li><a class="" href="#geocache-methods">Geocache Methods</a></li>
@@ -46,6 +47,7 @@
                 <li><a class="" href="#list-methods">List Methods</a></li>
                 <li><a class="" href="#user-methods">User Methods</a></li>
                 <li><a class="" href="#friend-methods">Friend Methods</a></li>
+                <li><a class="" href="#geotour-methods">GeoTour Methods</a></li>
                 <li><a class="" href="#utility-methods">Utility Methods</a></li>
                 <li><a class="" href="#objects">Objects</a></li>
                 </li>
@@ -68,6 +70,7 @@
             <li><a href="#responses">Responses</a></li>
             <li><a href="#restrictions">Restrictions</a></li>
             <li><a href="#pagination">Pagination</a></li>
+            <li><a href="#sorting">Sorting</a></li>
             <li><a href="#fields">Fields</a></li>
             <li><a href="#expand">Expand</a></li>
             <li><a href="#referencecodes">Reference Codes</a></li>
@@ -187,6 +190,14 @@
                 </ul>
             </li>
             <li class="method-heading">
+                <a href="#geotourMethods" class="method-toggle" data-toggle="collapse" aria-expanded="true"><i>GeoTour Methods</i></a>
+                <ul id="geotourMethods" class="collapse in">
+                    <li><a href="#get-geotour">Get GeoTour</a></li>
+                    <li><a href="#get-geotours">Get GeoTours</a></li>
+                    <li><a href="#get-geotour-geocaches">Get GeoTour Geocaches</a></li>
+                </ul>
+            </li>
+            <li class="method-heading">
                 <a href="#utilityMethods" class="method-toggle" data-toggle="collapse" aria-expanded="true"><i>Utility Methods</i></a>
                 <ul id="utilityMethods" class="collapse in">
                     <li><a href="#get-reference-code">Get Reference Code</a></li>
@@ -215,6 +226,7 @@
             <li><a href="#bulk-response">BulkResponse</a></li>
             <li><a href="#bulk-failure">BulkFailure</a></li>
             <li><a href="#user">User</a></li>
+            <li><a href="#geotour">GeoTour</a></li>
             <li><a href="#friendrequest">FriendRequest</a></li>
             <li><a href="#souvenir">Souvenir</a></li>
             <li><a href="#image">Image</a></li>
@@ -266,7 +278,7 @@
             The API also supports <a href="https://tools.ietf.org/html/rfc7636">PKCE</a> use which protects against authorization code interception attacks. You can implement PKCE as part of the authorization code grant by generating a <code>code_verifier</code> and <code>code_challenge</code>. To create a code_verifier, the partner application should create a record a secret, which should be a high-entropy cryptographic random string (ASCII characters) using the unreserved characters [A-Z][a-z][0-9]["-",".","_","~"] with a minimum length of 43 characters and a maximum length of 128 characters. The code_challenge is then created by creating a SHA2 256-bit hash of the code_verifier and then base64url encoding the hash. If your application is unable to support S256 hashing, you may pass in the code_verifier untransformed and use <code>plain</code> as the <code>code_challenge_method</code>.
         </p>
         <p>
-            <b>Requirements</b>: In order to utilize OAuth 2.0, partners need to provide Geocaching HQ with the application's staging and production redirect uris. The redirect uri passed in during the authorization process will be verified against the known uris by matching exactly. Production requires a secure uri (<code>https</code>) or a valid native app custom protocol.  
+            <b>Requirements</b>: In order to utilize OAuth 2.0, partners need to provide Geocaching HQ with the application's staging and production redirect uris. The redirect uri passed in during the authorization process will be verified against the known uris by matching exactly. Production requires a secure uri (<code>https</code>) or a valid native app custom protocol.
         </p>
         <p>
             <h3>Authorize Endpoint</h3>
@@ -346,7 +358,7 @@
         </p>
         <p>
             <h3>Token Endpoint</h3>
-            Next, the app can make a POST call into the OAuth service's token endpoint (https://oauth.geocaching.com/token) to exchange the code for an access token via the following endpoint. The post body must be formatted using <code>x-www-form-urlencoded</code>. The access token can then be used in the header for subsequent calls with key <code>Authorization</code> and value <code>bearer access_token</code>.
+            Next, the app can make a POST call into the OAuth service's token endpoint (https://oauth.geocaching.com/token) to exchange the code for an access token via the following endpoint. The post body for this specific method must be formatted using <code>x-www-form-urlencoded</code>. The access token can then be used in the header for subsequent calls with key <code>Authorization</code> and value <code>bearer access_token</code>.
             <br /><br />
             <table class="table table-striped table-hover table-responsive inherit-width">
                 <caption>Parameters</caption>
@@ -429,7 +441,7 @@
         </p>
         <p>
             <h3>Refresh Token Endpoint</h3>
-            When the access token expires, the app can make a POST call into the OAuth service's token endpoint (https://oauth.geocaching.com/token) to exchange the refresh_token for a new access token without any additional authorize calls. The post body must be formatted using <code>x-www-form-urlencoded</code>.
+            When the access token expires, the app can make a POST call into the OAuth service's token endpoint (https://oauth.geocaching.com/token) to exchange the refresh_token for a new access token without any additional authorize calls. The post body for this specific method must be formatted using <code>x-www-form-urlencoded</code>.
             <br /><br />
             <table class="table table-striped table-hover table-responsive inherit-width">
                 <caption>Parameters</caption>
@@ -601,10 +613,6 @@
             </ul>
             The user's geocache remaining limit and when the limit is reset can be viewed as part of the User object using the Get User endpoint. If geocache data is request and the limit has been reached, the API will return a 403 (Forbidden) response.
         </p>
-        <h3 id="opt-out">Third Party Data Sharing</h3>
-        <p>
-            Users have the ability to opt-out of allowing other users to view their public profile data, shared through our Geocaching API, in their account settings. If the user has not authorized the sharing of their public profile data, the API will return only the reference code and username, and the reference code will be returned as part of a comma delimited list of strings in the header named <code>x-opted-out</code>.
-        </p>
         <h3 id="rate-limiting">Rate Limiting</h3>
         <p>
             Rate limiting is enforced on all methods of the Geocaching API. The methods are limited on the calling IP, end user, and by partner consumer key. The current limits are set to:
@@ -631,6 +639,16 @@
             <b>Page 1 Example:</b> <code>?skip=0&take=50</code>
             <br />
             <b>Page 2 Example:</b> <code>?skip=50&take=50</code>
+        </p>
+    </section>
+    <section id="sorting">
+        <h2>Sorting</h2>
+        <p>
+            Sorting is supported on methods that specify a query string parameter named <code>sort</code>. The syntax for using query sorts is the name (or alias) of the available option and a plus (<code>+</code>) or minus (<code>-</code>) sign to denote ascending or descending order. If sorting by distance, the coordinates to use for the sorting can be denoted by adding a colon (<code>:</code>) and coordinates (<code>[47,-122]</code>) to the end of the plus or minus. Available sorting options can be found at the method documentation. 
+        </p>
+        <p>
+            <b>Example:</b> <code>dist+:[47,-122]</code><br />
+            <b>Example:</b> <code>name-</code>
         </p>
     </section>
     <section id="fields">
@@ -686,7 +704,7 @@
             Expand allows resources that have a parent child relationship (especially when the parent has a one to many relationship with the child) from different endpoints to be combined under the parent resource.
             An example of this would be including geocache logs within the Get Geocache endpoint.
             The drawback of this approach is the payload will be larger and the call duration will be longer but depending on the platform used, this approach may be useful to your application. Expand queries allow a limited subset of data to be returned then the correct endpoint will be needed to page upon the results.
-            Use the specific endpoint documentation to see if expand is allowed and what values are able to be expanded. The expand parameter is a comma separated array of the expanded values. Each expand parameter will include the resource name, a colon, and number (<code>geocachelogs:5</code>) to set the number of expanded resources returned. All expanded resources are allowed a max take of 30. 
+            Use the specific endpoint documentation to see if expand is allowed and what values are able to be expanded. The expand parameter is a comma separated array of the expanded values. Each expand parameter will include the resource name, a colon, and number (<code>geocachelogs:5</code>) to set the number of expanded resources returned. All expanded resources are allowed a max take of 30.
         </p>
         <p>
             <i>Tip:</i> Use the fields parameter to reduce the fields that come back with the expanded resource. This will increase the efficiency as well as decrease the payload size of the request.
@@ -809,7 +827,7 @@ else
                         <td>query</td>
                         <td><code>q=location:[47,122]+radius:30mi</code></td>
                         <td>true</td>
-                        <td>Query string made up of <a href="#query-filters">filters</a> to return relevant geocaches</td>
+                        <td><a href="#query-filters">filters</a> used to return relevant geocaches. The syntax for using query objects is the name (or alias) of the object + ":" + type syntax. Multiple filters can be combined by separating with '+' character.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -817,7 +835,7 @@ else
                         <td>query</td>
                         <td><code>sort=favorites-</code></td>
                         <td>false</td>
-                        <td>How to sort the returned geocaches. See <a href="#query-sorts">sorts</a> for options.</td>
+                        <td>How to sort the returned geocaches. See <a href="#search-sorts">sorts</a> for options.</td>
                         <td><code>distance+</code> if the query contains a location otherwise <code>favorites-</code></td>
                     </tr>
 
@@ -858,20 +876,16 @@ else
                         <td>query</td>
                         <td><code>expand=geocachelogs:5</code></td>
                         <td>false</td>
-                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
                         <td>-</td>
                     </tr>
                 </tbody>
             </table>
-            <br />
-            <h4 id="query-filters">Query Filters</h4>
-            <p>
-                These are the supported filters that can be used in the search parameter "q". The syntax for using query objects is the name (or alias) of the object + ":" + type syntax. Multiple filters can be combined by separating with '+' character.
-            </p>
-            <table class="table table-responsive table-striped table-hover">
+            <table id="query-filters" class="table table-responsive table-striped table-hover">
+                <caption>Search Filters</caption>
                 <thead>
                     <tr>
-                        <th class="col-xs-2">Object</th>
+                        <th class="col-xs-2">Name</th>
                         <th class="col-xs-1">Alias</th>
                         <th class="col-xs-1">Type</th>
                         <th class="col-xs-2">Example</th>
@@ -904,22 +918,22 @@ else
                         <td>the coordinates in decimal form to make a square bounding box (only caches inside box will be returned). the format should be upper left coordinate, lower right coordinate. if no sort is passed in, it will be sorted from the center of the box ascending. Max limit of 100,000 meters between bounding box points.</td>
                         <td>-</td>
                     </tr>
-                <tr>
-                    <td><code>type</code></td>
-                    <td>N/A</td>
-                    <td>comma delimited integers</td>
-                    <td><code>type:1,2,3</code> or <code>type:not(1,2,3)</code></td>
-                    <td><a href="#geocache-types">geocache types</a> to include or exclude in search results. To exclude types, put the list of types in "not()".</td>
-                    <td>All types returned</td>
-                </tr>
-                <tr>
-                    <td><code>codes</code></td>
-                    <td>N/A</td>
-                    <td>comma delimited strings</td>
-                    <td><code>codes:GC1,GC2,GC3</code> or <code>codes:not(GC1,GC2,GC3)</code></td>
-                    <td>reference codes to include or exclude in search results. To exclude reference codes, put the list of types in "not()". Cannot pass in more than 50 references codes in one request.</td>
-                    <td>-</td>
-                </tr>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td>N/A</td>
+                        <td>comma delimited integers</td>
+                        <td><code>type:1,2,3</code> or <code>type:not(1,2,3)</code></td>
+                        <td><a href="#geocache-types">geocache types</a> to include or exclude in search results. To exclude types, put the list of types in "not()".</td>
+                        <td>All types returned</td>
+                    </tr>
+                    <tr>
+                        <td><code>codes</code></td>
+                        <td>N/A</td>
+                        <td>comma delimited strings</td>
+                        <td><code>codes:GC1,GC2,GC3</code> or <code>codes:not(GC1,GC2,GC3)</code></td>
+                        <td>reference codes to include or exclude in search results. To exclude reference codes, put the list of types in "not()". Cannot pass in more than 50 references codes in one request.</td>
+                        <td>-</td>
+                    </tr>
                     <tr>
                         <td><code>difficulty</code></td>
                         <td><code>diff</code></td>
@@ -968,22 +982,22 @@ else
                         <td>Limits search results to geocaches either found by or not found by listed usernames. To exclude, wrap values within "not()". If using object to exlude geocaches found by users, list must be five usernames or less. For inclusive use, only one username may be used.</td>
                         <td>-</td>
                     </tr>
-                <tr>
-                    <td><code>hiddenBy</code></td>
-                    <td><code>hby</code></td>
-                    <td>string</td>
-                    <td><code>hby:moun10bike</code></td>
-                    <td>Limits search results to geocaches hidden by or not hidden by inputted username. To exclude, wrap values within "not()". Hidden by filter can only be used with one username value.</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td><code>favoritedBy</code></td>
-                    <td><code>favby</code></td>
-                    <td>string</td>
-                    <td><code>favby:moun10bike</code></td>
-                    <td>Limits search results to geocaches favorited by inputted username. Favorited by filter can only be used with one username value.</td>
-                    <td>-</td>
-                </tr>
+                    <tr>
+                        <td><code>hiddenBy</code></td>
+                        <td><code>hby</code></td>
+                        <td>string</td>
+                        <td><code>hby:moun10bike</code></td>
+                        <td>Limits search results to geocaches hidden by or not hidden by inputted username. To exclude, wrap values within "not()". Hidden by filter can only be used with one username value.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>favoritedBy</code></td>
+                        <td><code>favby</code></td>
+                        <td>string</td>
+                        <td><code>favby:moun10bike</code></td>
+                        <td>Limits search results to geocaches favorited by inputted username. Favorited by filter can only be used with one username value.</td>
+                        <td>-</td>
+                    </tr>
                     <tr>
                         <td><code>state</code></td>
                         <td><code>st</code></td>
@@ -1026,22 +1040,22 @@ else
                         <td>Limits search results to geocaches published in the inclusive date range. Provide one date to give an open ended range, such as all dates before XXXX-XX-XX or all dates after XXXX-XX-XX.</td>
                         <td>-</td>
                     </tr>
-                <tr>
-                    <td><code>isPublished</code></td>
-                    <td><code>ip</code></td>
-                    <td>boolean</td>
-                    <td><code>ip:false</code></td>
-                    <td>Limits search results to geocaches either published or not published. Unpublished geocaches will only be returned if calling user is the owner of the geocache.</td>
-                    <td>all published geocaches and unpublished, owned geocaches</td>
-                </tr>
-                <tr>
-                    <td><code>isActive</code></td>
-                    <td><code>ia</code></td>
-                    <td>boolean</td>
-                    <td><code>ia:true</code></td>
-                    <td>Limits search results to geocaches either active if set to true or disabled if set to false.</td>
-                    <td>all geocaches, active or disabled</td>
-                </tr>
+                    <tr>
+                        <td><code>isPublished</code></td>
+                        <td><code>ip</code></td>
+                        <td>boolean</td>
+                        <td><code>ip:false</code></td>
+                        <td>Limits search results to geocaches either published or not published. Unpublished geocaches will only be returned if calling user is the owner of the geocache.</td>
+                        <td>all published geocaches and unpublished, owned geocaches</td>
+                    </tr>
+                    <tr>
+                        <td><code>isActive</code></td>
+                        <td><code>ia</code></td>
+                        <td>boolean</td>
+                        <td><code>ia:true</code></td>
+                        <td>Limits search results to geocaches either active if set to true or disabled if set to false.</td>
+                        <td>all geocaches, active or disabled</td>
+                    </tr>
                     <tr>
                         <td><code>hasCorrectedCoordinates</code></td>
                         <td><code>hcc</code></td>
@@ -1060,14 +1074,11 @@ else
                     </tr>
                 </tbody>
             </table>
-            <h4 id="query-sorts">Query Sorts</h4>
-            <p>
-                These are the supported sorting options that can be used in the search parameter "sort". The syntax for using query sorts is the name (or alias) of the object and the plus or minus sign to denote ascending or descending order.
-            </p>
-            <table class="table table-responsive table-striped table-hover">
+            <table id="search-sorts" class="table table-responsive table-striped table-hover">
+                <caption>Search Sorting Options</caption>
                 <thead>
                     <tr>
-                        <th class="col-xs-2">Object</th>
+                        <th class="col-xs-2">Name</th>
                         <th class="col-xs-1">Alias</th>
                         <th class="col-xs-2">Example</th>
                         <th class="col-xs-4">Description</th>
@@ -1144,6 +1155,8 @@ else
                 <b>Response Type: </b><a href="#geocache">Geocache</a>
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+                <br />
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1188,7 +1201,7 @@ else
                         <td>query</td>
                         <td><code>expand=geocachelogs:5,trackables:5</code></td>
                         <td>false</td>
-                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
                         <td>-</td>
                     </tr>
                 </tbody>
@@ -1209,6 +1222,8 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 429, 500
                 <br />
+                <br />
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1253,7 +1268,7 @@ else
                         <td>query</td>
                         <td><code>expand=geocachelogs:5</code></td>
                         <td>false</td>
-                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
                         <td>-</td>
                     </tr>
                 </tbody>
@@ -1432,22 +1447,22 @@ else
             </p>
             <br />
         </div>
-    <div id="get-attributes">
-        <h3>Get Attributes</h3>
-        <p>
-            This method will fetch all valid attributes
-        </p>
-        <p>
-            <b>Path: </b><code>/v1/attributes</code>
+        <div id="get-attributes">
+            <h3>Get Attributes</h3>
+            <p>
+                This method will fetch all valid attributes
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/attributes</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of <a href="#attributetype">Attribute Types</a>
+                <br />
+                <b>Response Codes: </b>200, 401, 429, 500
+            </p>
             <br />
-            <b>HTTP Method: </b>GET
-            <br />
-            <b>Response Type: </b>Array of <a href="#attributetype">Attribute Types</a>
-            <br />
-            <b>Response Codes: </b>200, 401, 429, 500
-        </p>
-        <br />
-    </div>
+        </div>
     </section>
 
     <section id="geocachelog-methods">
@@ -1979,22 +1994,22 @@ else
                         <td>the number of resources to skip over</td>
                         <td><code>0</code></td>
                     </tr>
-                <tr>
-                    <td><code>take</code></td>
-                    <td>query</td>
-                    <td><code>take=0</code></td>
-                    <td>No</td>
-                    <td>how many resources to return. maximum value of 50</td>
-                    <td><code>10</code></td>
-                </tr>
-                <tr>
-                    <td><code>expand</code></td>
-                    <td>query</td>
-                    <td><code>expand=trackablelogs:5</code></td>
-                    <td>No</td>
-                    <td>The fields of the trackable object to expand. The available options are trackablelogs, trackablelog.images, and images.</td>
-                    <td>-</td>
-                </tr>
+                    <tr>
+                        <td><code>take</code></td>
+                        <td>query</td>
+                        <td><code>take=0</code></td>
+                        <td>No</td>
+                        <td>how many resources to return. maximum value of 50</td>
+                        <td><code>10</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>expand</code></td>
+                        <td>query</td>
+                        <td><code>expand=trackablelogs:5</code></td>
+                        <td>No</td>
+                        <td>The fields of the trackable object to expand. The available options are trackablelogs, trackablelog.images, and images.</td>
+                        <td>-</td>
+                    </tr>
                 </tbody>
             </table>
             <br />
@@ -2035,22 +2050,22 @@ else
                         <td>the identifier of the trackable (tb code or tracking number found on the physical object)</td>
                         <td>-</td>
                     </tr>
-                <tr>
-                    <td><code>fields</code></td>
-                    <td>query</td>
-                    <td><code>fields=name,referenceCode</code></td>
-                    <td>No</td>
-                    <td>partial response fields to return</td>
-                    <td><code>referenceCode</code></td>
-                </tr>
-                <tr>
-                    <td><code>expand</code></td>
-                    <td>query</td>
-                    <td><code>expand=trackablelogs:5</code></td>
-                    <td>No</td>
-                    <td>The fields of the trackable object to expand. The available options are trackablelogs, trackablelog.images, and images.</td>
-                    <td>-</td>
-                </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td><code>referenceCode</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>expand</code></td>
+                        <td>query</td>
+                        <td><code>expand=trackablelogs:5</code></td>
+                        <td>No</td>
+                        <td>The fields of the trackable object to expand. The available options are trackablelogs, trackablelog.images, and images.</td>
+                        <td>-</td>
+                    </tr>
                 </tbody>
             </table>
             <br />
@@ -3378,96 +3393,96 @@ else
             </table>
             <br />
         </div>
-    <div id="upsert-correctedcoordinates">
-        <h3>Upsert Corrected Coordinates</h3>
-        <p>
-            This method will insert or update corrected coordinates for the specified geocache. It will return the updated user waypoint.
-        </p>
-        <p>
-            <b>Path: </b><code>/v1/geocaches/{referenceCode}/correctedcoordinates</code>
+        <div id="upsert-correctedcoordinates">
+            <h3>Upsert Corrected Coordinates</h3>
+            <p>
+                This method will insert or update corrected coordinates for the specified geocache. It will return the updated user waypoint.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocaches/{referenceCode}/correctedcoordinates</code>
+                <br />
+                <b>HTTP Method: </b>PUT
+                <br />
+                <b>Response Type: </b><a href="#user-waypoint">User Waypoint</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
+            </p>
             <br />
-            <b>HTTP Method: </b>PUT
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>GCK25B</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geocache</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>coordinates</code></td>
+                        <td>body</td>
+                        <td><a href="#coordinates">Coordinates</a></td>
+                        <td>Yes</td>
+                        <td>the corrected coordinates to upsert</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
             <br />
-            <b>Response Type: </b><a href="#user-waypoint">User Waypoint</a>
+        </div>
+        <div id="delete-correctedcoordinates">
+            <h3>Delete CorrectedCoordinates</h3>
+            <p>
+                This method will delete the calling user's coordinates for the specified geocache
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocaches/{referenceCode}/correctedcoordinates</code>
+                <br />
+                <b>HTTP Method: </b>DELETE
+                <br />
+                <b>Response Type: </b>No response body
+                <br />
+                <b>Response Codes: </b>204, 400, 401, 409, 429, 500
+                <br />
+                <b>Restrictions: </b>Only owner may delete the corrected coordinate.
+            </p>
             <br />
-            <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
-        </p>
-        <br />
-        <table class="table table-striped table-hover table-responsive">
-            <caption>Parameters</caption>
-            <thead>
-            <tr>
-                <th class="col-xs-1">Argument</th>
-                <th class="col-xs-1">Type</th>
-                <th class="col-xs-2">Example</th>
-                <th class="col-xs-1">Required</th>
-                <th class="col-xs-5">Description</th>
-                <th class="col-xs-2">Default</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><code>referenceCode</code></td>
-                <td>path</td>
-                <td><code>GCK25B</code></td>
-                <td>Yes</td>
-                <td>the identifier of the geocache</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td><code>coordinates</code></td>
-                <td>body</td>
-                <td><a href="#coordinates">Coordinates</a></td>
-                <td>Yes</td>
-                <td>the corrected coordinates to upsert</td>
-                <td>-</td>
-            </tr>
-            </tbody>
-        </table>
-        <br />
-    </div>
-    <div id="delete-correctedcoordinates">
-        <h3>Delete CorrectedCoordinates</h3>
-        <p>
-            This method will delete the calling user's coordinates for the specified geocache
-        </p>
-        <p>
-            <b>Path: </b><code>/v1/geocaches/{referenceCode}/correctedcoordinates</code>
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>GCK25B</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geocache</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
             <br />
-            <b>HTTP Method: </b>DELETE
-            <br />
-            <b>Response Type: </b>No response body
-            <br />
-            <b>Response Codes: </b>204, 400, 401, 409, 429, 500
-            <br />
-            <b>Restrictions: </b>Only owner may delete the corrected coordinate.
-        </p>
-        <br />
-        <table class="table table-striped table-hover table-responsive">
-            <caption>Parameters</caption>
-            <thead>
-            <tr>
-                <th class="col-xs-1">Argument</th>
-                <th class="col-xs-1">Type</th>
-                <th class="col-xs-2">Example</th>
-                <th class="col-xs-1">Required</th>
-                <th class="col-xs-5">Description</th>
-                <th class="col-xs-2">Default</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><code>referenceCode</code></td>
-                <td>path</td>
-                <td><code>GCK25B</code></td>
-                <td>Yes</td>
-                <td>the identifier of the geocache</td>
-                <td>-</td>
-            </tr>
-            </tbody>
-        </table>
-        <br />
-    </div>
+        </div>
     </section>
     <section id="list-methods">
         <h2>List Methods</h2>
@@ -3671,15 +3686,86 @@ else
             </table>
             <br />
         </div>
-    <div id="get-list-geocaches">
-        <h3>Get List's Geocaches</h3>
-        <p>
-            This method will fetch the geocaches from the specified list.
-        </p>
-        <p>
-            <b>Path: </b><code>/v1/lists/{referenceCode}/geocaches</code>
+        <div id="get-list-geocaches">
+            <h3>Get List's Geocaches</h3>
+            <p>
+                This method will fetch the geocaches from the specified list.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/lists/{referenceCode}/geocaches</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of <a href="#list-geocache">List Geocaches</a> or <a href="#lite-geocache">Lite List Geocaches</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <br />
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
+            </p>
             <br />
-            <b>HTTP Method: </b>GET
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>BM1234</code></td>
+                        <td>Yes</td>
+                        <td>identifier of the list (<code>ignore</code>, <code>favorites</code>, or <code>watch</code> can be used as aliases in place of the reference codes to get the calling user's ignore list and watch list).</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td>all fields</td>
+                    </tr>
+                    <tr>
+                        <td><code>skip</code></td>
+                        <td>query</td>
+                        <td><code>skip=10</code></td>
+                        <td>No</td>
+                        <td>the number of resources to skip over</td>
+                        <td><code>0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>take</code></td>
+                        <td>query</td>
+                        <td><code>take=0</code></td>
+                        <td>No</td>
+                        <td>how many resources to return. maximum value of 50</td>
+                        <td><code>10</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>lite</code></td>
+                        <td>query</td>
+                        <td><code>lite=true</code></td>
+                        <td>No</td>
+                        <td>whether the response should be a lite geocaches or not</td>
+                        <td><code>true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>expand</code></td>
+                        <td>query</td>
+                        <td><code>expand=geocachelogs:5,trackables:5</code></td>
+                        <td>false</td>
+                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
             <br />
             <b>Response Type: </b>Array of <a href="#list-geocache">List Geocaches</a> or <a href="#lite-geocache">Lite List Geocaches</a>
             <br />
@@ -4036,22 +4122,22 @@ else
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><code>referenceCodes</code></td>
-                    <td>query</td>
-                    <td><code>referenceCodes=PR1,PR2,PR3</code></td>
-                    <td>No (see restrictions)</td>
-                    <td>the identifiers of the users. The max amount of codes allowed is 50.</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td><code>usernames</code></td>
-                    <td>query</td>
-                    <td><code>usernames=test1,test2</code></td>
-                    <td>No (see restrictions)</td>
-                    <td>the username of the users. The max amount of usernames allowed is 50.</td>
-                    <td>-</td>
-                </tr>
+                    <tr>
+                        <td><code>referenceCodes</code></td>
+                        <td>query</td>
+                        <td><code>referenceCodes=PR1,PR2,PR3</code></td>
+                        <td>No (see restrictions)</td>
+                        <td>the identifiers of the users. The max amount of codes allowed is 50.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>usernames</code></td>
+                        <td>query</td>
+                        <td><code>usernames=test1,test2</code></td>
+                        <td>No (see restrictions)</td>
+                        <td>the username of the users. The max amount of usernames allowed is 50.</td>
+                        <td>-</td>
+                    </tr>
                     <tr>
                         <td><code>fields</code></td>
                         <td>query</td>
@@ -4102,62 +4188,62 @@ else
                         <td>the identifier of the user. Can also use <code>me</code> to fetch the calling user's information</td>
                         <td>-</td>
                     </tr>
-                <tr>
-                    <td><code>fields</code></td>
-                    <td>query</td>
-                    <td><code>fields=name,referenceCode</code></td>
-                    <td>No</td>
-                    <td>partial response fields to return</td>
-                    <td><code>referenceCode</code></td>
-                </tr>
-                <tr>
-                    <td><code>expand</code></td>
-                    <td>query</td>
-                    <td><code>expand=images:5</code></td>
-                    <td>No</td>
-                    <td>The fields of the geocache log object to expand. The available option is images.</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td><code>includeArchived</code></td>
-                    <td>query</td>
-                    <td><code>includeArchived=false</code></td>
-                    <td>No</td>
-                    <td>includes archived logs in the results (see restrictions)</td>
-                    <td><code>false</code></td>
-                </tr>
-                <tr>
-                    <td><code>logTypes</code></td>
-                    <td>query</td>
-                    <td><code>logTypes=2,10,11</code></td>
-                    <td>No</td>
-                    <td>the log types to include in the results (see restrictions)</td>
-                    <td>all types</td>
-                </tr>
-                <tr>
-                    <td><code>afterDate</code></td>
-                    <td>query</td>
-                    <td><code>afterDate=2018-01-01</code></td>
-                    <td>No</td>
-                    <td>filters results to loggedDates after this date (inclusive)</td>
-                    <td>all dates included</td>
-                </tr>
-                <tr>
-                    <td><code>beforeDate</code></td>
-                    <td>query</td>
-                    <td><code>beforeDate=2018-01-01</code></td>
-                    <td>No</td>
-                    <td>filters results to loggedDates before this date (inclusive)</td>
-                    <td>all dates included</td>
-                </tr>
-                <tr>
-                    <td><code>skip</code></td>
-                    <td>query</td>
-                    <td><code>skip=10</code></td>
-                    <td>No</td>
-                    <td>the number of resources to skip over</td>
-                    <td><code>0</code></td>
-                </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td><code>referenceCode</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>expand</code></td>
+                        <td>query</td>
+                        <td><code>expand=images:5</code></td>
+                        <td>No</td>
+                        <td>The fields of the geocache log object to expand. The available option is images.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>includeArchived</code></td>
+                        <td>query</td>
+                        <td><code>includeArchived=false</code></td>
+                        <td>No</td>
+                        <td>includes archived logs in the results (see restrictions)</td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>logTypes</code></td>
+                        <td>query</td>
+                        <td><code>logTypes=2,10,11</code></td>
+                        <td>No</td>
+                        <td>the log types to include in the results (see restrictions)</td>
+                        <td>all types</td>
+                    </tr>
+                    <tr>
+                        <td><code>afterDate</code></td>
+                        <td>query</td>
+                        <td><code>afterDate=2018-01-01</code></td>
+                        <td>No</td>
+                        <td>filters results to loggedDates after this date (inclusive)</td>
+                        <td>all dates included</td>
+                    </tr>
+                    <tr>
+                        <td><code>beforeDate</code></td>
+                        <td>query</td>
+                        <td><code>beforeDate=2018-01-01</code></td>
+                        <td>No</td>
+                        <td>filters results to loggedDates before this date (inclusive)</td>
+                        <td>all dates included</td>
+                    </tr>
+                    <tr>
+                        <td><code>skip</code></td>
+                        <td>query</td>
+                        <td><code>skip=10</code></td>
+                        <td>No</td>
+                        <td>the number of resources to skip over</td>
+                        <td><code>0</code></td>
+                    </tr>
                     <tr>
                         <td><code>take</code></td>
                         <td>query</td>
@@ -4310,138 +4396,138 @@ else
             </table>
             <br />
         </div>
-    <div id="get-user-images">
-        <h3>Get User Images</h3>
-        <p>
-            This method will fetch the images for the specified user.
-        </p>
-        <p>
-            <b>Path: </b><code>/v1/users/{referenceCode}/images</code>
+        <div id="get-user-images">
+            <h3>Get User Images</h3>
+            <p>
+                This method will fetch the images for the specified user.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/users/{referenceCode}/images</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of <a href="#image">Images</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 500
+                <br />
+                <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
+            </p>
             <br />
-            <b>HTTP Method: </b>GET
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>PR18</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the user. Can also use <code>me</code> to fetch the calling user's information</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td><code>url</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>skip</code></td>
+                        <td>query</td>
+                        <td><code>skip=10</code></td>
+                        <td>No</td>
+                        <td>the number of resources to skip over</td>
+                        <td><code>0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>take</code></td>
+                        <td>query</td>
+                        <td><code>take=0</code></td>
+                        <td>No</td>
+                        <td>how many resources to return. maximum value of 50</td>
+                        <td><code>10</code></td>
+                    </tr>
+                </tbody>
+            </table>
             <br />
-            <b>Response Type: </b>Array of <a href="#image">Images</a>
+        </div>
+        <div id="get-geocache-favoritedby">
+            <h3>Get Favorited Users by Geocache</h3>
+            <p>
+                This method will fetch the users that have favorited the specified geocache.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocaches/{referenceCode}/favoritedby</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of <a href="#user">Users</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+                <br />
+                <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
+            </p>
             <br />
-            <b>Response Codes: </b>200, 400, 401, 403, 404, 500
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>GCK25B</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geocache</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=username,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td><code>referenceCode</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>skip</code></td>
+                        <td>query</td>
+                        <td><code>skip=10</code></td>
+                        <td>No</td>
+                        <td>the number of resources to skip over</td>
+                        <td><code>0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>take</code></td>
+                        <td>query</td>
+                        <td><code>take=0</code></td>
+                        <td>No</td>
+                        <td>how many resources to return. maximum value of 50</td>
+                        <td><code>10</code></td>
+                    </tr>
+                </tbody>
+            </table>
             <br />
-            <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
-        </p>
-        <br />
-        <table class="table table-striped table-hover table-responsive">
-            <caption>Parameters</caption>
-            <thead>
-            <tr>
-                <th class="col-xs-1">Argument</th>
-                <th class="col-xs-1">Type</th>
-                <th class="col-xs-2">Example</th>
-                <th class="col-xs-1">Required</th>
-                <th class="col-xs-5">Description</th>
-                <th class="col-xs-2">Default</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><code>referenceCode</code></td>
-                <td>path</td>
-                <td><code>PR18</code></td>
-                <td>Yes</td>
-                <td>the identifier of the user. Can also use <code>me</code> to fetch the calling user's information</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td><code>fields</code></td>
-                <td>query</td>
-                <td><code>fields=name,referenceCode</code></td>
-                <td>No</td>
-                <td>partial response fields to return</td>
-                <td><code>url</code></td>
-            </tr>
-            <tr>
-                <td><code>skip</code></td>
-                <td>query</td>
-                <td><code>skip=10</code></td>
-                <td>No</td>
-                <td>the number of resources to skip over</td>
-                <td><code>0</code></td>
-            </tr>
-            <tr>
-                <td><code>take</code></td>
-                <td>query</td>
-                <td><code>take=0</code></td>
-                <td>No</td>
-                <td>how many resources to return. maximum value of 50</td>
-                <td><code>10</code></td>
-            </tr>
-            </tbody>
-        </table>
-        <br />
-    </div>
-    <div id="get-geocache-favoritedby">
-        <h3>Get Favorited Users by Geocache</h3>
-        <p>
-            This method will fetch the users that have favorited the specified geocache.
-        </p>
-        <p>
-            <b>Path: </b><code>/v1/geocaches/{referenceCode}/favoritedby</code>
-            <br />
-            <b>HTTP Method: </b>GET
-            <br />
-            <b>Response Type: </b>Array of <a href="#user">Users</a>
-            <br />
-            <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
-            <br />
-            <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
-        </p>
-        <br />
-        <table class="table table-striped table-hover table-responsive">
-            <caption>Parameters</caption>
-            <thead>
-                <tr>
-                    <th class="col-xs-1">Argument</th>
-                    <th class="col-xs-1">Type</th>
-                    <th class="col-xs-2">Example</th>
-                    <th class="col-xs-1">Required</th>
-                    <th class="col-xs-5">Description</th>
-                    <th class="col-xs-2">Default</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>referenceCode</code></td>
-                    <td>path</td>
-                    <td><code>GCK25B</code></td>
-                    <td>Yes</td>
-                    <td>the identifier of the geocache</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td><code>fields</code></td>
-                    <td>query</td>
-                    <td><code>fields=username,referenceCode</code></td>
-                    <td>No</td>
-                    <td>partial response fields to return</td>
-                    <td><code>referenceCode</code></td>
-                </tr>
-                <tr>
-                    <td><code>skip</code></td>
-                    <td>query</td>
-                    <td><code>skip=10</code></td>
-                    <td>No</td>
-                    <td>the number of resources to skip over</td>
-                    <td><code>0</code></td>
-                </tr>
-                <tr>
-                    <td><code>take</code></td>
-                    <td>query</td>
-                    <td><code>take=0</code></td>
-                    <td>No</td>
-                    <td>how many resources to return. maximum value of 50</td>
-                    <td><code>10</code></td>
-                </tr>
-            </tbody>
-        </table>
-        <br />
-    </div>
+        </div>
     </section>
     <section id="friend-methods">
         <h2>Friend Methods</h2>
@@ -4732,6 +4818,271 @@ else
             <br />
         </div>
     </section>
+    <section id="geotour-methods">
+        <h2>GeoTour Methods</h2>
+        <div id="get-geotour">
+            <h3>Get GeoTour</h3>
+            <p>
+                This method will fetch the specified GeoTour.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geotours/{referenceCode}</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b><a href="#geotour">GeoTour</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>GT29</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geotour</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td>referenceCode</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+        <div id="get-geotours">
+            <h3>Get GeoTours</h3>
+            <p>
+                This method will fetch a paginated array of GeoTours.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geotours</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>array of <a href="#geotour">GeoTours</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 429, 500
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>skip</code></td>
+                        <td>query</td>
+                        <td><code>skip=10</code></td>
+                        <td>No</td>
+                        <td>the number of resources to skip over</td>
+                        <td><code>0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>take</code></td>
+                        <td>query</td>
+                        <td><code>take=0</code></td>
+                        <td>No</td>
+                        <td>how many resources to return. maximum value of 50</td>
+                        <td><code>20</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>sort</code></td>
+                        <td>query</td>
+                        <td><code>sort=name+</code></td>
+                        <td>false</td>
+                        <td>How to sort the returned geotours. See <a href="#geotour-sorts">sorts</a> for options.</td>
+                        <td>unsorted</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td>referenceCode</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <table id="geotour-sorts" class="table table-responsive table-striped table-hover">
+                <caption>GeoTours Sorting Options</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-2">Name</th>
+                        <th class="col-xs-1">Alias</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-4">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>distance</code></td>
+                        <td><code>dist</code></td>
+                        <td><code>dist+:[47,-122]</code></td>
+                        <td>sort by distance, coordinates must be added to the sort value</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td>N/A</td>
+                        <td><code>name+</code></td>
+                        <td>sort by the geotour name alphabetically</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="get-geotour-geocaches">
+            <h3>Get Geocaches on a GeoTour</h3>
+            <p>
+                This method will fetch a paginated array of geocaches that belong to specified GeoTour.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geotours/{referenceCode}/geocaches</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of <a href="#geocache">Geocaches</a> or <a href="#lite-geocache">Lite Geocaches</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>GT29</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geotour</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>skip</code></td>
+                        <td>query</td>
+                        <td><code>skip=10</code></td>
+                        <td>No</td>
+                        <td>the number of resources to skip over</td>
+                        <td><code>0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>take</code></td>
+                        <td>query</td>
+                        <td><code>take=0</code></td>
+                        <td>No</td>
+                        <td>how many resources to return. maximum value of 50</td>
+                        <td><code>20</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>sort</code></td>
+                        <td>query</td>
+                        <td><code>sort=name+</code></td>
+                        <td>false</td>
+                        <td>How to sort the returned resources. See <a href="#geotour-geocache-sorts">sorts</a> for options.</td>
+                        <td>geotour+</td>
+                    </tr>
+                    <tr>
+                        <td><code>lite</code></td>
+                        <td>query</td>
+                        <td><code>lite=false</code></td>
+                        <td>false</td>
+                        <td>Whether the results should come back as lite geocaches or full geocaches</td>
+                        <td><code>true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>expand</code></td>
+                        <td>query</td>
+                        <td><code>expand=geocachelogs:5</code></td>
+                        <td>false</td>
+                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td>referenceCode</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <table id="geotour-geocache-sorts" class="table table-responsive table-striped table-hover">
+                <caption>GeoTour Geocache Sorting Options</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-2">Name</th>
+                        <th class="col-xs-1">Alias</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-4">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>distance</code></td>
+                        <td><code>dist</code></td>
+                        <td><code>dist+:[47,-122]</code></td>
+                        <td>sort by distance, coordinates must be added to the sort value</td>
+                    </tr>
+                    <tr>
+                        <td><code>cachename</code></td>
+                        <td>name</td>
+                        <td><code>name+</code></td>
+                        <td>sort by the geocache name alphabetically</td>
+                    </tr>
+                    <tr>
+                        <td><code>favorites</code></td>
+                        <td>fav</td>
+                        <td><code>fav-</code></td>
+                        <td>sort by the amount of favorite points on the geocache</td>
+                    </tr>
+                    <tr>
+                        <td><code>geotour</code></td>
+                        <td>gt</td>
+                        <td><code>gt+</code></td>
+                        <td>sort by the order specified on the GeoTour</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
     <section id="utility-methods">
         <h2>Utility Methods</h2>
         <div id="get-reference-code">
@@ -4747,6 +5098,8 @@ else
                 <b>Response Type: </b>string
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 429, 500
+                <br />
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -5048,7 +5401,7 @@ else
                         </tr>
                         <tr>
                             <td>additionalWaypoints</td>
-                            <td>array of <a href="#additional-waypoint">AdditionalWaypoint</a></td>
+                            <td>array of <a href="#additional-waypoint">AdditionalWaypoints</a></td>
                             <td>other reference waypoints associated with the geocache</td>
                         </tr>
                     </tbody>
@@ -5654,6 +6007,16 @@ else
                             <td>unique number used to prove discovery of trackable. only returned if user matches the holderCode</td>
                         </tr>
                         <tr>
+                            <td>kilometersTraveled</td>
+                            <td>decimal</td>
+                            <td>distance the trackable has traveled in kilometers</td>
+                        </tr>
+                        <tr>
+                            <td>milesTraveled</td>
+                            <td>decimal</td>
+                            <td>distance the trackable has traveled in miles</td>
+                        </tr>
+                        <tr>
                             <td>trackableType</td>
                             <td><a href="#type">Type</a></td>
                             <td>type of the trackable</td>
@@ -5690,13 +6053,15 @@ else
   "ownerCode": "PR3",
   "owner": {
     "username": "MNofMind",
-    "avatarUrl": "https://img-stage.geocaching.com/gcstage/{0}/0640f488-9abe-4c2a-a786-bb75cec84357.gif",
+    "avatarUrl": "https://img-stage.geocaching.com/gcstage/avatar/0640f488-9abe-4c2a-a786-bb75cec84357.gif",
     ...
   },
   "holderCode": null,
   "holder": null,
   "inHolderCollection": false,
   "isMissing": true,
+  "milesTraveled": 0,
+  "kilometersTraveled: 0",
   "trackableType": {
     "id": 21,
     "name": "Travel Bug Dog Tag",
@@ -6829,6 +7194,16 @@ else
                             <td>latitude and longitude of the user's home location</td>
                         </tr>
                         <tr>
+                            <td>isFriend</td>
+                            <td>boolean</td>
+                            <td>if the user is a friend of the calling user</td>
+                        </tr>
+                        <tr>
+                            <td>optedInFriendSharing</td>
+                            <td>boolean</td>
+                            <td>if the user has opted to to share geocaching activity with friends</td>
+                        </tr>
+                        <tr>
                             <td>geocacheFindCounts</td>
                             <td>Array of <a href="#geocache-count">GeocacheCount</a></td>
                             <td>find counts per geocache type for user</td>
@@ -6869,6 +7244,8 @@ else
     "latitude": 47.6760654544942,
     "longitude": -122.318150997162
   },
+  "isFriend": false,
+  "optedInFriendSharing": true,
   "geocacheFindCounts": [
     {
       "geocacheType": {
@@ -6979,6 +7356,131 @@ else
     "fullCallsRemaining": 2,
     "fullCallsSecondsToLive": 216000
   }
+}</code></pre>
+            </div>
+        </div>
+        <div id="geotour" class="container col-md-12">
+            <h3><strong>GeoTour</strong></h3>
+            <div class="row">
+                <table class="table table-striped table-hover table-responsive inherit-width">
+                    <caption>Fields</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>referenceCode</td>
+                            <td>string</td>
+                            <td>uniquely identifies the GeoTour</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>display name of the GeoTour</td>
+                        </tr>
+                        <tr>
+                            <td>description</td>
+                            <td>string</td>
+                            <td>information about the GeoTour</td>
+                        </tr>
+                        <tr>
+                            <td>postedCoordinates</td>
+                            <td><a href="#coordinates">Coordinates</a></td>
+                            <td>latitude and longitude of the GeoTour</td>
+                        </tr>
+                        <tr>
+                            <td>geocacheCount</td>
+                            <td>integer</td>
+                            <td>how many geocaches are part of the GeoTour</td>
+                        </tr>
+                        <tr>
+                            <td>url</td>
+                            <td>string</td>
+                            <td>geocaching.com web page associated with the GeoTour</td>
+                        </tr>
+                        <tr>
+                            <td>coverImageUrl</td>
+                            <td>string</td>
+                            <td>image url of the cover of the GeoTour</td>
+                        </tr>
+                        <tr>
+                            <td>logoImageUrl</td>
+                            <td>string</td>
+                            <td>image url of the logo of the GeoTour</td>
+                        </tr>
+                        <tr>
+                            <td>favoritePoints</td>
+                            <td>integer</td>
+                            <td>number of favorite points awarded to geocaches on the GeoTour</td>
+                        </tr>
+                        <tr>
+                            <td>sponsor</td>
+                            <td><a href="#sponsor">Sponsor</a></td>
+                            <td>the sponsor organizing the GeoTour</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Example</h3>
+                <pre><code>{
+  "referenceCode": "GT29",
+  "name": "HQ",
+  "description": "Enjoy \"The Geocacher's Guide to the Center of Our Universe.\" Created for the Block Party by Geocaching HQ employees, this GeoTour takes you to our favorite spots in Seattle's Fremont neighborhood. The caches are within walking distance and are available year-round. Print a passport to keep track of progress.",
+  "postedCoordinates": {
+    "latitude": 47.64948,
+    "longitude": -122.34775
+  },
+  "geocacheCount": 9,
+  "url": "https://www.geocaching.com/play/geotours/HQ",
+  "coverImageUrl": "https://img.geocaching.com/geotours/cover/7d29be9a-1df4-495d-b98e-346388c4389a.png",
+  "logoImageUrl": "https://img.geocaching.com/geotours/logo/0f28454a-e295-41e9-863d-6fda3febf43a.png",
+  "favoritePoints": 13096,
+  "sponsor": {
+    "name": "Geocaching HQ",
+    "relatedWebPage": "http://www.geocaching.com/travel/",
+    "relatedWebPageText": "Make your own GeoTour"
+  }
+}</code></pre>
+            </div>
+        </div>
+        <div id="sponsor" class="container col-md-12">
+            <h3><strong>Sponsor</strong></h3>
+            <div class="row">
+                <table class="table table-striped table-hover table-responsive inherit-width">
+                    <caption>Fields</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>display name of the sponsor</td>
+                        </tr>
+                        <tr>
+                            <td>relatedWebPage</td>
+                            <td>string</td>
+                            <td>link to external web page about GeoTour or sponsor</td>
+                        </tr>
+                        <tr>
+                            <td>relatedWebPageText</td>
+                            <td>string</td>
+                            <td>text used in link to related web page</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Example</h3>
+                <pre><code>{
+  "name": "Geocaching HQ",
+  "relatedWebPage": "http://www.geocaching.com/travel/",
+  "relatedWebPageText": "Make your own GeoTour"
 }</code></pre>
             </div>
         </div>
@@ -7943,6 +8445,17 @@ else
         <ul>
             <li>User's lists are considered part of their public profile that users can block from being exposed over the API. If a user tries to fetch a list from that is blocked, the API will return a 403 HTTP status code.</li>
         </ul>
+        <h3>08.05.2019</h3>
+        <ul>
+            <li>Added method to return GeoTours</li>
+            <li>Added method to return a single GeoTour</li>
+            <li>Added method to return geocaches on a GeoTour</li>
+            <li>Added GeoTour as an expand option for geocaches</li>
+            <li>MilesTraveled and kilometersTraveled have been added to the Trackable object</li>
+            <li>ImageUrl on Trackable.trackableType has been fixed to return full url</li>
+            <li>IsFriend has been added to the User object</li>
+            <li>OptedInFriendSharing has been added to the User object (ties to the setting that says: Allow Authorized Developer applications to share your geocaching activity with your Geocaching.com friends. You will only be able to see your friends' activity in Authorized Developer Applications if your friends have also agreed to allow sharing)</li>
+        </ul>
         <h3>06.24.2019</h3>
         <ul>
             <li>Added method to return users that have favorited a geocache</li>
@@ -8042,71 +8555,6 @@ else
         <ul>
             <li>Limits increased per IP address to 6000 calls per minute</li>
         </ul>
-        <h3>Guide to Replacing LiveV6 API</h3>
-        <table class="table table-striped table-hover table-responsive">
-            <thead><tr><th>LiveV6 Method</th><th>Replacement Methods</th><th>Notes</th></tr></thead>
-            <tbody>
-                <tr><td>AddFavoritePointToCache</td><td>Add Geocache To List</td><td>add geocache to the user's favorites list</td></tr>
-                <tr><td>AddGeocachesToBookmarkList</td><td>Add Geocache To List</td><td>add geocache to the user's bookmark list</td></tr>
-                <tr><td>CreateFieldNoteAndPublish</td><td>Create Geocache Log</td><td>to replace the geocache log functionality</td></tr>
-                <tr><td>CreateFieldNoteAndPublish</td><td>Create Log Draft/Add Log Draft Image</td><td>to replace the draft (fka field note) functionality</td></tr>
-                <tr><td>CreateTrackableLog</td><td>Create Trackable Log</td><td>-</td></tr>
-                <tr><td>DeleteCacheNote</td><td>Delete Geocache Note</td><td>-</td></tr>
-                <tr><td>DeleteUserWaypoint</td><td>Delete User Waypoint</td><td>-</td></tr>
-                <tr><td>GeocodeString</td><td>N/A</td><td>retired method</td></tr>
-                <tr><td>GetAnotherUsersProfile</td><td>Get User</td><td>-</td></tr>
-                <tr><td>GetAPILimits</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetAttributeTypesData</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetBookmarkListByGuid</td><td>Get List</td><td>guids will no longer be used for identifiers</td></tr>
-                <tr><td>GetBookmarkListsByUserID</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetBookmarkListsForUser</td><td>Get User Lists</td><td>ids will no longer be used for identifiers</td></tr>
-                <tr><td>GetCacheByTileGuid</td><td>N/A</td><td>retired method</td></tr>
-                <tr><td>GetCacheIdsFavoritedByUser</td><td>Get List</td><td>request favorites list</td></tr>
-                <tr><td>GetCachesFavoritedByUser</td><td>Get List</td><td>request favorites list</td></tr>
-                <tr><td>GetFullPocketQueryData</td><td>Get List</td><td>request pocket query list</td></tr>
-                <tr><td>GetGeocacheDataTypes</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetGeocacheLogsByCacheCode</td><td>Get Geocache's Logs</td><td>-</td></tr>
-                <tr><td>GetGeocacheStatus</td><td>Get Geocache</td><td>use fields parameter to minimize object to statuses</td></tr>
-                <tr><td>GetGeocacheTypes</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetImagesForGeocache</td><td>Get Geocache Images</td><td>-</td></tr>
-                <tr><td>GetMembershipTypes</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetMoreGeocaches</td><td>N/A</td><td>retired method</td></tr>
-                <tr><td>GetOwnedTrackables</td><td>Get Trackables</td><td>-</td></tr>
-                <tr><td>GetPocketQueryData</td><td>Get List</td><td>-</td></tr>
-                <tr><td>GetPocketQueryData</td><td>Get User Lists</td><td>-</td></tr>
-                <tr><td>GetPocketQueryZippedFile</td><td>N/A</td><td>retired method</td></tr>
-                <tr><td>GetSiteStats</td><td>N/A</td><td>retired method</td></tr>
-                <tr><td>GetTrackableLogsByTBCode</td><td>Get Trackable's Logs</td><td>-</td></tr>
-                <tr><td>GetTrackablesByTBCode</td><td>Get Trackable</td><td>-</td></tr>
-                <tr><td>GetTrackablesByTrackingNumber</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetTrackablesInCache</td><td>Get Geocache's Trackables</td><td>-</td></tr>
-                <tr><td>GetTrackableTravelList</td><td>N/A</td><td>retired method</td></tr>
-                <tr><td>GetUserCredentials</td><td>N/A</td><td>retired method</td></tr>
-                <tr><td>GetUserGallery</td><td>Get User Images</td><td>-</td></tr>
-                <tr><td>GetUsersCacheCounts</td><td>Get User</td><td>-</td></tr>
-                <tr><td>GetUsersCacheNotes</td><td>Get Geocache</td><td>get the userData nested object</td></tr>
-                <tr><td>GetUsersFavoritePoints</td><td>Get User</td><td>-</td></tr>
-                <tr><td>GetUsersGeocacheLogs</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetUsersTrackables</td><td>Get User Trackables</td><td>-</td></tr>
-                <tr><td>GetUsersTrackables</td><td>Get User Trackables</td><td>-</td></tr>
-                <tr><td>GetUsersWhoFavoritedCache</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetUserWaypoints</td><td>Get User Waypoints</td><td>-</td></tr>
-                <tr><td>GetWptLogTypes</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>GetYourUserProfile</td><td>Get User</td><td>-</td></tr>
-                <tr><td>GetYourUserProfile</td><td>Get User</td><td>-</td></tr>
-                <tr><td>Ping</td><td>Ping</td><td>/status/ping</td></tr>
-                <tr><td>RegisterWP7DeviceTile</td><td>N/A</td><td>retired method</td></tr>
-                <tr><td>RemoveFavoritePointFromCache</td><td>Remove Geocache From List</td><td>-</td></tr>
-                <tr><td>SaveUserWaypoint</td><td>Create User Waypoint/ Update User Waypoint</td><td>-</td></tr>
-                <tr><td>SearchForGeocaches</td><td>Search</td><td>-</td></tr>
-                <tr><td>SearchForSouvenirsByPublicGuid</td><td>N/A</td><td>currently no replacement</td></tr>
-                <tr><td>UpdateCacheNote</td><td>Upsert Geocache Note</td><td>-</td></tr>
-                <tr><td>UploadImageToGeocacheLog</td><td>Add Geocache Log Image</td><td>-</td></tr>
-                <tr><td>UploadImageToTrackableLog</td><td>Add Trackable Log Image</td><td>-</td></tr>
-                <tr><td>WindowsPhoneTileSearch</td><td>N/A</td><td>retired method</td></tr>
-
-            </tbody>
-        </table>
     </section>
 </div>
 
