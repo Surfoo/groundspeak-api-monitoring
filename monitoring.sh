@@ -16,7 +16,8 @@ php swaggerSort.php $SWAGGER_FILES
 if [[ $(git ls-files -m | grep -E 'staging|production' | wc -l) -gt 0 ]];then
     FILES=$(git ls-files -m | grep -E 'staging|production');
     printf "Files found:\n%s\n\n" "$FILES";
-    git commit --author "Surfoo <surfooo@gmail.com>" -am $'Changes detected on:\n$FILES' && git push;
+    git commit --author "Surfoo <surfooo@gmail.com>" -am "Changes detected on:
+$FILES" && git push;
 else
     printf 'Nothing to do.\n\n';
 fi
