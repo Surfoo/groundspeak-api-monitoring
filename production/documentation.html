@@ -3498,9 +3498,9 @@ else
                 <br />
                 <b>Response Type: </b><a href="#list">List</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may only see their own lists or lists marked public.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may only see their own lists or lists marked public. Users may opt out of sharing personal data, which include lists.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3767,7 +3767,78 @@ else
                 </tbody>
             </table>
             <br />
-        </div>
+            <b>Response Type: </b>Array of <a href="#list-geocache">List Geocaches</a> or <a href="#lite-geocache">Lite List Geocaches</a>
+            <br />
+            <b>Response Codes: </b>200, 400, 401, 403, 404, 500
+            <br />
+            <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may opt out of sharing personal data, which include lists.
+        </p>
+        <br />
+        <table class="table table-striped table-hover table-responsive">
+            <caption>Parameters</caption>
+            <thead>
+            <tr>
+                <th class="col-xs-1">Argument</th>
+                <th class="col-xs-1">Type</th>
+                <th class="col-xs-2">Example</th>
+                <th class="col-xs-1">Required</th>
+                <th class="col-xs-5">Description</th>
+                <th class="col-xs-2">Default</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>referenceCode</code></td>
+                <td>path</td>
+                <td><code>BM1234</code></td>
+                <td>Yes</td>
+                <td>identifier of the list (<code>ignore</code>, <code>favorites</code>, or <code>watch</code> can be used as aliases in place of the reference codes to get the calling user's ignore list and watch list).</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><code>fields</code></td>
+                <td>query</td>
+                <td><code>fields=name,referenceCode</code></td>
+                <td>No</td>
+                <td>partial response fields to return</td>
+                <td>all fields</td>
+            </tr>
+            <tr>
+                <td><code>skip</code></td>
+                <td>query</td>
+                <td><code>skip=10</code></td>
+                <td>No</td>
+                <td>the number of resources to skip over</td>
+                <td><code>0</code></td>
+            </tr>
+            <tr>
+                <td><code>take</code></td>
+                <td>query</td>
+                <td><code>take=0</code></td>
+                <td>No</td>
+                <td>how many resources to return. maximum value of 50</td>
+                <td><code>10</code></td>
+            </tr>
+            <tr>
+                <td><code>lite</code></td>
+                <td>query</td>
+                <td><code>lite=true</code></td>
+                <td>No</td>
+                <td>whether the response should be a lite geocaches or not</td>
+                <td><code>true</code></td>
+            </tr>
+            <tr>
+                <td><code>expand</code></td>
+                <td>query</td>
+                <td><code>expand=geocachelogs:5,trackables:5</code></td>
+                <td>false</td>
+                <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
+                <td>-</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+    </div>
         <div id="get-pq-zip">
             <h3>Get Zipped Pocket Query</h3>
             <p>
@@ -4199,7 +4270,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may only see public bookmark lists for other users.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may only see public bookmark lists for other users. Users may opt out of sharing personal data, which include lists.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -8370,6 +8441,10 @@ else
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>09.02.2019</h3>
+        <ul>
+            <li>User's lists are considered part of their public profile that users can block from being exposed over the API. If a user tries to fetch a list from that is blocked, the API will return a 403 HTTP status code.</li>
+        </ul>
         <h3>08.05.2019</h3>
         <ul>
             <li>Added method to return GeoTours</li>
