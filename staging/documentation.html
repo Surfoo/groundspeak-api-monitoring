@@ -625,7 +625,8 @@
         </p>
         <h3 id="opt-out">Third Party Data Sharing</h3>
         <p>
-            Users have the ability to opt-out of allowing other users to view their public profile data, shared through our Geocaching API, in their account settings. If the user has not authorized the sharing of their public profile data, the API will return only the reference code and username, and the reference code will be returned as part of a comma delimited list of strings in the header named <code>x-opted-out</code>.
+            To give users greater control of their data and in the interest of providing additional privacy settings, users now have the ability to opt-out of sharing their personal data with API Authorized Developers in their account settings. If a user has not authorized the sharing of their personal data, the API will either throw a 403 Forbidden exception or return only the reference code and <code>opted-out user</code> as the username with the reference code also returned as part of a comma delimited list of strings in the header named <code>x-opted-out</code>. 
+
         </p>
     </section>
     <section id="pagination">
@@ -807,7 +808,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 429, 500
                 <br />
-                <b>Restrictions: </b>This method will not return any archived or locked geocaches. Unpublished geocaches will be excluded unless the calling user is the geocache owner. Geocaches on ignored list of calling user will also be excluded from search results. Basic members will only return traditionals and event types.
+                <b>Restrictions: </b>This method will not return any archived or locked geocaches. Unpublished geocaches will be excluded unless the calling user is the geocache owner. Geocaches on ignored list of calling user will also be excluded from search results. Basic members will only return traditionals and event types. Search filters including usernames of users that have opted out will be excluded from the search and added to the x-opted-out header.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1156,7 +1157,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1222,8 +1223,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 429, 500
                 <br />
-                <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1288,6 +1288,8 @@ else
                 <b>Response Type: </b>Array of <a href="#image">Images</a>
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+                <br />
+                <b>Restrictions: </b>Geocache log images from opted-out users will not be included. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1353,7 +1355,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Only owner may update the note.
+                <b>Restrictions: </b>Only owner may update the note. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1403,7 +1405,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Only owner may delete the geocache note.
+                <b>Restrictions: </b>Only owner may delete the geocache note. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1481,7 +1483,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1555,7 +1557,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1611,7 +1613,9 @@ else
                 <br />
                 <b>Response Type: </b><a href="#geocache-log">Geocache Log</a>
                 <br />
-                <b>Response Codes: </b>201, 400, 401, 404, 409, 429, 500
+                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 429, 500
+                <br />
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1661,7 +1665,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Only owner of geocache log may update the log.
+                <b>Restrictions: </b>Only owner of geocache log may update the log. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1719,7 +1723,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 403, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Only owner of geocache log may delete the log.
+                <b>Restrictions: </b>Only owner of geocache log may delete the log. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1759,9 +1763,9 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#image">Images</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1827,7 +1831,7 @@ else
                 <br />
                 <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Only owner of geocache log may add an image.
+                <b>Restrictions: </b>Only owner of geocache log may add an image. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1885,7 +1889,7 @@ else
                 <br />
                 <b>Response Codes: </b>201, 400, 401, 403, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Only owner of geocache log may delete an image.
+                <b>Restrictions: </b>Only owner of geocache log may delete an image. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2286,6 +2290,8 @@ else
                 <b>Response Type: </b>Array of <a href="#trackable-log">Trackable Logs</a>
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 404, 429, 500
+                <br />
+                <b>Restrictions: Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2366,6 +2372,8 @@ else
                 <b>Response Type: </b><a href="#trackable-log">Trackable Log</a>
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 404, 500
+                <br />
+                <b>Restrictions: Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2421,7 +2429,9 @@ else
                 <br />
                 <b>Response Type: </b><a href="#trackable-log">Trackable Log</a>
                 <br />
-                <b>Response Codes: </b>201, 400, 401, 404, 409, 500
+                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
+                <br />
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2471,7 +2481,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner of trackable log may update the log.
+                <b>Restrictions: </b>Only owner of trackable log may update the log. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2529,7 +2539,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 403, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner of trackable log may delete the log.
+                <b>Restrictions: </b>Only owner of trackable log may delete the log. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2569,7 +2579,9 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#image">Images</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 500
+                <br />
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2635,7 +2647,7 @@ else
                 <br />
                 <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner of trackable log may add an image.
+                <b>Restrictions: </b>Only owner of trackable log may add an image. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2693,7 +2705,7 @@ else
                 <br />
                 <b>Response Codes: </b>201, 400, 401, 403, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner of trackable log may delete an image.
+                <b>Restrictions: </b>Only owner of trackable log may delete an image. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2866,7 +2878,9 @@ else
                 <br />
                 <b>Response Type: </b><a href="#log-draft">Log Draft</a>
                 <br />
-                <b>Response Codes: </b>201, 400, 401, 404, 409, 500
+                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
+                <br />
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2916,7 +2930,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner of log draft may update the log draft.
+                <b>Restrictions: </b>Only owner of log draft may update the log draft. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2974,7 +2988,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner of log draft may delete the log draft.
+                <b>Restrictions: </b>Only owner of log draft may delete the log draft. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3016,7 +3030,7 @@ else
                 <br />
                 <b>Response Codes: </b>201, 400, 401, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner of log draft may promote the log draft.
+                <b>Restrictions: </b>Only owner of log draft may promote the log draft. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3066,7 +3080,7 @@ else
                 <br />
                 <b>Response Codes: </b>201, 400, 401, 403, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner of log draft may add images to the log draft.
+                <b>Restrictions: </b>Only owner of log draft may add images to the log draft. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3265,7 +3279,9 @@ else
                 <br />
                 <b>Response Type: </b><a href="#user-waypoint">User Waypoint</a>
                 <br />
-                <b>Response Codes: </b>201, 400, 401, 404, 409, 500
+                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
+                <br />
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3315,7 +3331,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner may update the user waypoint.
+                <b>Restrictions: </b>Only owner may update the user waypoint. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3365,7 +3381,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner may delete the user waypoint.
+                <b>Restrictions: </b>Only owner may delete the user waypoint. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3406,6 +3422,8 @@ else
                 <b>Response Type: </b><a href="#user-waypoint">User Waypoint</a>
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
+                <br />
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3455,7 +3473,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Only owner may delete the corrected coordinate.
+                <b>Restrictions: </b>Only owner may delete the corrected coordinate. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3500,7 +3518,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may only see their own lists or lists marked public. Users may opt out of sharing personal data, which include lists.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may only see their own lists or lists marked public. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3550,7 +3568,7 @@ else
                 <br />
                 <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 422, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users can only add bookmark lists and have a maximum of 100 bookmark lists.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users can only add bookmark lists and have a maximum of 100 bookmark lists. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3600,7 +3618,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner may update the list.
+                <b>Restrictions: </b>Only owner may update the list. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3658,7 +3676,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner may delete the list.
+                <b>Restrictions: </b>Only owner may delete the list. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3698,9 +3716,9 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#list-geocache">List Geocaches</a> or <a href="#lite-geocache">Lite List Geocaches</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3893,9 +3911,9 @@ else
                 <br />
                 <b>Response Type: </b><a href="#list-item">List Item</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Bookmark lists may have a maximum of 1000 geocaches.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Bookmark lists may have a maximum of 1000 geocaches. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3953,7 +3971,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Bookmark lists may have a maximum of 1000 geocaches.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Bookmark lists may have a maximum of 1000 geocaches. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4001,9 +4019,9 @@ else
                 <br />
                 <b>Response Type: </b>No response body
                 <br />
-                <b>Response Codes: </b>204, 400, 401, 409, 500
+                <b>Response Codes: </b>204, 400, 401, 403, 409, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Only owner may delete the user waypoint.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Only owner may delete the user waypoint. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4164,7 +4182,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Can only use includeArchived parameter for the calling user. Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
+                <b>Restrictions: </b>Can only use includeArchived parameter for the calling user. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4270,7 +4288,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may only see public bookmark lists for other users. Users may opt out of sharing personal data, which include lists.
+                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may only see public bookmark lists for other users. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4344,7 +4362,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4410,7 +4428,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Users may opt out of sharing personal data. See <a href="#opt-out">Third Party Data Sharing</a> section for more info.
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -8441,6 +8459,10 @@ else
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>TBD</h3>
+        <ul>
+            <li>Opted out section has been updated to allow for greater user control over how their data is shared. Methods affected also have additional restriction notes.</li>
+        </ul>
         <h3>09.02.2019</h3>
         <ul>
             <li>User's lists are considered part of their public profile that users can block from being exposed over the API. If a user tries to fetch a list from that is blocked, the API will return a 403 HTTP status code.</li>
@@ -8500,7 +8522,7 @@ else
             <li>The TrackableLog object now includes geocacheName field.</li>
             <li>The LogDraft object now includes geocacheName field.</li>
             <li>New methods have been added to upsert and delete corrected coordinates.</li>
-            <li>Opted out users now return username as well as the referenceCode.</li>
+            <li>Opted-out users now return username as well as the referenceCode.</li>
         </ul>
         <h3>10.08.2018</h3>
         <ul>
