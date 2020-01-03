@@ -15,85 +15,6 @@
         "https"
     ],
     "paths": {
-        "\/v{api-version}\/friends": {
-            "get": {
-                "tags": [
-                    "Friends"
-                ],
-                "summary": "Get a list of friends for the calling user",
-                "description": "This method will return a list of Users.",
-                "operationId": "Friends_GetFriends",
-                "consumes": [],
-                "produces": [
-                    "application\/json",
-                    "text\/json",
-                    "application\/json-patch+json"
-                ],
-                "parameters": [
-                    {
-                        "name": "skip",
-                        "in": "query",
-                        "description": "How many friends to skip (default = 0)",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32",
-                        "default": 0
-                    },
-                    {
-                        "name": "take",
-                        "in": "query",
-                        "description": "How many friends to return (default = 10, max = 50)",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32",
-                        "default": 10
-                    },
-                    {
-                        "name": "fields",
-                        "in": "query",
-                        "description": "Properties you want to return, defaults to referenceCode",
-                        "required": false,
-                        "type": "string",
-                        "default": "referenceCode"
-                    },
-                    {
-                        "name": "api-version",
-                        "in": "path",
-                        "description": "The requested API version",
-                        "required": true,
-                        "type": "string",
-                        "default": "1.0"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Ok",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#\/definitions\/User"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "429": {
-                        "description": "Too many requests"
-                    },
-                    "500": {
-                        "description": "Server Error"
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "\/v{api-version}\/friendrequests": {
             "get": {
                 "tags": [
@@ -235,6 +156,93 @@
                     },
                     "409": {
                         "description": "Conflict"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/friends": {
+            "get": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "Get a list of friends for the calling user",
+                "description": "This method will return a list of Users.",
+                "operationId": "Friends_GetFriends",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "How many friends to skip (default = 0)",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "How many friends to return (default = 10, max = 50)",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 10
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sort order (default = FriendedDate-)",
+                        "required": false,
+                        "type": "string",
+                        "default": "FriendedDate-"
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Properties you want to return, defaults to referenceCode",
+                        "required": false,
+                        "type": "string",
+                        "default": "referenceCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/User"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     },
                     "429": {
                         "description": "Too many requests"
@@ -5733,6 +5741,55 @@
         }
     },
     "definitions": {
+        "FriendRequest": {
+            "required": [
+                "requestedUserCode",
+                "message"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "requestorUserCode": {
+                    "type": "string"
+                },
+                "requestor": {
+                    "$ref": "#\/definitions\/UserReference"
+                },
+                "requestedUserCode": {
+                    "type": "string"
+                },
+                "requested": {
+                    "$ref": "#\/definitions\/UserReference"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "isOutgoing": {
+                    "type": "boolean"
+                },
+                "requestDateUtc": {
+                    "format": "date-time",
+                    "type": "string"
+                }
+            }
+        },
+        "UserReference": {
+            "type": "object",
+            "properties": {
+                "referenceCode": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "avatarUrl": {
+                    "type": "string"
+                }
+            }
+        },
         "User": {
             "type": "object",
             "properties": {
@@ -5775,6 +5832,9 @@
                     "type": "boolean"
                 },
                 "optedInFriendSharing": {
+                    "type": "boolean"
+                },
+                "allowsFriendRequests": {
                     "type": "boolean"
                 },
                 "geocacheFindCounts": {
@@ -5904,55 +5964,6 @@
                 }
             }
         },
-        "FriendRequest": {
-            "required": [
-                "requestedUserCode",
-                "message"
-            ],
-            "type": "object",
-            "properties": {
-                "id": {
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "requestorUserCode": {
-                    "type": "string"
-                },
-                "requestor": {
-                    "$ref": "#\/definitions\/UserReference"
-                },
-                "requestedUserCode": {
-                    "type": "string"
-                },
-                "requested": {
-                    "$ref": "#\/definitions\/UserReference"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "isOutgoing": {
-                    "type": "boolean"
-                },
-                "requestDateUtc": {
-                    "format": "date-time",
-                    "type": "string"
-                }
-            }
-        },
-        "UserReference": {
-            "type": "object",
-            "properties": {
-                "referenceCode": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                },
-                "avatarUrl": {
-                    "type": "string"
-                }
-            }
-        },
         "GeocacheLog": {
             "required": [
                 "loggedDate",
@@ -6040,6 +6051,10 @@
                     "format": "date-time",
                     "type": "string"
                 },
+                "capturedDate": {
+                    "format": "date-time",
+                    "type": "string"
+                },
                 "description": {
                     "description": "Description of the image",
                     "type": "string"
@@ -6072,6 +6087,10 @@
             "type": "object",
             "properties": {
                 "base64ImageData": {
+                    "type": "string"
+                },
+                "capturedDate": {
+                    "format": "date-time",
                     "type": "string"
                 },
                 "description": {
@@ -6154,6 +6173,18 @@
                     "type": "integer"
                 },
                 "findCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "dnfCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "willAttendCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "writeNoteCount": {
                     "format": "int32",
                     "type": "integer"
                 },
@@ -6372,6 +6403,9 @@
                 "countryId": {
                     "format": "int32",
                     "type": "integer"
+                },
+                "countryCode": {
+                    "type": "string"
                 },
                 "state": {
                     "type": "string"
@@ -6796,6 +6830,18 @@
                     "type": "integer"
                 },
                 "findCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "dnfCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "willAttendCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "writeNoteCount": {
                     "format": "int32",
                     "type": "integer"
                 },
