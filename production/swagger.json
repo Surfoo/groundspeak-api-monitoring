@@ -254,6 +254,100 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/friends\/geocaches\/{referenceCode}\/geocachelogs": {
+            "get": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "Get a list of friends' geocache logs for specified geocache",
+                "description": "This method will return a list of GeocacheLogs.",
+                "operationId": "Friends_GetFriendsGeocacheLogs",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "identifier of the geocache (e.g. GCK25B)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "How many friends to skip (default = 0)",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "How many logs to return (default = 10, max = 50)",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 10
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Properties you want to return, defaults to referenceCode",
+                        "required": false,
+                        "type": "string",
+                        "default": "referenceCode"
+                    },
+                    {
+                        "name": "expand",
+                        "in": "query",
+                        "description": "fields to expand on the geocache log",
+                        "required": false,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/User"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/friendrequests\/{requestId}\/accept": {
             "post": {
                 "tags": [
@@ -1723,6 +1817,162 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/geocaches\/{referenceCode}\/finalcoordinates": {
+            "post": {
+                "tags": [
+                    "Geocaches"
+                ],
+                "summary": "Check Final Coordinates",
+                "description": "Use the status codes to verify if final coordinates are correct",
+                "operationId": "Geocaches_CheckFinalCoordinates",
+                "consumes": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json",
+                    "application\/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "The reference code of the geocache (example: GC25).",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "coordinates",
+                        "in": "body",
+                        "description": "The final coordinates to check.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/definitions\/Coordinates"
+                        }
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "$ref": "#\/definitions\/Geocache"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/geocaches\/{referenceCode}\/bulktrackablelogs": {
+            "post": {
+                "tags": [
+                    "Geocaches"
+                ],
+                "summary": "Create multiple trackable logs on a single geocache",
+                "description": "This method will return the successfully created trackable logs.",
+                "operationId": "Geocaches_BulkCreateTrackableLogs",
+                "consumes": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json",
+                    "application\/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "the identifier of the geocache",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "logs",
+                        "in": "body",
+                        "description": "The logs to add",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/PostTrackableLog"
+                            }
+                        }
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Property fields you want to return, defaults to referencecode",
+                        "required": false,
+                        "type": "string",
+                        "default": "referenceCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#\/definitions\/PartialResponse[TrackableLog]"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     },
                     "429": {
                         "description": "Too many requests"
@@ -5079,6 +5329,13 @@
                         "format": "date-time"
                     },
                     {
+                        "name": "geocacheCode",
+                        "in": "query",
+                        "description": "filter the results to one geocache if provided",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "name": "fields",
                         "in": "query",
                         "description": "fields you want to return, defaults to referenceCode",
@@ -5837,6 +6094,10 @@
                 "allowsFriendRequests": {
                     "type": "boolean"
                 },
+                "souvenirCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
                 "geocacheFindCounts": {
                     "type": "array",
                     "items": {
@@ -6187,6 +6448,9 @@
                 "writeNoteCount": {
                     "format": "int32",
                     "type": "integer"
+                },
+                "hasSolutionChecker": {
+                    "type": "boolean"
                 },
                 "trackableCount": {
                     "format": "int32",
@@ -6704,6 +6968,61 @@
                 }
             }
         },
+        "PostTrackableLog": {
+            "required": [
+                "loggedDate",
+                "text"
+            ],
+            "type": "object",
+            "properties": {
+                "trackingNumber": {
+                    "type": "string"
+                },
+                "trackableCode": {
+                    "type": "string"
+                },
+                "geocacheCode": {
+                    "type": "string"
+                },
+                "loggedDate": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "isRot13Encoded": {
+                    "type": "boolean"
+                },
+                "typeId": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "trackableLogType": {
+                    "$ref": "#\/definitions\/TrackableLogType"
+                },
+                "coordinates": {
+                    "$ref": "#\/definitions\/Coordinates"
+                }
+            }
+        },
+        "PartialResponse[TrackableLog]": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#\/definitions\/TrackableLog"
+                    }
+                },
+                "failedCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
         "HQPromotionMetadata": {
             "type": "object",
             "properties": {
@@ -6740,6 +7059,14 @@
                 "linkVisibleEndDateUtc": {
                     "format": "date-time",
                     "description": "UTC date and time at which the link should stop showing up to get to the page (on the profile page, in the app, ...)",
+                    "type": "string"
+                },
+                "campaignType": {
+                    "description": "Type of campaign (e.g., engagement, trackables)",
+                    "enum": [
+                        "Engagement",
+                        "Trackables"
+                    ],
                     "type": "string"
                 }
             }
@@ -6844,6 +7171,9 @@
                 "writeNoteCount": {
                     "format": "int32",
                     "type": "integer"
+                },
+                "hasSolutionChecker": {
+                    "type": "boolean"
                 },
                 "trackableCount": {
                     "format": "int32",
@@ -7255,44 +7585,6 @@
                 "name": {
                     "type": "string",
                     "readOnly": true
-                }
-            }
-        },
-        "PostTrackableLog": {
-            "required": [
-                "loggedDate",
-                "text"
-            ],
-            "type": "object",
-            "properties": {
-                "trackingNumber": {
-                    "type": "string"
-                },
-                "trackableCode": {
-                    "type": "string"
-                },
-                "geocacheCode": {
-                    "type": "string"
-                },
-                "loggedDate": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "text": {
-                    "type": "string"
-                },
-                "isRot13Encoded": {
-                    "type": "boolean"
-                },
-                "typeId": {
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "trackableLogType": {
-                    "$ref": "#\/definitions\/TrackableLogType"
-                },
-                "coordinates": {
-                    "$ref": "#\/definitions\/Coordinates"
                 }
             }
         },

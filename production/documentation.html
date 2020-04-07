@@ -83,6 +83,8 @@
                     <li><a href="#search">Search</a></li>
                     <li><a href="#get-geocache">Get Geocache</a></li>
                     <li><a href="#get-geocaches">Get Geocaches</a></li>
+                    <li><a href="#verify-final-coordinates">Verify Final Coordinates</a></li>
+                    <li><a href="#bulk-create-trackablelogs">Bulk Create Trackable Logs</a></li>
                     <li><a href="#get-geocache-images">Get Geocache Images</a></li>
                     <li><a href="#upsert-geocachenote">Upsert Geocache Note</a></li>
                     <li><a href="#delete-geocachenote">Delete Geocache Note</a></li>
@@ -187,6 +189,7 @@
                     <li><a href="#accept-friendrequest">Accept Friend Request</a></li>
                     <li><a href="#delete-friendrequest">Delete Friend Request</a></li>
                     <li><a href="#delete-friend">Delete Friend</a></li>
+                    <li><a href="#get-friend-logs-geocache">Get Friends' Geocache Logs By Geocache</a></li>
                 </ul>
             </li>
             <li class="method-heading">
@@ -1270,6 +1273,130 @@ else
                         <td>false</td>
                         <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
                         <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+        <div id="verify-final-coordinates">
+            <h3>Verify Final Coordinates</h3>
+            <p>
+                This method will check the specified geocache using to validate if the final coordinates match.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocaches/{referenceCode}/finalcoordinates</code>
+                <br />
+                <b>HTTP Method: </b>POST
+                <br />
+                <b>Response Type:</b> N/A
+                <br />
+                <b>Response Codes: </b>204, 400, 401, 403, 429, 500
+                <br />
+                <b>Restrictions: </b>The geocache must be published, non-archived, a mystery type, and opted in to use the native geocaching solution checker (if not true will return 403 Forbidden). Basic members trying to verify against a premium only geocache will return a 403 Forbidden response. Solution checking is throttled the same as the website (ten guesses in ten minutes for a user on a single geocache) and if exceeded will return a 429 response. This method will return 204 if the coordinates match or a 400 if the coordinates do not match.
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-2">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>query</td>
+                        <td><code>referenceCode=GCK25B</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geocache</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>coordinates</code></td>
+                        <td>body</td>
+                        <td><a href="#coordinates">Coordinates</a></td>
+                        <td>Yes</td>
+                        <td>The latitude and longitude in decimal format to verify</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,state</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td><code>referenceCode</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>expand</code></td>
+                        <td>query</td>
+                        <td><code>expand=geocachelogs:5</code></td>
+                        <td>false</td>
+                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+        <div id="bulk-create-trackablelogs">
+            <h3>Bulk Create Trackable Logs</h3>
+            <p>
+                This method will bulk create trackable logs on the specified geocache.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocaches/{referenceCode}/bulktrackablelogs</code>
+                <br />
+                <b>HTTP Method: </b>POST
+                <br />
+                <b>Response Type: </b><a href="#bulk-response">BulkResponse</a>
+                <br />
+                <b>Response Codes: </b>204, 400, 401, 404, 429, 500
+                <br />
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-2">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>query</td>
+                        <td><code>referenceCode=GCK25B</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geocache</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>logs</td>
+                        <td>body</td>
+                        <td>array of <a href="#trackable-log">TrackableLogs</a></td>
+                        <td>Yes</td>
+                        <td>trackable logs to create</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,state</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td><code>referenceCode</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -4255,6 +4382,14 @@ else
                         <td>all dates included</td>
                     </tr>
                     <tr>
+                        <td><code>geocacheCode</code></td>
+                        <td>query</td>
+                        <td><code>geocacheCode=GCK25B</code></td>
+                        <td>No</td>
+                        <td>filters results to a single geocache if provided</td>
+                        <td>all geocaches included</td>
+                    </tr>
+                    <tr>
                         <td><code>skip</code></td>
                         <td>query</td>
                         <td><code>skip=10</code></td>
@@ -4830,6 +4965,79 @@ else
                         <td>Yes</td>
                         <td>the identifier of the user to remove as a friend</td>
                         <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+        <div id="get-friend-logs-geocache">
+            <h3>Get Friends' Geocache Logs By Geocache</h3>
+            <p>
+                This method will fetch the geocache logs of friends for a specified geocache.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/friends/geocaches/{referenceCode}/geocachelogs</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of <a href="#geocache-log">GeocacheLogs</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
+                <br />
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>gc25</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geocache</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td><code>referenceCode</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>expand</code></td>
+                        <td>query</td>
+                        <td><code>expand=images:5</code></td>
+                        <td>No</td>
+                        <td>The fields of the geocache log object to expand. The available option is images.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>skip</code></td>
+                        <td>query</td>
+                        <td><code>skip=10</code></td>
+                        <td>No</td>
+                        <td>the number of resources to skip over</td>
+                        <td><code>0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>take</code></td>
+                        <td>query</td>
+                        <td><code>take=0</code></td>
+                        <td>No</td>
+                        <td>how many resources to return. maximum value of 50</td>
+                        <td><code>10</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -5411,6 +5619,11 @@ else
                             <td>number of Found It logs on the geocache</td>
                         </tr>
                         <tr>
+                            <td>hasSolutionChecker</td>
+                            <td>bool</td>
+                            <td>flag for if the native solution checker is used on the website</td>
+                        </tr>
+                        <tr>
                             <td>owner</td>
                             <td><a href="#user">User</a></td>
                             <td>information about the owner of the geocache</td>
@@ -5543,6 +5756,7 @@ else
   "backgroundImageUrl": null,
   "containsHtml": true,
   "findCount": 15760,
+  "hasSolutionChecker": false,
   "owner": {
     "membershipLevelId": 2,
     "findCount": 0,
@@ -5703,6 +5917,11 @@ else
                             <td>flag for if the short or long description contains html</td>
                         </tr>
                         <tr>
+                            <td>hasSolutionChecker</td>
+                            <td>bool</td>
+                            <td>flag for if the native solution checker is used on the website</td>
+                        </tr>
+                        <tr>
                             <td>owner</td>
                             <td><a href="#user">User</a></td>
                             <td>information about the owner of the geocache</td>
@@ -5763,6 +5982,7 @@ else
   "url": "https://coord.info/GCK25B",
   "backgroundImageUrl": null,
   "containsHtml": true,
+  "hasSolutionChecker": false,
   "owner": {
     "membershipLevelId": 2,
     "findCount": 0,
@@ -7217,6 +7437,11 @@ else
                             <td>if the user is a friend of the calling user</td>
                         </tr>
                         <tr>
+                            <td>souvenirCount</td>
+                            <td>integer</td>
+                            <td>total number of awarded souvenirs</td>
+                        </tr>
+                        <tr>
                             <td>optedInFriendSharing</td>
                             <td>boolean</td>
                             <td>if the user has opted to to share geocaching activity with friends</td>
@@ -7264,6 +7489,7 @@ else
   },
   "isFriend": false,
   "optedInFriendSharing": true,
+  "souvenirCount": 42,
   "geocacheFindCounts": [
     {
       "geocacheType": {
@@ -8459,7 +8685,16 @@ else
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
-        <h3>TBD</h3>
+        <h3>04.06.2020</h3>
+        <ul>
+            <li>HasSolutionChecker field has been added to the Geocache and LiteGeocache object.</li>
+            <li>Added method to verify final coordinates on mystery geocaches.</li>
+            <li>Added method to fetch geocache logs of friends for a specified geocache.</li>
+            <li>Updated Get user's geocache logs method to be able to optionally filter on a geocache code.</li>
+            <li>SouvenirCount field has been added to the User object.</li>
+            <li>Added method to bulk create trackable logs for a specified geocache.</li>
+        </ul>
+        <h3>01.02.2020</h3>
         <ul>
             <li>Opted out section has been updated to allow for greater user control over how their data is shared. Methods affected also have additional restriction notes.</li>
         </ul>

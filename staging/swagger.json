@@ -7060,6 +7060,14 @@
                     "format": "date-time",
                     "description": "UTC date and time at which the link should stop showing up to get to the page (on the profile page, in the app, ...)",
                     "type": "string"
+                },
+                "campaignType": {
+                    "description": "Type of campaign (e.g., engagement, trackables)",
+                    "enum": [
+                        "Engagement",
+                        "Trackables"
+                    ],
+                    "type": "string"
                 }
             }
         },
