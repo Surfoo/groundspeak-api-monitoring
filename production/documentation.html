@@ -178,6 +178,7 @@
                     <li><a href="#get-souvenirs">Get User Souvenirs</a></li>
                     <li><a href="#get-user-images">Get User Images</a></li>
                     <li><a href="#get-geocache-favoritedby">Get Favorited Users by Geocache</a></li>
+                    <li><a href="#get-opted-out-users">Get Opted-out Users</a></li>
                 </ul>
             </li>
             <li class="method-heading">
@@ -616,6 +617,10 @@
             </ul>
             The user's geocache remaining limit and when the limit is reset can be viewed as part of the User object using the Get User endpoint. If geocache data is request and the limit has been reached, the API will return a 403 (Forbidden) response.
         </p>
+        <h3 id="trackable-discovery-limits">Trackable Discovery Limits</h3>
+        <p>
+            Users are limited to 500 trackable discoveries per 24 hours per API license. If a user has surpassed the limit, the API will return a 403 (Forbidden) response.
+        </p>
         <h3 id="rate-limiting">Rate Limiting</h3>
         <p>
             Rate limiting is enforced on all methods of the Geocaching API. The methods are limited on the calling IP, end user, and by partner consumer key. The current limits are set to:
@@ -628,7 +633,7 @@
         </p>
         <h3 id="opt-out">Third Party Data Sharing</h3>
         <p>
-            To give users greater control of their data and in the interest of providing additional privacy settings, users now have the ability to opt-out of sharing their personal data with API Authorized Developers in their account settings. If a user has not authorized the sharing of their personal data, the API will either throw a 403 Forbidden exception or return only the reference code and <code>opted-out user</code> as the username with the reference code also returned as part of a comma delimited list of strings in the header named <code>x-opted-out</code>. 
+            To give users greater control of their data and in the interest of providing additional privacy settings, users now have the ability to opt-out of sharing their personal data with API Authorized Developers in their account settings. If a user has not authorized the sharing of their personal data, the API will either throw a 403 Forbidden exception or return only the reference code and <code>opted-out user</code> as the username with the reference code also returned as part of a comma delimited list of strings in the header named <code>x-opted-out</code>.
 
         </p>
     </section>
@@ -935,7 +940,7 @@ else
                         <td>N/A</td>
                         <td>comma delimited strings</td>
                         <td><code>codes:GC1,GC2,GC3</code> or <code>codes:not(GC1,GC2,GC3)</code></td>
-                        <td>reference codes to include or exclude in search results. To exclude reference codes, put the list of types in "not()". Cannot pass in more than 50 references codes in one request.</td>
+                        <td>reference codes to include or exclude in search results. To exclude reference codes, put the list of types in "not()". Cannot pass in more than 100 references codes in one request.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -1358,7 +1363,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2418,7 +2423,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 404, 429, 500
                 <br />
-                <b>Restrictions: Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2558,7 +2563,7 @@ else
                 <br />
                 <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4681,6 +4686,48 @@ else
             </table>
             <br />
         </div>
+        <div id="get-opted-out-users">
+            <h3>Get Opted-out Users</h3>
+            <p>
+                This method will fetch the user reference codes that have opted-out of sharing their data with third party applications.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/optedoutusers</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of strings
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+                <br />
+                <b>Restrictions: </b>This method is throttled to one call per 24 hours per API license.
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>updatedSinceUtc</code></td>
+                        <td>query</td>
+                        <td><code>2020-01-01</code></td>
+                        <td>Yes</td>
+                        <td>filters the results to users that have opted-out after this UTC DateTime</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
     </section>
     <section id="friend-methods">
         <h2>Friend Methods</h2>
@@ -5014,6 +5061,14 @@ else
                         <td>No</td>
                         <td>partial response fields to return</td>
                         <td><code>referenceCode</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>logTypes</code></td>
+                        <td>query</td>
+                        <td><code>logTypes=2,10,11</code></td>
+                        <td>No</td>
+                        <td>Comma delimited list of log types to filter results. Defaults to returning all log types.</td>
+                        <td>-</td>
                     </tr>
                     <tr>
                         <td><code>expand</code></td>
@@ -5611,7 +5666,7 @@ else
                         <tr>
                             <td>containsHtml</td>
                             <td>bool</td>
-                            <td>flag for if the short or long description contains html</td>
+                            <td>Flag for if the short or long description contains html. Tip: It is recommended to always treat user inputted values as potentially containing HTML.</td>
                         </tr>
                         <tr>
                             <td>findCount</td>
@@ -5622,6 +5677,11 @@ else
                             <td>hasSolutionChecker</td>
                             <td>bool</td>
                             <td>flag for if the native solution checker is used on the website</td>
+                        </tr>
+                        <tr>
+                            <td>premiumFavoriteScore</td>
+                            <td>integer</td>
+                            <td>Percentage score for favorite points per premium member finds. Tip: This score is calculated in realtime so fetching this field in bulk calls may cause an adverse affect on performance.</td>
                         </tr>
                         <tr>
                             <td>owner</td>
@@ -5668,7 +5728,9 @@ else
       "latitude": 47,
       "longitude": -122
     },
-    "isFavorited": true
+    "isFavorited": true,
+    "ignored": false,
+    "watched": false
   },
   "status": "Active",
   "location": {
@@ -5688,6 +5750,7 @@ else
   "shortDescription": "Welcome to Geocaching HQâ€™s Visitor Center!",
   "longDescription": "This cache is only available while the Visitor Center at HQ is open. ...",
   "hints": "Where would you look if you were a pirate?",
+  "premiumFavoriteScore": 41,
   "attributes": [
     {
       "id": 24,
@@ -5922,6 +5985,11 @@ else
                             <td>flag for if the native solution checker is used on the website</td>
                         </tr>
                         <tr>
+                            <td>premiumFavoriteScore</td>
+                            <td>integer</td>
+                            <td>Percentage score for favorite points per premium member finds</td>
+                        </tr>
+                        <tr>
                             <td>owner</td>
                             <td><a href="#user">User</a></td>
                             <td>information about the owner of the geocache</td>
@@ -5960,7 +6028,9 @@ else
       "latitude": 47,
       "longitude": -122
     },
-    "isFavorited": false
+    "isFavorited": false,
+    "ignored": false,
+    "watched": false
   },
   "status": "Active",
   "location": {
@@ -5983,6 +6053,7 @@ else
   "backgroundImageUrl": null,
   "containsHtml": true,
   "hasSolutionChecker": false,
+  "premiumFavoriteScore": 41,
   "owner": {
     "membershipLevelId": 2,
     "findCount": 0,
@@ -6187,7 +6258,7 @@ else
                         <tr>
                             <td>imageCount</td>
                             <td>int</td>
-                            <td>how many owner images on the trackable</td>
+                            <td>how many gallery images on the trackable (owner images plus trackable log images)</td>
                         </tr>
                         <tr>
                             <td>goal</td>
@@ -6719,6 +6790,11 @@ else
                         <td>display name of the type</td>
                     </tr>
                     <tr>
+                        <td>visibilityTypeId</td>
+                        <td>integer</td>
+                        <td>visibility type of the waypoint (see <a href="#additional-waypoint-visibility-types">Waypoint Visibility Types</a> for more info)</td>
+                    </tr>
+                    <tr>
                         <td>prefix</td>
                         <td>string</td>
                         <td>short category prefix of the waypoint type</td>
@@ -6744,6 +6820,7 @@ else
     },
     "description": "test additional waypoint",
     "typeId": 217,
+    "visibilityTypeId": 0,
     "typeName": "Parking Area",
     "prefix": "PK",
     "url": "https://geocaching.com/seek/wpt.aspx?WID=12345"
@@ -7424,7 +7501,7 @@ else
                         <tr>
                             <td>profileText</td>
                             <td>string</td>
-                            <td>text from Profile Information section on user profile page</td>
+                            <td>text from Profile Information section on user profile page. Tip: This user generated field can be very large so fetching in bulk calls may cause an adverse affect on performance.</td>
                         </tr>
                         <tr>
                             <td>homeCoordinates</td>
@@ -7442,6 +7519,11 @@ else
                             <td>total number of awarded souvenirs</td>
                         </tr>
                         <tr>
+                            <td>awardedFavoritePoints</td>
+                            <td>integer</td>
+                            <td>total number of favorites points from owned geocaches</td>
+                        </tr>
+                        <tr>
                             <td>optedInFriendSharing</td>
                             <td>boolean</td>
                             <td>if the user has opted to to share geocaching activity with friends</td>
@@ -7449,22 +7531,22 @@ else
                         <tr>
                             <td>geocacheFindCounts</td>
                             <td>Array of <a href="#geocache-count">GeocacheCount</a></td>
-                            <td>find counts per geocache type for user</td>
+                            <td>Find counts per geocache type for user. Tip: Find counts are calculated in realtime so fetching this field in bulk calls may cause an adverse affect on performance.</td>
                         </tr>
                         <tr>
                             <td>geocacheHideCounts</td>
                             <td>Array of <a href="#geocache-count">GeocacheCount</a></td>
-                            <td>hide counts per geocache type for user</td>
+                            <td>Hide counts per geocache type for user. Tip: Find counts are calculated in realtime so fetching this field in bulk calls may cause an adverse affect on performance.</td>
                         </tr>
                         <tr>
                             <td>trackableFindCounts</td>
                             <td>Array of <a href="#trackable-count">TrackableCount</a></td>
-                            <td>find counts per trackable type for user</td>
+                            <td>Find counts per trackable type for user. Tip: Find counts are calculated in realtime so fetching this field in bulk calls may cause an adverse affect on performance.</td>
                         </tr>
                         <tr>
                             <td>trackableOwnedCounts</td>
                             <td>Array of <a href="#trackable-count">TrackableCount</a></td>
-                            <td>owned counts per trackable type for user</td>
+                            <td>Owned counts per trackable type for user. Tip: Find counts are calculated in realtime so fetching this field in bulk calls may cause an adverse affect on performance.</td>
                         </tr>
                         <tr>
                             <td>geocacheLimits</td>
@@ -7490,6 +7572,7 @@ else
   "isFriend": false,
   "optedInFriendSharing": true,
   "souvenirCount": 42,
+  "awardedFavoritePoints", 0,
   "geocacheFindCounts": [
     {
       "geocacheType": {
@@ -8111,6 +8194,16 @@ else
                             <td>if the user has awarded this geocache a favorite point</td>
                         </tr>
                         <tr>
+                            <td>ignored</td>
+                            <td>bool</td>
+                            <td>if the user has added this geocache to their ignore list</td>
+                        </tr>
+                        <tr>
+                            <td>watched</td>
+                            <td>bool</td>
+                            <td>if the user has added this geocache to their watch list</td>
+                        </tr>
+                        <tr>
                             <td>foundDate</td>
                             <td>nullable datetime</td>
                             <td>the date the user found the geocache in the timezone of the geocache (null if not found)</td>
@@ -8136,6 +8229,8 @@ else
         "longitude": 0
     },
     "isFavorited": true,
+    "ignored": false,
+    "watched": false,
     "note": "personal cache note here"
 }</code></pre>
             </div>
@@ -8682,9 +8777,46 @@ else
                 </tbody>
             </table>
         </div>
+        <div id="additional-waypoint-visibility-types">
+            <h3>Additional Waypoint Visibility Types</h3>
+            <table class="table table-striped table-hover table-responsive inherit-width">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Visible</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Hide Coordinates</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Hidden</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>06.22.2020</h3>
+        <ul>
+            <li>Get friend's geocache logs method has a new parameter logTypes to filter results.</li>
+            <li>Geocache object has a new field PremiumFavoriteScore that returns the percentage shown in the favorites widget on a geocache's page.</li>
+            <li>AdditionalWaypoint object has a new field VisibilityFilterTypeId.</li>
+            <li>UserData object has two new fields, Ignored and Watched. These correspond to if the geocache exists on the ignore and watch list of the calling user.</li>
+            <li>Trackable discovery limit: A user limit of 500 trackable discoveries per 24 hour period, per API key is now being enforced</li>
+            <li>Method has been added to request the users that have opted-out of sharing data with third party applications after a specified DateTime in UTC (this method is meant to be more of a backend support so only one call is allowed per application per 24 hours).</li>
+            <li>The codes filter limit has been increased from 50 to 100 on the Search Geocaches method.</li>
+            <li>User object has a new field AwardedFavoritePoints. This is the total number of favorite points on the user's owned geocaches.</li>
+            <li>Trackable object field ImageCount has been updated to return the gallery image total (trackable images count plus trackable log images count), instead of the trackable image count</li>
+        </ul>
         <h3>04.06.2020</h3>
         <ul>
             <li>HasSolutionChecker field has been added to the Geocache and LiteGeocache object.</li>

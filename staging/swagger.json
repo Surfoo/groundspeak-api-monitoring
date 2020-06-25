@@ -295,6 +295,13 @@
                         "default": 10
                     },
                     {
+                        "name": "logTypes",
+                        "in": "query",
+                        "description": "log types to include in response, defaults to all",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "name": "fields",
                         "in": "query",
                         "description": "Properties you want to return, defaults to referenceCode",
@@ -325,7 +332,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#\/definitions\/User"
+                                "$ref": "#\/definitions\/GeocacheLog"
                             }
                         }
                     },
@@ -4922,6 +4929,70 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/optedoutusers": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Gets opted out users",
+                "description": "This method will return an array of user reference codes.",
+                "operationId": "Users_GetOptedOutUsers",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "updatedSinceUtc",
+                        "in": "query",
+                        "description": "filters the results to users that have opted out after this datetime in utc",
+                        "required": true,
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/users\/{referenceCode}\/images": {
             "get": {
                 "tags": [
@@ -6070,6 +6141,10 @@
                     "format": "int32",
                     "type": "integer"
                 },
+                "awardedFavoritePoints": {
+                    "format": "int32",
+                    "type": "integer"
+                },
                 "homeCoordinates": {
                     "$ref": "#\/definitions\/Coordinates"
                 },
@@ -6585,6 +6660,10 @@
                 "containsHtml": {
                     "type": "boolean"
                 },
+                "premiumFavoriteScore": {
+                    "format": "int32",
+                    "type": "integer"
+                },
                 "additionalWaypoints": {
                     "type": "array",
                     "items": {
@@ -6655,6 +6734,12 @@
                 },
                 "note": {
                     "type": "string"
+                },
+                "watched": {
+                    "type": "boolean"
+                },
+                "ignored": {
+                    "type": "boolean"
                 }
             }
         },
@@ -6714,6 +6799,10 @@
                     "type": "string"
                 },
                 "typeId": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "visibilityTypeId": {
                     "format": "int32",
                     "type": "integer"
                 },
@@ -7307,6 +7396,10 @@
                 },
                 "containsHtml": {
                     "type": "boolean"
+                },
+                "premiumFavoriteScore": {
+                    "format": "int32",
+                    "type": "integer"
                 },
                 "additionalWaypoints": {
                     "type": "array",
