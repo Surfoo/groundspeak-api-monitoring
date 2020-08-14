@@ -1099,10 +1099,10 @@
                     }
                 ],
                 "responses": {
-                    "201": {
-                        "description": "Created",
+                    "200": {
+                        "description": "Ok",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#\/definitions\/GeocacheNote"
                         }
                     },
                     "400": {
@@ -1157,8 +1157,8 @@
                     }
                 ],
                 "responses": {
-                    "201": {
-                        "description": "Created",
+                    "204": {
+                        "description": "No content",
                         "schema": {
                             "type": "object"
                         }
