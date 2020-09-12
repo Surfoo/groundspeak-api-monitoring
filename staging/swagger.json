@@ -3634,6 +3634,49 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/geocachesizes": {
+            "get": {
+                "tags": [
+                    "ReferenceData"
+                ],
+                "summary": "Returns the available geocache sizes",
+                "operationId": "ReferenceData_GetGeocacheSizes",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/GeocacheSize"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/geocachetypes": {
             "get": {
                 "tags": [
@@ -3709,6 +3752,49 @@
                             "type": "array",
                             "items": {
                                 "$ref": "#\/definitions\/GeocacheLogType"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/geocachestatuses": {
+            "get": {
+                "tags": [
+                    "ReferenceData"
+                ],
+                "summary": "Returns the available geocache statuses",
+                "operationId": "ReferenceData_GetGeocacheStatuses",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
                             }
                         }
                     },
@@ -4458,6 +4544,86 @@
                         "description": "Ok",
                         "schema": {
                             "$ref": "#\/definitions\/Trackable"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/trackables\/{referenceCode}\/journeys": {
+            "get": {
+                "tags": [
+                    "Trackables"
+                ],
+                "summary": "Gets the trackable travel locations",
+                "operationId": "Trackables_GetTrackableJourneys",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "The reference code or tracking number of the trackable (example: TB100).",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "Defaults to 0.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "Defaults to 50, max limit of 1000",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 50
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/TrackableJourney"
+                            }
                         }
                     },
                     "400": {
@@ -6369,6 +6535,9 @@
         "Image": {
             "type": "object",
             "properties": {
+                "ownerCode": {
+                    "type": "string"
+                },
                 "url": {
                     "type": "string"
                 },
@@ -6841,6 +7010,9 @@
                 "originCountry": {
                     "type": "string"
                 },
+                "originLocation": {
+                    "$ref": "#\/definitions\/Location"
+                },
                 "allowedToBeCollected": {
                     "type": "boolean"
                 },
@@ -6891,6 +7063,10 @@
                 "milesTraveled": {
                     "format": "double",
                     "type": "number"
+                },
+                "lastDiscoveredDate": {
+                    "format": "date-time",
+                    "type": "string"
                 },
                 "trackableLogs": {
                     "type": "array",
@@ -7678,6 +7854,18 @@
                 "name": {
                     "type": "string",
                     "readOnly": true
+                }
+            }
+        },
+        "TrackableJourney": {
+            "type": "object",
+            "properties": {
+                "loggedDate": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "coordinates": {
+                    "$ref": "#\/definitions\/Coordinates"
                 }
             }
         },
