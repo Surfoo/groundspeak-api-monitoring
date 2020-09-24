@@ -7860,6 +7860,15 @@
         "TrackableJourney": {
             "type": "object",
             "properties": {
+                "trackableLogCode": {
+                    "type": "string"
+                },
+                "geocacheCode": {
+                    "type": "string"
+                },
+                "trackableLogType": {
+                    "$ref": "#\/definitions\/TrackableLogType"
+                },
                 "loggedDate": {
                     "format": "date-time",
                     "type": "string"

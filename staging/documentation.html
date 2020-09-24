@@ -6519,9 +6519,24 @@ else
                     </thead>
                     <tbody>
                         <tr>
+                            <td>trackableLogCode</td>
+                            <td>string</td>
+                            <td>uniquely identifies the trackable log</td>
+                        </tr>
+                        <tr>
+                            <td>geocacheCode</td>
+                            <td>string</td>
+                            <td>uniquely identifies the geocache</td>
+                        </tr>
+                        <tr>
+                            <td>trackableLogType</td>
+                            <td><a href="#type">Type</a></td>
+                            <td>type of the trackable log (see <a href="#trackable-log-types">Trackable Log Types</a> for more info)</td>
+                        </tr>
+                        <tr>
                             <td>loggedDate</td>
                             <td>datetime</td>
-                            <td>The date when the journey was logged on the trackable.</td>
+                            <td>The date when the journey was logged on the trackable</td>
                         </tr>
                         <tr>
                             <td>coordinates</td>
@@ -6534,6 +6549,13 @@ else
             <div class="row">
                 <h3>Example</h3>
                 <pre><code>{
+  "trackableLogCode": "TL12345",
+  "geocacheCode": "GC12345",
+  "trackableLogType":{
+    "id": 14,
+    "name": "Dropped Off",
+    "imageUrl": "https://www.geocaching.com/images/logtypes/14.png"
+  }
   "loggedDate": "2001-09-28T00:00:00",
   "coordinates": {
     "latitude": 47.648967,
