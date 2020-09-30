@@ -84,7 +84,6 @@
                     <li><a href="#get-geocache">Get Geocache</a></li>
                     <li><a href="#get-geocaches">Get Geocaches</a></li>
                     <li><a href="#verify-final-coordinates">Verify Final Coordinates</a></li>
-                    <li><a href="#bulk-create-trackablelogs">Bulk Create Trackable Logs</a></li>
                     <li><a href="#get-geocache-images">Get Geocache Images</a></li>
                     <li><a href="#upsert-geocachenote">Upsert Geocache Note</a></li>
                     <li><a href="#delete-geocachenote">Delete Geocache Note</a></li>
@@ -125,6 +124,7 @@
                     <li><a href="#get-trackable-logs">Get Trackable's Logs</a></li>
                     <li><a href="#get-trackablelog">Get Trackable Log</a></li>
                     <li><a href="#create-trackablelog">Create Trackable Log</a></li>
+                    <li><a href="#bulk-create-trackablelogs">Bulk Create Trackable Logs</a></li>
                     <li><a href="#update-trackablelog">Update Trackable Log</a></li>
                     <li><a href="#delete-trackablelog">Delete Trackable Log</a></li>
                     <li><a href="#get-trackablelog-images">Get Trackable Log Images</a></li>
@@ -628,7 +628,7 @@
         </p>
         <h3 id="trackable-discovery-limits">Trackable Discovery Limits</h3>
         <p>
-            Users are limited to 500 trackable discoveries per 24 hours per API license. If a user has surpassed the limit, the API will return a 403 (Forbidden) response.
+            Users are limited to 500 trackable discoveries per 24 hours per API license (500 discovered logs per user/license combination). If a user has surpassed the limit, the API will return a 403 (Forbidden) response.
         </p>
         <h3 id="rate-limiting">Rate Limiting</h3>
         <p>
@@ -1369,64 +1369,6 @@ else
                         <td>false</td>
                         <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
                         <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
-        <div id="bulk-create-trackablelogs">
-            <h3>Bulk Create Trackable Logs</h3>
-            <p>
-                This method will bulk create trackable logs on the specified geocache.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocaches/{referenceCode}/bulktrackablelogs</code>
-                <br />
-                <b>HTTP Method: </b>POST
-                <br />
-                <b>Response Type: </b><a href="#bulk-response">BulkResponse</a>
-                <br />
-                <b>Response Codes: </b>204, 400, 401, 404, 429, 500
-                <br />
-                <b>Restrictions: </b>Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-2">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>query</td>
-                        <td><code>referenceCode=GCK25B</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the geocache</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>logs</td>
-                        <td>body</td>
-                        <td>array of <a href="#trackable-log">TrackableLogs</a></td>
-                        <td>Yes</td>
-                        <td>trackable logs to create</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,state</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td><code>referenceCode</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -2704,6 +2646,64 @@ else
                         <td><code>fields</code></td>
                         <td>query</td>
                         <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td><code>referenceCode</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+        <div id="bulk-create-trackablelogs">
+            <h3>Bulk Create Trackable Logs</h3>
+            <p>
+                This method will bulk create trackable logs on the specified geocache.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocaches/{referenceCode}/bulktrackablelogs</code>
+                <br />
+                <b>HTTP Method: </b>POST
+                <br />
+                <b>Response Type: </b><a href="#bulk-response">BulkResponse</a>
+                <br />
+                <b>Response Codes: </b>204, 400, 401, 404, 429, 500
+                <br />
+                <b>Restrictions: </b>Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-2">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>query</td>
+                        <td><code>referenceCode=GCK25B</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geocache</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>logs</td>
+                        <td>body</td>
+                        <td>array of <a href="#trackable-log">TrackableLogs</a></td>
+                        <td>Yes</td>
+                        <td>trackable logs to create</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,state</code></td>
                         <td>No</td>
                         <td>partial response fields to return</td>
                         <td><code>referenceCode</code></td>
@@ -9017,7 +9017,7 @@ else
             <li>Geocache object has a new field PremiumFavoriteScore that returns the percentage shown in the favorites widget on a geocache's page.</li>
             <li>AdditionalWaypoint object has a new field VisibilityFilterTypeId.</li>
             <li>UserData object has two new fields, Ignored and Watched. These correspond to if the geocache exists on the ignore and watch list of the calling user.</li>
-            <li>Trackable discovery limit: A user limit of 500 trackable discoveries per 24 hour period, per API key is now being enforced</li>
+            <li>Trackable discovery limit: A user limit of 500 trackable discoveries per 24 hour period, per API key is now being enforced (500 discovered logs per user/license combination)</li>
             <li>Method has been added to request the users that have opted-out of sharing data with third party applications after a specified DateTime in UTC (this method is meant to be more of a backend support so only one call is allowed per application per 24 hours).</li>
             <li>The codes filter limit has been increased from 50 to 100 on the Search Geocaches method.</li>
             <li>User object has a new field AwardedFavoritePoints. This is the total number of favorite points on the user's owned geocaches.</li>

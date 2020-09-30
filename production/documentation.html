@@ -84,11 +84,12 @@
                     <li><a href="#get-geocache">Get Geocache</a></li>
                     <li><a href="#get-geocaches">Get Geocaches</a></li>
                     <li><a href="#verify-final-coordinates">Verify Final Coordinates</a></li>
-                    <li><a href="#bulk-create-trackablelogs">Bulk Create Trackable Logs</a></li>
                     <li><a href="#get-geocache-images">Get Geocache Images</a></li>
                     <li><a href="#upsert-geocachenote">Upsert Geocache Note</a></li>
                     <li><a href="#delete-geocachenote">Delete Geocache Note</a></li>
                     <li><a href="#get-geocache-types">Get Geocache Types</a></li>
+                    <li><a href="#get-geocache-sizes">Get Geocache Sizes</a></li>
+                    <li><a href="#get-geocache-statuses">Get Geocache Statuses</a></li>
                     <li><a href="#get-attributes">Get Attributes</a></li>
                 </ul>
             </li>
@@ -112,6 +113,7 @@
                     <li><a href="#get-geocache-trackables">Get Geocache's Trackables</a></li>
                     <li><a href="#get-trackable">Get Trackable</a></li>
                     <li><a href="#get-users-trackables">Get Trackables</a></li>
+                    <li><a href="#get-trackable-journeys">Get Trackable Journeys</a></li>
                     <li><a href="#get-trackable-images">Get Trackable Images</a></li>
                     <li><a href="#get-geocoin-types">Get Geocoin Types</a></li>
                 </ul>
@@ -122,6 +124,7 @@
                     <li><a href="#get-trackable-logs">Get Trackable's Logs</a></li>
                     <li><a href="#get-trackablelog">Get Trackable Log</a></li>
                     <li><a href="#create-trackablelog">Create Trackable Log</a></li>
+                    <li><a href="#bulk-create-trackablelogs">Bulk Create Trackable Logs</a></li>
                     <li><a href="#update-trackablelog">Update Trackable Log</a></li>
                     <li><a href="#delete-trackablelog">Delete Trackable Log</a></li>
                     <li><a href="#get-trackablelog-images">Get Trackable Log Images</a></li>
@@ -217,6 +220,7 @@
             <li><a href="#geocache">Geocache</a></li>
             <li><a href="#geocache-log">GeocacheLog</a></li>
             <li><a href="#trackable">Trackable</a></li>
+            <li><a href="#journey">Journey</a></li>
             <li><a href="#trackable-log">TrackableLog</a></li>
             <li><a href="#log-draft">LogDraft</a></li>
             <li><a href="#promoted-log-draft">PromotedLogDraft</a></li>
@@ -332,6 +336,11 @@
                         <td><code>state</code></td>
                         <td>No</td>
                         <td>consumer provided code to mitigate XSRF attacks</td>
+                    </tr>
+                    <tr>
+                        <td><code>signup</code></td>
+                        <td>No</td>
+                        <td>optional boolean parameter to take logged out users directly to the signup page instead of the login page.</td>
                     </tr>
                 </tbody>
             </table>
@@ -619,7 +628,7 @@
         </p>
         <h3 id="trackable-discovery-limits">Trackable Discovery Limits</h3>
         <p>
-            Users are limited to 500 trackable discoveries per 24 hours per API license. If a user has surpassed the limit, the API will return a 403 (Forbidden) response.
+            Users are limited to 500 trackable discoveries per 24 hours per API license (500 discovered logs per user/license combination). If a user has surpassed the limit, the API will return a 403 (Forbidden) response.
         </p>
         <h3 id="rate-limiting">Rate Limiting</h3>
         <p>
@@ -988,15 +997,31 @@ else
                         <td><code>fby</code></td>
                         <td>comma delimited strings</td>
                         <td><code>fby:moun10bike</code></td>
-                        <td>Limits search results to geocaches either found by or not found by listed usernames. To exclude, wrap values within "not()". If using object to exlude geocaches found by users, list must be five usernames or less. For inclusive use, only one username may be used.</td>
+                        <td>Limits search results to geocaches either found by or not found by listed usernames. To exclude, wrap values within "not()". Filter must be five usernames or less.</td>
                         <td>-</td>
                     </tr>
                     <tr>
                         <td><code>hiddenBy</code></td>
                         <td><code>hby</code></td>
-                        <td>string</td>
+                        <td>comma delimited strings</td>
                         <td><code>hby:moun10bike</code></td>
-                        <td>Limits search results to geocaches hidden by or not hidden by inputted username. To exclude, wrap values within "not()". Hidden by filter can only be used with one username value.</td>
+                        <td>Limits search results to geocaches hidden by or not hidden by listed usernames. To exclude, wrap values within "not()". Filter must be five usernames or less.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>placedDate</code></td>
+                        <td><code>pld</code></td>
+                        <td>date range</td>
+                        <td><code>pld:[2019-01-01,2019-12-31]</code></td>
+                        <td>Limits search results to geocaches placed in the inclusive date range. Provide one date to give an open ended range, such as all dates before XXXX-XX-XX or all dates after XXXX-XX-XX.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>attribute</code></td>
+                        <td><code>attr</code></td>
+                        <td>comma delimited integers</td>
+                        <td><code>attr:1,2,3</code></td>
+                        <td>Limits search results to geocaches with the inputted attributes with isOn equal to true.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -1349,64 +1374,6 @@ else
             </table>
             <br />
         </div>
-        <div id="bulk-create-trackablelogs">
-            <h3>Bulk Create Trackable Logs</h3>
-            <p>
-                This method will bulk create trackable logs on the specified geocache.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocaches/{referenceCode}/bulktrackablelogs</code>
-                <br />
-                <b>HTTP Method: </b>POST
-                <br />
-                <b>Response Type: </b><a href="#bulk-response">BulkResponse</a>
-                <br />
-                <b>Response Codes: </b>204, 400, 401, 404, 429, 500
-                <br />
-                <b>Restrictions: </b>Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-2">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>query</td>
-                        <td><code>referenceCode=GCK25B</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the geocache</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>logs</td>
-                        <td>body</td>
-                        <td>array of <a href="#trackable-log">TrackableLogs</a></td>
-                        <td>Yes</td>
-                        <td>trackable logs to create</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,state</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td><code>referenceCode</code></td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
         <div id="get-geocache-images">
             <h3>Get Geocache Images</h3>
             <p>
@@ -1487,7 +1454,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Only owner may update the note. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Only owner may update the note. Geocache notes are a premium member only feature. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1535,9 +1502,9 @@ else
                 <br />
                 <b>Response Type: </b>No response body
                 <br />
-                <b>Response Codes: </b>204, 400, 401, 409, 429, 500
+                <b>Response Codes: </b>204, 400, 401, 403, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Only owner may delete the geocache note. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Only owner may delete the geocache note. Geocache notes are a premium member only feature. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -1576,6 +1543,38 @@ else
                 <b>HTTP Method: </b>GET
                 <br />
                 <b>Response Type: </b>Array of <a href="#type">Geocache Types</a>
+                <br />
+                <b>Response Codes: </b>200, 401, 429, 500
+            </p>
+            <br />
+        </div>
+        <div id="get-geocache-sizes">
+            <h3>Get Geocache Sizes</h3>
+            <p>
+                This method will fetch all valid geocache sizes
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocachesizes</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of <a href="#geocache-sizes">Geocache Sizes</a>
+                <br />
+                <b>Response Codes: </b>200, 401, 429, 500
+            </p>
+            <br />
+        </div>
+        <div id="get-geocache-statuses">
+            <h3>Get Geocache Statuses</h3>
+            <p>
+                This method will fetch all valid geocache statuses
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocachestatuses</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of strings
                 <br />
                 <b>Response Codes: </b>200, 401, 429, 500
             </p>
@@ -2162,7 +2161,7 @@ else
                 <br />
                 <b>Response Type: </b><a href="#trackable">Trackable</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2218,7 +2217,7 @@ else
                 <br />
                 <b>Response Type: </b>Array of <a href="#trackable">Trackables</a>
                 <br />
-                <b>Response Codes: </b>200, 400, 401, 404, 500
+                <b>Response Codes: </b>200, 400, 401, 404, 429, 500
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2281,6 +2280,62 @@ else
                         <td>No</td>
                         <td>The fields of the trackable object to expand. The available options are trackablelogs, trackablelog.images, and images.</td>
                         <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+        <div id="get-trackable-journeys">
+            <h3>Get Trackable Journeys</h3>
+            <p>
+                This method will fetch the requested trackable's journey/travel history.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/trackables/{referenceCode}/journeys</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Array of <a href="#journey">Journeys</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>TB1</code></td>
+                        <td>Yes</td>
+                        <td>The reference code of the trackables.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>skip</code></td>
+                        <td>query</td>
+                        <td><code>skip=10</code></td>
+                        <td>No</td>
+                        <td>the number of resources to skip over</td>
+                        <td><code>0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>take</code></td>
+                        <td>query</td>
+                        <td><code>take=0</code></td>
+                        <td>No</td>
+                        <td>how many resources to return. maximum value of 1000</td>
+                        <td><code>100</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -2505,7 +2560,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 404, 500
                 <br />
-                <b>Restrictions: Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2591,6 +2646,64 @@ else
                         <td><code>fields</code></td>
                         <td>query</td>
                         <td><code>fields=name,referenceCode</code></td>
+                        <td>No</td>
+                        <td>partial response fields to return</td>
+                        <td><code>referenceCode</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+        <div id="bulk-create-trackablelogs">
+            <h3>Bulk Create Trackable Logs</h3>
+            <p>
+                This method will bulk create trackable logs on the specified geocache.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/geocaches/{referenceCode}/bulktrackablelogs</code>
+                <br />
+                <b>HTTP Method: </b>POST
+                <br />
+                <b>Response Type: </b><a href="#bulk-response">BulkResponse</a>
+                <br />
+                <b>Response Codes: </b>204, 400, 401, 404, 429, 500
+                <br />
+                <b>Restrictions: </b>Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-2">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>query</td>
+                        <td><code>referenceCode=GCK25B</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the geocache</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>logs</td>
+                        <td>body</td>
+                        <td>array of <a href="#trackable-log">TrackableLogs</a></td>
+                        <td>Yes</td>
+                        <td>trackable logs to create</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>fields</code></td>
+                        <td>query</td>
+                        <td><code>fields=name,state</code></td>
                         <td>No</td>
                         <td>partial response fields to return</td>
                         <td><code>referenceCode</code></td>
@@ -4700,7 +4813,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>This method is throttled to one call per 24 hours per API license.
+                <b>Restrictions: </b>This method is throttled to one call per 24 hours per API license (30 calls per 24 hours in staging).
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -6276,8 +6389,13 @@ else
                             <td>when the trackable was activated</td>
                         </tr>
                         <tr>
-                            <td>originCountry</td>
+                            <td>originCountry (deprecated, use originLocation instead)</td>
                             <td>string</td>
+                            <td>where the trackable originated from</td>
+                        </tr>
+                        <tr>
+                            <td>originLocation</td>
+                            <td><a href="#location-data">Location</a></td>
                             <td>where the trackable originated from</td>
                         </tr>
                         <tr>
@@ -6345,6 +6463,11 @@ else
                             <td><a href="#user">User</a></td>
                             <td>information about the holder of the trackable</td>
                         </tr>
+                        <tr>
+                            <td>lastDiscoveredDate</td>
+                            <td>nullable datetime</td>
+                            <td>the most recent discovered log date for the calling user or null if it has never been discovered</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -6376,8 +6499,68 @@ else
     "name": "Travel Bug Dog Tag",
     "imageUrl": "21.gif"
   },
-  "trackingNumber": null,  
+  "trackingNumber": null,
+  "lastDiscoveredDate": "2001-09-01T00:00:00",
   "url": "https://coord.info/TB1"
+}</code></pre>
+            </div>
+        </div>
+        <div id="journey" class="container col-md-12">
+            <h3><strong>Journey</strong></h3>
+            <div class="row">
+                <table class="table table-striped table-hover table-responsive">
+                    <caption>Fields</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>trackableLogCode</td>
+                            <td>string</td>
+                            <td>uniquely identifies the trackable log</td>
+                        </tr>
+                        <tr>
+                            <td>geocacheCode</td>
+                            <td>string</td>
+                            <td>uniquely identifies the geocache</td>
+                        </tr>
+                        <tr>
+                            <td>trackableLogType</td>
+                            <td><a href="#type">Type</a></td>
+                            <td>type of the trackable log (see <a href="#trackable-log-types">Trackable Log Types</a> for more info)</td>
+                        </tr>
+                        <tr>
+                            <td>loggedDate</td>
+                            <td>datetime</td>
+                            <td>The date when the journey was logged on the trackable</td>
+                        </tr>
+                        <tr>
+                            <td>coordinates</td>
+                            <td><a href="#coordinates">Coordinates</a></td>
+                            <td>latitude and longitude of the trackable log</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <h3>Example</h3>
+                <pre><code>{
+  "trackableLogCode": "TL12345",
+  "geocacheCode": "GC12345",
+  "trackableLogType":{
+    "id": 14,
+    "name": "Dropped Off",
+    "imageUrl": "https://www.geocaching.com/images/logtypes/14.png"
+  }
+  "loggedDate": "2001-09-28T00:00:00",
+  "coordinates": {
+    "latitude": 47.648967,
+    "longitude": -122.348117
+  }
 }</code></pre>
             </div>
         </div>
@@ -8113,6 +8296,11 @@ else
                             <td>identifier of the related entity (geocache log, trackable log, etc.)</td>
                         </tr>
                         <tr>
+                            <td>ownerCode</td>
+                            <td>string</td>
+                            <td>identifier of the image owner</td>
+                        </tr>
+                        <tr>
                             <td>createdDate</td>
                             <td>DateTime</td>
                             <td>date image was uploaded in UTC</td>
@@ -8127,6 +8315,7 @@ else
     "thumbnailUrl": "https://someurl/avatar/photo",
     "largeUrl": "https://someurl/large/photo",
     "referenceCode": "GLXXX",
+    "ownerCode": "PR12345",
     "description": "Great Scenery"
 }</code></pre>
             </div>
@@ -8805,13 +8994,30 @@ else
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>09.28.2020</h3>
+        <ul>
+            <li>Image object has a new field ownerCode that returns the reference code of the image's owner.</li>
+            <li>Added method to return possible geocache sizes.</li>
+            <li>Added method to return possible geocache statuses.</li>
+            <li>Trackable object has a new field originLocation that returns countryId, countryCode, country (string name), stateId, and state (string name).</li>
+            <li>Trackable object has a new field lastDiscoveredDate that returns the last date the calling user has discovered the trackable or null if it has not been discovered.</li>
+            <li>A new method has been added to return trackable journeys, which contains minimal data around the travel history of a trackable with a higher take limit of 1000.</li>
+            <li>HiddenBy and inclusive FoundBy search filters now support up to five usernames as a comma delimited string (exclusive FoundBy search filter already supported up to five usernames).</li>
+            <li>Added a new search filter to query on placedDate.</li>
+            <li>Added a new search filter to inclusively query on attributes.</li>
+            <li>An optional querystring parameter has been added to the Authorize endpoint, signup, that will send logged out users during the OAuth2 flow directly to the Signup page instead of the Login page.</li>
+            <li>The throttle for Get Opted-Out Users in staging has been increased to 30 calls/24 hours for testing use.</li>
+            <li>Attributes are now returning the updated png images.</li>
+            <li><b>Breaking change</b>: Geocache personal note methods and data are enforcing a premium member restriction to match website functionality. Requesting the note field on Geocache.UserData will return null for basic members. Upserting and deleting methods will throw a 403 Forbidden response.</li>
+            <li><b>Breaking change</b>: Geocache logs being updated/created with updatedCoordinates will be ignored unless the log type is Update Coordinates (id 47) to match functionality on the website.</li>
+        </ul>
         <h3>06.22.2020</h3>
         <ul>
             <li>Get friend's geocache logs method has a new parameter logTypes to filter results.</li>
             <li>Geocache object has a new field PremiumFavoriteScore that returns the percentage shown in the favorites widget on a geocache's page.</li>
             <li>AdditionalWaypoint object has a new field VisibilityFilterTypeId.</li>
             <li>UserData object has two new fields, Ignored and Watched. These correspond to if the geocache exists on the ignore and watch list of the calling user.</li>
-            <li>Trackable discovery limit: A user limit of 500 trackable discoveries per 24 hour period, per API key is now being enforced</li>
+            <li>Trackable discovery limit: A user limit of 500 trackable discoveries per 24 hour period, per API key is now being enforced (500 discovered logs per user/license combination)</li>
             <li>Method has been added to request the users that have opted-out of sharing data with third party applications after a specified DateTime in UTC (this method is meant to be more of a backend support so only one call is allowed per application per 24 hours).</li>
             <li>The codes filter limit has been increased from 50 to 100 on the Search Geocaches method.</li>
             <li>User object has a new field AwardedFavoritePoints. This is the total number of favorite points on the user's owned geocaches.</li>
