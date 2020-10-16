@@ -2668,7 +2668,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Maximum of 50 logs may be created in bulk. Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -8994,6 +8994,10 @@ else
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>10.15.2020</h3>
+        <ul>
+            <li>Bulk trackable logs method is limited to 50 logs created during one call.</li>
+        </ul>
         <h3>09.28.2020</h3>
         <ul>
             <li>Image object has a new field ownerCode that returns the reference code of the image's owner.</li>
