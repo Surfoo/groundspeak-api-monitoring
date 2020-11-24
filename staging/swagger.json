@@ -6233,7 +6233,7 @@
                 "deprecated": false
             }
         },
-        "\/v{api-version}\/{guid}\/cartridge": {
+        "\/v{api-version}\/wherigo\/{guid}\/cartridge": {
             "get": {
                 "tags": [
                     "Wherigo"
