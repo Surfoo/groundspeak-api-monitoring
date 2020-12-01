@@ -6232,6 +6232,67 @@
                 },
                 "deprecated": false
             }
+        },
+        "\/v{api-version}\/wherigo\/{guid}\/cartridge": {
+            "get": {
+                "tags": [
+                    "Wherigo"
+                ],
+                "summary": "Gets the Wherigo cartridge",
+                "description": "This method will return the cartridge file as base64 encoded binary.",
+                "operationId": "Wherigo_GetWherigoCartridge",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "guid",
+                        "in": "path",
+                        "description": "Identifier of the Wherigo cartridge",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#\/definitions\/WherigoCartridge"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
         }
     },
     "definitions": {
@@ -7924,6 +7985,15 @@
                     "$ref": "#\/definitions\/Coordinates"
                 },
                 "geocacheCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "WherigoCartridge": {
+            "type": "object",
+            "properties": {
+                "gwcFile": {
+                    "format": "byte",
                     "type": "string"
                 }
             }
