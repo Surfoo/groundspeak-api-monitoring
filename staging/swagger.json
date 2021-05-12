@@ -15,6 +15,92 @@
         "https"
     ],
     "paths": {
+        "\/v{api-version}\/adventures\/search": {
+            "get": {
+                "tags": [
+                    "Adventures"
+                ],
+                "summary": "Search for Adventures",
+                "description": "This method will return search results.",
+                "operationId": "Adventures_Search",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "The query used on the adventures.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "Defaults to 0, how many adventures to skip.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "Defaults to 50, how many adventures to return.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 50
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Properties you want to return, defaults to \"id\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "id"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/Adventure"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/friendrequests": {
             "get": {
                 "tags": [
@@ -744,6 +830,71 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/geocachelogs\/upvotes": {
+            "get": {
+                "tags": [
+                    "GeocacheLogs"
+                ],
+                "summary": "Get a the upvotes associated with the provided geocache logs",
+                "description": "This method will return a list of geocache log upvote info.",
+                "operationId": "GeocacheLogs_GetLogUpvotes",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCodes",
+                        "in": "query",
+                        "description": "Comma delimited list of geocache log reference codes (example: GL100).",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Properties you want to return. Defaults to \"geocacheLogCode\".",
+                        "required": false,
+                        "type": "string",
+                        "default": "geocacheLogCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/GeocacheLogUpvote"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/geocachelogs\/{referenceCode}\/images": {
             "get": {
                 "tags": [
@@ -980,6 +1131,136 @@
                     },
                     "429": {
                         "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/geocachelogs\/{referenceCode}\/upvotes\/{upvoteTypeId}": {
+            "post": {
+                "tags": [
+                    "GeocacheLogs"
+                ],
+                "summary": "Add an upvote to a geocache log",
+                "description": "This method will return the upvote data for the upvoted geocache log.",
+                "operationId": "GeocacheLogs_AddUpvote",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "identifier of the geocache log",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvoteTypeId",
+                        "in": "path",
+                        "description": "the type of upvote",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Properties you want to return. Defaults to \"geocacheLogCode\".",
+                        "required": false,
+                        "type": "string",
+                        "default": "geocacheLogCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#\/definitions\/GeocacheLogUpvote"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "GeocacheLogs"
+                ],
+                "summary": "Delete a geocache log upvote",
+                "description": "This method will not have a response body.",
+                "operationId": "GeocacheLogs_DeleteUpvote",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "identifier of the geocache log",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvoteTypeId",
+                        "in": "path",
+                        "description": "the type of upvote",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     },
                     "500": {
                         "description": "Server Error"
@@ -1628,103 +1909,6 @@
                 "deprecated": false
             }
         },
-        "\/v{api-version}\/geocaches\/{referenceCode}\/geocachelogs": {
-            "get": {
-                "tags": [
-                    "Geocaches"
-                ],
-                "summary": "Get a list of geocache logs for the specified geocache",
-                "description": "This method will return a list of geocache logs.",
-                "operationId": "Geocaches_GetLogs",
-                "consumes": [],
-                "produces": [
-                    "application\/json",
-                    "text\/json",
-                    "application\/json-patch+json"
-                ],
-                "parameters": [
-                    {
-                        "name": "referenceCode",
-                        "in": "path",
-                        "description": "The reference code of the geocache (example: GC25).",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "skip",
-                        "in": "query",
-                        "description": "how many logs to skip over",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32",
-                        "default": 0
-                    },
-                    {
-                        "name": "take",
-                        "in": "query",
-                        "description": "how many logs to retrieve",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32",
-                        "default": 10
-                    },
-                    {
-                        "name": "expand",
-                        "in": "query",
-                        "description": "fields to include with base geocache object",
-                        "required": false,
-                        "type": "string",
-                        "default": ""
-                    },
-                    {
-                        "name": "fields",
-                        "in": "query",
-                        "description": "fields you want to return, defaults to referenceCode",
-                        "required": false,
-                        "type": "string",
-                        "default": "referenceCode"
-                    },
-                    {
-                        "name": "api-version",
-                        "in": "path",
-                        "description": "The requested API version",
-                        "required": true,
-                        "type": "string",
-                        "default": "1.0"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Ok",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#\/definitions\/GeocacheLog"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "429": {
-                        "description": "Too many requests"
-                    },
-                    "500": {
-                        "description": "Server Error"
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "\/v{api-version}\/geocaches\/search": {
             "get": {
                 "tags": [
@@ -1775,7 +1959,7 @@
                     {
                         "name": "take",
                         "in": "query",
-                        "description": "Defaults to 20, how many geocaches to return",
+                        "description": "Defaults to 50, how many geocaches to return",
                         "required": false,
                         "type": "integer",
                         "format": "int32",
@@ -1824,6 +2008,111 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/geocaches\/{referenceCode}\/geocachelogs": {
+            "get": {
+                "tags": [
+                    "Geocaches"
+                ],
+                "summary": "Get a list of geocache logs for the specified geocache",
+                "description": "This method will return a list of geocache logs.",
+                "operationId": "Geocaches_GetLogs",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "The reference code of the geocache (example: GC25).",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "how many logs to skip over",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "how many logs to retrieve",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 10
+                    },
+                    {
+                        "name": "expand",
+                        "in": "query",
+                        "description": "fields to include with base geocache object",
+                        "required": false,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "how to sort the logs",
+                        "required": false,
+                        "type": "string",
+                        "default": "newest"
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "fields you want to return, defaults to referenceCode",
+                        "required": false,
+                        "type": "string",
+                        "default": "referenceCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/GeocacheLog"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     },
                     "429": {
                         "description": "Too many requests"
@@ -4189,6 +4478,163 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/trackablelogs": {
+            "get": {
+                "tags": [
+                    "TrackableLogs"
+                ],
+                "summary": "Get user's trackable logs",
+                "description": "This method will return an array of trackable logs.",
+                "operationId": "TrackableLogs_GetTrackableLogs",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "Defaults to 0.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "Defaults to 10, max of 50.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 10
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Property fields you want to return, defaults to referencecode",
+                        "required": false,
+                        "type": "string",
+                        "default": "referencecode"
+                    },
+                    {
+                        "name": "expand",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string",
+                        "default": ""
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/TrackableLog"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "TrackableLogs"
+                ],
+                "summary": "Add a log to a trackable",
+                "description": "This method will return the created trackable log.",
+                "operationId": "TrackableLogs_CreateTrackableLog",
+                "consumes": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json",
+                    "application\/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "log",
+                        "in": "body",
+                        "description": "The log to add",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/definitions\/PostTrackableLog"
+                        }
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Property fields you want to return, defaults to referencecode",
+                        "required": false,
+                        "type": "string",
+                        "default": "referenceCode"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#\/definitions\/TrackableLog"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/trackablelogs\/{referenceCode}\/images": {
             "get": {
                 "tags": [
@@ -4341,78 +4787,6 @@
                     },
                     "403": {
                         "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "429": {
-                        "description": "Too many requests"
-                    },
-                    "500": {
-                        "description": "Server Error"
-                    }
-                },
-                "deprecated": false
-            }
-        },
-        "\/v{api-version}\/trackablelogs": {
-            "post": {
-                "tags": [
-                    "TrackableLogs"
-                ],
-                "summary": "Add a log to a trackable",
-                "description": "This method will return the created trackable log.",
-                "operationId": "TrackableLogs_CreateTrackableLog",
-                "consumes": [
-                    "application\/json",
-                    "text\/json",
-                    "application\/json-patch+json",
-                    "application\/x-www-form-urlencoded"
-                ],
-                "produces": [
-                    "application\/json",
-                    "text\/json",
-                    "application\/json-patch+json"
-                ],
-                "parameters": [
-                    {
-                        "name": "log",
-                        "in": "body",
-                        "description": "The log to add",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#\/definitions\/PostTrackableLog"
-                        }
-                    },
-                    {
-                        "name": "fields",
-                        "in": "query",
-                        "description": "Property fields you want to return, defaults to referencecode",
-                        "required": false,
-                        "type": "string",
-                        "default": "referenceCode"
-                    },
-                    {
-                        "name": "api-version",
-                        "in": "path",
-                        "description": "The requested API version",
-                        "required": true,
-                        "type": "string",
-                        "default": "1.0"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Ok",
-                        "schema": {
-                            "$ref": "#\/definitions\/TrackableLog"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
                     },
                     "404": {
                         "description": "Not Found"
@@ -6296,6 +6670,54 @@
         }
     },
     "definitions": {
+        "Adventure": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "uuid",
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#\/definitions\/Coordinate",
+                    "description": "The coordinate location of the Adventure."
+                },
+                "title": {
+                    "description": "The title of the Adventure.",
+                    "type": "string"
+                },
+                "ratingsAverage": {
+                    "format": "double",
+                    "description": "Nullable, if no ratings exist. The average rating of the Adventure.",
+                    "type": "number"
+                },
+                "ratingsTotalCount": {
+                    "format": "int32",
+                    "description": "The total count of ratings of the Adventure.",
+                    "type": "integer"
+                },
+                "stagesTotalCount": {
+                    "format": "int32",
+                    "description": "The count of stages in the Adventure.",
+                    "type": "integer"
+                },
+                "dynamicLink": {
+                    "type": "string"
+                }
+            }
+        },
+        "Coordinate": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "longitude": {
+                    "format": "double",
+                    "type": "number"
+                }
+            }
+        },
         "FriendRequest": {
             "required": [
                 "requestedUserCode",
@@ -6397,6 +6819,14 @@
                     "type": "boolean"
                 },
                 "souvenirCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "trackableFindCount": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "trackableOwnedCount": {
                     "format": "int32",
                     "type": "integer"
                 },
@@ -6566,8 +6996,17 @@
                 "geocacheName": {
                     "type": "string"
                 },
+                "geocacheType": {
+                    "$ref": "#\/definitions\/GeocacheType"
+                },
                 "ianaTimezoneId": {
                     "type": "string"
+                },
+                "upvoteTypeCounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#\/definitions\/UpvoteTypeCount"
+                    }
                 },
                 "loggedDate": {
                     "format": "date-time",
@@ -6631,6 +7070,25 @@
                 }
             }
         },
+        "UpvoteTypeCount": {
+            "type": "object",
+            "properties": {
+                "upvoteTypeId": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "upvoteTypeName": {
+                    "type": "string"
+                },
+                "count": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "upvotedByUser": {
+                    "type": "boolean"
+                }
+            }
+        },
         "GeocacheLogType": {
             "type": "object",
             "properties": {
@@ -6643,6 +7101,20 @@
                 },
                 "imageUrl": {
                     "type": "string"
+                }
+            }
+        },
+        "GeocacheLogUpvote": {
+            "type": "object",
+            "properties": {
+                "geocacheLogCode": {
+                    "type": "string"
+                },
+                "upvoteTypeCounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#\/definitions\/UpvoteTypeCount"
+                    }
                 }
             }
         },
@@ -6832,6 +7304,9 @@
                         "Unpublished"
                     ],
                     "type": "string"
+                },
+                "isLocked": {
+                    "type": "boolean"
                 },
                 "location": {
                     "$ref": "#\/definitions\/Location"
@@ -7459,6 +7934,9 @@
                 "listItemName": {
                     "type": "string"
                 },
+                "listItemDescription": {
+                    "type": "string"
+                },
                 "referenceCode": {
                     "description": "This code uniquely identifies the geocache",
                     "type": "string"
@@ -7577,6 +8055,9 @@
                     ],
                     "type": "string"
                 },
+                "isLocked": {
+                    "type": "boolean"
+                },
                 "location": {
                     "$ref": "#\/definitions\/Location"
                 },
@@ -7683,6 +8164,12 @@
                     "type": "string"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "listItemName": {
+                    "type": "string"
+                },
+                "listItemDescription": {
                     "type": "string"
                 }
             }
