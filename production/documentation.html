@@ -3601,7 +3601,7 @@ else
                         <td>body</td>
                         <td><a href="#post-image">PostImage</a></td>
                         <td>Yes</td>
-                        <td>the iamge to upload</td>
+                        <td>the image to upload</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -9141,6 +9141,11 @@ else
                             <td>text about the image</td>
                         </tr>
                         <tr>
+                            <td>ownerCode</td>
+                            <td>string</td>
+                            <td>identifier of the image owner</td>
+                        </tr>
+                        <tr>
                             <td>url</td>
                             <td>string</td>
                             <td>link url to the image</td>
@@ -9161,14 +9166,14 @@ else
                             <td>identifier of the related entity (geocache log, trackable log, etc.)</td>
                         </tr>
                         <tr>
-                            <td>ownerCode</td>
-                            <td>string</td>
-                            <td>identifier of the image owner</td>
-                        </tr>
-                        <tr>
                             <td>createdDate</td>
                             <td>DateTime</td>
                             <td>date image was uploaded in UTC</td>
+                        </tr>
+                        <tr>
+                            <td>capturedDate</td>
+                            <td>DateTime</td>
+                            <td>date image was taken</td>
                         </tr>
                     </tbody>
                 </table>
@@ -9176,12 +9181,13 @@ else
             <div class="row">
                 <h3>Example</h3>
                 <pre><code>{
+    "description": "Great Scenery",
+    "ownerCode": "PR12345",
     "url": "https://someurl/photo",
     "thumbnailUrl": "https://someurl/avatar/photo",
     "largeUrl": "https://someurl/large/photo",
     "referenceCode": "GLXXX",
-    "ownerCode": "PR12345",
-    "description": "Great Scenery"
+    "capturedDate": 2021-05-21T07:00:00
 }</code></pre>
             </div>
         </div>
@@ -9213,6 +9219,11 @@ else
                             <td>Guid</td>
                             <td>optional unique identifier to prevent duplicate uploads</td>
                         </tr>
+                        <tr>
+                            <td>capturedDate</td>
+                            <td>DateTime</td>
+                            <td>date image was taken</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -9220,7 +9231,8 @@ else
                 <h3>Example</h3>
                 <pre><code>{
     "base64ImageData": "base64 data string here",
-    "description": "Great Scenery"
+    "description": "Great Scenery",
+    "capturedDate": 2021-05-26T07:00:00
 }</code></pre>
             </div>
         </div>
