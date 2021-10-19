@@ -64,6 +64,22 @@
                         "default": "id"
                     },
                     {
+                        "name": "excludeOwned",
+                        "in": "query",
+                        "description": "true to exclude owned caches\/labs by the requesting user; otherwise, false includes all results.",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "excludeCompleted",
+                        "in": "query",
+                        "description": "true to exclude completed caches\/labs by the requesting user; otherwise, false includes all results.",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
                         "name": "api-version",
                         "in": "path",
                         "description": "The requested API version",
@@ -6675,6 +6691,11 @@
             "properties": {
                 "id": {
                     "format": "uuid",
+                    "description": "The Adventure Guid.",
+                    "type": "string"
+                },
+                "keyImageUrl": {
+                    "description": "The url to the Adventure's theme image.",
                     "type": "string"
                 },
                 "location": {
@@ -6701,7 +6722,16 @@
                     "type": "integer"
                 },
                 "dynamicLink": {
+                    "description": "The Firebase Dynamimc Link.\r\nIt is essentially a shortened deeplink into the app, stored in Firebase.",
                     "type": "string"
+                },
+                "isOwned": {
+                    "description": "true if Adventure is owned by the requesting user; otherwise, false.",
+                    "type": "boolean"
+                },
+                "isComplete": {
+                    "description": "true if Adventure has been completed by the requesting user; otherwise, false.",
+                    "type": "boolean"
                 }
             }
         },
@@ -7392,6 +7422,10 @@
                     "items": {
                         "$ref": "#\/definitions\/Image"
                     }
+                },
+                "imageCount": {
+                    "format": "int32",
+                    "type": "integer"
                 },
                 "userWaypoints": {
                     "type": "array",
@@ -8142,6 +8176,10 @@
                     "items": {
                         "$ref": "#\/definitions\/Image"
                     }
+                },
+                "imageCount": {
+                    "format": "int32",
+                    "type": "integer"
                 },
                 "userWaypoints": {
                     "type": "array",
