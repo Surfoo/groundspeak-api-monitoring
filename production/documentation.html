@@ -5897,7 +5897,7 @@ else
                         <td>query</td>
                         <td><code>q=location:[47,122]+radius:30mi</code></td>
                         <td>true</td>
-                        <td><a href="#adventure-query-filters">filters</a> used to return relevant adventures. The syntax for using query objects is the name (or alias) of the object + ":" + type syntax. Multiple filters can be combined by separating with '+' character.</td>
+                        <td><a href="#adventure-query-filters">Filters</a> used to return relevant adventures. The syntax for using query objects is the name (or alias) of the object + ":" + type syntax. Multiple filters can be combined by separating with '+' character.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -5921,16 +5921,24 @@ else
                         <td>query</td>
                         <td><code>fields=id,title</code></td>
                         <td>false</td>
-                        <td>The fields of the adventure object to return in the response</td>
+                        <td>The fields of the adventure object to return in the response.</td>
                         <td><code>id</code></td>
                     </tr>
                     <tr>
-                        <td><code>expand</code></td>
+                        <td><code>excludeOwned</code></td>
                         <td>query</td>
-                        <td><code>expand=geocachelogs:5</code></td>
+                        <td><code>excludeOwned=true</code></td>
                         <td>false</td>
-                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
-                        <td>-</td>
+                        <td>Set to <code>True</code> to exclude labs owned by the calling user.</td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>excludeCompleted</code></td>
+                        <td>query</td>
+                        <td><code>excludeCompleted=true</code></td>
+                        <td>false</td>
+                        <td>Set to <code>True</code> to exclude labs completed by the calling user.</td>
+                        <td><code>false</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -5952,7 +5960,7 @@ else
                         <td><code>loc</code></td>
                         <td>coordinates</td>
                         <td><code>location:[47,-122]</code></td>
-                        <td>the coordinates in decimal form centers the search around that location. Can be used with radius object to customize search area otherwise uses 100 mile radius</td>
+                        <td>The coordinates in decimal form centers the search around that location. Can be used with radius object to customize search area otherwise uses 100 mile radius.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -5960,7 +5968,7 @@ else
                         <td>N/A</td>
                         <td>number with unit</td>
                         <td><code>radius:50mi</code></td>
-                        <td>used with the location object to customize how far the search radius is from the provided coordinates. Distance consists of the number plus the unit of measurement. Currently supports km (kilometer), mi (miles), and m (meters). Max value allowed is equivalent to 100 miles (if value passed in is greater than max, radius will be set to max value)</td>
+                        <td>Used with the location object to customize how far the search radius is from the provided coordinates. Distance consists of the number plus the unit of measurement. Currently supports km (kilometer), mi (miles), and m (meters). Max value allowed is equivalent to 100 miles (if value passed in is greater than max, radius will be set to max value).</td>
                         <td><code>100mi</code></td>
                     </tr>
                 </tbody>
@@ -6001,7 +6009,7 @@ else
                         <td>path</td>
                         <td><code>GCK25B</code></td>
                         <td>Yes</td>
-                        <td>the identifier of the geocache</td>
+                        <td>The identifier of the geocache.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -6009,7 +6017,7 @@ else
                         <td>query</td>
                         <td><code>lite=true</code></td>
                         <td>No</td>
-                        <td>whether the response should be a lite geocaches or not</td>
+                        <td>Whether the response should be a lite geocaches or not.</td>
                         <td><code>false</code></td>
                     </tr>
                     <tr>
@@ -6017,7 +6025,7 @@ else
                         <td>query</td>
                         <td><code>fields=referenceCode</code></td>
                         <td>false</td>
-                        <td>The fields of the geocache object to return in the response</td>
+                        <td>The fields of the geocache object to return in the response.</td>
                         <td><code>referenceCode</code></td>
                     </tr>
                     <tr>
@@ -6067,7 +6075,7 @@ else
                         <td>query</td>
                         <td><code>referenceCodes=gc25,gc26,gc27</code></td>
                         <td>Yes</td>
-                        <td>the identifiers of the geocaches. The max number of codes allowed is 50.</td>
+                        <td>The identifiers of the geocaches. The max number of codes allowed is 50.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -6075,7 +6083,7 @@ else
                         <td>query</td>
                         <td><code>lite=true</code></td>
                         <td>No</td>
-                        <td>whether the response should be a lite geocaches or not</td>
+                        <td>Whether the response should be a lite geocaches or not.</td>
                         <td><code>false</code></td>
                     </tr>
                     <tr>
@@ -6083,7 +6091,7 @@ else
                         <td>query</td>
                         <td><code>fields=name,state</code></td>
                         <td>No</td>
-                        <td>partial response fields to return</td>
+                        <td>Partial response fields to return.</td>
                         <td><code>referenceCode</code></td>
                     </tr>
                     <tr>
@@ -6133,7 +6141,7 @@ else
                         <td>query</td>
                         <td><code>referenceCode=GCK25B</code></td>
                         <td>Yes</td>
-                        <td>the identifier of the geocache</td>
+                        <td>The identifier of the geocache.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -6141,7 +6149,7 @@ else
                         <td>body</td>
                         <td><a href="#coordinates">Coordinates</a></td>
                         <td>Yes</td>
-                        <td>The latitude and longitude in decimal format to verify</td>
+                        <td>The latitude and longitude in decimal format to verify.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -6149,7 +6157,7 @@ else
                         <td>query</td>
                         <td><code>fields=name,state</code></td>
                         <td>No</td>
-                        <td>partial response fields to return</td>
+                        <td>Partial response fields to return.</td>
                         <td><code>referenceCode</code></td>
                     </tr>
                     <tr>
@@ -6199,7 +6207,7 @@ else
                         <td>path</td>
                         <td><code>GCK25B</code></td>
                         <td>Yes</td>
-                        <td>the identifier of the geocache</td>
+                        <td>The identifier of the geocache.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -6207,7 +6215,7 @@ else
                         <td>query</td>
                         <td><code>fields=url,description</code></td>
                         <td>No</td>
-                        <td>partial response fields to return</td>
+                        <td>Partial response fields to return.</td>
                         <td><code>url</code></td>
                     </tr>
                     <tr>
@@ -6215,7 +6223,7 @@ else
                         <td>query</td>
                         <td><code>skip=10</code></td>
                         <td>No</td>
-                        <td>the number of resources to skip over</td>
+                        <td>The number of resources to skip over.</td>
                         <td><code>0</code></td>
                     </tr>
                     <tr>
@@ -6223,7 +6231,7 @@ else
                         <td>query</td>
                         <td><code>take=0</code></td>
                         <td>No</td>
-                        <td>how many resources to return. maximum value of 50</td>
+                        <td>How many resources to return. maximum value of 50.</td>
                         <td><code>10</code></td>
                     </tr>
                 </tbody>
@@ -6265,7 +6273,7 @@ else
                         <td>path</td>
                         <td><code>GCK25B</code></td>
                         <td>Yes</td>
-                        <td>the identifier of the geocache</td>
+                        <td>The identifier of the geocache.</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -6273,7 +6281,7 @@ else
                         <td>body</td>
                         <td><code>{"note": "the cache is in a tree."}</code></td>
                         <td>Yes</td>
-                        <td>note text to add/update</td>
+                        <td>Note text to add/update.</td>
                         <td>-</td>
                     </tr>
                 </tbody>
@@ -6405,152 +6413,159 @@ else
                         <tr>
                             <td>referenceCode</td>
                             <td>string</td>
-                            <td>uniquely identifies the geocache</td>
+                            <td>Uniquely identifies the geocache.</td>
                         </tr>
                         <tr>
                             <td>name</td>
                             <td>string</td>
-                            <td>name of the geocache</td>
+                            <td>Name of the geocache.</td>
                         </tr>
                         <tr>
                             <td>difficulty</td>
                             <td>decimal</td>
-                            <td>difficulty rating of the geocache between 1.0 and 5.0</td>
+                            <td>Difficulty rating of the geocache between 1.0 and 5.0.</td>
                         </tr>
                         <tr>
                             <td>terrain</td>
                             <td>decimal</td>
-                            <td>terrain rating of the geocache between 1.0 and 5.0</td>
+                            <td>Terrain rating of the geocache between 1.0 and 5.0.</td>
                         </tr>
                         <tr>
                             <td>favoritePoints</td>
                             <td>integer</td>
-                            <td>number of favorite points awarded to the geocache</td>
+                            <td>Number of favorite points awarded to the geocache.</td>
                         </tr>
                         <tr>
                             <td>trackableCount</td>
                             <td>integer</td>
-                            <td>number of trackables currently in the geocache</td>
+                            <td>Number of trackables currently in the geocache.</td>
                         </tr>
                         <tr>
                             <td>placedDate</td>
                             <td>datetime</td>
-                            <td>date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache</td>
+                            <td>Date when the cache was placed (if an event, this is the date of the event) in the timezone of the geocache.</td>
                         </tr>
                         <tr>
                             <td>publishedDate</td>
                             <td>datetime</td>
-                            <td>date when the cache was published in the timezone of the geocache</td>
+                            <td>Date when the cache was published in the timezone of the geocache.</td>
                         </tr>
                         <tr>
                             <td>eventEndDate</td>
                             <td>nullable datetime</td>
-                            <td>date and time of when an event will end (in the timezone of the geocache). null if an end date doesn't exist or if geocache is not event type.</td>
+                            <td>Date and time of when an event will end (in the timezone of the geocache). null if an end date doesn't exist or if geocache is not event type.</td>
                         </tr>
                         <tr>
                             <td>type (Deprecated)</td>
                             <td>enum</td>
-                            <td>type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info)</td>
+                            <td>Type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info).</td>
                         </tr>
                         <tr>
                             <td>geocacheType</td>
                             <td><a href="#type">Type</a></td>
-                            <td>type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info)</td>
+                            <td>Type of the geocache (see <a href="#geocache-types">Geocache Types</a> for more info).</td>
                         </tr>
                         <tr>
                             <td>size (Deprecated)</td>
                             <td>enum</td>
-                            <td>size of the geocache container (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
+                            <td>Size of the geocache container (see <a href="#geocache-sizes">Geocache Sizes</a> for more info).</td>
                         </tr>
                         <tr>
                             <td>geocacheSize</td>
                             <td><a href="#geocache-size">Size</a></td>
-                            <td>size of the geocache (see <a href="#geocache-sizes">Geocache Sizes</a> for more info)</td>
+                            <td>Size of the geocache (see <a href="#geocache-sizes">Geocache Sizes</a> for more info).</td>
                         </tr>
                         <tr>
                             <td>userData</td>
                             <td><a href="#user-data">UserData</a></td>
-                            <td>user specific information about the geocache</td>
+                            <td>User specific information about the geocache.</td>
                         </tr>
                         <tr>
                             <td>status</td>
                             <td>enum</td>
-                            <td>current status of the geocache (see <a href="#geocache-states">Geocache Statuses</a> for more info)</td>
+                            <td>Current status of the geocache (see <a href="#geocache-states">Geocache Statuses</a> for more info).</td>
                         </tr>
                         <tr>
                             <td>isLocked</td>
                             <td>boolean</td>
-                            <td>if the geocache is locked and unable to be logged</td>
+                            <td>If the geocache is locked and unable to be logged.</td>
                         </tr>
                         <tr>
                             <td>location</td>
                             <td><a href="#location-data">Location</a></td>
-                            <td>country and state information about the geocache</td>
+                            <td>Country and state information about the geocache.</td>
                         </tr>
                         <tr>
                             <td>postedCoordinates</td>
                             <td><a href="#coordinates">Coordinates</a></td>
-                            <td>latitude and longitude of the geocache</td>
+                            <td>Latitude and longitude of the geocache.</td>
                         </tr>
                         <tr>
                             <td>lastVisitedDate</td>
                             <td>nullable datetime</td>
-                            <td>datetime of last logged visit to geocache in the timezone of the geocache</td>
+                            <td>Datetime of last logged visit to geocache in the timezone of the geocache.</td>
                         </tr>
                         <tr>
                             <td>ownerCode</td>
                             <td>string</td>
-                            <td>owner identifier of the geocache</td>
+                            <td>Owner identifier of the geocache.</td>
+                        </tr>
+                        <tr>
+                            <td>owner</td>
+                            <td><a href="#user">User</a></td>
+                            <td>Information about the owner of the geocache.</td>
+                            <td>No</td>
+                            <td>No</td>
                         </tr>
                         <tr>
                             <td>ownerAlias</td>
                             <td>string</td>
-                            <td>display name of owner for geocache</td>
+                            <td>Display name of owner for geocache.</td>
                         </tr>
                         <tr>
                             <td>isPremiumOnly</td>
                             <td>boolean</td>
-                            <td>whether the geocache can only be viewed by premium members</td>
+                            <td>Whether the geocache can only be viewed by premium members.</td>
                         </tr>
                         <tr>
                             <td>shortDescription</td>
                             <td>string</td>
-                            <td>summary about the geocache</td>
+                            <td>Summary about the geocache.</td>
                         </tr>
                         <tr>
                             <td>longDescription</td>
                             <td>string</td>
-                            <td>details about the geocache</td>
+                            <td>Details about the geocache.</td>
                         </tr>
                         <tr>
                             <td>hints</td>
                             <td>string</td>
-                            <td>hints/spoilers to help to find the geocache</td>
+                            <td>Hints/spoilers to help to find the geocache.</td>
                         </tr>
                         <tr>
                             <td>attributes</td>
-                            <td>array of <a href="#attribute">Attributes</a></td>
-                            <td>attributes of the geocache</td>
+                            <td>array of <a href="#attribute">Attributes</a>.</td>
+                            <td>Attributes of the geocache</td>
                         </tr>
                         <tr>
                             <td>ianaTimezoneId</td>
                             <td>string</td>
-                            <td>timezone of the geocache</td>
+                            <td>Timezone of the geocache.</td>
                         </tr>
                         <tr>
                             <td>relatedWebPage</td>
                             <td>string</td>
-                            <td>external web page associated with geocache</td>
+                            <td>External web page associated with geocache.</td>
                         </tr>
                         <tr>
                             <td>url</td>
                             <td>string</td>
-                            <td>geocaching.com web page associated with geocache</td>
+                            <td>Geocaching.com web page associated with geocache.</td>
                         </tr>
                         <tr>
                             <td>backgroundImageUrl</td>
                             <td>string</td>
-                            <td>user supplied image url used as background image on geocaching.com (will be null if none supplied)</td>
+                            <td>User supplied image url used as background image on geocaching.com (will be null if none supplied).</td>
                         </tr>
                         <tr>
                             <td>containsHtml</td>
@@ -6558,31 +6573,29 @@ else
                             <td>Flag for if the short or long description contains html. Tip: It is recommended to always treat user inputted values as potentially containing HTML.</td>
                         </tr>
                         <tr>
-                            <td>findCount</td>
-                            <td>integer</td>
-                            <td>number of Found It logs on the geocache</td>
-                        </tr>
-                        <tr>
-                            <td>hasSolutionChecker</td>
-                            <td>bool</td>
-                            <td>flag for if the native solution checker is used on the website</td>
-                        </tr>
-                        <tr>
                             <td>premiumFavoriteScore</td>
                             <td>integer</td>
                             <td>Percentage score for favorite points per premium member finds. Tip: This score is calculated in realtime so fetching this field in bulk calls may cause an adverse affect on performance.</td>
                         </tr>
                         <tr>
-                            <td>owner</td>
-                            <td><a href="#user">User</a></td>
-                            <td>information about the owner of the geocache</td>
-                            <td>No</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
                             <td>additionalWaypoints</td>
                             <td>array of <a href="#additional-waypoint">AdditionalWaypoints</a></td>
-                            <td>other reference waypoints associated with the geocache</td>
+                            <td>Other reference waypoints associated with the geocache.</td>
+                        </tr>
+                        <tr>
+                            <td>imageCount</td>
+                            <td>integer</td>
+                            <td>Number of Images returned.</td>
+                        </tr>
+                        <tr>
+                            <td>findCount</td>
+                            <td>integer</td>
+                            <td>Number of Found It logs on the geocache.</td>
+                        </tr>
+                        <tr>
+                            <td>hasSolutionChecker</td>
+                            <td>bool</td>
+                            <td>Flag for if the native solution checker is used on the website</td>
                         </tr>
                     </tbody>
                 </table>
@@ -6641,6 +6654,7 @@ else
   "longDescription": "This cache is only available while the Visitor Center at HQ is open. ...",
   "hints": "Where would you look if you were a pirate?",
   "premiumFavoriteScore": 41,
+  "additionalWaypoints": [],
   "attributes": [
     {
       "id": 24,
@@ -6721,7 +6735,7 @@ else
     "username": "Geocaching HQ",
     "avatarUrl": "https://img.geocaching.com/user/avatar/f777d091-4a90-406b-a998-70ec06b4f6f1.png"
   },
-  "additionalWaypoints": []
+  "imageCount": 10
 }</code></pre>
                 </div>
             </div>
@@ -9480,55 +9494,75 @@ else
                         <tr>
                             <td>id</td>
                             <td>guid</td>
-                            <td>identifier of the adventure</td>
+                            <td>Identifier of the adventure.</td>
+                        </tr>
+                        <tr>
+                            <td>keyImageUrl</td>
+                            <td>string</td>
+                            <td>An image URL that captures the theme of the Adventure.</td>
                         </tr>
                         <tr>
                             <td>title</td>
                             <td>string</td>
-                            <td>the display name of the adventure</td>
+                            <td>The display name of the adventure.</td>
                         </tr>
                         <tr>
                             <td>location</td>
                             <td><a href="#coordinates">Coordinates</a></td>
-                            <td>latitude and longitude of the adventure</td>
+                            <td>Latitude and longitude of the adventure.</td>
                         </tr>
                         <tr>
                             <td>ratingsAverage</td>
                             <td>decimal</td>
-                            <td>average of adventure ratings</td>
+                            <td>Average of adventure ratings.</td>
                         </tr>
                         <tr>
                             <td>ratingsTotalCount</td>
                             <td>integer</td>
-                            <td>number of adventure ratings</td>
+                            <td>Number of adventure ratings.</td>
                         </tr>
                         <tr>
                             <td>stagesTotalCount</td>
                             <td>integer</td>
-                            <td>number of stages in adventure</td>
+                            <td>Number of stages in adventure.</td>
                         </tr>
                         <tr>
                             <td>dynamicLink</td>
                             <td>string</td>
-                            <td>external link to Adventure on the official app/website</td>
+                            <td>External link to Adventure on the official app/website.</td>
+                        </tr>
+                        <tr>
+                            <td>isOwned</td>
+                            <td>bool</td>
+                            <td>If the Adventure is owned by the requesting user.</td>
+                        </tr>
+                        <tr>
+                            <td>isCompleted</td>
+                            <td>bool</td>
+                            <td>If the Adventure is completed by the requesting user.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="row">
                 <h3>Example</h3>
-                <pre><code>{
+                <pre><code>
+    {
     "id": "6930bdb4-10b7-4210-9e09-f96f26e8842b",
+    "keyImageUrl" : "https://img.geocaching.com/12345.jpg",
     "title": "Test adventure",
     "location": {
-      "latitude": 47.6062166666667,
-      "longitude": -122.332066666667
+    "latitude": 47.6062166666667,
+    "longitude": -122.332066666667
     },
     "ratingsAverage": 5.0,
     "ratingsTotalCount": 10,
     "stagesTotalCount": 5,
-    "dynamicLink": "https://adventurelab.page.link/testlink"
-}</code></pre>
+    "dynamicLink": "https://adventurelab.page.link/testlink",
+    "isOwned": false,
+    "isCompleted": false
+    }
+</code></pre>
             </div>
         </div>
         <div id="type" class="container col-md-12">
@@ -9547,17 +9581,17 @@ else
                         <tr>
                             <td>id</td>
                             <td>integer</td>
-                            <td>identifier of the type</td>
+                            <td>Identifier of the type</td>
                         </tr>
                         <tr>
                             <td>name</td>
                             <td>string</td>
-                            <td>the name of the type</td>
+                            <td>The name of the type</td>
                         </tr>
                         <tr>
                             <td>imageUrl</td>
                             <td>string</td>
-                            <td>link to the image of the type</td>
+                            <td>Link to the image of the type</td>
                         </tr>
                     </tbody>
                 </table>
