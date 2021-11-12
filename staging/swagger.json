@@ -6729,7 +6729,7 @@
                     "description": "true if Adventure is owned by the requesting user; otherwise, false.",
                     "type": "boolean"
                 },
-                "isComplete": {
+                "isCompleted": {
                     "description": "true if Adventure has been completed by the requesting user; otherwise, false.",
                     "type": "boolean"
                 }
