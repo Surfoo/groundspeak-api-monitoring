@@ -7900,7 +7900,8 @@
                     "description": "Type of campaign (e.g., engagement, trackables)",
                     "enum": [
                         "Engagement",
-                        "Trackables"
+                        "Trackables",
+                        "DigitalTreasures"
                     ],
                     "type": "string"
                 }
