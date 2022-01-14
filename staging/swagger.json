@@ -5417,6 +5417,51 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/users\/{referenceCode}\/privacysettings": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Gets the privacy settings for a user",
+                "description": "This method will return a list of privacy settings and their current value (1 = private, 2 = friends, 3 = public)",
+                "operationId": "Users_GetUserPrivacySettings",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "the reference code of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/users\/{referenceCode}": {
             "get": {
                 "tags": [
