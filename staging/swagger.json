@@ -15,6 +15,63 @@
         "https"
     ],
     "paths": {
+        "\/v{api-version}\/adventures\/{adventureId}": {
+            "get": {
+                "tags": [
+                    "Adventures"
+                ],
+                "summary": "Get a single adventure",
+                "description": "This method will return an adventure along with its stage(s).\r\nOnly the first stage is returned for sequential adventures.\r\nThis method can only be called by premium members.",
+                "operationId": "Adventures_Get",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "adventureId",
+                        "in": "path",
+                        "description": "The guid of the adventure.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#\/definitions\/AdventureModel"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/adventures\/search": {
             "get": {
                 "tags": [
@@ -94,7 +151,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#\/definitions\/Adventure"
+                                "$ref": "#\/definitions\/AdventureBasicInfoModel"
                             }
                         }
                     },
@@ -5417,6 +5474,51 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/users\/{referenceCode}\/privacysettings": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Gets the privacy settings for a user",
+                "description": "This method will return a list of privacy settings and their current value (1 = private, 2 = friends, 3 = public)",
+                "operationId": "Users_GetUserPrivacySettings",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "the reference code of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/users\/{referenceCode}": {
             "get": {
                 "tags": [
@@ -6686,7 +6788,62 @@
         }
     },
     "definitions": {
-        "Adventure": {
+        "AdventureModel": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "uuid",
+                    "type": "string"
+                },
+                "firebaseDynamicLink": {
+                    "type": "string"
+                },
+                "stages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#\/definitions\/StageSummary"
+                    }
+                }
+            }
+        },
+        "StageSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "uuid",
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "stageImageUrl": {
+                    "type": "string"
+                },
+                "isComplete": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#\/definitions\/GeoLocation"
+                }
+            }
+        },
+        "GeoLocation": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "longitude": {
+                    "format": "double",
+                    "type": "number"
+                }
+            }
+        },
+        "AdventureBasicInfoModel": {
             "type": "object",
             "properties": {
                 "id": {
