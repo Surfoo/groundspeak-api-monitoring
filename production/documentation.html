@@ -29,7 +29,6 @@
         </div>
         <div class="collapse navbar-collapse" id="nav-collapse">
             <ul class="nav navbar-nav">
-                <li>
                 <li><a class="" href="#intro">Introduction</a></li>
                 <li><a class="" href="#authorization">Authorization</a></li>
                 <li><a class="" href="#responses">Responses</a></li>
@@ -51,7 +50,6 @@
                 <li><a class="" href="#utility-methods">Utility Methods</a></li>
                 <li><a class="" href="#adventure-methods">Adventure Methods</a></li>
                 <li><a class="" href="#objects">Objects</a></li>
-                </li>
             </ul>
         </div>
     </div>
@@ -187,6 +185,7 @@
                     <li><a href="#get-user-images">Get User Images</a></li>
                     <li><a href="#get-geocache-favoritedby">Get Favorited Users by Geocache</a></li>
                     <li><a href="#get-opted-out-users">Get Opted-out Users</a></li>
+                    <li><a href="#get-user-privacy-settings">Get User Privacy Settings</a></li>
                 </ul>
             </li>
             <li class="method-heading">
@@ -223,6 +222,7 @@
                 <a href="#adventureMethods" class="method-toggle" data-toggle="collapse" aria-expanded="false"><i>Adventure Methods</i></a>
                 <ul id="adventureMethods" class="collapse in">
                     <li><a href="#adventures-search">Search</a></li>
+                    <li><a href="#get-adventure">Get Adventure</a></li>
                 </ul>
             </li>
         </ul>
@@ -256,6 +256,7 @@
             <li><a href="#coordinates">Coordinates</a></li>
             <li><a href="#user-reference">UserReference</a></li>
             <li><a href="#adventure">Adventure</a></li>
+            <li><a href="#adventure-stages">AdventureStages</a></li>
         </ul>
         <h3>Reference Data</h3>
         <ul>
@@ -270,6 +271,7 @@
             <li><a href="#additional-waypoint-visibility-types">Additional Waypoint Visibility Types</a></li>
             <li><a href="#geocache-log-upvote-types">Geocache Log Upvote Types</a></li>
             <li><a href="#geocache-log-sorts">Geocache Log Sorts</a></li>
+            <li><a href="#user-privacy-settings">User Privacy Settings</a></li>
         </ul>
         <h3>Change Log</h3>
         <ul>
@@ -662,6 +664,10 @@
             To give users greater control of their data and in the interest of providing additional privacy settings, users now have the ability to opt-out of sharing their personal data with API Authorized Developers in their account settings. If a user has not authorized the sharing of their personal data, the API will either throw a 403 Forbidden exception or return only the reference code and <code>opted-out user</code> as the username with the reference code also returned as part of a comma delimited list of strings in the header named <code>x-opted-out</code>.
 
         </p>
+        <h3 id="privacy-settings">User Privacy Settings</h3>
+        <p>
+            In addition to third party data sharing control, users may also control who can see certain pieces of information from their profile/account. If an API call violates these settings, a 403 Forbidden may be thrown or the data being restricted will return null in the response. There's additional information about these privacy settings under the section for <a href="#get-user-privacy-settings">Get User Privacy Settings</a>.
+        </p>
     </section>
     <section id="pagination">
         <h2>Pagination</h2>
@@ -710,7 +716,7 @@
             <br />
             <b>Example Response:</b>
             <pre><code>{
-    "userData": 
+    "userData":
     {
         "favorited": true,
         "foundDate": "2013-07-16T12:00:00"
@@ -722,7 +728,7 @@
             <br />
             <b>Example Response:</b>
             <pre><code>{
-    "userData": 
+    "userData":
     {
         "favorited": true,
         "foundDate": "2013-07-16T12:00:00",
@@ -811,18 +817,18 @@ else
     ReferenceCode = Base31(Id + 411120)
 
 
-    
+
 Reference Code to Id
 --------------------
 
-if Prefix == "GC" 
+if Prefix == "GC"
     ReferenceCode = Replace(code, "S", "5")
     ReferenceCode = Replace(code, "O", "0")
 
 ReferenceCode = RemovePrefix(ReferenceCode)
-    
+
 FirstChar = substring(ReferenceCode, 0, 1)
-    
+
 if len(ReferenceCode) >= 5 or FirstChar >= 'G'
     Id = Base31(ReferenceCode) - 411120
 else
@@ -4282,7 +4288,7 @@ else
             <b>Response Codes: </b>200, 400, 401, 403, 404, 500
             <br />
             <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may opt out of sharing personal data, which include lists.
-            </p>
+            <p />
             <br />
             <table class="table table-striped table-hover table-responsive">
                 <caption>Parameters</caption>
@@ -4862,7 +4868,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details. This endpoint may also be restricted by user privacy settings. See <a href="#privacy-settings">User Privacy Settings</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4928,7 +4934,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details. This endpoint may also be restricted by user privacy settings. See <a href="#privacy-settings">User Privacy Settings</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -5042,6 +5048,45 @@ else
                         <td>how many resources to return. maximum value of 50</td>
                         <td><code>10</code></td>
                     </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+        <div id="get-user-privacy-settings">
+            <h3>Get User Privacy Settings</h3>
+            <p>
+                This method will fetch a user's privacy settings
+            </p>
+            <p>
+                <b>Path: </b><code>GET /v1/users/{referenceCode}/privacysettings</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b>Dictionary &ltstring, object&gt (See <a href="#user-privacy-settings">User Privacy Settings</a>)
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>PR18</code></td>
+                        <td>Yes</td>
+                        <td>the reference code of the user</td>
+                        <td>-</td>
                 </tbody>
             </table>
             <br />
@@ -5974,21 +6019,21 @@ else
                 </tbody>
             </table>
         </div>
-        <div id="get-geocache">
-            <h3>Get Geocache</h3>
+        <div id="get-adventure">
+            <h3>Get Adventure</h3>
             <p>
-                This method will fetch a specified geocache using the reference code
+                This method will fetch a specified adventure and its stages using the guid
             </p>
             <p>
-                <b>Path: </b><code>/v1/geocaches/{referenceCode}</code>
+                <b>Path: </b><code>/v1/adventures/{adventureGuid}</code>
                 <br />
                 <b>HTTP Method: </b>GET
                 <br />
-                <b>Response Type: </b><a href="#geocache">Geocache</a>
+                <b>Response Type: </b><a href="#adventure-stages">AdventureStages</a>
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Only available to premium members. Private adventures will not be returned. Only the first stage of a sequential adventure will be shown, all stages will be shown for non-sequential. Users must complete stages in the Adventure Lab app.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -6005,393 +6050,15 @@ else
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code>referenceCode</code></td>
+                        <td><code>adventureGuid</code></td>
                         <td>path</td>
-                        <td><code>GCK25B</code></td>
+                        <td><code>12345678-ABCD-1234-EFGH-123456HIJKLM</code></td>
                         <td>Yes</td>
-                        <td>The identifier of the geocache.</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>lite</code></td>
-                        <td>query</td>
-                        <td><code>lite=true</code></td>
-                        <td>No</td>
-                        <td>Whether the response should be a lite geocaches or not.</td>
-                        <td><code>false</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=referenceCode</code></td>
-                        <td>false</td>
-                        <td>The fields of the geocache object to return in the response.</td>
-                        <td><code>referenceCode</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>expand</code></td>
-                        <td>query</td>
-                        <td><code>expand=geocachelogs:5,trackables:5</code></td>
-                        <td>false</td>
-                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
+                        <td>the identifier of the adventure</td>
                         <td>-</td>
                     </tr>
                 </tbody>
             </table>
-            <br />
-        </div>
-        <div id="get-geocaches">
-            <h3>Get Geocaches</h3>
-            <p>
-                This method will fetch the specified geocaches using the reference codes
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocaches</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b>Array of <a href="#geocache">Geocaches</a> or <a href="#lite-geocache">Lite Geocaches</a>
-                <br />
-                <b>Response Codes: </b>200, 400, 401, 403, 429, 500
-                <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Opted-out users will filter out profile details. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-2">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCodes</code></td>
-                        <td>query</td>
-                        <td><code>referenceCodes=gc25,gc26,gc27</code></td>
-                        <td>Yes</td>
-                        <td>The identifiers of the geocaches. The max number of codes allowed is 50.</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>lite</code></td>
-                        <td>query</td>
-                        <td><code>lite=true</code></td>
-                        <td>No</td>
-                        <td>Whether the response should be a lite geocaches or not.</td>
-                        <td><code>false</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,state</code></td>
-                        <td>No</td>
-                        <td>Partial response fields to return.</td>
-                        <td><code>referenceCode</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>expand</code></td>
-                        <td>query</td>
-                        <td><code>expand=geocachelogs:5</code></td>
-                        <td>false</td>
-                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
-        <div id="verify-final-coordinates">
-            <h3>Verify Final Coordinates</h3>
-            <p>
-                This method will check the specified geocache using to validate if the final coordinates match.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocaches/{referenceCode}/finalcoordinates</code>
-                <br />
-                <b>HTTP Method: </b>POST
-                <br />
-                <b>Response Type:</b> N/A
-                <br />
-                <b>Response Codes: </b>204, 400, 401, 403, 429, 500
-                <br />
-                <b>Restrictions: </b>The geocache must be published, non-archived, a mystery type, and opted in to use the native geocaching solution checker (if not true will return 403 Forbidden). Basic members trying to verify against a premium only geocache will return a 403 Forbidden response. Solution checking is throttled the same as the website (ten guesses in ten minutes for a user on a single geocache) and if exceeded will return a 429 response. This method will return 204 if the coordinates match or a 400 if the coordinates do not match.
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-2">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>query</td>
-                        <td><code>referenceCode=GCK25B</code></td>
-                        <td>Yes</td>
-                        <td>The identifier of the geocache.</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>coordinates</code></td>
-                        <td>body</td>
-                        <td><a href="#coordinates">Coordinates</a></td>
-                        <td>Yes</td>
-                        <td>The latitude and longitude in decimal format to verify.</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,state</code></td>
-                        <td>No</td>
-                        <td>Partial response fields to return.</td>
-                        <td><code>referenceCode</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>expand</code></td>
-                        <td>query</td>
-                        <td><code>expand=geocachelogs:5</code></td>
-                        <td>false</td>
-                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, geotours, and images.</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
-        <div id="get-geocache-images">
-            <h3>Get Geocache Images</h3>
-            <p>
-                This method will fetch the images for the specified geocache
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocaches/{referenceCode}/images</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b>Array of <a href="#image">Images</a>
-                <br />
-                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
-                <br />
-                <b>Restrictions: </b>Geocache log images from opted-out users will not be included. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>path</td>
-                        <td><code>GCK25B</code></td>
-                        <td>Yes</td>
-                        <td>The identifier of the geocache.</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=url,description</code></td>
-                        <td>No</td>
-                        <td>Partial response fields to return.</td>
-                        <td><code>url</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>skip</code></td>
-                        <td>query</td>
-                        <td><code>skip=10</code></td>
-                        <td>No</td>
-                        <td>The number of resources to skip over.</td>
-                        <td><code>0</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>How many resources to return. maximum value of 50.</td>
-                        <td><code>10</code></td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
-        <div id="upsert-geocachenote">
-            <h3>Upsert Geocache Note</h3>
-            <p>
-                This method will add or update a note to the specified geocache. It will return the inserted or updated geocache note.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocaches/{referenceCode}/notes</code>
-                <br />
-                <b>HTTP Method: </b>PUT
-                <br />
-                <b>Response Type: </b>string
-                <br />
-                <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 429, 500
-                <br />
-                <b>Restrictions: </b>Only owner may update the note. Geocache notes are a premium member only feature. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>path</td>
-                        <td><code>GCK25B</code></td>
-                        <td>Yes</td>
-                        <td>The identifier of the geocache.</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>note</code></td>
-                        <td>body</td>
-                        <td><code>{"note": "the cache is in a tree."}</code></td>
-                        <td>Yes</td>
-                        <td>Note text to add/update.</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
-        <div id="delete-geocachenote">
-            <h3>Delete Geocache Note</h3>
-            <p>
-                This method will delete a specified geocache note
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocaches/{referenceCode}/notes</code>
-                <br />
-                <b>HTTP Method: </b>DELETE
-                <br />
-                <b>Response Type: </b>No response body
-                <br />
-                <b>Response Codes: </b>204, 400, 401, 403, 409, 429, 500
-                <br />
-                <b>Restrictions: </b>Only owner may delete the geocache note. Geocache notes are a premium member only feature. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>path</td>
-                        <td><code>GCK25B</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the geocache</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
-        <div id="get-geocache-types">
-            <h3>Get Geocache Types</h3>
-            <p>
-                This method will fetch all valid geocache types
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocachetypes</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b>Array of <a href="#type">Geocache Types</a>
-                <br />
-                <b>Response Codes: </b>200, 401, 429, 500
-            </p>
-            <br />
-        </div>
-        <div id="get-geocache-sizes">
-            <h3>Get Geocache Sizes</h3>
-            <p>
-                This method will fetch all valid geocache sizes
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocachesizes</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b>Array of <a href="#geocache-sizes">Geocache Sizes</a>
-                <br />
-                <b>Response Codes: </b>200, 401, 429, 500
-            </p>
-            <br />
-        </div>
-        <div id="get-geocache-statuses">
-            <h3>Get Geocache Statuses</h3>
-            <p>
-                This method will fetch all valid geocache statuses
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/geocachestatuses</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b>Array of strings
-                <br />
-                <b>Response Codes: </b>200, 401, 429, 500
-            </p>
-            <br />
-        </div>
-        <div id="get-attributes">
-            <h3>Get Attributes</h3>
-            <p>
-                This method will fetch all valid attributes
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/attributes</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b>Array of <a href="#attributetype">Attribute Types</a>
-                <br />
-                <b>Response Codes: </b>200, 401, 429, 500
-            </p>
             <br />
         </div>
     </section>
@@ -8561,7 +8228,7 @@ else
                         <tr>
                             <td>profileText</td>
                             <td>string</td>
-                            <td>text from Profile Information section on user profile page. Tip: This user generated field can be very large so fetching in bulk calls may cause an adverse affect on performance.</td>
+                            <td>text from Profile Information section on user profile page. This may return null if the user privacy setting (ShowAboutInfo) is not set to public. Tip: This user generated field can be very large so fetching in bulk calls may cause an adverse affect on performance.</td>
                         </tr>
                         <tr>
                             <td>homeCoordinates</td>
@@ -9564,6 +9231,58 @@ else
     }
 </code></pre>
             </div>
+            <div id="adventure-stages" class="container col-md-12">
+                <h3><strong>AdventureStages</strong></h3>
+                <div class="row">
+                    <table class="table table-striped table-hover table-responsive">
+                        <caption>Fields</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>string</td>
+                                <td>the guid of the adventure</td>
+                            </tr>
+                            <tr>
+                                <td>firebaseDynamicLink</td>
+                                <td>string</td>
+                                <td>the firebase dynamic link for the adventure</td>
+                            </tr>
+                            <tr>
+                                <td>stages</td>
+                                <td>array of stages</td>
+                                <td>array of adventure stages (only first is returned if adventure is non-sequential)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <h3>Example</h3>
+                    <pre><code>{
+    "id": "12345678-ABCD-1234-EFGH-123456HIJKLM",
+    "firebaseDynamicLink": "https://adventurelab.page.link/ABCD",
+    "stages": [
+        {
+        "id": "87654321-DCBA-4321-HGFE-654321MLKJIH",
+        "title": "Dropped Off",
+        "stageImageUrl": "https://gsmediadata.blob.core.windows.net/mediacontainer/73847284-shif-4dfc-7dh3-193hd74kamn2",
+        "isComplete": false,
+        "description": "This is the stage description",
+        "location": {
+            "latitude": 45.1234,
+            "longitude": 122.6789
+            }
+        }
+    ]
+}</code></pre>
+                </div>
+            </div>
         </div>
         <div id="type" class="container col-md-12">
             <h3><strong>Type</strong></h3>
@@ -10114,9 +9833,73 @@ else
                 </tbody>
             </table>
         </div>
+        <div id="user-privacy-settings">
+            <h3>User Privacy Settings</h3>
+            <table class="table table-striped table-hover table-responsive inherit-width">
+                <thead>
+                    <tr>
+                        <th>Setting Name</th>
+                        <th>Possible Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ShowJoinDate</td>
+                        <td>int (1 = private, 2 = friends, 3 = public)</td>
+                    </tr>
+                    <tr>
+                        <td>ShowLastVisitedDate</td>
+                        <td>int (1 = private, 2 = friends, 3 = public)</td>
+                    </tr>
+                    <tr>
+                        <td>ShowHomeLocation</td>
+                        <td>int (1 = private, 2 = friends, 3 = public)</td>
+                    </tr>
+                    <tr>
+                        <td>ShowAboutInfo</td>
+                        <td>int (1 = private, 2 = friends, 3 = public)</td>
+                    </tr>
+                    <tr>
+                        <td>ShowGeocachesFound</td>
+                        <td>int (1 = private, 2 = friends, 3 = public)</td>
+                    </tr>
+                    <tr>
+                        <td>ShowTrackables</td>
+                        <td>int (1 = private, 2 = friends, 3 = public)</td>
+                    </tr>
+                    <tr>
+                        <td>ShowSouvenirs</td>
+                        <td>int (1 = private, 2 = friends, 3 = public)</td>
+                    </tr>
+                    <tr>
+                        <td>ShowGallery</td>
+                        <td>int (1 = private, 2 = friends, 3 = public)</td>
+                    </tr>
+                    <tr>
+                        <td>ShowStatistics</td>
+                        <td>int (1 = private, 2 = friends, 3 = public)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>02.02.2022</h3>
+        <ul>
+            <li>Update to GET /v1/users/{referenceCode}/souvenirs : a 403 Forbidden may be returned if call violates user privacy settings.</li>
+            <li>Update to GET /v1/users/{referenceCode}/images : a 403 Forbidden may be returned if call violates user privacy settings.</li>
+            <li>Wherever a User object is being returned, ProfileText may return null if call violates user privacy settings.</li>
+            <li>A new method for retrieving a user's privacy settings.</li>
+            <li>A new method for retrieving adventure stage data is available.</li>
+        </ul>
+        <h3>11.01.2022</h3>
+        <ul>
+            <li>Adventures will now return completion status based on the calling user.</li>
+            <li>Adventures search added the ability to filter by owned and/or completed adventures.</li>
+            <li>Geocache object will now return the total image count.</li>
+            <li>Caches with AR attribute will provide a Geocaching specific short description to launch the AR experience via Geocaching app.</li>
+        </ul>
         <h3>05.24.2021</h3>
         <ul>
             <li>A new method for searching adventures data is available.</li>
