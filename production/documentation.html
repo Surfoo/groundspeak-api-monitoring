@@ -848,7 +848,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 429, 500
                 <br />
-                <b>Restrictions: </b>This method will not return any archived or locked geocaches. Unpublished geocaches will be excluded unless the calling user is the geocache owner. Geocaches on ignored list of calling user will also be excluded from search results. Basic members will only return traditionals and event types. Search filters including usernames of users that have opted out will be excluded from the search and added to the x-opted-out header.
+                <b>Restrictions: </b>This method will not return any archived or locked geocaches. Unpublished geocaches will be excluded unless the calling user is the geocache owner. Geocaches on ignored list of calling user will also be excluded from search results. Basic members will only return traditionals and event types. Search filters including usernames of users that have opted out will be excluded from the search and added to the x-opted-out header. Some usernames contain special characters, and must be included in these filter requests with the special characters replaced via Url encoding (ex. ""Signal, Finest Frog++" => "Signal%2c Finest Frog%2b%2b").
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -9885,6 +9885,10 @@ else
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>03.07.2022</h3>
+        <ul>
+            <li>Update to username processing: usernames with punctuation/symbols can now be processed properly in filter statements using Url encoding in requests.</li>
+        </ul>
         <h3>02.02.2022</h3>
         <ul>
             <li>Update to GET /v1/users/{referenceCode}/souvenirs : a 403 Forbidden may be returned if call violates user privacy settings.</li>
@@ -9898,7 +9902,6 @@ else
             <li>Adventures will now return completion status based on the calling user.</li>
             <li>Adventures search added the ability to filter by owned and/or completed adventures.</li>
             <li>Geocache object will now return the total image count.</li>
-            <li>Caches with AR attribute will provide a Geocaching specific short description to launch the AR experience via Geocaching app.</li>
         </ul>
         <h3>05.24.2021</h3>
         <ul>
