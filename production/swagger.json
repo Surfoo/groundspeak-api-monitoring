@@ -6859,6 +6859,10 @@
                     "$ref": "#\/definitions\/Coordinate",
                     "description": "The coordinate location of the Adventure."
                 },
+                "description": {
+                    "description": "Text describing the adventure.",
+                    "type": "string"
+                },
                 "title": {
                     "description": "The title of the Adventure.",
                     "type": "string"
