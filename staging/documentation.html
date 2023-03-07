@@ -851,7 +851,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 429, 500
                 <br />
-                <b>Restrictions: </b>This method will not return any archived or locked geocaches. Unpublished geocaches will be excluded unless the calling user is the geocache owner. Geocaches on ignored list of calling user will also be excluded from search results. Basic members will only return traditionals and event types. Search filters including usernames of users that have opted out will be excluded from the search and added to the x-opted-out header. Some usernames contain special characters, and must be included in these filter requests with the special characters replaced via Url encoding (ex. ""Signal, Finest Frog++" => "Signal%2c Finest Frog%2b%2b").
+                <b>Restrictions: </b>This method will not return any archived or locked geocaches. Unpublished geocaches will be excluded unless the calling user is the geocache owner. Geocaches on ignored list of calling user will also be excluded from search results. Basic members will only return traditionals and event types. Search filters including usernames of users that have opted out will be excluded from the search and added to the x-opted-out header. In cases where all users are opted out, 403 will be returned. Some usernames contain special characters, and must be included in these filter requests with the special characters replaced via Url encoding (ex. ""Signal, Finest Frog++" => "Signal%2c Finest Frog%2b%2b").
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
