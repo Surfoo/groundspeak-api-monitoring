@@ -1819,7 +1819,7 @@
                     {
                         "name": "referenceCodes",
                         "in": "query",
-                        "description": "comma delimited list of geocache reference codes to retrieve (example: GC25,GC26,GC27).",
+                        "description": "comma delimited list of geocache reference codes to retrieve (example: GC25,GC26,GC27). Reference codes not beginning with GC will be ignored.",
                         "required": true,
                         "type": "string"
                     },
