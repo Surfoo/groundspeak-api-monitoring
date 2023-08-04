@@ -35,7 +35,8 @@
                         "in": "path",
                         "description": "The guid of the adventure.",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "format": "uuid"
                     },
                     {
                         "name": "api-version",
