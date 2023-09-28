@@ -73,64 +73,6 @@
                 "deprecated": false
             }
         },
-        "\/v{api-version}\/adventures\/anon\/{adventureGuid}": {
-            "get": {
-                "tags": [
-                    "Adventures"
-                ],
-                "summary": "Get a single adventure's starting location",
-                "description": "This method will return an adventure along with its starting location.\r\nThis method can be called anonymously (no account\/access token required) but <b>requires<\/b> the proper API License scope.\r\nThis method can only return public adventures.",
-                "operationId": "Adventures_GetStartLocation",
-                "consumes": [],
-                "produces": [
-                    "application\/json",
-                    "text\/json",
-                    "application\/json-patch+json"
-                ],
-                "parameters": [
-                    {
-                        "name": "adventureGuid",
-                        "in": "path",
-                        "description": "The guid of the adventure",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    {
-                        "name": "api-version",
-                        "in": "path",
-                        "description": "The requested API version",
-                        "required": true,
-                        "type": "string",
-                        "default": "1.0"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Ok",
-                        "schema": {
-                            "$ref": "#\/definitions\/AdventureStartModel"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "429": {
-                        "description": "Too many requests"
-                    },
-                    "500": {
-                        "description": "Server Error"
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "\/v{api-version}\/adventures\/search": {
             "get": {
                 "tags": [
@@ -2214,13 +2156,6 @@
                         "required": false,
                         "type": "string",
                         "default": "referenceCode"
-                    },
-                    {
-                        "name": "logTypes",
-                        "in": "query",
-                        "description": "log types to include in response, defaults to all",
-                        "required": false,
-                        "type": "string"
                     },
                     {
                         "name": "api-version",
@@ -6867,14 +6802,6 @@
                 "firebaseDynamicLink": {
                     "type": "string"
                 },
-                "adventureType": {
-                    "enum": [
-                        "Nonsequential",
-                        "Sequential",
-                        "MultiPath"
-                    ],
-                    "type": "string"
-                },
                 "stages": {
                     "type": "array",
                     "items": {
@@ -6916,53 +6843,6 @@
                 },
                 "longitude": {
                     "format": "double",
-                    "type": "number"
-                }
-            }
-        },
-        "AdventureStartModel": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "format": "uuid",
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "location": {
-                    "$ref": "#\/definitions\/Location"
-                },
-                "ratingsAverage": {
-                    "format": "double",
-                    "type": "number"
-                },
-                "ratingsTotalCount": {
-                    "format": "int64",
-                    "type": "integer"
-                },
-                "stagesTotalCount": {
-                    "format": "int64",
-                    "type": "integer"
-                }
-            }
-        },
-        "Location": {
-            "type": "object",
-            "properties": {
-                "latitude": {
-                    "format": "double",
-                    "description": "The latitude of the location.",
-                    "type": "number"
-                },
-                "longitude": {
-                    "format": "double",
-                    "description": "The longitude of the location.",
-                    "type": "number"
-                },
-                "altitude": {
-                    "format": "double",
-                    "description": "The altitude of the location.",
                     "type": "number"
                 }
             }
@@ -7017,15 +6897,6 @@
                 "isCompleted": {
                     "description": "true if Adventure has been completed by the requesting user; otherwise, false.",
                     "type": "boolean"
-                },
-                "adventureType": {
-                    "description": "The type of structure of the adventure's stages",
-                    "enum": [
-                        "Nonsequential",
-                        "Sequential",
-                        "MultiPath"
-                    ],
-                    "type": "string"
                 }
             }
         },
@@ -7134,9 +7005,6 @@
                     "type": "string"
                 },
                 "isFriend": {
-                    "type": "boolean"
-                },
-                "optedInFriendSharing": {
                     "type": "boolean"
                 },
                 "allowsFriendRequests": {
@@ -7332,9 +7200,6 @@
                         "$ref": "#\/definitions\/UpvoteTypeCount"
                     }
                 },
-                "upvoteData": {
-                    "$ref": "#\/definitions\/GeocacheLogUpvote"
-                },
                 "loggedDate": {
                     "format": "date-time",
                     "type": "string"
@@ -7363,9 +7228,6 @@
             "type": "object",
             "properties": {
                 "ownerCode": {
-                    "type": "string"
-                },
-                "ownerUserName": {
                     "type": "string"
                 },
                 "url": {
@@ -7419,20 +7281,6 @@
                 }
             }
         },
-        "GeocacheLogUpvote": {
-            "type": "object",
-            "properties": {
-                "geocacheLogCode": {
-                    "type": "string"
-                },
-                "upvoteTypeCounts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#\/definitions\/UpvoteTypeCount"
-                    }
-                }
-            }
-        },
         "GeocacheLogType": {
             "type": "object",
             "properties": {
@@ -7445,6 +7293,20 @@
                 },
                 "imageUrl": {
                     "type": "string"
+                }
+            }
+        },
+        "GeocacheLogUpvote": {
+            "type": "object",
+            "properties": {
+                "geocacheLogCode": {
+                    "type": "string"
+                },
+                "upvoteTypeCounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#\/definitions\/UpvoteTypeCount"
+                    }
                 }
             }
         },
@@ -7639,7 +7501,7 @@
                     "type": "boolean"
                 },
                 "location": {
-                    "$ref": "#\/definitions\/GeocacheLocation"
+                    "$ref": "#\/definitions\/Location"
                 },
                 "postedCoordinates": {
                     "$ref": "#\/definitions\/Coordinates",
@@ -7782,7 +7644,7 @@
                 }
             }
         },
-        "GeocacheLocation": {
+        "Location": {
             "type": "object",
             "properties": {
                 "country": {
@@ -7881,7 +7743,7 @@
                     "type": "string"
                 },
                 "originLocation": {
-                    "$ref": "#\/definitions\/GeocacheLocation"
+                    "$ref": "#\/definitions\/Location"
                 },
                 "allowedToBeCollected": {
                     "type": "boolean"
@@ -8394,7 +8256,7 @@
                     "type": "boolean"
                 },
                 "location": {
-                    "$ref": "#\/definitions\/GeocacheLocation"
+                    "$ref": "#\/definitions\/Location"
                 },
                 "postedCoordinates": {
                     "$ref": "#\/definitions\/Coordinates",
