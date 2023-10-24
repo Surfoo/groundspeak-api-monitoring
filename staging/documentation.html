@@ -6073,52 +6073,11 @@ else
                 </tbody>
             </table>
             <br />
-        </div><div id="get-adventure">
-            <h3>Get Adventure</h3>
-            <p>
-                This method will fetch a specified adventure and its stages using the guid
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/adventures/{adventureGuid}</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b><a href="#adventure-stages">AdventureStages</a>
-                <br />
-                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
-                <br />
-                <b>Restrictions: </b>Only available to premium members. Private adventures will not be returned. Only the first stage of a sequential adventure will be shown, all stages will be shown for non-sequential. Users must complete stages in the Adventure Lab app.
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>adventureGuid</code></td>
-                        <td>path</td>
-                        <td><code>12345678-ABCD-1234-EFGH-123456HIJKLM</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the adventure</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
         </div>
         <div id="get-adventure-start">
             <h3>Get Adventure Start Location</h3>
             <p>
-                This method will fetch the start location of a specified adventure.
+                This method will fetch the start location of a specified adventure along with ratings information and count of stages.
             </p>
             <p>
                 <b>Path: </b><code>/v1/adventures/anon/{adventureGuid}</code>
@@ -6129,7 +6088,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Only available to premium members. Private adventures will not be returned. Only the first stage of a sequential adventure will be shown, all stages will be shown for non-sequential. Users must complete stages in the Adventure Lab app.
+                <b>Restrictions: </b>Private adventures will not be returned. Users must complete stages in the Adventure Lab app.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
