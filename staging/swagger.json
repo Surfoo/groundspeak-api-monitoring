@@ -7136,9 +7136,6 @@
                 "isFriend": {
                     "type": "boolean"
                 },
-                "optedInFriendSharing": {
-                    "type": "boolean"
-                },
                 "allowsFriendRequests": {
                     "type": "boolean"
                 },
