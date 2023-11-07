@@ -223,6 +223,7 @@
                 <ul id="adventureMethods" class="collapse in">
                     <li><a href="#adventures-search">Search</a></li>
                     <li><a href="#get-adventure">Get Adventure</a></li>
+                    <li><a href="#get-adventure-start">Get Adventure Start Location</a></li>
                 </ul>
             </li>
         </ul>
@@ -257,6 +258,7 @@
             <li><a href="#user-reference">UserReference</a></li>
             <li><a href="#adventure">Adventure</a></li>
             <li><a href="#adventure-stages">AdventureStages</a></li>
+            <li><a href="#adventure-start"> AdventureStart</a></li>
         </ul>
         <h3>Reference Data</h3>
         <ul>
@@ -1703,6 +1705,14 @@ else
                         <td>No</td>
                         <td>How to order the geocache logs. The options are <code>newest</code>, <code>greatstory</code>, or <code>helpful</code>. All sorts are in descending order. Greatstory and helpful sorts are based on log upvote data.</td>
                         <td><code>newest</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>logtypes</code></td>
+                        <td>query</td>
+                        <td><code>logTypes=2,10,11</code></td>
+                        <td>No</td>
+                        <td>The log types to include in the results (see restrictions).</td>
+                        <td><code>all types included</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -6025,7 +6035,7 @@ else
         <div id="get-adventure">
             <h3>Get Adventure</h3>
             <p>
-                This method will fetch a specified adventure and its stages using the guid
+                This method will fetch a specified adventure and its stages using the guid.
             </p>
             <p>
                 <b>Path: </b><code>/v1/adventures/{adventureGuid}</code>
@@ -6064,6 +6074,49 @@ else
             </table>
             <br />
         </div>
+        <div id="get-adventure-start">
+            <h3>Get Adventure Start Location</h3>
+            <p>
+                This method will fetch the start location of a specified adventure along with ratings information and count of stages.
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/adventures/anon/{adventureGuid}</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b><a href="#adventure-start">AdventureStart</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
+                <br />
+                <b>Restrictions: </b>Private adventures will not be returned. Users must complete stages in the Adventure Lab app.
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>adventureGuid</code></td>
+                        <td>path</td>
+                        <td><code>12345678-ABCD-1234-EFGH-123456HIJKLM</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the adventure</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+
     </section>
     <section id="objects">
         <h2>Objects</h2>
@@ -9172,7 +9225,7 @@ else
                         </tr>
                         <tr>
                             <td>location</td>
-                            <td><a href="#coordinates">Coordinates</a></td>
+                            <td><a href="#coordinates">coordinates</a></td>
                             <td>Latitude and longitude of the adventure.</td>
                         </tr>
                         <tr>
@@ -9204,6 +9257,11 @@ else
                             <td>isCompleted</td>
                             <td>bool</td>
                             <td>If the Adventure is completed by the requesting user.</td>
+                        </tr>
+                        <tr>
+                            <td>adventureType</td>
+                            <td>string</td>
+                            <td>Adventure type (Sequential/Nonsequential)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -9279,6 +9337,71 @@ else
     ]
 }</code></pre>
                 </div>
+
+            </div>
+            <div id="adventure-start" class="container col-md-12">
+                <h3><strong>AdventureStart</strong></h3>
+                <div class="row">
+                    <table class="table table-striped table-hover table-responsive">
+                        <caption>Fields</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>string</td>
+                                <td>the guid of the adventure</td>
+                            </tr>
+                            <tr>
+                                <td>title</td>
+                                <td>string</td>
+                                <td>the adventure's title</td>
+                            </tr>
+                            <tr>
+                                <td>location</td>
+                                <td><a href="#coordinates">coordinates</a></td>
+                                <td>coordinates of the adventure's start location</td>
+                            </tr>
+                            <tr>
+                                <td>ratingsAverage</td>
+                                <td>decimal</td>
+                                <td>Average of adventure ratings.</td>
+                            </tr>
+                            <tr>
+                                <td>ratingsTotalCount</td>
+                                <td>integer</td>
+                                <td>Number of adventure ratings.</td>
+                            </tr>
+                            <tr>
+                                <td>stagesTotalCount</td>
+                                <td>integer</td>
+                                <td>Number of stages in adventure.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <h3>Example</h3>
+                    <pre><code>
+    {
+    "id": "12345678-9123-4567-8912-3456789123456",
+    "title": "Curry Plaza",
+    "location": {
+    "latitude": 47.6489666666667,
+    "longitude": -122.348116666667
+    },
+    "ratingsAverage": 2,
+    "ratingsTotalCount": 1,
+    "stagesTotalCount": 2
+    }
+</code></pre>
+                </div>
+
             </div>
         </div>
         <div id="type" class="container col-md-12">
@@ -9882,6 +10005,14 @@ else
     </section>
     <section id="change-log">
         <h2>Change Log</h2>
+        <h3>11.06.2023</h3>
+        <ul>
+            <li>New Adventure Start Location Endpoint</li>
+            <li>Adventure model now includes adventure type (sequential/nonsequential)</li>
+            <li>Added a new logtypes filter to GET /v1/geocaches/{referenceCode}/geocachelogs endpoint</li>
+            <li>Removed obsolete beta routes</li>
+        </ul>
+        
         <h3>03.07.2022</h3>
         <ul>
             <li>Update to username processing: usernames with punctuation/symbols can now be processed properly in filter statements using Url encoding in requests.</li>
