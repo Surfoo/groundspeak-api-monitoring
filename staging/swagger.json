@@ -4094,7 +4094,16 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#\/definitions\/GeocacheSize"
+                                "enum": [
+                                    "None",
+                                    "Micro",
+                                    "Regular",
+                                    "Large",
+                                    "Virtual",
+                                    "Other",
+                                    "Small"
+                                ],
+                                "type": "string"
                             }
                         }
                     },
@@ -4138,7 +4147,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#\/definitions\/GeocacheType"
+                                "$ref": "#\/definitions\/GeocacheTypeModel"
                             }
                         }
                     },
@@ -6870,8 +6879,7 @@
                 "adventureType": {
                     "enum": [
                         "Nonsequential",
-                        "Sequential",
-                        "MultiPath"
+                        "Sequential"
                     ],
                     "type": "string"
                 },
@@ -7022,8 +7030,7 @@
                     "description": "The type of structure of the adventure's stages",
                     "enum": [
                         "Nonsequential",
-                        "Sequential",
-                        "MultiPath"
+                        "Sequential"
                     ],
                     "type": "string"
                 }
@@ -7231,7 +7238,7 @@
             "type": "object",
             "properties": {
                 "geocacheType": {
-                    "$ref": "#\/definitions\/GeocacheType"
+                    "$ref": "#\/definitions\/GeocacheTypeModel"
                 },
                 "count": {
                     "format": "int32",
@@ -7251,7 +7258,7 @@
                 }
             }
         },
-        "GeocacheType": {
+        "GeocacheTypeModel": {
             "type": "object",
             "properties": {
                 "id": {
@@ -7321,7 +7328,7 @@
                     "type": "string"
                 },
                 "geocacheType": {
-                    "$ref": "#\/definitions\/GeocacheType"
+                    "$ref": "#\/definitions\/GeocacheTypeModel"
                 },
                 "ianaTimezoneId": {
                     "type": "string"
@@ -7603,23 +7610,23 @@
                     "type": "string"
                 },
                 "geocacheType": {
-                    "$ref": "#\/definitions\/GeocacheType"
+                    "$ref": "#\/definitions\/GeocacheTypeModel"
                 },
                 "size": {
                     "description": "Container or Size of cache",
                     "enum": [
                         "Large",
                         "Micro",
+                        "None",
                         "Other",
                         "Regular",
                         "Small",
-                        "Unknown",
                         "Virtual"
                     ],
                     "type": "string"
                 },
                 "geocacheSize": {
-                    "$ref": "#\/definitions\/GeocacheSize"
+                    "$ref": "#\/definitions\/GeocacheSizeModel"
                 },
                 "userData": {
                     "$ref": "#\/definitions\/UserData"
@@ -7741,7 +7748,7 @@
                 }
             }
         },
-        "GeocacheSize": {
+        "GeocacheSizeModel": {
             "type": "object",
             "properties": {
                 "id": {
@@ -8358,23 +8365,23 @@
                     "type": "string"
                 },
                 "geocacheType": {
-                    "$ref": "#\/definitions\/GeocacheType"
+                    "$ref": "#\/definitions\/GeocacheTypeModel"
                 },
                 "size": {
                     "description": "Container or Size of cache",
                     "enum": [
                         "Large",
                         "Micro",
+                        "None",
                         "Other",
                         "Regular",
                         "Small",
-                        "Unknown",
                         "Virtual"
                     ],
                     "type": "string"
                 },
                 "geocacheSize": {
-                    "$ref": "#\/definitions\/GeocacheSize"
+                    "$ref": "#\/definitions\/GeocacheSizeModel"
                 },
                 "userData": {
                     "$ref": "#\/definitions\/UserData"
