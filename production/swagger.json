@@ -4096,11 +4096,11 @@
                             "items": {
                                 "enum": [
                                     "None",
-                                    "Other",
                                     "Micro",
                                     "Regular",
                                     "Large",
                                     "Virtual",
+                                    "Other",
                                     "Small"
                                 ],
                                 "type": "string"
