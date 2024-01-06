@@ -4096,12 +4096,12 @@
                             "items": {
                                 "enum": [
                                     "Micro",
-                                    "Small",
                                     "None",
                                     "Regular",
-                                    "Other",
                                     "Large",
-                                    "Virtual"
+                                    "Virtual",
+                                    "Other",
+                                    "Small"
                                 ],
                                 "type": "string"
                             }
