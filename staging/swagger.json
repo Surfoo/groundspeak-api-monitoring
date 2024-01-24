@@ -4095,9 +4095,9 @@
                             "type": "array",
                             "items": {
                                 "enum": [
-                                    "Regular",
                                     "Small",
                                     "Micro",
+                                    "Regular",
                                     "Other",
                                     "Large",
                                     "None",
