@@ -4095,11 +4095,11 @@
                             "type": "array",
                             "items": {
                                 "enum": [
-                                    "Micro",
                                     "Other",
-                                    "None",
-                                    "Regular",
                                     "Small",
+                                    "Micro",
+                                    "Regular",
+                                    "None",
                                     "Large",
                                     "Virtual"
                                 ],
