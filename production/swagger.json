@@ -4095,13 +4095,13 @@
                             "type": "array",
                             "items": {
                                 "enum": [
-                                    "None",
+                                    "Small",
                                     "Micro",
+                                    "None",
+                                    "Other",
                                     "Regular",
                                     "Large",
-                                    "Virtual",
-                                    "Other",
-                                    "Small"
+                                    "Virtual"
                                 ],
                                 "type": "string"
                             }
