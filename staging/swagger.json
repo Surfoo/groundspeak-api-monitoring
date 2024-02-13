@@ -1319,8 +1319,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Ok",
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "$ref": "#\/definitions\/GeocacheLogUpvote"
                         }
@@ -4096,12 +4096,12 @@
                             "items": {
                                 "enum": [
                                     "Micro",
-                                    "None",
-                                    "Virtual",
                                     "Small",
-                                    "Other",
+                                    "None",
                                     "Regular",
-                                    "Large"
+                                    "Large",
+                                    "Virtual",
+                                    "Other"
                                 ],
                                 "type": "string"
                             }

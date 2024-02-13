@@ -1319,8 +1319,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Ok",
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "$ref": "#\/definitions\/GeocacheLogUpvote"
                         }
