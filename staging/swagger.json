@@ -4097,11 +4097,11 @@
                                 "enum": [
                                     "None",
                                     "Micro",
-                                    "Small",
                                     "Regular",
                                     "Large",
                                     "Virtual",
-                                    "Other"
+                                    "Other",
+                                    "Small"
                                 ],
                                 "type": "string"
                             }
