@@ -4095,8 +4095,8 @@
                             "type": "array",
                             "items": {
                                 "enum": [
-                                    "Micro",
                                     "None",
+                                    "Micro",
                                     "Regular",
                                     "Large",
                                     "Virtual",
