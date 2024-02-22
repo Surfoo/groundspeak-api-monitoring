@@ -4096,9 +4096,9 @@
                             "items": {
                                 "enum": [
                                     "None",
+                                    "Micro",
                                     "Regular",
                                     "Small",
-                                    "Micro",
                                     "Other",
                                     "Large",
                                     "Virtual"
