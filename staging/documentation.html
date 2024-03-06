@@ -224,6 +224,7 @@
                     <li><a href="#adventures-search">Search</a></li>
                     <li><a href="#get-adventure">Get Adventure</a></li>
                     <li><a href="#get-adventure-start">Get Adventure Start Location</a></li>
+                    <li><a href="#stages-search">Search Stages</a></li>
                 </ul>
             </li>
         </ul>
@@ -259,6 +260,9 @@
             <li><a href="#adventure">Adventure</a></li>
             <li><a href="#adventure-stages">AdventureStages</a></li>
             <li><a href="#adventure-start"> AdventureStart</a></li>
+            <li><a href="#stage-search-model"> StageSearchModel</a></li>
+            <li><a href="#stage-search-response"> StageSearchResponse</a></li>
+            <li><a href="#stage-adventure"> StageAdventure</a></li>
         </ul>
         <h3>Reference Data</h3>
         <ul>
@@ -6116,6 +6120,44 @@ else
             </table>
             <br />
         </div>
+        <div id="stages-search">
+            <h3>Stages Search</h3>
+            <p>The search stages endpoint allows you to search for adventures stages within a radius of a specified origin. Results are independent of the Adventure they are a part of.</p>
+            <p>
+                <b>Path: </b><code>/v1/stages/search</code>
+                <br />
+                <b>HTTP Method: </b>POST
+                <br />
+                <b>Response Type: </b>Array of <a href="#stage-search-response">StageSearchResponse</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 429, 500
+                <br />
+                <b>Restrictions: </b>This method will only return stages belonging to public adventures and is available as a premium member feature. Basic members will return a 403 Forbidden response.
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>StageSearchModel</code></td>
+                        <td>body</td>
+                        <td><a href="#stage-search-model">StageSearchModel</a></td>
+                        <td>true</td>
+                        <td>Stage search request model.</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </section>
     <section id="objects">
@@ -9268,14 +9310,13 @@ else
             </div>
             <div class="row">
                 <h3>Example</h3>
-                <pre><code>
-    {
+                <pre><code>{
     "id": "6930bdb4-10b7-4210-9e09-f96f26e8842b",
     "keyImageUrl" : "https://img.geocaching.com/12345.jpg",
     "title": "Test adventure",
     "location": {
-    "latitude": 47.6062166666667,
-    "longitude": -122.332066666667
+        "latitude": 47.6062166666667,
+        "longitude": -122.332066666667
     },
     "ratingsAverage": 5.0,
     "ratingsTotalCount": 10,
@@ -9283,11 +9324,11 @@ else
     "dynamicLink": "https://adventurelab.page.link/testlink",
     "isOwned": false,
     "isCompleted": false
-    }
+}
 </code></pre>
             </div>
             <div id="adventure-stages" class="container col-md-12">
-                <h3><strong>AdventureStages</strong></h3>
+                <h3><strong>Adventure Stages</strong></h3>
                 <div class="row">
                     <table class="table table-striped table-hover table-responsive">
                         <caption>Fields</caption>
@@ -9340,7 +9381,7 @@ else
 
             </div>
             <div id="adventure-start" class="container col-md-12">
-                <h3><strong>AdventureStart</strong></h3>
+                <h3><strong>Adventure Start</strong></h3>
                 <div class="row">
                     <table class="table table-striped table-hover table-responsive">
                         <caption>Fields</caption>
@@ -9387,27 +9428,167 @@ else
                 </div>
                 <div class="row">
                     <h3>Example</h3>
-                    <pre><code>
-    {
+                    <pre><code>{
     "id": "12345678-9123-4567-8912-3456789123456",
     "title": "Curry Plaza",
     "location": {
-    "latitude": 47.6489666666667,
-    "longitude": -122.348116666667
+        "latitude": 47.6489666666667,
+        "longitude": -122.348116666667
     },
     "ratingsAverage": 2,
     "ratingsTotalCount": 1,
     "stagesTotalCount": 2
-    }
+}
+</code></pre>
+                </div>
+            </div>
+            <div id="stage-search-model" class="container col-md-12">
+                <h3><strong>Stage Search Model</strong></h3>
+                <div class="row">
+                    <table class="table table-striped table-hover table-responsive">
+                        <caption>Fields</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Take</td>
+                                <td>int</td>
+                                <td>Number of hits to take, return.</td>
+                            </tr>
+                            <tr>
+                                <td>RadiusInMeters</td>
+                                <td>double?</td>
+                                <td>Search radius in meters.</td>
+                            </tr>
+                            <tr>
+                                <td>Origin</td>
+                                <td>GeoLocation</td>
+                                <td>The origin location to search.</td>
+                            </tr>
+                            <tr>
+                                <td>ExcludedAdventures</td>
+                                <td>string[]</td>
+                                <td>A list of adventure guids to exclude child stages from the results.</td>
+                            </tr>
+                            <tr>
+                                <td>ExcludeOwned</td>
+                                <td>boolean</td>
+                                <td><c>true</c> to exclude results that are owned by the requesting user; otherwise, <c>false</c>.</td>
+                            </tr>
+                            <tr>
+                                <td>ExcludeCompleted</td>
+                                <td>boolean</td>
+                                <td><c>true</c> to exclude results that are completed by the requesting user; otherwise, <c>false</c>.</td>
+                            </tr>
+                            <tr>
+                                <td>ExcludeUnplayable</td>
+                                <td>boolean</td>
+                                <td><c>true</c> to exclude sequential stages that are unplayable by the requesting user; otherwise, <c>false</c>.</td>
+                            </tr>
+                            <tr>
+                                <td>AdventureTypes</td>
+                                <td>string[]</td>
+                                <td>A list of adventure types to filter by when searching. If null, all adventure types will be returned.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <h3>Example</h3>
+                    <pre><code>{
+    "take": 10,
+    "radiusInMeters": 20,
+    "origin": {
+        "latitude": 45.1234,
+        "longitude": 122.6789
+    },
+    "excludedAdventures": [ "12345678-ABCD-1234-EFGH-123456HIJKLM" ],
+    "excludeOwned": false,
+    "excludeCompleted": false,
+    "excludeUnPlayable": false,
+    "adventureTypes": [ "sequential" ]
+}
 </code></pre>
                 </div>
 
             </div>
         </div>
-        <div id="type" class="container col-md-12">
-            <h3><strong>Type</strong></h3>
+            <div id="stage-search-response" class="container col-md-12">
+                <h3><strong>Stage Search Response</strong></h3>
+                <div class="row">
+                    <table class="table table-striped table-hover table-responsive">
+                        <caption>Fields</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>StageGuid</td>
+                                <td>guid</td>
+                                <td>The guid of the stage.</td>
+                            </tr>
+                            <tr>
+                                <td>Location</td>
+                                <td>GeoLocation</td>
+                                <td>The location of the stage.</td>
+                            </tr>
+                            <tr>
+                                <td>Title</td>
+                                <td>string</td>
+                                <td>The title of the stage.</td>
+                            </tr>
+                            <tr>
+                                <td>KeyImageUrl</td>
+                                <td>string</td>
+                                <td>The Url to the stage's key image.</td>
+                            </tr>
+                            <tr>
+                                <td>IsComplete</td>
+                                <td>boolean</td>
+                                <td>Whether the calling user has completed the stage or not.</td>
+                            </tr>
+                            <tr>
+                                <td>Adventure</td>
+                                <td><a href="#stage-adventure">StageAdventure</a></td>
+                                <td>StageAdventure</td>
+                                <td>The adventure the stage belongs to.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <h3>Example</h3>
+                    <pre><code>{
+    "stageGuid": "12345678-ABCD-1234-EFGH-123456HIJKLM",
+    "location": {
+        "latitude": 45.1234,
+        "longitude": 122.6789
+        }
+    },
+    "title": "Dropped Off",
+    "keyImageUrl": "https://gsmediadata.blob.core.windows.net/mediacontainer/73847284-shif-4dfc-7dh3-193hd74kamn2",
+    "isComplete": false,
+    "adventure": {
+        "id": "12345678-ABCD-1234-EFGH-123456HIJKLM",
+        "adventureType": "sequential"
+    }
+}</code></pre>
+                </div>
+
+            </div>
+        <div id="stage-adventure" class="container col-md-12">
+            <h3><strong>Stage Adventure</strong></h3>
             <div class="row">
-                <table class="table table-striped table-hover table-responsive inherit-width">
+                <table class="table table-striped table-hover table-responsive">
                     <caption>Fields</caption>
                     <thead>
                         <tr>
@@ -9418,19 +9599,14 @@ else
                     </thead>
                     <tbody>
                         <tr>
-                            <td>id</td>
-                            <td>integer</td>
-                            <td>Identifier of the type</td>
+                            <td>Id</td>
+                            <td>guid</td>
+                            <td>The Guid identifier of the stage's adventure.</td>
                         </tr>
                         <tr>
-                            <td>name</td>
+                            <td>AdventureType</td>
                             <td>string</td>
-                            <td>The name of the type</td>
-                        </tr>
-                        <tr>
-                            <td>imageUrl</td>
-                            <td>string</td>
-                            <td>Link to the image of the type</td>
+                            <td>Adventure type (Sequential/Nonsequential)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -9438,772 +9614,817 @@ else
             <div class="row">
                 <h3>Example</h3>
                 <pre><code>{
+    "id": "12345678-ABCD-1234-EFGH-123456HIJKLM",
+    "adventureType": "sequential"
+}</code></pre>
+            </div>
+</div>
+<div id="type" class="container col-md-12">
+    <h3><strong>Type</strong></h3>
+    <div class="row">
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <caption>Fields</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>integer</td>
+                    <td>Identifier of the type</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>string</td>
+                    <td>The name of the type</td>
+                </tr>
+                <tr>
+                    <td>imageUrl</td>
+                    <td>string</td>
+                    <td>Link to the image of the type</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h3>Example</h3>
+        <pre><code>{
     "id": "2",
     "name": "Found It",
     "imageUrl": "https://www.geocaching.com/images/logtypes/2.png"
 }</code></pre>
-            </div>
-        </div>
+    </div>
+</div>
     </section>
-    <section id="reference-data">
-        <h2>Reference Data</h2>
-        <div id="geocache-types">
-            <h3>Geocache Types</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>Traditional</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Multi-Cache</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Virtual</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Letterbox Hybrid</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Event</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Mystery/Unknown</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Project A.P.E.</td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td>Webcam</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>Locationless (Reverse) Cache</td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td>Cache In Trash Out Event</td>
-                    </tr>
-                    <tr>
-                        <td>137</td>
-                        <td>Earthcache</td>
-                    </tr>
-                    <tr>
-                        <td>453</td>
-                        <td>Mega-Event</td>
-                    </tr>
-                    <tr>
-                        <td>1304</td>
-                        <td>GPS Adventures Exhibit</td>
-                    </tr>
-                    <tr>
-                        <td>1858</td>
-                        <td>Wherigo</td>
-                    </tr>
-                    <tr>
-                        <td>3653</td>
-                        <td>Community Celebration Event</td>
-                    </tr>
-                    <tr>
-                        <td>3773</td>
-                        <td>Geocaching HQ</td>
-                    </tr>
-                    <tr>
-                        <td>3774</td>
-                        <td>Geocaching HQ Celebration</td>
-                    </tr>
-                    <tr>
-                        <td>4738</td>
-                        <td>Geocaching HQ Block Party</td>
-                    </tr>
-                    <tr>
-                        <td>7005</td>
-                        <td>Giga-Event</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="geocache-states">
-            <h3>Geocache Statuses</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Unpublished</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Active</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Disabled</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Locked</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Archived</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="geocache-sizes">
-            <h3>Geocache Sizes</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Unknown</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Micro</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Small</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Regular</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Large</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Virtual</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Other</td>
-                    </tr>
+<section id="reference-data">
+    <h2>Reference Data</h2>
+    <div id="geocache-types">
+        <h3>Geocache Types</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>Traditional</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Multi-Cache</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Virtual</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Letterbox Hybrid</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Event</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Mystery/Unknown</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Project A.P.E.</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Webcam</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Locationless (Reverse) Cache</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Cache In Trash Out Event</td>
+                </tr>
+                <tr>
+                    <td>137</td>
+                    <td>Earthcache</td>
+                </tr>
+                <tr>
+                    <td>453</td>
+                    <td>Mega-Event</td>
+                </tr>
+                <tr>
+                    <td>1304</td>
+                    <td>GPS Adventures Exhibit</td>
+                </tr>
+                <tr>
+                    <td>1858</td>
+                    <td>Wherigo</td>
+                </tr>
+                <tr>
+                    <td>3653</td>
+                    <td>Community Celebration Event</td>
+                </tr>
+                <tr>
+                    <td>3773</td>
+                    <td>Geocaching HQ</td>
+                </tr>
+                <tr>
+                    <td>3774</td>
+                    <td>Geocaching HQ Celebration</td>
+                </tr>
+                <tr>
+                    <td>4738</td>
+                    <td>Geocaching HQ Block Party</td>
+                </tr>
+                <tr>
+                    <td>7005</td>
+                    <td>Giga-Event</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="geocache-states">
+        <h3>Geocache Statuses</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Unpublished</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Disabled</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Locked</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Archived</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="geocache-sizes">
+        <h3>Geocache Sizes</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Unknown</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Micro</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Small</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Regular</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Large</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Virtual</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Other</td>
+                </tr>
 
-                </tbody>
-            </table>
-        </div>
-        <div id="geocache-log-types">
-            <h3>Geocache Log Types</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>Found It</td>
-                        <td>found the geocache</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Didn't find it</td>
-                        <td>Did not find (DNF) the geocache</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Write note</td>
-                        <td>Adding a comment to the geocache</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Archive</td>
-                        <td>changing the status of the geocache to archived</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Permanently Archived</td>
-                        <td>changing the status of the geocache to archived (deprecated)</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Needs Archived</td>
-                        <td>flagging the geocache as needing to be archived</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Will Attend</td>
-                        <td>RSVPing for an event</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Attended</td>
-                        <td>Attended an event (counts as a find)</td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td>Webcam Photo Taken</td>
-                        <td>Successfully captured a webcam geocache (counts as a find)</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>Unarchive</td>
-                        <td>changing the status of the geocache from archived to active (reviewer only)</td>
-                    </tr>
-                    <tr>
-                        <td>18</td>
-                        <td>Post Reviewer Note (deprecated)</td>
-                        <td>adding a reviewer comment to the geocache</td>
-                    </tr>
-                    <tr>
-                        <td>22</td>
-                        <td>Temporarily Disable Listing</td>
-                        <td>changing the status of the geocache to disabled</td>
-                    </tr>
-                    <tr>
-                        <td>23</td>
-                        <td>Enable Listing</td>
-                        <td>changing the status of the geocache from disabled to active (reviewer only)</td>
-                    </tr>
-                    <tr>
-                        <td>24</td>
-                        <td>Publish Listing</td>
-                        <td>changing the status of the geocache from unpublished to active (reviewer only)</td>
-                    </tr>
-                    <tr>
-                        <td>25</td>
-                        <td>Retract Listing</td>
-                        <td>retracting the geocache (admin only)</td>
-                    </tr>
-                    <tr>
-                        <td>45</td>
-                        <td>Needs Maintenance</td>
-                        <td>flagging a geocache owner that the geocache needs some attention</td>
-                    </tr>
-                    <tr>
-                        <td>46</td>
-                        <td>Owner Maintenance</td>
-                        <td>announcing that owner maintenance was done</td>
-                    </tr>
-                    <tr>
-                        <td>47</td>
-                        <td>Update Coordinates</td>
-                        <td>updating the coordinates of the geocache</td>
-                    </tr>
-                    <tr>
-                        <td>68</td>
-                        <td>Post Reviewer Note</td>
-                        <td>a note left by the reviewer (reviewer only)</td>
-                    </tr>
-                    <tr>
-                        <td>74</td>
-                        <td>Announcement</td>
-                        <td>event host announcement to attendees</td>
-                    </tr>
-                    <tr>
-                        <td>76</td>
-                        <td>Submit for Review</td>
-                        <td>submitting a geocache to be published</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="trackable-log-types">
-            <h3>Trackable Log Types</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>4</td>
-                        <td>Write Note</td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td>Retrieve It from a Cache</td>
-                    </tr>
-                    <tr>
-                        <td>14</td>
-                        <td>Dropped Off</td>
-                    </tr>
-                    <tr>
-                        <td>15</td>
-                        <td>Transfer</td>
-                    </tr>
-                    <tr>
-                        <td>16</td>
-                        <td>Mark Missing</td>
-                    </tr>
-                    <tr>
-                        <td>19</td>
-                        <td>Grab It (Not from a Cache)</td>
-                    </tr>
-                    <tr>
-                        <td>48</td>
-                        <td>Discovered It</td>
-                    </tr>
-                    <tr>
-                        <td>69</td>
-                        <td>Move To Collection</td>
-                    </tr>
-                    <tr>
-                        <td>70</td>
-                        <td>Move To Inventory</td>
-                    </tr>
-                    <tr>
-                        <td>75</td>
-                        <td>Visited</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="list-types">
-            <h3>List Types</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Pocket Query (pq)</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Bookmark (bm)</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Ignore (il)</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Watch (wl)</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Favorites (fl)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="membership-types">
-            <h3>Membership Types</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>Unknown</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Basic</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Charter</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Premium</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="additional-waypoint-types">
-            <h3>Additional Waypoint Types</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>217</td>
-                        <td>Parking Area</td>
-                    </tr>
-                    <tr>
-                        <td>218</td>
-                        <td>Virtual Stage</td>
-                    </tr>
-                    <tr>
-                        <td>219</td>
-                        <td>Physical Stage</td>
-                    </tr>
-                    <tr>
-                        <td>220</td>
-                        <td>Final Location</td>
-                    </tr>
-                    <tr>
-                        <td>221</td>
-                        <td>Trailhead</td>
-                    </tr>
-                    <tr>
-                        <td>452</td>
-                        <td>Reference Point</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="additional-waypoint-visibility-types">
-            <h3>Additional Waypoint Visibility Types</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>Visible</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Hide Coordinates</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Hidden</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="geocache-log-upvote-types">
-            <h3>Geocache Log Upvote Types</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>GreatStory</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Helpful</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="geocache-log-sorts">
-            <h3>Geocache Log Sorts</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>newest</td>
-                        <td>Descending sort on logs by creation</td>
-                    </tr>
-                    <tr>
-                        <td>greatstory</td>
-                        <td>Descending sort on logs by log upvote counts of log upvote type id 1</td>
-                    </tr>
-                    <tr>
-                        <td>helpful</td>
-                        <td>Descending sort on logs by log upvote counts of log upvote type id 2</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="user-privacy-settings">
-            <h3>User Privacy Settings</h3>
-            <table class="table table-striped table-hover table-responsive inherit-width">
-                <thead>
-                    <tr>
-                        <th>Setting Name</th>
-                        <th>Possible Values</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ShowJoinDate</td>
-                        <td>int (1 = private, 2 = friends, 3 = public)</td>
-                    </tr>
-                    <tr>
-                        <td>ShowLastVisitedDate</td>
-                        <td>int (1 = private, 2 = friends, 3 = public)</td>
-                    </tr>
-                    <tr>
-                        <td>ShowHomeLocation</td>
-                        <td>int (1 = private, 2 = friends, 3 = public)</td>
-                    </tr>
-                    <tr>
-                        <td>ShowAboutInfo</td>
-                        <td>int (1 = private, 2 = friends, 3 = public)</td>
-                    </tr>
-                    <tr>
-                        <td>ShowGeocachesFound</td>
-                        <td>int (1 = private, 2 = friends, 3 = public)</td>
-                    </tr>
-                    <tr>
-                        <td>ShowTrackables</td>
-                        <td>int (1 = private, 2 = friends, 3 = public)</td>
-                    </tr>
-                    <tr>
-                        <td>ShowSouvenirs</td>
-                        <td>int (1 = private, 2 = friends, 3 = public)</td>
-                    </tr>
-                    <tr>
-                        <td>ShowGallery</td>
-                        <td>int (1 = private, 2 = friends, 3 = public)</td>
-                    </tr>
-                    <tr>
-                        <td>ShowStatistics</td>
-                        <td>int (1 = private, 2 = friends, 3 = public)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-    <section id="change-log">
-        <h2>Change Log</h2>
-        <h3>11.06.2023</h3>
-        <ul>
-            <li>New Adventure Start Location Endpoint</li>
-            <li>Adventure model now includes adventure type (sequential/nonsequential)</li>
-            <li>Added a new logtypes filter to GET /v1/geocaches/{referenceCode}/geocachelogs endpoint</li>
-            <li>Removed obsolete beta routes</li>
-        </ul>
-        
-        <h3>03.07.2022</h3>
-        <ul>
-            <li>Update to username processing: usernames with punctuation/symbols can now be processed properly in filter statements using Url encoding in requests.</li>
-        </ul>
-        <h3>02.02.2022</h3>
-        <ul>
-            <li>Update to GET /v1/users/{referenceCode}/souvenirs : a 403 Forbidden may be returned if call violates user privacy settings.</li>
-            <li>Update to GET /v1/users/{referenceCode}/images : a 403 Forbidden may be returned if call violates user privacy settings.</li>
-            <li>Wherever a User object is being returned, ProfileText may return null if call violates user privacy settings.</li>
-            <li>A new method for retrieving a user's privacy settings.</li>
-            <li>A new method for retrieving adventure stage data is available.</li>
-        </ul>
-        <h3>11.01.2022</h3>
-        <ul>
-            <li>Adventures will now return completion status based on the calling user.</li>
-            <li>Adventures search added the ability to filter by owned and/or completed adventures.</li>
-            <li>Geocache object will now return the total image count.</li>
-        </ul>
-        <h3>05.24.2021</h3>
-        <ul>
-            <li>A new method for searching adventures data is available.</li>
-            <li>GeocacheLog object has two new fields, upvoteData and geocacheType.</li>
-            <li>A new method for fetching the upvote data of geocache logs.</li>
-            <li>*Deprecated methods*: all beta methods related to log upvotes will be deprecated on August 23rd, 2021.</li>
-            <li>Get Geocache Logs By Geocache method has a new parameter for sort. Logs can now be sorted based on log upvote data as well as most recent.</li>
-            <li>User object has two new fields, trackableFindCount and trackableOwnedCount. These fields are more lightweight to query vs the counts by trackable types.</li>
-            <li>Geocache object has new field isLocked, which will give locked status outside of the status field.</li>
-            <li>ListGeocache object has new field listItemDescription.</li>
-            <li>A new method for fetching the calling user's trackable logs has been added.</li>
-        </ul>
-        <h3>10.15.2020</h3>
-        <ul>
-            <li>Bulk trackable logs method is limited to 50 logs created during one call.</li>
-        </ul>
-        <h3>09.28.2020</h3>
-        <ul>
-            <li>Image object has a new field ownerCode that returns the reference code of the image's owner.</li>
-            <li>Added method to return possible geocache sizes.</li>
-            <li>Added method to return possible geocache statuses.</li>
-            <li>Trackable object has a new field originLocation that returns countryId, countryCode, country (string name), stateId, and state (string name).</li>
-            <li>Trackable object has a new field lastDiscoveredDate that returns the last date the calling user has discovered the trackable or null if it has not been discovered.</li>
-            <li>A new method has been added to return trackable journeys, which contains minimal data around the travel history of a trackable with a higher take limit of 1000.</li>
-            <li>HiddenBy and inclusive FoundBy search filters now support up to five usernames as a comma delimited string (exclusive FoundBy search filter already supported up to five usernames).</li>
-            <li>Added a new search filter to query on placedDate.</li>
-            <li>Added a new search filter to inclusively query on attributes.</li>
-            <li>An optional querystring parameter has been added to the Authorize endpoint, signup, that will send logged out users during the OAuth2 flow directly to the Signup page instead of the Login page.</li>
-            <li>The throttle for Get Opted-Out Users in staging has been increased to 30 calls/24 hours for testing use.</li>
-            <li>Attributes are now returning the updated png images.</li>
-            <li><b>Breaking change</b>: Geocache personal note methods and data are enforcing a premium member restriction to match website functionality. Requesting the note field on Geocache.UserData will return null for basic members. Upserting and deleting methods will throw a 403 Forbidden response.</li>
-            <li><b>Breaking change</b>: Geocache logs being updated/created with updatedCoordinates will be ignored unless the log type is Update Coordinates (id 47) to match functionality on the website.</li>
-        </ul>
-        <h3>06.22.2020</h3>
-        <ul>
-            <li>Get friend's geocache logs method has a new parameter logTypes to filter results.</li>
-            <li>Geocache object has a new field PremiumFavoriteScore that returns the percentage shown in the favorites widget on a geocache's page.</li>
-            <li>AdditionalWaypoint object has a new field VisibilityFilterTypeId.</li>
-            <li>UserData object has two new fields, Ignored and Watched. These correspond to if the geocache exists on the ignore and watch list of the calling user.</li>
-            <li>Trackable discovery limit: A user limit of 500 trackable discoveries per 24 hour period, per API key is now being enforced (500 discovered logs per user/license combination)</li>
-            <li>Method has been added to request the users that have opted-out of sharing data with third party applications after a specified DateTime in UTC (this method is meant to be more of a backend support so only one call is allowed per application per 24 hours).</li>
-            <li>The codes filter limit has been increased from 50 to 100 on the Search Geocaches method.</li>
-            <li>User object has a new field AwardedFavoritePoints. This is the total number of favorite points on the user's owned geocaches.</li>
-            <li>Trackable object field ImageCount has been updated to return the gallery image total (trackable images count plus trackable log images count), instead of the trackable image count</li>
-        </ul>
-        <h3>04.06.2020</h3>
-        <ul>
-            <li>HasSolutionChecker field has been added to the Geocache and LiteGeocache object.</li>
-            <li>Added method to verify final coordinates on mystery geocaches.</li>
-            <li>Added method to fetch geocache logs of friends for a specified geocache.</li>
-            <li>Updated Get user's geocache logs method to be able to optionally filter on a geocache code.</li>
-            <li>SouvenirCount field has been added to the User object.</li>
-            <li>Added method to bulk create trackable logs for a specified geocache.</li>
-        </ul>
-        <h3>01.02.2020</h3>
-        <ul>
-            <li>Opted out section has been updated to allow for greater user control over how their data is shared. Methods affected also have additional restriction notes.</li>
-        </ul>
-        <h3>09.02.2019</h3>
-        <ul>
-            <li>User's lists are considered part of their public profile that users can block from being exposed over the API. If a user tries to fetch a list from that is blocked, the API will return a 403 HTTP status code.</li>
-        </ul>
-        <h3>08.05.2019</h3>
-        <ul>
-            <li>Added method to return GeoTours</li>
-            <li>Added method to return a single GeoTour</li>
-            <li>Added method to return geocaches on a GeoTour</li>
-            <li>Added GeoTour as an expand option for geocaches</li>
-            <li>MilesTraveled and kilometersTraveled have been added to the Trackable object</li>
-            <li>ImageUrl on Trackable.trackableType has been fixed to return full url</li>
-            <li>IsFriend has been added to the User object</li>
-            <li>OptedInFriendSharing has been added to the User object (ties to the setting that says: Allow Authorized Developer applications to share your geocaching activity with your Geocaching.com friends. You will only be able to see your friends' activity in Authorized Developer Applications if your friends have also agreed to allow sharing)</li>
-        </ul>
-        <h3>06.24.2019</h3>
-        <ul>
-            <li>Added method to return users that have favorited a geocache</li>
-            <li>Souvenir objects have a new field id</li>
-            <li>LogDraft objects have a new field loggedDate (local to the timezone of the geocache)</li>
-            <li>User objects have a new field joinedDateUtc</li>
-            <li>Geocache Log Types have been updated to have the descriptions match the website (ids remain unchanged)</li>
-            <li>Geocache Types 3653, 3774, and 4738 have names that have been updated (ids remain unchanged)</li>
-        </ul>
-        <h3>04.15.2019</h3>
-        <ul>
-            <li>Geocache daily limit per user is now tracked by unique geocache codes (e.g. the same call to GetGeocache on GCK25B will count as one)</li>
-            <li>Images return on Get Geocache Images will now include geocache log images (matching the website's gallery)</li>
-            <li>BackgroundImageUrl field has been added to the geocache object.</li>
-            <li>LargeUrl field has been added to the image object.</li>
-            <li>The string for geocache size has been changed from Medium to Regular (the id remains 3).</li>
-        </ul>
-        <h3>03.11.2019</h3>
-        <ul>
-            <li>OAuth library has been updated and now supports PKCE.</li>
-            <li>User calls per minute limit has been changed. It's now tracked per method call by each user and the limit has been increased from 30 to 60 calls per minute.</li>
-            <li>Requests that only include the reference code in the fields do not count against the daily geocache limit.</li>
-            <li>Get Trackables endpoint has been modified to accept a querystring param for referenceCodes to allow for a bulk fetch of trackables.</li>
-            <li>Get Trackables endpoint has been modified to accept a querystring param for referenceCodes to allow for a bulk fetch of trackables.</li>
-            <li>Simplified fetching ignore list, favorites, and watch list or list details. Requests can now use "ignore", "favorites", or "watch" in place of the ignore list reference code, favorites list reference code, or watch list reference code in the url. This includes Get List, Get List Geocaches, Add Geocaches to list, and removing geocaches from list.</li>
-            <li>Geocaches returned from lists now include a field "ListItemName" which refers to the user generated alias name or null if the user did not use one.</li>
-            <li>User object has several new fields, including geocacheFindCounts, geocacheHideCounts, trackableFindCounts, trackableOwnedCounts</li>
-            <li>EventEndDate has been added to geocache object</li>
-            <li>Find count field has been added to the geocache object</li>
-            <li>New search filter codes has been added to the search method</li>
-        </ul>
-        <h3>11.26.2018</h3>
-        <ul>
-            <li>New search filters isActive and favoritedBy has been added to the search method.</li>
-            <li>The distance sort in search method can now be given coordinates outside of the location filter.</li>
-            <li>The FriendRequest object now includes requestDateUtc field.</li>
-            <li>A new method has been added to delete trackable log images.</li>
-            <li>The AttributeType object now includes notChosenIconUrl field.</li>
-            <li>The Image object now includes thumbnailUrl field.</li>
-            <li>The GeocacheLog object now includes geocacheName and ianaTimezoneId fields.</li>
-            <li>The Trackable object now includes holder and currentGeocacheName fields.</li>
-            <li>The TrackableLog object now includes geocacheName field.</li>
-            <li>The LogDraft object now includes geocacheName field.</li>
-            <li>New methods have been added to upsert and delete corrected coordinates.</li>
-            <li>Opted-out users now return username as well as the referenceCode.</li>
-        </ul>
-        <h3>10.08.2018</h3>
-        <ul>
-            <li>New methods have been added to get valid countries, states, and states by country id.</li>
-            <li>A new method has been added to get all valid attributes.</li>
-            <li>The field imageUrl has been added to attributes.</li>
-            <li>New methods have been added to get all valid types for geocaches, geocache logs, and trackable logs.</li>
-            <li>A new method has been added to get all valid membership levels.</li>
-            <li>Owner field has been added to both trackable and trackable log objects.</li>
-            <li>Expand has been added to all trackable and trackable log methods. See the method for details on what can be expanded.</li>
-            <li>A new syntax for fields has been added to send nested fields on complex objects.</li>
-            <li>Fields can be specified for expanded objects.</li>
-        </ul>
-        <h3>08.27.2018</h3>
-        <ul>
-            <li>An owner field has been added to the geocache and the geocache log object.</li>
-            <li>Url fields have been added to the geocache, geocache log, trackable, trackable log, list, souvenir, and user objects. This field will provide a link to the relevant website page.</li>
-            <li>Get Trackable's Logs can now be filtered by log type to help replace the old API's GetTrackableTravelList method functionality.</li>
-            <li>Location object now includes countryId and stateId</li>
-            <li>Search method now allows for terrain and difficulty to be filtered explicitly through a comma delimited list as well as a range (e.g. terr:1,3.5,5 vs terr:1-4)</li>
-            <li>Search method has a new filter for publishedDate</li>
-            <li>Search method has a new filter for is published</li>
-            <li>Search method filters hasNote and hasCorrectedCoordinates filters no longer require a username since they are only allowed for the calling user (q=hn instead of q=hn:username)</li>
-            <li>Get Zipped Pocket Query method has been added</li>
-            <li>Upsert Geocache Note returns an object instead of just a string</li>
-            <li>Get User's Geocache Logs method has new optional query string parameters for filtering the data set by dates</li>
-            <li>Geocache, geocache log, trackable and trackable log objects have new fields for types as a complex object instead of an enum. The old field will remain available to not make this a breaking change, but it is recommended to start using the new type fields (includes id, name, and image url)</li>
-            <li>Geocache type names have been changed to match the old API (except for types that have "Groundspeak" in the name, those have been changed to "Geocaching")</li>
-        </ul>
-        <h3>07.23.2018</h3>
-        <ul>
-            <li>Geocache object has new field for url to geocaching.com</li>
-            <li>Search Geocaches method now searchs location queries on corrected coordinates if exists otherwise falls back to posted coordinates</li>
-            <li>Get User Images now returns gallery images as the old API did</li>
-            <li>Souvenir object has new field guid to include an unique identifier</li>
-            <li>Tracking number is no longer required for creating "Write Note" trackable logs</li>
-            <li>Get Users' Geocache Logs method no longer restricts on what type can be returned from another user</li>
-            <li>A new method has been added to return all valid geocoin types</li>
-            <li>All geocache log methods can now use the expand parameter to include images. See method details for more expand info</li>
-        </ul>
-        <h3>06.18.2018</h3>
-        <ul>
-            <li>Get User Geocache Logs results can be filtered by log type and can include archived logs for the calling user</li>
-            <li>ProfileText has been added to the user object</li>
-            <li>Get Users method now accepts usernames or referenceCodes (not both)</li>
-            <li>FriendRequest object now contains more user information</li>
-            <li>Search method now returns unpublished geocaches if the calling user is the owner of the geocache</li>
-            <li>Expand limit has been increased from 10 to 30</li>
-            <li>Bug fixed for x-total-count header on Get Geocache Logs method</li>
-        </ul>
-        <h3>06.06.2018</h3>
-        <ul>
-            <li>Limits increased per IP address to 6000 calls per minute</li>
-        </ul>
-    </section>
+            </tbody>
+        </table>
+    </div>
+    <div id="geocache-log-types">
+        <h3>Geocache Log Types</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>Found It</td>
+                    <td>found the geocache</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Didn't find it</td>
+                    <td>Did not find (DNF) the geocache</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Write note</td>
+                    <td>Adding a comment to the geocache</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Archive</td>
+                    <td>changing the status of the geocache to archived</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Permanently Archived</td>
+                    <td>changing the status of the geocache to archived (deprecated)</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Needs Archived</td>
+                    <td>flagging the geocache as needing to be archived</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Will Attend</td>
+                    <td>RSVPing for an event</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Attended</td>
+                    <td>Attended an event (counts as a find)</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Webcam Photo Taken</td>
+                    <td>Successfully captured a webcam geocache (counts as a find)</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Unarchive</td>
+                    <td>changing the status of the geocache from archived to active (reviewer only)</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Post Reviewer Note (deprecated)</td>
+                    <td>adding a reviewer comment to the geocache</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>Temporarily Disable Listing</td>
+                    <td>changing the status of the geocache to disabled</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>Enable Listing</td>
+                    <td>changing the status of the geocache from disabled to active (reviewer only)</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td>Publish Listing</td>
+                    <td>changing the status of the geocache from unpublished to active (reviewer only)</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>Retract Listing</td>
+                    <td>retracting the geocache (admin only)</td>
+                </tr>
+                <tr>
+                    <td>45</td>
+                    <td>Needs Maintenance</td>
+                    <td>flagging a geocache owner that the geocache needs some attention</td>
+                </tr>
+                <tr>
+                    <td>46</td>
+                    <td>Owner Maintenance</td>
+                    <td>announcing that owner maintenance was done</td>
+                </tr>
+                <tr>
+                    <td>47</td>
+                    <td>Update Coordinates</td>
+                    <td>updating the coordinates of the geocache</td>
+                </tr>
+                <tr>
+                    <td>68</td>
+                    <td>Post Reviewer Note</td>
+                    <td>a note left by the reviewer (reviewer only)</td>
+                </tr>
+                <tr>
+                    <td>74</td>
+                    <td>Announcement</td>
+                    <td>event host announcement to attendees</td>
+                </tr>
+                <tr>
+                    <td>76</td>
+                    <td>Submit for Review</td>
+                    <td>submitting a geocache to be published</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="trackable-log-types">
+        <h3>Trackable Log Types</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4</td>
+                    <td>Write Note</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Retrieve It from a Cache</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Dropped Off</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Transfer</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Mark Missing</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Grab It (Not from a Cache)</td>
+                </tr>
+                <tr>
+                    <td>48</td>
+                    <td>Discovered It</td>
+                </tr>
+                <tr>
+                    <td>69</td>
+                    <td>Move To Collection</td>
+                </tr>
+                <tr>
+                    <td>70</td>
+                    <td>Move To Inventory</td>
+                </tr>
+                <tr>
+                    <td>75</td>
+                    <td>Visited</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="list-types">
+        <h3>List Types</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Pocket Query (pq)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Bookmark (bm)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Ignore (il)</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Watch (wl)</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Favorites (fl)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="membership-types">
+        <h3>Membership Types</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Unknown</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Basic</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Charter</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Premium</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="additional-waypoint-types">
+        <h3>Additional Waypoint Types</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>217</td>
+                    <td>Parking Area</td>
+                </tr>
+                <tr>
+                    <td>218</td>
+                    <td>Virtual Stage</td>
+                </tr>
+                <tr>
+                    <td>219</td>
+                    <td>Physical Stage</td>
+                </tr>
+                <tr>
+                    <td>220</td>
+                    <td>Final Location</td>
+                </tr>
+                <tr>
+                    <td>221</td>
+                    <td>Trailhead</td>
+                </tr>
+                <tr>
+                    <td>452</td>
+                    <td>Reference Point</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="additional-waypoint-visibility-types">
+        <h3>Additional Waypoint Visibility Types</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Visible</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Hide Coordinates</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Hidden</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="geocache-log-upvote-types">
+        <h3>Geocache Log Upvote Types</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>GreatStory</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Helpful</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="geocache-log-sorts">
+        <h3>Geocache Log Sorts</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>newest</td>
+                    <td>Descending sort on logs by creation</td>
+                </tr>
+                <tr>
+                    <td>greatstory</td>
+                    <td>Descending sort on logs by log upvote counts of log upvote type id 1</td>
+                </tr>
+                <tr>
+                    <td>helpful</td>
+                    <td>Descending sort on logs by log upvote counts of log upvote type id 2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="user-privacy-settings">
+        <h3>User Privacy Settings</h3>
+        <table class="table table-striped table-hover table-responsive inherit-width">
+            <thead>
+                <tr>
+                    <th>Setting Name</th>
+                    <th>Possible Values</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ShowJoinDate</td>
+                    <td>int (1 = private, 2 = friends, 3 = public)</td>
+                </tr>
+                <tr>
+                    <td>ShowLastVisitedDate</td>
+                    <td>int (1 = private, 2 = friends, 3 = public)</td>
+                </tr>
+                <tr>
+                    <td>ShowHomeLocation</td>
+                    <td>int (1 = private, 2 = friends, 3 = public)</td>
+                </tr>
+                <tr>
+                    <td>ShowAboutInfo</td>
+                    <td>int (1 = private, 2 = friends, 3 = public)</td>
+                </tr>
+                <tr>
+                    <td>ShowGeocachesFound</td>
+                    <td>int (1 = private, 2 = friends, 3 = public)</td>
+                </tr>
+                <tr>
+                    <td>ShowTrackables</td>
+                    <td>int (1 = private, 2 = friends, 3 = public)</td>
+                </tr>
+                <tr>
+                    <td>ShowSouvenirs</td>
+                    <td>int (1 = private, 2 = friends, 3 = public)</td>
+                </tr>
+                <tr>
+                    <td>ShowGallery</td>
+                    <td>int (1 = private, 2 = friends, 3 = public)</td>
+                </tr>
+                <tr>
+                    <td>ShowStatistics</td>
+                    <td>int (1 = private, 2 = friends, 3 = public)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section id="change-log">
+    <h2>Change Log</h2>
+    <h3>04.01.2024</h3>
+    <ul>
+        <li>Removing ImageCount from GET Geocaches endpoint. This value was providing inaccurate values.</li>
+        <li>Added new Adventure Stage Search endpoint.</li>
+    </ul>
+
+    <h3>11.06.2023</h3>
+    <ul>
+        <li>New Adventure Start Location Endpoint</li>
+        <li>Adventure model now includes adventure type (sequential/nonsequential)</li>
+        <li>Added a new logtypes filter to GET /v1/geocaches/{referenceCode}/geocachelogs endpoint</li>
+        <li>Removed obsolete beta routes</li>
+    </ul>
+
+    <h3>03.07.2022</h3>
+    <ul>
+        <li>Update to username processing: usernames with punctuation/symbols can now be processed properly in filter statements using Url encoding in requests.</li>
+    </ul>
+    <h3>02.02.2022</h3>
+    <ul>
+        <li>Update to GET /v1/users/{referenceCode}/souvenirs : a 403 Forbidden may be returned if call violates user privacy settings.</li>
+        <li>Update to GET /v1/users/{referenceCode}/images : a 403 Forbidden may be returned if call violates user privacy settings.</li>
+        <li>Wherever a User object is being returned, ProfileText may return null if call violates user privacy settings.</li>
+        <li>A new method for retrieving a user's privacy settings.</li>
+        <li>A new method for retrieving adventure stage data is available.</li>
+    </ul>
+    <h3>11.01.2022</h3>
+    <ul>
+        <li>Adventures will now return completion status based on the calling user.</li>
+        <li>Adventures search added the ability to filter by owned and/or completed adventures.</li>
+        <li>Geocache object will now return the total image count.</li>
+    </ul>
+    <h3>05.24.2021</h3>
+    <ul>
+        <li>A new method for searching adventures data is available.</li>
+        <li>GeocacheLog object has two new fields, upvoteData and geocacheType.</li>
+        <li>A new method for fetching the upvote data of geocache logs.</li>
+        <li>*Deprecated methods*: all beta methods related to log upvotes will be deprecated on August 23rd, 2021.</li>
+        <li>Get Geocache Logs By Geocache method has a new parameter for sort. Logs can now be sorted based on log upvote data as well as most recent.</li>
+        <li>User object has two new fields, trackableFindCount and trackableOwnedCount. These fields are more lightweight to query vs the counts by trackable types.</li>
+        <li>Geocache object has new field isLocked, which will give locked status outside of the status field.</li>
+        <li>ListGeocache object has new field listItemDescription.</li>
+        <li>A new method for fetching the calling user's trackable logs has been added.</li>
+    </ul>
+    <h3>10.15.2020</h3>
+    <ul>
+        <li>Bulk trackable logs method is limited to 50 logs created during one call.</li>
+    </ul>
+    <h3>09.28.2020</h3>
+    <ul>
+        <li>Image object has a new field ownerCode that returns the reference code of the image's owner.</li>
+        <li>Added method to return possible geocache sizes.</li>
+        <li>Added method to return possible geocache statuses.</li>
+        <li>Trackable object has a new field originLocation that returns countryId, countryCode, country (string name), stateId, and state (string name).</li>
+        <li>Trackable object has a new field lastDiscoveredDate that returns the last date the calling user has discovered the trackable or null if it has not been discovered.</li>
+        <li>A new method has been added to return trackable journeys, which contains minimal data around the travel history of a trackable with a higher take limit of 1000.</li>
+        <li>HiddenBy and inclusive FoundBy search filters now support up to five usernames as a comma delimited string (exclusive FoundBy search filter already supported up to five usernames).</li>
+        <li>Added a new search filter to query on placedDate.</li>
+        <li>Added a new search filter to inclusively query on attributes.</li>
+        <li>An optional querystring parameter has been added to the Authorize endpoint, signup, that will send logged out users during the OAuth2 flow directly to the Signup page instead of the Login page.</li>
+        <li>The throttle for Get Opted-Out Users in staging has been increased to 30 calls/24 hours for testing use.</li>
+        <li>Attributes are now returning the updated png images.</li>
+        <li><b>Breaking change</b>: Geocache personal note methods and data are enforcing a premium member restriction to match website functionality. Requesting the note field on Geocache.UserData will return null for basic members. Upserting and deleting methods will throw a 403 Forbidden response.</li>
+        <li><b>Breaking change</b>: Geocache logs being updated/created with updatedCoordinates will be ignored unless the log type is Update Coordinates (id 47) to match functionality on the website.</li>
+    </ul>
+    <h3>06.22.2020</h3>
+    <ul>
+        <li>Get friend's geocache logs method has a new parameter logTypes to filter results.</li>
+        <li>Geocache object has a new field PremiumFavoriteScore that returns the percentage shown in the favorites widget on a geocache's page.</li>
+        <li>AdditionalWaypoint object has a new field VisibilityFilterTypeId.</li>
+        <li>UserData object has two new fields, Ignored and Watched. These correspond to if the geocache exists on the ignore and watch list of the calling user.</li>
+        <li>Trackable discovery limit: A user limit of 500 trackable discoveries per 24 hour period, per API key is now being enforced (500 discovered logs per user/license combination)</li>
+        <li>Method has been added to request the users that have opted-out of sharing data with third party applications after a specified DateTime in UTC (this method is meant to be more of a backend support so only one call is allowed per application per 24 hours).</li>
+        <li>The codes filter limit has been increased from 50 to 100 on the Search Geocaches method.</li>
+        <li>User object has a new field AwardedFavoritePoints. This is the total number of favorite points on the user's owned geocaches.</li>
+        <li>Trackable object field ImageCount has been updated to return the gallery image total (trackable images count plus trackable log images count), instead of the trackable image count</li>
+    </ul>
+    <h3>04.06.2020</h3>
+    <ul>
+        <li>HasSolutionChecker field has been added to the Geocache and LiteGeocache object.</li>
+        <li>Added method to verify final coordinates on mystery geocaches.</li>
+        <li>Added method to fetch geocache logs of friends for a specified geocache.</li>
+        <li>Updated Get user's geocache logs method to be able to optionally filter on a geocache code.</li>
+        <li>SouvenirCount field has been added to the User object.</li>
+        <li>Added method to bulk create trackable logs for a specified geocache.</li>
+    </ul>
+    <h3>01.02.2020</h3>
+    <ul>
+        <li>Opted out section has been updated to allow for greater user control over how their data is shared. Methods affected also have additional restriction notes.</li>
+    </ul>
+    <h3>09.02.2019</h3>
+    <ul>
+        <li>User's lists are considered part of their public profile that users can block from being exposed over the API. If a user tries to fetch a list from that is blocked, the API will return a 403 HTTP status code.</li>
+    </ul>
+    <h3>08.05.2019</h3>
+    <ul>
+        <li>Added method to return GeoTours</li>
+        <li>Added method to return a single GeoTour</li>
+        <li>Added method to return geocaches on a GeoTour</li>
+        <li>Added GeoTour as an expand option for geocaches</li>
+        <li>MilesTraveled and kilometersTraveled have been added to the Trackable object</li>
+        <li>ImageUrl on Trackable.trackableType has been fixed to return full url</li>
+        <li>IsFriend has been added to the User object</li>
+        <li>OptedInFriendSharing has been added to the User object (ties to the setting that says: Allow Authorized Developer applications to share your geocaching activity with your Geocaching.com friends. You will only be able to see your friends' activity in Authorized Developer Applications if your friends have also agreed to allow sharing)</li>
+    </ul>
+    <h3>06.24.2019</h3>
+    <ul>
+        <li>Added method to return users that have favorited a geocache</li>
+        <li>Souvenir objects have a new field id</li>
+        <li>LogDraft objects have a new field loggedDate (local to the timezone of the geocache)</li>
+        <li>User objects have a new field joinedDateUtc</li>
+        <li>Geocache Log Types have been updated to have the descriptions match the website (ids remain unchanged)</li>
+        <li>Geocache Types 3653, 3774, and 4738 have names that have been updated (ids remain unchanged)</li>
+    </ul>
+    <h3>04.15.2019</h3>
+    <ul>
+        <li>Geocache daily limit per user is now tracked by unique geocache codes (e.g. the same call to GetGeocache on GCK25B will count as one)</li>
+        <li>Images return on Get Geocache Images will now include geocache log images (matching the website's gallery)</li>
+        <li>BackgroundImageUrl field has been added to the geocache object.</li>
+        <li>LargeUrl field has been added to the image object.</li>
+        <li>The string for geocache size has been changed from Medium to Regular (the id remains 3).</li>
+    </ul>
+    <h3>03.11.2019</h3>
+    <ul>
+        <li>OAuth library has been updated and now supports PKCE.</li>
+        <li>User calls per minute limit has been changed. It's now tracked per method call by each user and the limit has been increased from 30 to 60 calls per minute.</li>
+        <li>Requests that only include the reference code in the fields do not count against the daily geocache limit.</li>
+        <li>Get Trackables endpoint has been modified to accept a querystring param for referenceCodes to allow for a bulk fetch of trackables.</li>
+        <li>Get Trackables endpoint has been modified to accept a querystring param for referenceCodes to allow for a bulk fetch of trackables.</li>
+        <li>Simplified fetching ignore list, favorites, and watch list or list details. Requests can now use "ignore", "favorites", or "watch" in place of the ignore list reference code, favorites list reference code, or watch list reference code in the url. This includes Get List, Get List Geocaches, Add Geocaches to list, and removing geocaches from list.</li>
+        <li>Geocaches returned from lists now include a field "ListItemName" which refers to the user generated alias name or null if the user did not use one.</li>
+        <li>User object has several new fields, including geocacheFindCounts, geocacheHideCounts, trackableFindCounts, trackableOwnedCounts</li>
+        <li>EventEndDate has been added to geocache object</li>
+        <li>Find count field has been added to the geocache object</li>
+        <li>New search filter codes has been added to the search method</li>
+    </ul>
+    <h3>11.26.2018</h3>
+    <ul>
+        <li>New search filters isActive and favoritedBy has been added to the search method.</li>
+        <li>The distance sort in search method can now be given coordinates outside of the location filter.</li>
+        <li>The FriendRequest object now includes requestDateUtc field.</li>
+        <li>A new method has been added to delete trackable log images.</li>
+        <li>The AttributeType object now includes notChosenIconUrl field.</li>
+        <li>The Image object now includes thumbnailUrl field.</li>
+        <li>The GeocacheLog object now includes geocacheName and ianaTimezoneId fields.</li>
+        <li>The Trackable object now includes holder and currentGeocacheName fields.</li>
+        <li>The TrackableLog object now includes geocacheName field.</li>
+        <li>The LogDraft object now includes geocacheName field.</li>
+        <li>New methods have been added to upsert and delete corrected coordinates.</li>
+        <li>Opted-out users now return username as well as the referenceCode.</li>
+    </ul>
+    <h3>10.08.2018</h3>
+    <ul>
+        <li>New methods have been added to get valid countries, states, and states by country id.</li>
+        <li>A new method has been added to get all valid attributes.</li>
+        <li>The field imageUrl has been added to attributes.</li>
+        <li>New methods have been added to get all valid types for geocaches, geocache logs, and trackable logs.</li>
+        <li>A new method has been added to get all valid membership levels.</li>
+        <li>Owner field has been added to both trackable and trackable log objects.</li>
+        <li>Expand has been added to all trackable and trackable log methods. See the method for details on what can be expanded.</li>
+        <li>A new syntax for fields has been added to send nested fields on complex objects.</li>
+        <li>Fields can be specified for expanded objects.</li>
+    </ul>
+    <h3>08.27.2018</h3>
+    <ul>
+        <li>An owner field has been added to the geocache and the geocache log object.</li>
+        <li>Url fields have been added to the geocache, geocache log, trackable, trackable log, list, souvenir, and user objects. This field will provide a link to the relevant website page.</li>
+        <li>Get Trackable's Logs can now be filtered by log type to help replace the old API's GetTrackableTravelList method functionality.</li>
+        <li>Location object now includes countryId and stateId</li>
+        <li>Search method now allows for terrain and difficulty to be filtered explicitly through a comma delimited list as well as a range (e.g. terr:1,3.5,5 vs terr:1-4)</li>
+        <li>Search method has a new filter for publishedDate</li>
+        <li>Search method has a new filter for is published</li>
+        <li>Search method filters hasNote and hasCorrectedCoordinates filters no longer require a username since they are only allowed for the calling user (q=hn instead of q=hn:username)</li>
+        <li>Get Zipped Pocket Query method has been added</li>
+        <li>Upsert Geocache Note returns an object instead of just a string</li>
+        <li>Get User's Geocache Logs method has new optional query string parameters for filtering the data set by dates</li>
+        <li>Geocache, geocache log, trackable and trackable log objects have new fields for types as a complex object instead of an enum. The old field will remain available to not make this a breaking change, but it is recommended to start using the new type fields (includes id, name, and image url)</li>
+        <li>Geocache type names have been changed to match the old API (except for types that have "Groundspeak" in the name, those have been changed to "Geocaching")</li>
+    </ul>
+    <h3>07.23.2018</h3>
+    <ul>
+        <li>Geocache object has new field for url to geocaching.com</li>
+        <li>Search Geocaches method now searchs location queries on corrected coordinates if exists otherwise falls back to posted coordinates</li>
+        <li>Get User Images now returns gallery images as the old API did</li>
+        <li>Souvenir object has new field guid to include an unique identifier</li>
+        <li>Tracking number is no longer required for creating "Write Note" trackable logs</li>
+        <li>Get Users' Geocache Logs method no longer restricts on what type can be returned from another user</li>
+        <li>A new method has been added to return all valid geocoin types</li>
+        <li>All geocache log methods can now use the expand parameter to include images. See method details for more expand info</li>
+    </ul>
+    <h3>06.18.2018</h3>
+    <ul>
+        <li>Get User Geocache Logs results can be filtered by log type and can include archived logs for the calling user</li>
+        <li>ProfileText has been added to the user object</li>
+        <li>Get Users method now accepts usernames or referenceCodes (not both)</li>
+        <li>FriendRequest object now contains more user information</li>
+        <li>Search method now returns unpublished geocaches if the calling user is the owner of the geocache</li>
+        <li>Expand limit has been increased from 10 to 30</li>
+        <li>Bug fixed for x-total-count header on Get Geocache Logs method</li>
+    </ul>
+    <h3>06.06.2018</h3>
+    <ul>
+        <li>Limits increased per IP address to 6000 calls per minute</li>
+    </ul>
+</section>
 </div>
 
 
