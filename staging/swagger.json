@@ -4161,10 +4161,10 @@
                             "type": "array",
                             "items": {
                                 "enum": [
-                                    "Unknown",
-                                    "Micro",
                                     "Regular",
+                                    "Micro",
                                     "Small",
+                                    "Unknown",
                                     "Virtual",
                                     "Other",
                                     "Large"
