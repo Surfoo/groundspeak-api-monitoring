@@ -4164,10 +4164,10 @@
                                     "Unknown",
                                     "Micro",
                                     "Regular",
-                                    "Other",
-                                    "Small",
                                     "Large",
-                                    "Virtual"
+                                    "Virtual",
+                                    "Other",
+                                    "Small"
                                 ],
                                 "type": "string"
                             }
