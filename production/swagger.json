@@ -233,6 +233,72 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/adventures\/stages\/search": {
+            "post": {
+                "tags": [
+                    "Adventures"
+                ],
+                "summary": "Search for stages independently of adventures",
+                "operationId": "Adventures_SearchStages",
+                "consumes": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json",
+                    "application\/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "stageSearchModel",
+                        "in": "body",
+                        "description": "Search request object, see model.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#\/definitions\/StageSearchModel"
+                        }
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/StageSearchResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/friendrequests": {
             "get": {
                 "tags": [
@@ -4095,13 +4161,13 @@
                             "type": "array",
                             "items": {
                                 "enum": [
-                                    "Virtual",
-                                    "Small",
-                                    "Regular",
-                                    "Other",
                                     "Micro",
-                                    "None",
-                                    "Large"
+                                    "Unknown",
+                                    "Regular",
+                                    "Large",
+                                    "Virtual",
+                                    "Other",
+                                    "Small"
                                 ],
                                 "type": "string"
                             }
@@ -7049,6 +7115,104 @@
                 }
             }
         },
+        "StageSearchModel": {
+            "type": "object",
+            "properties": {
+                "take": {
+                    "format": "int32",
+                    "description": "Amount of hits to take, return.",
+                    "type": "integer"
+                },
+                "radiusInMeters": {
+                    "format": "double",
+                    "description": "Search radius. In Meters.",
+                    "type": "number"
+                },
+                "origin": {
+                    "$ref": "#\/definitions\/GeoLocation",
+                    "description": "The origin location to search."
+                },
+                "excludedAdventures": {
+                    "description": "List of adventures to exclude from the search results.",
+                    "type": "array",
+                    "items": {
+                        "format": "uuid",
+                        "type": "string"
+                    }
+                },
+                "excludeOwned": {
+                    "description": "true to exclude results that are owned by the requesting user; otherwise, false.",
+                    "type": "boolean"
+                },
+                "excludeCompleted": {
+                    "description": "true to exclude results that are completed by the requesting user; otherwise, false.",
+                    "type": "boolean"
+                },
+                "excludeUnplayable": {
+                    "description": "true to exclude sequential stages that are unplayable by the requesting user; otherwise, false.",
+                    "type": "boolean"
+                },
+                "adventureTypes": {
+                    "description": "A list of adventure types to filter by when searching. If null, all adventure types will be returned.",
+                    "type": "array",
+                    "items": {
+                        "enum": [
+                            "Nonsequential",
+                            "Sequential"
+                        ],
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "StageSearchResponse": {
+            "type": "object",
+            "properties": {
+                "stageGuid": {
+                    "format": "uuid",
+                    "description": "The Guid of the stage.",
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#\/definitions\/GeoLocation",
+                    "description": "The location of the stage."
+                },
+                "title": {
+                    "description": "The title of the stage.",
+                    "type": "string"
+                },
+                "keyImageUrl": {
+                    "description": "The Url to the stage's key image.",
+                    "type": "string"
+                },
+                "isComplete": {
+                    "description": "Whether the calling user has completed the stage.",
+                    "type": "boolean"
+                },
+                "adventure": {
+                    "$ref": "#\/definitions\/StageAdventure",
+                    "description": "The adventure the stage belongs to."
+                }
+            }
+        },
+        "StageAdventure": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "uuid",
+                    "description": "The Guid identifier of the stage's adventure.",
+                    "type": "string"
+                },
+                "adventureType": {
+                    "description": "The stage's adventure's type.",
+                    "enum": [
+                        "Nonsequential",
+                        "Sequential"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
         "FriendRequest": {
             "required": [
                 "requestedUserCode",
@@ -7617,10 +7781,10 @@
                     "enum": [
                         "Large",
                         "Micro",
-                        "None",
                         "Other",
                         "Regular",
                         "Small",
+                        "Unknown",
                         "Virtual"
                     ],
                     "type": "string"
@@ -7729,10 +7893,6 @@
                     "items": {
                         "$ref": "#\/definitions\/Image"
                     }
-                },
-                "imageCount": {
-                    "format": "int32",
-                    "type": "integer"
                 },
                 "userWaypoints": {
                     "type": "array",
@@ -8372,10 +8532,10 @@
                     "enum": [
                         "Large",
                         "Micro",
-                        "None",
                         "Other",
                         "Regular",
                         "Small",
+                        "Unknown",
                         "Virtual"
                     ],
                     "type": "string"
@@ -8484,10 +8644,6 @@
                     "items": {
                         "$ref": "#\/definitions\/Image"
                     }
-                },
-                "imageCount": {
-                    "format": "int32",
-                    "type": "integer"
                 },
                 "userWaypoints": {
                     "type": "array",
