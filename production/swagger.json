@@ -4161,8 +4161,8 @@
                             "type": "array",
                             "items": {
                                 "enum": [
-                                    "Micro",
                                     "Unknown",
+                                    "Micro",
                                     "Regular",
                                     "Large",
                                     "Virtual",
