@@ -310,6 +310,12 @@
         <p>
             The API also supports and requires <a href="https://tools.ietf.org/html/rfc7636">PKCE</a> use which protects against authorization code interception attacks. You can implement PKCE as part of the authorization code grant by generating a <code>code_verifier</code> and <code>code_challenge</code>. To create a code_verifier, the partner application should create and record a secret, which should be a high-entropy cryptographic random string (ASCII characters) using the unreserved characters [A-Z][a-z][0-9]["-",".","_","~"] with a minimum length of 43 characters and a maximum length of 128 characters. The code_challenge is then created by creating a SHA2 256-bit hash of the code_verifier and then base64url encoding the hash. If your application is unable to support S256 hashing, you may pass in the code_verifier untransformed and use <code>plain</code> as the <code>code_challenge_method</code>.
         </p>
+        <b>Example code_verifier and code_challenge:</b>
+        <pre>Code verifier (random string (ASCII characters) using the unreserved characters [A-Z][a-z][0-9]["-",".","_","~"]):
+mg828Je82M441flIEEVQOm420IfdI_06v2u9HM212kgM7anId9Am_FF42m2aPE93n35M1HFxQMsy6ZvMNfq
+
+Code challenge (base64-url encoded SHA256 hash):
+qJCP3nUndZTovT_1mYcjMeNRTmdflWclG8vf7shmv28</pre>
         <p>
             <b>Requirements</b>: In order to utilize OAuth 2.0, partners need to provide Geocaching HQ with the application's staging and production redirect uris. The redirect uri passed in during the authorization process will be verified against the known uris by matching exactly. Production requires a secure uri (<code>https</code>) or a valid native app custom protocol.
         </p>
@@ -345,22 +351,22 @@
                     <tr>
                         <td><code>redirect_uri</code></td>
                         <td>Yes</td>
-                        <td>the url to redirect the end user after successfully granting access</td>
+                        <td>the url to redirect the end user after successfully granting access.</td>
                     </tr>
                     <tr>
                         <td><code>code_challenge</code></td>
-                        <td>No</td>
-                        <td>the transformed code verifier generated if using PKCE</td>
+                        <td>Yes</td>
+                        <td>the transformed code verifier generated if using PKCE.</td>
                     </tr>
                     <tr>
                         <td><code>code_challenge_method</code></td>
                         <td>No</td>
-                        <td>code verifier transformation method if using PKCE. The value can either be "S256" or "plain".</td>
+                        <td>code verifier transformation method if using PKCE. The value can either be "S256" or "plain". defaults to "plain".</td>
                     </tr>
                     <tr>
                         <td><code>state</code></td>
                         <td>No</td>
-                        <td>consumer provided code to mitigate XSRF attacks</td>
+                        <td>consumer provided code to mitigate XSRF attacks.</td>
                     </tr>
                     <tr>
                         <td><code>signup</code></td>
@@ -388,9 +394,9 @@
                     </tr>
                 </tbody>
             </table>
-            <b>Example Staging URL:</b> <code>https://staging.geocaching.com/oauth/authorize.aspx?client_id=12345&response_type=code&scope=*&redirect_uri=https://www.geocaching.com&state=1234abcd</code>
+            <b>Example Staging URL:</b> <code>https://staging.geocaching.com/oauth/authorize.aspx?client_id=12345&response_type=code&scope=*&redirect_uri=https://www.geocaching.com&state=1234abcd&code_challenge=qJCP3nUndZTovT_1mYcjMeNRTmdflWclG8vf7shmv28</code>
             <br />
-            <b>Example Production URL:</b> <code>https://www.geocaching.com/oauth/authorize.aspx?client_id=12345&response_type=code&scope=*&redirect_uri=https://www.geocaching.com&state=1234abcd</code>
+            <b>Example Production URL:</b> <code>https://www.geocaching.com/oauth/authorize.aspx?client_id=12345&response_type=code&scope=*&redirect_uri=https://www.geocaching.com&state=1234abcd=qJCP3nUndZTovT_1mYcjMeNRTmdflWclG8vf7shmv28</code>
             <br />
             <b>Example Response:</b> <code>https://www.geocaching.com?code=92232758f93a4dcda0223b45d9360ba2&state=1234abcd</code>
         </p>
