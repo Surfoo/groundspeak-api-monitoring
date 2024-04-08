@@ -4161,13 +4161,13 @@
                             "type": "array",
                             "items": {
                                 "enum": [
-                                    "Unknown",
                                     "Micro",
+                                    "Unknown",
+                                    "Small",
                                     "Regular",
                                     "Large",
                                     "Virtual",
-                                    "Other",
-                                    "Small"
+                                    "Other"
                                 ],
                                 "type": "string"
                             }
