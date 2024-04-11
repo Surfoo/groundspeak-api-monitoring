@@ -4162,12 +4162,12 @@
                             "items": {
                                 "enum": [
                                     "Unknown",
-                                    "Small",
                                     "Micro",
                                     "Regular",
-                                    "Other",
                                     "Large",
-                                    "Virtual"
+                                    "Virtual",
+                                    "Other",
+                                    "Small"
                                 ],
                                 "type": "string"
                             }
