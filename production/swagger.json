@@ -4161,13 +4161,13 @@
                             "type": "array",
                             "items": {
                                 "enum": [
+                                    "Small",
                                     "Micro",
                                     "Other",
-                                    "Small",
                                     "Regular",
+                                    "Unknown",
                                     "Large",
-                                    "Virtual",
-                                    "Unknown"
+                                    "Virtual"
                                 ],
                                 "type": "string"
                             }
@@ -7807,6 +7807,7 @@
                     "type": "string"
                 },
                 "isLocked": {
+                    "description": "The locked status of the Gecocache. \r\nActions on the Geocache are disabled when the Geocache is locked.",
                     "type": "boolean"
                 },
                 "location": {
@@ -7945,6 +7946,10 @@
                     "type": "boolean"
                 },
                 "ignored": {
+                    "type": "boolean"
+                },
+                "membershipLevelIsUnlocked": {
+                    "description": "Unlocked status of the geocache based on the calling user's membership level.\r\nFalse if the geocache is locked for the calling user. Defaults to true.",
                     "type": "boolean"
                 }
             }
@@ -8558,6 +8563,7 @@
                     "type": "string"
                 },
                 "isLocked": {
+                    "description": "The locked status of the Gecocache. \r\nActions on the Geocache are disabled when the Geocache is locked.",
                     "type": "boolean"
                 },
                 "location": {
