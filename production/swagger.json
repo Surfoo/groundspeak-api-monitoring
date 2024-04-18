@@ -4163,8 +4163,8 @@
                                 "enum": [
                                     "Small",
                                     "Micro",
-                                    "Other",
                                     "Regular",
+                                    "Other",
                                     "Unknown",
                                     "Large",
                                     "Virtual"
