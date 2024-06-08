@@ -15,5 +15,11 @@ foreach($argv as $file) {
         }
     }
 
+    foreach ($contentFile['paths'] as $route => &$method) {
+        if (isset($method['get']['responses']['200']['schema']['items']['enum'])) {
+            sort($method['get']['responses']['200']['schema']['items']['enum']);
+        }
+    }
+
     file_put_contents($file, json_encode($contentFile, JSON_PRETTY_PRINT));
 }
