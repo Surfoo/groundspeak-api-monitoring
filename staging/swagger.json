@@ -7561,6 +7561,9 @@
                     "format": "date-time",
                     "type": "string"
                 },
+                "name": {
+                    "type": "string"
+                },
                 "description": {
                     "description": "Description of the image",
                     "type": "string"
@@ -7630,6 +7633,9 @@
                 },
                 "capturedDate": {
                     "format": "date-time",
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 },
                 "description": {
