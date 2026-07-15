@@ -49,6 +49,7 @@
                 <li><a class="" href="#geotour-methods">GeoTour Methods</a></li>
                 <li><a class="" href="#utility-methods">Utility Methods</a></li>
                 <li><a class="" href="#adventure-methods">Adventure Methods</a></li>
+                <li><a class="" href="#statistics-methods">Statistics Methods</a></li>
                 <li><a class="" href="#objects">Objects</a></li>
             </ul>
         </div>
@@ -146,6 +147,7 @@
                     <li><a href="#delete-logdraft">Delete Log Draft</a></li>
                     <li><a href="#promote-logdraft">Promote Log Draft</a></li>
                     <li><a href="#create-logdraft-image">Add Log Draft Image</a></li>
+                    <li><a href="#delete-logdraft-image">Delete Log Draft Image</a></li>
                 </ul>
             </li>
             <li class="method-heading">
@@ -223,8 +225,13 @@
                 <ul id="adventureMethods" class="collapse in">
                     <li><a href="#adventures-search">Search</a></li>
                     <li><a href="#get-adventure">Get Adventure</a></li>
-                    <li><a href="#get-adventure-start">Get Adventure Start Location</a></li>
                     <li><a href="#stages-search">Search Stages</a></li>
+                </ul>
+            </li>
+            <li class="method-heading">
+                <a href="#statisticsMethods" class="method-toggle" data-toggle="collapse" aria-expanded="false"><i>Statistics Methods</i></a>
+                <ul id="statisticsMethods" class="collapse in">
+                    <li><a href="#statistics-dt">Get Difficulty/Terrain Statistics</a></li>
                 </ul>
             </li>
         </ul>
@@ -259,10 +266,11 @@
             <li><a href="#user-reference">UserReference</a></li>
             <li><a href="#adventure">Adventure</a></li>
             <li><a href="#adventure-stages">AdventureStages</a></li>
-            <li><a href="#adventure-start"> AdventureStart</a></li>
-            <li><a href="#stage-search-model"> StageSearchModel</a></li>
-            <li><a href="#stage-search-response"> StageSearchResponse</a></li>
-            <li><a href="#stage-adventure"> StageAdventure</a></li>
+            <li><a href="#adventure-start">AdventureStart</a></li>
+            <li><a href="#stage-search-model">StageSearchModel</a></li>
+            <li><a href="#stage-search-response">StageSearchResponse</a></li>
+            <li><a href="#stage-adventure">StageAdventure</a></li>
+            <li><a href="#difficulty-terrain-response">DifficultyTerrainStatistics</a></li>
         </ul>
         <h3>Reference Data</h3>
         <ul>
@@ -1470,6 +1478,14 @@ else
                         <td>No</td>
                         <td>how many resources to return. maximum value of 50</td>
                         <td><code>10</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>includeGallery</code></td>
+                        <td>query</td>
+                        <td><code>includeGallery=true</code></td>
+                        <td>No</td>
+                        <td>include gallery images in geocache image search. True returns gallery images mixed with Geocache images.</td>
+                        <td><code>true</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -2889,9 +2905,9 @@ else
                 <br />
                 <b>Response Type: </b><a href="#trackable-log">Trackable Log</a>
                 <br />
-                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 500
+                <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 429, 500
                 <br />
-                <b>Restrictions: </b>Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Users may only discover 500 trackables per 24 hours per API license key. "Visited" logs are limited to 20 in 15 minutes, and 600 every 24 hours. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -2941,7 +2957,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 404, 429, 500
                 <br />
-                <b>Restrictions: </b>Maximum of 50 logs may be created in bulk. Users may only discover 500 trackables per 24 hours per API license key. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Maximum of 50 logs may be created in bulk. Users may only discover 500 trackables per 24 hours per API license key. "Visited" logs are not allowed via Bulk Create, and those logs will auto fail. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -3642,6 +3658,56 @@ else
             </table>
             <br />
         </div>
+        <div id="delete-logdraft-image">
+            <h3>Delete Log Draft Image</h3>
+            <p>
+                This method will delete an image to a specified log draft
+            </p>
+            <p>
+                <b>Path: </b><code>/v1/logdrafts/{referenceCode}/images/{guid}</code>
+                <br />
+                <b>HTTP Method: </b>DELETE
+                <br />
+                <b>Response Type: </b>No response body
+                <br />
+                <b>Response Codes: </b>204, 400, 401, 403, 429, 500
+                <br />
+                <b>Restrictions: </b>Only owner of log draft may delete images from the log draft.
+            </p>
+            <br />
+            <table class="table table-striped table-hover table-responsive">
+                <caption>Parameters</caption>
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Argument</th>
+                        <th class="col-xs-1">Type</th>
+                        <th class="col-xs-2">Example</th>
+                        <th class="col-xs-1">Required</th>
+                        <th class="col-xs-5">Description</th>
+                        <th class="col-xs-2">Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>referenceCode</code></td>
+                        <td>path</td>
+                        <td><code>ld100</code></td>
+                        <td>Yes</td>
+                        <td>the identifier of the log draft</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>guid</td>
+                        <td>path</td>
+                        <td>199d3455-8f76-4ea4-a869-a2137c579398</td>
+                        <td>Yes</td>
+                        <td>the guid of the image to delete</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
     </section>
     <section id="userwaypoint-methods">
         <h2>User Waypoints Methods</h2>
@@ -4086,7 +4152,7 @@ else
                 <br />
                 <b>Response Codes: </b>201, 400, 401, 403, 404, 409, 422, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users can only add bookmark lists and have a maximum of 100 bookmark lists. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Basic members restriction applies; endpoint will return 401 if calling user is basic. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users can only add bookmark lists and have a maximum of 100 bookmark lists. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4136,7 +4202,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner may update the list. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Basic members restriction applies; endpoint will return 401 if calling user is basic. Only owner may update the list. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4194,7 +4260,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Only owner may delete the list. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Basic members restriction applies; endpoint will return 401 if calling user is basic. Only owner may delete the list. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4303,77 +4369,6 @@ else
                 </tbody>
             </table>
             <br />
-            <b>Response Type: </b>Array of <a href="#list-geocache">List Geocaches</a> or <a href="#lite-geocache">Lite List Geocaches</a>
-            <br />
-            <b>Response Codes: </b>200, 400, 401, 403, 404, 500
-            <br />
-            <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Users may opt out of sharing personal data, which include lists.
-            <p />
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>referenceCode</code></td>
-                        <td>path</td>
-                        <td><code>BM1234</code></td>
-                        <td>Yes</td>
-                        <td>identifier of the list (<code>ignore</code>, <code>favorites</code>, or <code>watch</code> can be used as aliases in place of the reference codes to get the calling user's ignore list and watch list).</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><code>fields</code></td>
-                        <td>query</td>
-                        <td><code>fields=name,referenceCode</code></td>
-                        <td>No</td>
-                        <td>partial response fields to return</td>
-                        <td>all fields</td>
-                    </tr>
-                    <tr>
-                        <td><code>skip</code></td>
-                        <td>query</td>
-                        <td><code>skip=10</code></td>
-                        <td>No</td>
-                        <td>the number of resources to skip over</td>
-                        <td><code>0</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>take</code></td>
-                        <td>query</td>
-                        <td><code>take=0</code></td>
-                        <td>No</td>
-                        <td>how many resources to return. maximum value of 50</td>
-                        <td><code>10</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>lite</code></td>
-                        <td>query</td>
-                        <td><code>lite=true</code></td>
-                        <td>No</td>
-                        <td>whether the response should be a lite geocaches or not</td>
-                        <td><code>true</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>expand</code></td>
-                        <td>query</td>
-                        <td><code>expand=geocachelogs:5,trackables:5</code></td>
-                        <td>false</td>
-                        <td>The fields of the geocache object to expand. Cannot be used with lite geocaches. The available options are geocachelogs, trackables, geocachelog.images, userwaypoints, and images.</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
         </div>
         <div id="get-pq-zip">
             <h3>Get Zipped Pocket Query</h3>
@@ -4431,7 +4426,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Bookmark lists may have a maximum of 1000 geocaches. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Basic members restriction applies; endpoint will return 401 if calling user is basic (with the exception of watchlists). See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Bookmark lists may have a maximum of 1000 geocaches. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4489,7 +4484,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 409, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Bookmark lists may have a maximum of 1000 geocaches. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Basic members restriction applies; endpoint will return 401 if calling user is basic (with the exception of watchlists). See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Bookmark lists may have a maximum of 1000 geocaches. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4539,7 +4534,7 @@ else
                 <br />
                 <b>Response Codes: </b>204, 400, 401, 403, 409, 500
                 <br />
-                <b>Restrictions: </b>Basic members restriction applies. See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Only owner may delete the user waypoint. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Basic members restriction applies; endpoint will return 401 if calling user is basic (with the exception of watchlists). See <a href="#membership-restrictions">Membership Restrictions</a> section for more info. Only owner may delete the user waypoint. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -4700,7 +4695,7 @@ else
                 <br />
                 <b>Response Codes: </b>200, 400, 401, 403, 404, 500
                 <br />
-                <b>Restrictions: </b>Can only use includeArchived parameter for the calling user. Requesting non-public log types will return 403 Forbidden status. Opted-out user will return a 403 Forbidden status. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
+                <b>Restrictions: </b>Can only use includeArchived parameter for the calling user. Requesting non-public log types will return 403 Forbidden status. Opted-out users and users who have their logs privacy setting set to Private (see showGeocachesFound in the <a href="#user-privacy-settings">User Privacy Settings</a> response) will return a 403 Forbidden status. Users who have their logs privacy setting set to Friends will return a 403 Forbidden status for calling users who are not a friend. See <a href="#opt-out">Third Party Data Sharing</a> for more details.
             </p>
             <br />
             <table class="table table-striped table-hover table-responsive">
@@ -6081,53 +6076,11 @@ else
             </table>
             <br />
         </div>
-        <div id="get-adventure-start">
-            <h3>Get Adventure Start Location</h3>
-            <p>
-                This method will fetch the start location of a specified adventure along with ratings information and count of stages.
-            </p>
-            <p>
-                <b>Path: </b><code>/v1/adventures/anon/{adventureGuid}</code>
-                <br />
-                <b>HTTP Method: </b>GET
-                <br />
-                <b>Response Type: </b><a href="#adventure-start">AdventureStart</a>
-                <br />
-                <b>Response Codes: </b>200, 400, 401, 403, 404, 429, 500
-                <br />
-                <b>Restrictions: </b>Private adventures will not be returned. Users must complete stages in the Adventure Lab app.
-            </p>
-            <br />
-            <table class="table table-striped table-hover table-responsive">
-                <caption>Parameters</caption>
-                <thead>
-                    <tr>
-                        <th class="col-xs-1">Argument</th>
-                        <th class="col-xs-1">Type</th>
-                        <th class="col-xs-2">Example</th>
-                        <th class="col-xs-1">Required</th>
-                        <th class="col-xs-5">Description</th>
-                        <th class="col-xs-2">Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>adventureGuid</code></td>
-                        <td>path</td>
-                        <td><code>12345678-ABCD-1234-EFGH-123456HIJKLM</code></td>
-                        <td>Yes</td>
-                        <td>the identifier of the adventure</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br />
-        </div>
         <div id="stages-search">
             <h3>Stages Search</h3>
             <p>The search stages endpoint allows you to search for adventures stages within a radius of a specified origin. Results are independent of the Adventure they are a part of.</p>
             <p>
-                <b>Path: </b><code>/v1/stages/search</code>
+                <b>Path: </b><code>/v1/adventures/stages/search</code>
                 <br />
                 <b>HTTP Method: </b>POST
                 <br />
@@ -6162,6 +6115,23 @@ else
             </table>
         </div>
 
+
+        <div id="statistics-dt">
+            <h3>Difficulty/Terrain Statistics</h3>
+            <p>This method gets the calling user's Difficulty/Terrain statistics.</p>
+            <p>
+                <b>Path: </b><code>/v1/statistics/difficultyterrain</code>
+                <br />
+                <b>HTTP Method: </b>GET
+                <br />
+                <b>Response Type: </b><a href="#difficulty-terrain-response">DifficultyTerrainStatistics</a>
+                <br />
+                <b>Response Codes: </b>200, 400, 401, 403, 429, 500
+                <br />
+                <b>Restrictions: </b>Basic members restriction applies. See Membership Restrictions section for more info. Basic members will return a 403 Forbidden response.
+            </p>
+            <br />
+        </div>
     </section>
     <section id="objects">
         <h2>Objects</h2>
@@ -6282,8 +6252,6 @@ else
                             <td>owner</td>
                             <td><a href="#user">User</a></td>
                             <td>Information about the owner of the geocache.</td>
-                            <td>No</td>
-                            <td>No</td>
                         </tr>
                         <tr>
                             <td>ownerAlias</td>
@@ -6312,7 +6280,7 @@ else
                         </tr>
                         <tr>
                             <td>attributes</td>
-                            <td>array of <a href="#attribute">Attributes</a>.</td>
+                            <td>array of <a href="#attribute">Attributes</a></td>
                             <td>Attributes of the geocache</td>
                         </tr>
                         <tr>
@@ -6669,8 +6637,6 @@ else
                             <td>owner</td>
                             <td><a href="#user">User</a></td>
                             <td>information about the owner of the geocache</td>
-                            <td>No</td>
-                            <td>No</td>
                         </tr>
                     </tbody>
                 </table>
@@ -7532,6 +7498,13 @@ else
                         <td>isCorrectedCoordinates</td>
                         <td>bool</td>
                         <td>whether the user waypoint are corrected coordinates</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>isUserCompleted</td>
+                        <td>bool</td>
+                        <td>whether the user waypoint has been completed by the user</td>
                         <td>Yes</td>
                         <td>Yes</td>
                     </tr>
@@ -9079,7 +9052,7 @@ else
                         <tr>
                             <td>ignored</td>
                             <td>bool</td>
-                            <td>if the user has added this geocache to their ignore list</td>
+                            <td>if the user has added this geocache to their ignore list (defaults to false if calling user is basic)</td>
                         </tr>
                         <tr>
                             <td>watched</td>
@@ -9101,6 +9074,11 @@ else
                             <td><a href="#coordinates">Coordinates</a></td>
                             <td>latitude and longitude of the user's solved coordinates</td>
                         </tr>
+                        <tr>
+                            <td>hasDraft</td>
+                            <td>bool</td>
+                            <td>if the user has a draft associated with this geocache</td>
+                        </tr>
                     </tbody>
                 </table>
                 <h3>Example</h3>
@@ -9114,7 +9092,8 @@ else
     "isFavorited": true,
     "ignored": false,
     "watched": false,
-    "note": "personal cache note here"
+    "note": "personal cache note here",
+    "hasDraft": false
 }</code></pre>
             </div>
         </div>
@@ -9200,11 +9179,11 @@ else
                 </table>
                 <h3>Example</h3>
                 <pre><code>{
-    "upvoteTypeId": 1,
-    "upvoteTypeName": "GreatStory",
-    "count": 10,
-    "upvotedByUser": false
-}</code></pre>
+                    "upvoteTypeId": 1,
+                    "upvoteTypeName": "GreatStory",
+                    "count": 10,
+                    "upvotedByUser": false
+                }</code></pre>
             </div>
         </div>
         <div id="coordinates" class="container col-md-12">
@@ -9330,9 +9309,14 @@ else
                             <td>Number of stages in adventure.</td>
                         </tr>
                         <tr>
-                            <td>dynamicLink</td>
+                            <td>deepLink</td>
                             <td>string</td>
                             <td>External link to Adventure on the official app/website.</td>
+                        </tr>
+                        <tr>
+                            <td>dynamicLink</td>
+                            <td>string</td>
+                            <td>External link to Adventure on the official app/website. <b>Obsolete. Use deepLink instead.</b></td>
                         </tr>
                         <tr>
                             <td>isOwned</td>
@@ -9354,21 +9338,23 @@ else
             </div>
             <div class="row">
                 <h3>Example</h3>
-                <pre><code>{
+                <pre><code>
+    {
     "id": "6930bdb4-10b7-4210-9e09-f96f26e8842b",
     "keyImageUrl" : "https://img.geocaching.com/12345.jpg",
     "title": "Test adventure",
     "location": {
-        "latitude": 47.6062166666667,
-        "longitude": -122.332066666667
+    "latitude": 47.6062166666667,
+    "longitude": -122.332066666667
     },
     "ratingsAverage": 5.0,
     "ratingsTotalCount": 10,
     "stagesTotalCount": 5,
+    "deepLink": "https://adventurelab.page.link/testdeeplink",
     "dynamicLink": "https://adventurelab.page.link/testlink",
     "isOwned": false,
     "isCompleted": false
-}
+    }
 </code></pre>
             </div>
             <div id="adventure-stages" class="container col-md-12">
@@ -9390,9 +9376,14 @@ else
                                 <td>the guid of the adventure</td>
                             </tr>
                             <tr>
+                                <td>deepLink</td>
+                                <td>string</td>
+                                <td>External link to Adventure on the official app/website.</td>
+                            </tr>
+                            <tr>
                                 <td>firebaseDynamicLink</td>
                                 <td>string</td>
-                                <td>the firebase dynamic link for the adventure</td>
+                                <td>the firebase dynamic link for the adventure. <b>Obsolete. Use deepLink instead.</b></td>
                             </tr>
                             <tr>
                                 <td>stages</td>
@@ -9404,87 +9395,28 @@ else
                 </div>
                 <div class="row">
                     <h3>Example</h3>
-                    <pre><code>{
+                    <pre><code>
+    {
     "id": "12345678-ABCD-1234-EFGH-123456HIJKLM",
+    "deepLink": "https://adventurelab.page.link/ABCD",
     "firebaseDynamicLink": "https://adventurelab.page.link/ABCD",
     "stages": [
-        {
-        "id": "87654321-DCBA-4321-HGFE-654321MLKJIH",
-        "title": "Dropped Off",
-        "stageImageUrl": "https://gsmediadata.blob.core.windows.net/mediacontainer/73847284-shif-4dfc-7dh3-193hd74kamn2",
-        "isComplete": false,
-        "description": "This is the stage description",
-        "location": {
-            "latitude": 45.1234,
-            "longitude": 122.6789
-            }
-        }
-    ]
-}</code></pre>
-                </div>
-
-            </div>
-            <div id="adventure-start" class="container col-md-12">
-                <h3><strong>Adventure Start</strong></h3>
-                <div class="row">
-                    <table class="table table-striped table-hover table-responsive">
-                        <caption>Fields</caption>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>id</td>
-                                <td>string</td>
-                                <td>the guid of the adventure</td>
-                            </tr>
-                            <tr>
-                                <td>title</td>
-                                <td>string</td>
-                                <td>the adventure's title</td>
-                            </tr>
-                            <tr>
-                                <td>location</td>
-                                <td><a href="#coordinates">coordinates</a></td>
-                                <td>coordinates of the adventure's start location</td>
-                            </tr>
-                            <tr>
-                                <td>ratingsAverage</td>
-                                <td>decimal</td>
-                                <td>Average of adventure ratings.</td>
-                            </tr>
-                            <tr>
-                                <td>ratingsTotalCount</td>
-                                <td>integer</td>
-                                <td>Number of adventure ratings.</td>
-                            </tr>
-                            <tr>
-                                <td>stagesTotalCount</td>
-                                <td>integer</td>
-                                <td>Number of stages in adventure.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <h3>Example</h3>
-                    <pre><code>{
-    "id": "12345678-9123-4567-8912-3456789123456",
-    "title": "Curry Plaza",
+    {
+    "id": "87654321-DCBA-4321-HGFE-654321MLKJIH",
+    "title": "Dropped Off",
+    "stageImageUrl": "https://gsmediadata.blob.core.windows.net/mediacontainer/73847284-shif-4dfc-7dh3-193hd74kamn2",
+    "isComplete": false,
+    "description": "This is the stage description",
     "location": {
-        "latitude": 47.6489666666667,
-        "longitude": -122.348116666667
-    },
-    "ratingsAverage": 2,
-    "ratingsTotalCount": 1,
-    "stagesTotalCount": 2
-}
+    "latitude": 45.1234,
+    "longitude": 122.6789
+    }
+    }
+    ]
+    }
 </code></pre>
                 </div>
+
             </div>
             <div id="stage-search-model" class="container col-md-12">
                 <h3><strong>Stage Search Model</strong></h3>
@@ -9562,56 +9494,56 @@ else
 
             </div>
         </div>
-            <div id="stage-search-response" class="container col-md-12">
-                <h3><strong>Stage Search Response</strong></h3>
-                <div class="row">
-                    <table class="table table-striped table-hover table-responsive">
-                        <caption>Fields</caption>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>StageGuid</td>
-                                <td>guid</td>
-                                <td>The guid of the stage.</td>
-                            </tr>
-                            <tr>
-                                <td>Location</td>
-                                <td>GeoLocation</td>
-                                <td>The location of the stage.</td>
-                            </tr>
-                            <tr>
-                                <td>Title</td>
-                                <td>string</td>
-                                <td>The title of the stage.</td>
-                            </tr>
-                            <tr>
-                                <td>KeyImageUrl</td>
-                                <td>string</td>
-                                <td>The Url to the stage's key image.</td>
-                            </tr>
-                            <tr>
-                                <td>IsComplete</td>
-                                <td>boolean</td>
-                                <td>Whether the calling user has completed the stage or not.</td>
-                            </tr>
-                            <tr>
-                                <td>Adventure</td>
-                                <td><a href="#stage-adventure">StageAdventure</a></td>
-                                <td>StageAdventure</td>
-                                <td>The adventure the stage belongs to.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <h3>Example</h3>
-                    <pre><code>{
+        <div id="stage-search-response" class="container col-md-12">
+            <h3><strong>Stage Search Response</strong></h3>
+            <div class="row">
+                <table class="table table-striped table-hover table-responsive">
+                    <caption>Fields</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>StageGuid</td>
+                            <td>guid</td>
+                            <td>The guid of the stage.</td>
+                        </tr>
+                        <tr>
+                            <td>Location</td>
+                            <td>GeoLocation</td>
+                            <td>The location of the stage.</td>
+                        </tr>
+                        <tr>
+                            <td>Title</td>
+                            <td>string</td>
+                            <td>The title of the stage.</td>
+                        </tr>
+                        <tr>
+                            <td>KeyImageUrl</td>
+                            <td>string</td>
+                            <td>The Url to the stage's key image.</td>
+                        </tr>
+                        <tr>
+                            <td>IsComplete</td>
+                            <td>boolean</td>
+                            <td>Whether the calling user has completed the stage or not.</td>
+                        </tr>
+                        <tr>
+                            <td>Adventure</td>
+                            <td><a href="#stage-adventure">StageAdventure</a></td>
+                            <td>StageAdventure</td>
+                            <td>The adventure the stage belongs to.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <h3>Example</h3>
+                <pre><code>{
     "stageGuid": "12345678-ABCD-1234-EFGH-123456HIJKLM",
     "location": {
         "latitude": 45.1234,
@@ -9626,9 +9558,8 @@ else
         "adventureType": "sequential"
     }
 }</code></pre>
-                </div>
-
             </div>
+        </div>
         <div id="stage-adventure" class="container col-md-12">
             <h3><strong>Stage Adventure</strong></h3>
             <div class="row">
@@ -9662,47 +9593,108 @@ else
     "adventureType": "sequential"
 }</code></pre>
             </div>
-</div>
-<div id="type" class="container col-md-12">
-    <h3><strong>Type</strong></h3>
-    <div class="row">
-        <table class="table table-striped table-hover table-responsive inherit-width">
-            <caption>Fields</caption>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>id</td>
-                    <td>integer</td>
-                    <td>Identifier of the type</td>
-                </tr>
-                <tr>
-                    <td>name</td>
-                    <td>string</td>
-                    <td>The name of the type</td>
-                </tr>
-                <tr>
-                    <td>imageUrl</td>
-                    <td>string</td>
-                    <td>Link to the image of the type</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="row">
-        <h3>Example</h3>
-        <pre><code>{
+        </div>
+        <div id="difficulty-terrain-response" class="container col-md-12">
+            <h3><strong>Difficulty/Terrain Statistics</strong></h3>
+            <div class="row">
+                <table class="table table-striped table-hover table-responsive">
+                    <caption>Fields</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DifficultyTerrainCounts</td>
+                            <td>List<DifficultyTerrainCount</td>
+                            <td>List of the find count associated with specific Difficulty/Terrain ratings.</td>
+                        </tr>
+                        <tr>
+                            <td>AverageDifficulty</td>
+                            <td>decimal</td>
+                            <td>The average difficulty of all caches found by the user.</td>
+                        </tr>
+                        <tr>
+                            <td>AverageTerrain</td>
+                            <td>decimal</td>
+                            <td>The average terrain of all caches found by the user.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <h3>Example</h3>
+                <pre><code>{
+    "difficultyTerrainCounts": [
+        {
+            "terrain": 1.5,
+            "difficulty": 1,
+            "count": 11
+        },
+        {
+            "terrain": 1.5,
+            "difficulty": 1.5,
+            "count": 40
+        },
+        {
+            "terrain": 2,
+            "difficulty": 1.5,
+            "count": 9
+        },
+        {
+            "terrain": 4.5,
+            "difficulty": 2,
+            "count": 2
+        }
+    ],
+    "averageDifficulty": 1.43,
+    "averageTerrain": 1.67
+}</code></pre>
+            </div>
+        </div>
+        <div id="type" class="container col-md-12">
+            <h3><strong>Type</strong></h3>
+            <div class="row">
+                <table class="table table-striped table-hover table-responsive inherit-width">
+                    <caption>Fields</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>integer</td>
+                            <td>Identifier of the type</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>The name of the type</td>
+                        </tr>
+                        <tr>
+                            <td>imageUrl</td>
+                            <td>string</td>
+                            <td>Link to the image of the type</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <h3>Example</h3>
+                <pre><code>{
     "id": "2",
     "name": "Found It",
     "imageUrl": "https://www.geocaching.com/images/logtypes/2.png"
 }</code></pre>
-    </div>
-</div>
+            </div>
+        </div>
     </section>
 <section id="reference-data">
     <h2>Reference Data</h2>
@@ -10264,6 +10256,72 @@ else
 </section>
 <section id="change-log">
     <h2>Change Log</h2>
+    <h3>07.08.2026</h3>
+    <ul>
+        <li>The <code>x-opted-out</code> header has been removed from API call responses, replaced with a boolean header <code>x-contains-opted-out</code> that will return true if there are opted out users in the response. Defaults to false.</li>
+        <li>Anywhere a PR reference code would be returned will be replaced with the code PRHIDDEN in the case the user is opted out</li>
+        <ul>
+            <li>IMPORTANT: PRHIDDEN is not a valid reference code and cannot be converted to an integer account ID representation.</li>
+            <li>This will impact Account, Geocache, Geocache Log and Trackable Log response models. The PR code for both geocache owners and log owners will be hidden if they are opted out.</li>
+        </ul>
+        <li>The Log Date time for opted out users will default to noon UTC</li>
+        <ul>
+            <li>This will impact Geocache Log and Trackable Log response models</li>
+        </ul>
+    </ul>
+    <h3>10.10.2025</h3>
+    <ul>
+        <li>Add <code>includeGallery</code> parameter to <a href="#get-geocache-images">Get Geocache Images</a> to optionally include/exclude gallery images in geocache images search. Defaults to <code>True</code> for backwards compatability.</li>
+    </ul>
+    
+    <h3>10.01.2025</h3>
+    <ul>
+        <li><a href="#bulk-create-trackablelogs">Bulk Create Trackable Logs</a> no longer allows "Visited" log types.</li>
+        <li>"Visited" log types are limited on <a href="#create-trackablelog">Create Trackable Logs</a></li>
+        <ul>
+            <li>20 per 15 minutes</li>
+            <li>600 per 25 hours</li>
+        </ul>
+    </ul>
+
+    <h3>08.25.2025</h3>
+    <ul>
+        <li>The firebase dynamic link returned for adventures is obsolete. Deeplink is now being returned and should be used instead.</li>
+        <li>The GET /v1/adventures/anon/{adventureGuid} ednpoint has been removed.</li>
+    </ul>
+
+    <h3>07.28.2025</h3>
+    <ul>
+        <li>New method for getting a user's own D/T statistics: <a href="#statistics-dt">GET /v1/statistics/difficultyterrain</a></li>
+        <li>Add support to set and get IsUserCompleted property on UserWaypoint</li>
+        <li>Limit users to max of 20 images for logs</li>
+        <li>Get friends x-total-count bug fixed to return the total number of friends and not just the number returned</li>
+        <li>Fix solution checker call to return corrected coordinates reliably</li>
+    </ul>
+    <h3>05.26.2025</h3>
+    <ul>
+        <li>In alignment with our core app's basic member rules, the following endpoints will now throw 401s for basic users:</li>
+        <ul>
+            <li><a href="#create-list">Create List</a></li>
+            <li><a href="#update-list">Update List</a></li>
+            <li><a href="#remove-list">Delete List</a></li>
+        </ul>
+        <li>The following endpoints will throw 401s for basic users <b>except</b> when a user is interacting with their watchlist:</li>
+        <ul>
+            <li><a href="#add-geocache-list">Add Geocache To List</a></li>
+            <li><a href="#add-geocaches-list">Add Geocaches To List</a></li>
+            <li><a href="#delete-geocache-list">Remove Geocache From List</a></li>
+        </ul>
+        <li>Related to these changes, the <a href="#user-data">UserData</a> response object will have the <b>ignored</b> property default to false for basic calling users.</li>
+    </ul>
+    <h3>12.11.2024</h3>
+    <ul>
+        <li><a href="#get-user-logs">GetUserGeocacheLogs()</a> now returns a 403 when a user's privacy settings are restricting it</li>
+        <li>Geocache <a href="#user-data">UserData</a> object now contains a new property "hasDraft" to indicate if the calling user has a draft for that geocache.</li>
+        <li>New endpoint to delete a geocache log draft image: <a href="#delete-logdraft-image">DELETE /v1/logdrafts/{referenceCode]/images/{imageGuid}</a></li>
+        <li>Fixed issue with user waypoint corrected coordinates coming back incorrectly</li>
+        <li>Fixed issue with Get Friends x-total-count value being incorrect</li>
+    </ul>
     <h3>06.24.2024</h3>
     <ul>
         <li>Able to specify image name for images attached to geocache and trackable logs via the following endpoints</li>
@@ -10271,7 +10329,7 @@ else
             <li>POST /v1/geocachelogs/{referenceCode}/images</li>
             <li>POST /v1/trackablelogs/{referenceCode}/images</li>
         </ul>
-        <li>Image desscription field is now ONLY description and does not also include the name.</li>
+        <li>Image description field is now ONLY description and does not also include the name.</li>
         <li>Favoriting a geocache that has not been found will now return error code 422.</li>
     </ul>
 

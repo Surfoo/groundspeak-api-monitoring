@@ -73,64 +73,6 @@
                 "deprecated": false
             }
         },
-        "\/v{api-version}\/adventures\/anon\/{adventureGuid}": {
-            "get": {
-                "tags": [
-                    "Adventures"
-                ],
-                "summary": "Get a single adventure's starting location",
-                "description": "This method will return an adventure along with its starting location.\r\nThis method can be called anonymously (no account\/access token required) but <b>requires<\/b> the proper API License scope.\r\nThis method can only return public adventures.",
-                "operationId": "Adventures_GetStartLocation",
-                "consumes": [],
-                "produces": [
-                    "application\/json",
-                    "text\/json",
-                    "application\/json-patch+json"
-                ],
-                "parameters": [
-                    {
-                        "name": "adventureGuid",
-                        "in": "path",
-                        "description": "The guid of the adventure",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    {
-                        "name": "api-version",
-                        "in": "path",
-                        "description": "The requested API version",
-                        "required": true,
-                        "type": "string",
-                        "default": "1.0"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Ok",
-                        "schema": {
-                            "$ref": "#\/definitions\/AdventureStartModel"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "429": {
-                        "description": "Too many requests"
-                    },
-                    "500": {
-                        "description": "Server Error"
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "\/v{api-version}\/adventures\/search": {
             "get": {
                 "tags": [
@@ -994,6 +936,13 @@
                         "type": "string"
                     },
                     {
+                        "name": "reasonText",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "name": "api-version",
                         "in": "path",
                         "description": "The requested API version",
@@ -1748,95 +1697,6 @@
                 "deprecated": false
             }
         },
-        "\/v{api-version}\/geocaches\/{referenceCode}\/images": {
-            "get": {
-                "tags": [
-                    "Geocaches"
-                ],
-                "summary": "Get a list of images for a geocache",
-                "description": "This method will return a list of images.",
-                "operationId": "Geocaches_GetImages",
-                "consumes": [],
-                "produces": [
-                    "application\/json",
-                    "text\/json",
-                    "application\/json-patch+json"
-                ],
-                "parameters": [
-                    {
-                        "name": "referenceCode",
-                        "in": "path",
-                        "description": "The reference code of the geocache (example: GC25).",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "skip",
-                        "in": "query",
-                        "description": "how many images to skip",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32",
-                        "default": 0
-                    },
-                    {
-                        "name": "take",
-                        "in": "query",
-                        "description": "how many images to retrieve",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32",
-                        "default": 10
-                    },
-                    {
-                        "name": "fields",
-                        "in": "query",
-                        "description": "fields you want to return, defaults to \"url\"",
-                        "required": false,
-                        "type": "string",
-                        "default": "url"
-                    },
-                    {
-                        "name": "api-version",
-                        "in": "path",
-                        "description": "The requested API version",
-                        "required": true,
-                        "type": "string",
-                        "default": "1.0"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Ok",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#\/definitions\/Image"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Not Authorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "429": {
-                        "description": "Too many requests"
-                    },
-                    "500": {
-                        "description": "Server Error"
-                    }
-                },
-                "deprecated": false
-            }
-        },
         "\/v{api-version}\/geocaches\/{referenceCode}\/favoritedby": {
             "get": {
                 "tags": [
@@ -2206,6 +2066,103 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "\/v{api-version}\/geocaches\/{referenceCode}\/images": {
+            "get": {
+                "tags": [
+                    "Geocaches"
+                ],
+                "summary": "Get a list of images for a geocache",
+                "description": "This method will return a list of images.",
+                "operationId": "Geocaches_GetImages",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "The reference code of the geocache (example: GC25).",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "how many images to skip",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "how many images to retrieve",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 10
+                    },
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "fields you want to return, defaults to \"url\"",
+                        "required": false,
+                        "type": "string",
+                        "default": "url"
+                    },
+                    {
+                        "name": "includeGallery",
+                        "in": "query",
+                        "description": "Include images on child resources (geocache logs images included with geocache images). This is currently only implemented for geocaches",
+                        "required": false,
+                        "type": "boolean",
+                        "default": true
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#\/definitions\/Image"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Not Authorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     },
                     "429": {
                         "description": "Too many requests"
@@ -3999,6 +3956,55 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/logdrafts\/{referenceCode}\/images\/{guid}": {
+            "delete": {
+                "tags": [
+                    "LogDrafts"
+                ],
+                "summary": "Delete image from log draft",
+                "operationId": "LogDrafts_DeleteImage",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "referenceCode",
+                        "in": "path",
+                        "description": "Identified of the log draft.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "guid",
+                        "in": "path",
+                        "description": "Unique identifier for the image",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/v{api-version}\/states": {
             "get": {
                 "tags": [
@@ -4453,6 +4459,40 @@
                 "deprecated": false
             }
         },
+        "\/v{api-version}\/statistics\/difficultyterrain": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Returns the D\/T grid",
+                "operationId": "Statistics_GetDifficultyTerrainGridAsync",
+                "consumes": [],
+                "produces": [
+                    "application\/json",
+                    "text\/json",
+                    "application\/json-patch+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "api-version",
+                        "in": "path",
+                        "description": "The requested API version",
+                        "required": true,
+                        "type": "string",
+                        "default": "1.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#\/definitions\/DifficultyTerrainStatistics"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "\/status\/ping": {
             "get": {
                 "tags": [
@@ -4803,7 +4843,7 @@
                     {
                         "name": "log",
                         "in": "body",
-                        "description": "The log to add",
+                        "description": "The log to add.",
                         "required": true,
                         "schema": {
                             "$ref": "#\/definitions\/PostTrackableLog"
@@ -5318,7 +5358,7 @@
                 "deprecated": false
             }
         },
-        "\/v{api-version}\/trackables\/{referenceCode}\/Images": {
+        "\/v{api-version}\/trackables\/{referenceCode}\/images": {
             "get": {
                 "tags": [
                     "Trackables"
@@ -6942,6 +6982,9 @@
                 "firebaseDynamicLink": {
                     "type": "string"
                 },
+                "deeplink": {
+                    "type": "string"
+                },
                 "adventureType": {
                     "enum": [
                         "Nonsequential",
@@ -6994,53 +7037,6 @@
                 }
             }
         },
-        "AdventureStartModel": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "format": "uuid",
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "location": {
-                    "$ref": "#\/definitions\/Location"
-                },
-                "ratingsAverage": {
-                    "format": "double",
-                    "type": "number"
-                },
-                "ratingsTotalCount": {
-                    "format": "int64",
-                    "type": "integer"
-                },
-                "stagesTotalCount": {
-                    "format": "int64",
-                    "type": "integer"
-                }
-            }
-        },
-        "Location": {
-            "type": "object",
-            "properties": {
-                "latitude": {
-                    "format": "double",
-                    "description": "The latitude of the location.",
-                    "type": "number"
-                },
-                "longitude": {
-                    "format": "double",
-                    "description": "The longitude of the location.",
-                    "type": "number"
-                },
-                "altitude": {
-                    "format": "double",
-                    "description": "The altitude of the location.",
-                    "type": "number"
-                }
-            }
-        },
         "AdventureBasicInfoModel": {
             "type": "object",
             "properties": {
@@ -7081,7 +7077,11 @@
                     "type": "integer"
                 },
                 "dynamicLink": {
-                    "description": "The Firebase Dynamimc Link.\r\nIt is essentially a shortened deeplink into the app, stored in Firebase.",
+                    "description": "(Obsolete) The Firebase Dynamimc Link.\r\nIt is essentially a shortened deeplink into the app, stored in Firebase. Now obsolete, use DeepLink instead.",
+                    "type": "string"
+                },
+                "deepLink": {
+                    "description": "The deeplink for the adventure, replaces DynamicLink.",
                     "type": "string"
                 },
                 "isOwned": {
@@ -7957,6 +7957,10 @@
                 "membershipLevelIsUnlocked": {
                     "description": "Unlocked status of the geocache based on the calling user's membership level.\r\nFalse if the geocache is locked for the calling user. Defaults to true.",
                     "type": "boolean"
+                },
+                "hasDraft": {
+                    "description": "Returns true if the calling user has an un-archived draft log for the geocache.",
+                    "type": "boolean"
                 }
             }
         },
@@ -8145,6 +8149,9 @@
                     "type": "string"
                 },
                 "isCorrectedCoordinates": {
+                    "type": "boolean"
+                },
+                "isUserCompleted": {
                     "type": "boolean"
                 },
                 "coordinates": {
@@ -8919,6 +8926,45 @@
                 }
             }
         },
+        "DifficultyTerrainStatistics": {
+            "type": "object",
+            "properties": {
+                "difficultyTerrainCounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#\/definitions\/DifficultyTerrainCount"
+                    }
+                },
+                "averageDifficulty": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "averageTerrain": {
+                    "format": "double",
+                    "type": "number"
+                }
+            }
+        },
+        "DifficultyTerrainCount": {
+            "type": "object",
+            "properties": {
+                "terrain": {
+                    "format": "double",
+                    "type": "number",
+                    "readOnly": true
+                },
+                "difficulty": {
+                    "format": "double",
+                    "type": "number",
+                    "readOnly": true
+                },
+                "count": {
+                    "format": "int32",
+                    "type": "integer",
+                    "readOnly": true
+                }
+            }
+        },
         "TrackableJourney": {
             "type": "object",
             "properties": {
@@ -8980,6 +9026,9 @@
                     "type": "string"
                 },
                 "isCorrectedCoordinates": {
+                    "type": "boolean"
+                },
+                "isUserCompleted": {
                     "type": "boolean"
                 },
                 "coordinates": {
